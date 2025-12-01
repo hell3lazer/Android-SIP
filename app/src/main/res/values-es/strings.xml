@@ -191,8 +191,6 @@
 <string name="settings_MWI2">Suscribir al sistema de mensaje de espera SIP</string>
 <string name="settings_reg">Registro</string>
 <string name="settings_reg2">Permite la selección de la cuenta SIP preferida</string>
-<string name="settings_notify">Llamadas perdidas</string>
-<string name="settings_notify2">Notificar con la luz LED azul</string>
 <string name="settings_nodata">Sin datos</string>
 <string name="settings_nodata2">Indicar la pérdida de paquetes de voz con tonos audibles</string>
 
@@ -252,7 +250,6 @@
 <string name="settings_profile_delete_confirmation">El perfil ha sido eliminado.</string>
 
 <string name="settings_wireless_options">Conexiones Inalámbricas</string>
-<string name="settings_bluetooth">Requiere Android 2.2 o superior</string>
 <string name="settings_keepon">Activar pantalla</string>
 <string name="settings_keepon2">Requerido por algunos dispositivos para evitar problemas con conexiones Wi-Fi</string>
 <string name="settings_selectwifi">Seleccionar punto de acceso Wi-Fi</string>
@@ -272,7 +269,6 @@
 <string name="menu_speaker">Altavoz</string>
 <string name="menu_endCall">Finalizar</string>
 <string name="menu_answer">Responder</string>
-<string name="menu_bluetooth">Bluetooth (Experimental)</string>
 
 <string name="transfer_title">Transferir llamada a</string>
 

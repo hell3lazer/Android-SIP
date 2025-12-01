@@ -159,8 +159,6 @@
 	<string name="settings_notifications">Notificações</string>
 	<string name="settings_MWI">Correio de voz</string>
 	<string name="settings_MWI2">Subscrever mensagem em espera SIP </string>
-	<string name="settings_notify">Chamada perdida</string>
-	<string name="settings_notify2">Notificar com LED azul</string>
 	<string name="settings_nodata">Sem dados</string>
 	<string name="settings_nodata2">Indicar pacotes de voz perdidos com um toque audível</string>
 

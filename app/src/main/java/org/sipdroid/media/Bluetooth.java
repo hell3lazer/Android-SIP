@@ -47,9 +47,12 @@ public class Bluetooth {
 	}
 	
 	public static void enable(boolean mode) {
-		if (mode)
-			am.startBluetoothSco();
-		else
+		Receiver.bluetooth = Receiver.last_bluetooth_state = Receiver.last2_bluetooth_state = -1;
+		Receiver.last_bluetooth_time = System.currentTimeMillis();
+		if (mode) {
+	 		am.startBluetoothSco();
+			am.setBluetoothScoOn(true);
+		} else
 			am.stopBluetoothSco();
 	}
 	

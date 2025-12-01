@@ -184,8 +184,6 @@
 <string name="settings_notifications">Powiadomienia</string>
 <string name="settings_MWI">Poczta głosowa</string>
 <string name="settings_MWI2">Sprawdzaj wiadomości oczekujące SIP</string>
-<string name="settings_notify">Nieodebrane</string>
-<string name="settings_notify2">Powiadamiaj niebieską diodą</string>
 <string name="settings_nodata">Brakujące pakiety</string>
 <string name="settings_nodata2">Powiadamiaj dźwiękami o utraconych pakietach głosowych</string>
 

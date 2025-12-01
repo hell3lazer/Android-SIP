@@ -222,7 +222,7 @@ public class Sipdroid extends Activity implements OnDismissListener {
 	@Override
 	public void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
-		
+
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.sipdroid);
 		sip_uri_box = (AutoCompleteTextView) findViewById(R.id.txt_callee);
@@ -460,6 +460,7 @@ public class Sipdroid extends Activity implements OnDismissListener {
 			Receiver.mSipdroidEngine = null;
 			Receiver.reRegister(0);
 			stopService(new Intent(this,RegisterService.class));
+			Receiver.changeTimestamps = new ArrayList<>();
 			finish();
 			break;
 			

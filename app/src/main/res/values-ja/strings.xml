@@ -197,8 +197,6 @@
 <string name="settings_MWI2">Subscribe to SIP message waiting</string>
 <string name="settings_reg">登録</string>
 <string name="settings_reg2">使用するSIPアカウントの選択を許可します</string>
-<string name="settings_notify">不在着信通知</string>
-<string name="settings_notify2">青いLEDで通知します</string>
 <string name="settings_nodata">データ無し通知</string>
 <string name="settings_nodata2">音声パケットに可聴音が含まれていない場合に通知します</string>
 
@@ -258,7 +256,6 @@
 <string name="settings_profile_delete_confirmation">プロファイルを削除しました.</string>
 
 <string name="settings_wireless_options">ワイヤレス設定</string>
-<string name="settings_bluetooth">Android 2.2以上で使用可能</string>
 <string name="settings_keepon">常に画面ON</string>
 <string name="settings_keepon2">いくつかのデバイスでは設定の如何に関わらず、画面OFFになるとWi-Fiがおかしくなります</string>
 <string name="settings_selectwifi">Wi-Fi APを選択</string>
@@ -278,7 +275,6 @@
 <string name="menu_speaker">スピーカ</string>
 <string name="menu_endCall">終話</string>
 <string name="menu_answer">応答</string>
-<string name="menu_bluetooth">Bluetooth (実験的)</string>
 
 <string name="transfer_title">転送電話 to</string>
 

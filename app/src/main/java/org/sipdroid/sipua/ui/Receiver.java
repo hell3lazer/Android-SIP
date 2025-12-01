@@ -27,7 +27,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executor;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -47,6 +49,7 @@ import android.content.Intent;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.ServiceInfo;
 import android.location.Location;
 import android.location.LocationManager;
 import android.media.AudioManager;
@@ -69,10 +72,17 @@ import android.os.SystemClock;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
+import android.telephony.PhoneStateListener;
+import android.telephony.ServiceState;
+import android.telephony.TelephonyCallback;
+import android.telephony.TelephonyDisplayInfo;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.RemoteViews;
+
+import androidx.annotation.NonNull;
+import androidx.core.app.NotificationCompat;
 
 import org.sipdroid.media.Bluetooth;
 import org.sipdroid.media.RtpStreamReceiver;
@@ -324,84 +334,66 @@ import org.zoolu.sip.provider.SipProvider;
 			}
 	        NotificationManager mNotificationMgr = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
 	        if (text != null) {
-		        Notification notification;
+		        NotificationCompat.Builder notification;
 			    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
 			        mNotificationMgr.createNotificationChannel(new NotificationChannel("status", "Status", NotificationManager.IMPORTANCE_LOW));
 			        mNotificationMgr.createNotificationChannel(new NotificationChannel("call", "Call", NotificationManager.IMPORTANCE_HIGH));
 			        mNotificationMgr.createNotificationChannel(new NotificationChannel("missed", "Missed Call", NotificationManager.IMPORTANCE_LOW));
 			        mNotificationMgr.createNotificationChannel(new NotificationChannel("message", "Voice Message", NotificationManager.IMPORTANCE_HIGH));
-			        notification = new Notification.Builder(mContext,"status").build();
+			        notification = new NotificationCompat.Builder(mContext,"status");
 			    } else
-			    	notification = new Notification.Builder(mContext).build();
-		        notification.icon = mInCallResId;
+			    	notification = new NotificationCompat.Builder(mContext);
+		        notification.setSmallIcon(mInCallResId);
 				if (type == MISSED_CALL_NOTIFICATION) {
 					    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O)
-							notification = new Notification.Builder(mContext,"missed")
+							notification = new NotificationCompat.Builder(mContext,"missed")
 									.setSmallIcon(mInCallResId)
 									.setContentIntent(PendingIntent.getActivity(mContext, 0, createCallLogIntent(), flags))
 									.setContentTitle(mContext.getString(R.string.app_name))
-									.setContentText(text)
-									.build();
+									.setContentText(text);
 					    else
-							notification = new Notification.Builder(mContext)
+							notification = new NotificationCompat.Builder(mContext)
 									.setSmallIcon(mInCallResId)
 									.setContentIntent(PendingIntent.getActivity(mContext, 0, createCallLogIntent(), flags))
 									.setContentTitle(mContext.getString(R.string.app_name))
-									.setContentText(text)
-									.build();
-			        	notification.flags |= Notification.FLAG_AUTO_CANCEL;
-			        	if (PreferenceManager.getDefaultSharedPreferences(Receiver.mContext).getBoolean(org.sipdroid.sipua.ui.Settings.PREF_NOTIFY, org.sipdroid.sipua.ui.Settings.DEFAULT_NOTIFY)) {
-				        	notification.flags |= Notification.FLAG_SHOW_LIGHTS;
-				        	notification.ledARGB = 0xff0000ff; /* blue */
-				        	notification.ledOnMS = 125;
-				        	notification.ledOffMS = 2875;
-			        	}
+									.setContentText(text);
+			        	notification.setAutoCancel(true);
 	        	} else {
 	        		switch (type) {
 		        	case MWI_NOTIFICATION:
 					    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-						    notification = new Notification.Builder(mContext,"message").build();
+						    notification = new NotificationCompat.Builder(mContext,"message");
 					    } else
-					    	notification = new Notification.Builder(mContext).build();
-				        notification.icon = mInCallResId;
-				        notification.flags |= Notification.FLAG_AUTO_CANCEL;
-						notification.contentIntent = PendingIntent.getActivity(mContext, 0, 
-								createMWIIntent(), flags);
-			        	notification.flags |= Notification.FLAG_SHOW_LIGHTS;
-			        	notification.ledARGB = 0xff00ff00; /* green */
-			        	notification.ledOnMS = 125;
-			        	notification.ledOffMS = 2875;
+					    	notification = new NotificationCompat.Builder(mContext);
+				        notification.setSmallIcon(mInCallResId);
+				        notification.setAutoCancel(true);
+						notification.setContentIntent(PendingIntent.getActivity(mContext, 0,
+								createMWIIntent(), flags));
 						break;
 		        	case AUTO_ANSWER_NOTIFICATION:
-						notification.contentIntent = PendingIntent.getActivity(mContext, 0,
-				                createIntent(AutoAnswer.class), flags);
+						notification.setContentIntent(PendingIntent.getActivity(mContext, 0,
+				                createIntent(AutoAnswer.class), flags));
 						break;
 		        	case CALL_NOTIFICATION:
 					    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O && !InCallScreen.started)
-					    	notification = new Notification.Builder(mContext,"call")
+					    	notification = new NotificationCompat.Builder(mContext,"call")
 		        				.setFullScreenIntent(PendingIntent.getActivity(mContext, 0,
 		        						createIntent(Sipdroid.class), flags), true)
-		        				.setSmallIcon(mInCallResId).build();
+		        				.setSmallIcon(mInCallResId);
 		        	default:
 		        		if (type >= REGISTER_NOTIFICATION && mSipdroidEngine != null && type != REGISTER_NOTIFICATION+mSipdroidEngine.pref &&
 		        				mInCallResId == R.drawable.sym_presence_available)
-							notification.contentIntent = PendingIntent.getActivity(mContext, 0,
-						            createIntent(ChangeAccount.class), flags);
+							notification.setContentIntent(PendingIntent.getActivity(mContext, 0,
+						            createIntent(ChangeAccount.class), flags));
 		        		else
-		        			notification.contentIntent = PendingIntent.getActivity(mContext, 0,
-		        					createIntent(Sipdroid.class), flags);
-				        if (mInCallResId == R.drawable.sym_presence_away) {
-				        	notification.flags |= Notification.FLAG_SHOW_LIGHTS;
-				        	notification.ledARGB = 0xffff0000; /* red */
-				        	notification.ledOnMS = 125;
-				        	notification.ledOffMS = 2875;
-				        }
+		        			notification.setContentIntent(PendingIntent.getActivity(mContext, 0,
+		        					createIntent(Sipdroid.class), flags));
 		        		break;
 		        	}			
-		        	notification.flags |= Notification.FLAG_ONGOING_EVENT;
+		        	notification.setOngoing(true);
 			        RemoteViews contentView = new RemoteViews(mContext.getPackageName(),
 	                        R.layout.ongoing_call_notification);
-			        contentView.setImageViewResource(R.id.icon, notification.icon);
+			        contentView.setImageViewResource(R.id.icon, notification.getNotification().icon);
 					if (base != 0) {
 						contentView.setChronometer(R.id.text1, base, text+" (%s)", true);
 					} else if (type >= REGISTER_NOTIFICATION) {
@@ -417,20 +409,24 @@ import org.zoolu.sip.provider.SipProvider;
 									mSipdroidEngine.user_profiles[type-REGISTER_NOTIFICATION].realm_orig);
 	        		} else
 						contentView.setTextViewText(R.id.text1, text);
-					notification.contentView = contentView;
+					notification.setCustomContentView(contentView);
 		        }
+				notification.setStyle(new androidx.core.app.NotificationCompat.DecoratedCustomViewStyle());
 				if (type == REGISTER_NOTIFICATION_0)
 					type = REGISTER_NOTIFICATION;
 				else if (type >= REGISTER_NOTIFICATION)
 					type = alloc(type);
 		    	if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && Receiver.sContext != null && type == REGISTER_NOTIFICATION) {
-					Receiver.sContext.startForeground(type, notification);
+					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
+						Receiver.sContext.startForeground(type, notification.build(), ServiceInfo.FOREGROUND_SERVICE_TYPE_PHONE_CALL);
+					else
+						Receiver.sContext.startForeground(type, notification.build());
 				} else {
-					mNotificationMgr.notify(type, notification);
+					mNotificationMgr.notify(type, notification.build());
 				}
 	        } else {
 				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && Receiver.sContext != null && type != REGISTER_NOTIFICATION_0 && type >= REGISTER_NOTIFICATION && alloc(type) == REGISTER_NOTIFICATION) {
-					onText(alloc(type), Receiver.sContext.getString(R.string.regfailed), R.drawable.sym_presence_away, 0);
+					onText(alloc(type), "Offline", R.drawable.sym_presence_offline, 0);
 					return;
 				}
 	        	if (type >= REGISTER_NOTIFICATION)
@@ -531,19 +527,23 @@ import org.zoolu.sip.provider.SipProvider;
        		if (!Sipdroid.release) Log.i("SipUA:","alarm "+renew_time);
 	        Intent intent = new Intent(mContext, cls);
 			int flags = 0;
-			if (android.os.Build.VERSION.SDK_INT >= 31)
+			if (Build.VERSION.SDK_INT >= 31)
 				flags |= FLAG_IMMUTABLE;
 	        PendingIntent sender = PendingIntent.getBroadcast(mContext,
 	                0, intent, flags);
 			AlarmManager am = (AlarmManager)mContext.getSystemService(Context.ALARM_SERVICE);
 			am.cancel(sender);
 			if (renew_time > 0) {
-				if (android.os.Build.VERSION.SDK_INT >= 23)
-					am.setExactAndAllowWhileIdle(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime()+renew_time*1000, sender);
-				else if (android.os.Build.VERSION.SDK_INT >= 19)
-	        		am.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime()+renew_time*1000, sender);
-	        	else
-	        		am.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime()+renew_time*1000, sender);
+				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+					if (am.canScheduleExactAlarms())
+						am.setExactAndAllowWhileIdle(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime() + renew_time * 1000, sender);
+					else
+						am.setAndAllowWhileIdle(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime() + renew_time * 1000, sender);
+				} else
+					if (Build.VERSION.SDK_INT >= 23)
+						am.setAndAllowWhileIdle(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime()+renew_time*1000, sender);
+					else
+						am.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime()+renew_time*1000, sender);
 			}
 		}
 		
@@ -660,14 +660,23 @@ import org.zoolu.sip.provider.SipProvider;
     		edit.commit();
 		}
 		
+		@SuppressLint("MissingPermission")
 		public static boolean isFast(int i) {
         	WifiManager wm = (WifiManager) mContext.getSystemService(Context.WIFI_SERVICE);
         	WifiInfo wi = wm.getConnectionInfo();
 
-        	if (PreferenceManager.getDefaultSharedPreferences(mContext).getString(org.sipdroid.sipua.ui.Settings.PREF_USERNAME+(i!=0?i:""),"").equals("") ||
+			if (tm == null)
+				tm = (TelephonyManager) mContext.getSystemService(Context.TELEPHONY_SERVICE);
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+				handleNetworkTypeChange(tm.getDataNetworkType());
+			if (PreferenceManager.getDefaultSharedPreferences(mContext).getString(org.sipdroid.sipua.ui.Settings.PREF_USERNAME+(i!=0?i:""),"").equals("") ||
         			PreferenceManager.getDefaultSharedPreferences(mContext).getString(org.sipdroid.sipua.ui.Settings.PREF_SERVER+(i!=0?i:""),"").equals(""))
         		return false;
-        	if (wi != null) {
+			if (getRecentNetworkTypeChangesCount() > 3 &&
+					PreferenceManager.getDefaultSharedPreferences(mContext).getBoolean(org.sipdroid.sipua.ui.Settings.PREF_NOTRAIN+(i!=0?i:""), org.sipdroid.sipua.ui.Settings.DEFAULT_NOTRAIN)) {
+				return false;
+			}
+			if (wi != null) {
         		if (!Sipdroid.release) Log.i("SipUA:","isFastWifi() "+WifiInfo.getDetailedStateOf(wi.getSupplicantState())
         				+" "+wi.getIpAddress());
 	        	if (wi.getIpAddress() != 0 && (WifiInfo.getDetailedStateOf(wi.getSupplicantState()) == DetailedState.OBTAINING_IPADDR
@@ -683,16 +692,46 @@ import org.zoolu.sip.provider.SipProvider;
         	on_wlan = false;
 			return isFastGSM(i);
 		}
-			
+
+		public static List<Long> changeTimestamps = new ArrayList<>();
+		static int lastNetworkType;
+
+		private static void handleNetworkTypeChange(int networkType) {
+			if (networkType != lastNetworkType) {
+				lastNetworkType = networkType;
+				long now = System.currentTimeMillis();
+				synchronized (changeTimestamps) {
+					changeTimestamps.add(now);
+					cleanupOldTimestamps();
+				}
+			}
+		}
+
+		public static int getRecentNetworkTypeChangesCount() {
+			synchronized (changeTimestamps) {
+				cleanupOldTimestamps();
+				return changeTimestamps.size();
+			}
+		}
+
+		@TargetApi(31)
+		static void cleanupOldTimestamps() {
+			if (android.os.Build.VERSION.SDK_INT >= 31) {
+				long cutoff = System.currentTimeMillis() - 20 * 60 * 1000; /* 20 minutes */
+				changeTimestamps.removeIf(ts -> ts < cutoff);
+			}
+		}
+
+		static TelephonyManager tm;
+
 		@TargetApi(24)
 		static boolean isFastGSM(int i) {
-        	TelephonyManager tm = (TelephonyManager) mContext.getSystemService(Context.TELEPHONY_SERVICE);
         	int nt = 0;
-        	
+
         	if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M)
         		if (Receiver.mContext.checkSelfPermission(Manifest.permission.READ_PHONE_STATE)
         		        != PackageManager.PERMISSION_GRANTED) {
-        		        nt = TelephonyManager.NETWORK_TYPE_UMTS;
+        		        nt = TelephonyManager.NETWORK_TYPE_LTE;
         		}
         	if (nt == 0) {
 				if (android.os.Build.VERSION.SDK_INT >= 24)
@@ -702,12 +741,12 @@ import org.zoolu.sip.provider.SipProvider;
         	}
         	if (Sipdroid.market)
         		return false;
-        	if (on_vpn() && (nt >= TelephonyManager.NETWORK_TYPE_EDGE))
+        	if (on_vpn() && (nt >= TelephonyManager.NETWORK_TYPE_UMTS))
         		return PreferenceManager.getDefaultSharedPreferences(mContext).getBoolean(org.sipdroid.sipua.ui.Settings.PREF_VPN+(i!=0?i:""), org.sipdroid.sipua.ui.Settings.DEFAULT_VPN);
-        	if (nt >= TelephonyManager.NETWORK_TYPE_UMTS)
-        		return PreferenceManager.getDefaultSharedPreferences(mContext).getBoolean(org.sipdroid.sipua.ui.Settings.PREF_3G+(i!=0?i:""), org.sipdroid.sipua.ui.Settings.DEFAULT_3G);
-        	if (nt == TelephonyManager.NETWORK_TYPE_EDGE)
-       			return PreferenceManager.getDefaultSharedPreferences(mContext).getBoolean(org.sipdroid.sipua.ui.Settings.PREF_EDGE+(i!=0?i:""), org.sipdroid.sipua.ui.Settings.DEFAULT_EDGE);
+        	if (nt >= TelephonyManager.NETWORK_TYPE_LTE)
+        		return PreferenceManager.getDefaultSharedPreferences(mContext).getBoolean(org.sipdroid.sipua.ui.Settings.PREF_4G+(i!=0?i:""), org.sipdroid.sipua.ui.Settings.DEFAULT_4G);
+        	if (nt == TelephonyManager.NETWORK_TYPE_UMTS)
+       			return PreferenceManager.getDefaultSharedPreferences(mContext).getBoolean(org.sipdroid.sipua.ui.Settings.PREF_3G+(i!=0?i:""), org.sipdroid.sipua.ui.Settings.DEFAULT_3G);
         	return false;
 		}
 		
@@ -730,7 +769,10 @@ import org.zoolu.sip.provider.SipProvider;
 	    		}
 	    	}
 	    };
-	    
+
+		public static int last_bluetooth_state,last2_bluetooth_state;
+		public static long last_bluetooth_time;
+
 	    @Override
 		public void onReceive(Context context, Intent intent) {
 	        String intentAction = intent.getAction();
@@ -786,6 +828,26 @@ import org.zoolu.sip.provider.SipProvider;
 	        } else
 	        if (intentAction.equals(ACTION_SCO_AUDIO_STATE_CHANGED)) {
 	        	bluetooth = intent.getIntExtra(EXTRA_SCO_AUDIO_STATE, -1);
+				if (bluetooth > 0 && last_bluetooth_state == 0 && last2_bluetooth_state > 0 &&
+					System.currentTimeMillis()-last_bluetooth_time > 4000) {
+					// headset button pressed
+					switch (Receiver.call_state) {
+						case UserAgent.UA_STATE_INCOMING_CALL:
+							engine(Receiver.mContext).answercall();
+							break;
+						case UserAgent.UA_STATE_HOLD:
+						case UserAgent.UA_STATE_OUTGOING_CALL:
+						case UserAgent.UA_STATE_INCALL:
+							engine(Receiver.mContext).rejectcall();
+							break;
+					}
+				}
+				if (bluetooth == 0 && last_bluetooth_state > 0 && System.currentTimeMillis()-last_bluetooth_time < 4000) { // quick transition from 1 to 0
+					// headset not in use
+					RtpStreamReceiver.enableBluetooth(false);
+				}
+				last2_bluetooth_state = last_bluetooth_state;
+				last_bluetooth_state = bluetooth;
 	        	progress();
 	        	RtpStreamSender.changed = true;
 	        } else

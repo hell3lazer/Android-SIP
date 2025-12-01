@@ -155,8 +155,6 @@
 <string name="settings_notifications">Notifiche</string>
 <string name="settings_MWI">Casella vocale</string>
 <string name="settings_MWI2">Registrati ai messaggi SIP in attesa</string>
-<string name="settings_notify">Chiamate perse</string>
-<string name="settings_notify2">Notifica con un LED blu</string>
 
 <string name="settings_advanced_options">Impostazioni avanzate</string>
 <string name="settings_policy_never">Cambia le politiche di attesa per mantenere il Wifi attivo.</string>

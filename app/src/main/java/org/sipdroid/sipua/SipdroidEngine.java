@@ -92,7 +92,7 @@ public class SipdroidEngine implements RegisterAgentListener {
 		user_profile.qvalue = PreferenceManager.getDefaultSharedPreferences(getUIContext()).getString(Settings.PREF_MMTEL_QVALUE, Settings.DEFAULT_MMTEL_QVALUE);
 		user_profile.mmtel = PreferenceManager.getDefaultSharedPreferences(getUIContext()).getBoolean(Settings.PREF_MMTEL, Settings.DEFAULT_MMTEL);
 
-		user_profile.pub = PreferenceManager.getDefaultSharedPreferences(getUIContext()).getBoolean(Settings.PREF_EDGE+suffix, Settings.DEFAULT_EDGE) ||
+		user_profile.pub = PreferenceManager.getDefaultSharedPreferences(getUIContext()).getBoolean(Settings.PREF_4G+suffix, Settings.DEFAULT_4G) ||
 			PreferenceManager.getDefaultSharedPreferences(getUIContext()).getBoolean(Settings.PREF_3G+suffix, Settings.DEFAULT_3G);
 		return user_profile;
 	}
@@ -255,7 +255,7 @@ public class SipdroidEngine implements RegisterAgentListener {
 			RegisterAgent ra = ras[i];
 			if (ra != null && ra.unregister()) {
 				Receiver.alarm(0, LoopAlarm.class);
-				Receiver.onText(Receiver.REGISTER_NOTIFICATION+i,getUIContext().getString(R.string.reg),R.drawable.sym_presence_idle,0);
+				Receiver.onText(Receiver.REGISTER_NOTIFICATION+i,getUIContext().getString(R.string.unreg),R.drawable.sym_presence_idle,0);
 				wl[i].acquire();
 			} else
 				Receiver.onText(Receiver.REGISTER_NOTIFICATION+i, null, 0, 0);

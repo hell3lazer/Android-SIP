@@ -485,6 +485,8 @@ public class RegisterAgent implements TransactionClientListener, SubscriberDialo
 				if (listener != null)
 				{
 					listener.onUaRegistrationSuccess(this, target, contact, result);
+					if (Receiver.getRecentNetworkTypeChangesCount() > 3)
+						Receiver.reRegister(1000);
 				}
 			}
 		}

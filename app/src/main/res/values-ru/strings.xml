@@ -191,8 +191,6 @@
 <string name="settings_MWI2">Подписка на оставленные сообщения в SIP</string>
 <string name="settings_reg">Регистрация</string>
 <string name="settings_reg2">Разрешить выбор учётной записи SIP</string>
-<string name="settings_notify">Пропущенный вызов</string>
-<string name="settings_notify2">Мигать синим светодиодом</string>
 <string name="settings_nodata">Обрыв данных</string>
 <string name="settings_nodata2">При пропущенных пакетах подавать звуковой сигнал</string>
 
@@ -252,7 +250,6 @@
 <string name="settings_profile_delete_confirmation">Профиль был удалён.</string>
 
 <string name="settings_wireless_options">WiFi/Bluetooth</string>
-<string name="settings_bluetooth">Требуется Android 2.2 или новее</string>
 <string name="settings_keepon">Держать WiFi</string>
 <string name="settings_keepon2">На некоторых устройствах исправляет проблемы с WiFi</string>
 <string name="settings_selectwifi">Выбирать точку WiFi</string>
@@ -272,7 +269,6 @@
 <string name="menu_speaker">Громкая связь</string>
 <string name="menu_endCall">Завершить вызов</string>
 <string name="menu_answer">Ответить</string>
-<string name="menu_bluetooth">Bluetooth (экспериментально)</string>
 
 <string name="transfer_title">Перевести вызов на</string>
 

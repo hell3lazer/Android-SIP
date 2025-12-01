@@ -195,8 +195,6 @@
 <string name="settings_MWI2">S\'abonner à l\'attente de messages SIP</string>
 <string name="settings_reg">Enregistrement</string>
 <string name="settings_reg2">Permet la sélection du compte SIP préféré</string>
-<string name="settings_notify">Appel Manqué</string>
-<string name="settings_notify2">Notifier avec la LED bleue</string>
 <string name="settings_nodata">Aucune donnée</string>
 <string name="settings_nodata2">Indique des paquets "voix" par des tonalités audibles</string>
 
@@ -256,7 +254,6 @@
 <string name="settings_profile_delete_confirmation">Le profile a été effacé.</string>
 
 <string name="settings_wireless_options">Sans-fils</string>
-<string name="settings_bluetooth">Nécessite Android 2.2 ou Supérieur</string>
 <string name="settings_keepon">Ecran allumé</string>
 <string name="settings_keepon2">Requis par certain terminaux pour avoir le Wi-Fi sans souci</string>
 <string name="settings_selectwifi">Selectionnerl\'AP Wi-Fi</string>
@@ -276,7 +273,6 @@
 <string name="menu_speaker">Haut-Parleur</string>
 <string name="menu_endCall">Fin d\'appel</string>
 <string name="menu_answer">Réponse</string>
-<string name="menu_bluetooth">Bluetooth (expérimental)</string>
 
 <string name="transfer_title">Transférer l\'appel vers</string>
 

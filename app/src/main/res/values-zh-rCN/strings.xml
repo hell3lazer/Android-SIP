@@ -214,8 +214,6 @@
 <string name="settings_MWI2">自动检查是否有未读的语音留言</string>
 <string name="settings_reg">登录</string>
 <string name="settings_reg2">允许选择SIP帐户</string>
-<string name="settings_notify">未接电话</string>
-<string name="settings_notify2">使用蓝色LED灯提醒</string>
 <string name="settings_nodata">无数据</string>
 <string name="settings_nodata2">使用单音调指示数据包丢失</string>
 
@@ -276,7 +274,6 @@
 <string name="settings_profile_delete_confirmation">成功删除用户配置。</string>
 
 <string name="settings_wireless_options">Wi-Fi设置</string>
-<string name="settings_bluetooth">需要Android 2.2或更高</string>
 <string name="settings_keepon">屏幕常亮</string>
 <string name="settings_keepon2">一些设备需要选择此项以保持Wi-Fi连接</string>
 <string name="settings_selectwifi">选择Wi-Fi热点</string>
@@ -296,7 +293,7 @@
 <string name="menu_speaker">扬声器</string>
 <string name="menu_endCall">挂断</string>
 <string name="menu_answer">应答</string>
-<string name="menu_bluetooth">蓝牙(实验功能)</string>
+<string name="menu_bluetooth">蓝牙</string>
 
 <string name="transfer_title">将通话转移至</string>
 

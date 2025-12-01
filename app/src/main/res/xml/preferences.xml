@@ -39,15 +39,18 @@
 				android:dialogTitle="@string/settings_protocol" />
 			<CheckBoxPreference
 				android:key="wlan"
-				android:title="@string/settings_wlan"/>
+				android:title="@string/settings_wlan" />
+			<CheckBoxPreference
+				android:key="4g"
+				android:title="@string/settings_4g"
+				android:summary="@string/settings_check" />
 			<CheckBoxPreference
 				android:key="3g"
 				android:title="@string/settings_3g"
 				android:summary="@string/settings_check" />
 			<CheckBoxPreference
-				android:key="edge"
-				android:title="@string/settings_edge"
-				android:summary="@string/settings_check" />
+				android:key="notrain"
+				android:title="@string/settings_notrain" />
 			<CheckBoxPreference
 				android:key="vpn"
 				android:title="@string/settings_vpn"
@@ -92,15 +95,18 @@
 				android:dialogTitle="@string/settings_protocol" />
 			<CheckBoxPreference
 				android:key="wlan1"
-				android:title="@string/settings_wlan"/>
+				android:title="@string/settings_wlan" />
+			<CheckBoxPreference
+				android:key="4g1"
+				android:title="@string/settings_4g"
+				android:summary="@string/settings_check" />
 			<CheckBoxPreference
 				android:key="3g1"
 				android:title="@string/settings_3g"
 				android:summary="@string/settings_check" />
 			<CheckBoxPreference
-				android:key="edge1"
-				android:title="@string/settings_edge"
-				android:summary="@string/settings_check" />
+				android:key="notrain1"
+				android:title="@string/settings_notrain" />
 			<CheckBoxPreference
 				android:key="vpn1"
 				android:title="@string/settings_vpn"
@@ -136,10 +142,6 @@
 				android:key="MWI_enabled"
 				android:title="@string/settings_MWI"
 				android:summary="@string/settings_MWI2" />
-			<CheckBoxPreference
-				android:key="notify"
-				android:title="@string/settings_notify"
-				android:summary="@string/settings_notify2" />
 			<CheckBoxPreference
 				android:key="nodata"
 				android:title="@string/settings_nodata"
@@ -226,8 +228,7 @@
 				android:summary="@string/settings_keepon2" />
 			<CheckBoxPreference
 				android:key="bluetooth"
-				android:title="@string/menu_bluetooth"
-				android:summary="@string/settings_bluetooth" />
+				android:title="@string/menu_bluetooth" />
 	</PreferenceScreen>
 	<PreferenceScreen android:title="@string/settings_pbxes_options">
 			<CheckBoxPreference

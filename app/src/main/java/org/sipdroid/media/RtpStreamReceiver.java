@@ -22,7 +22,6 @@
 package org.sipdroid.media;
 
 import java.io.IOException;
-import java.net.InetAddress;
 import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +30,6 @@ import org.sipdroid.net.RtpSocket;
 import org.sipdroid.net.SipdroidSocket;
 import org.sipdroid.sipua.R;
 import org.sipdroid.sipua.UserAgent;
-import org.sipdroid.sipua.ui.InCallScreen;
 import org.sipdroid.sipua.ui.Receiver;
 import org.sipdroid.sipua.ui.Sipdroid;
 import org.sipdroid.codecs.Codecs;
@@ -49,7 +47,6 @@ import android.os.Build;
 import android.os.PowerManager;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
-import android.provider.Settings;
 import android.view.KeyEvent;
 import android.widget.Toast;
 
@@ -122,27 +119,12 @@ public class RtpStreamReceiver extends Thread {
 		enableBluetooth(!bluetoothmode);
 	}
 	
-	static boolean was_enabled;
-	
-	static void enableBluetooth(boolean mode) {
+	public static void enableBluetooth(boolean mode) {
 		if (bluetoothmode != mode && (!mode || isBluetoothAvailable())) {
-			if (mode) was_enabled = true;
 			Bluetooth.enable(bluetoothmode = mode);
 		}
 	}
-	
-	void cleanupBluetooth() {
-		if (was_enabled && Integer.parseInt(Build.VERSION.SDK) == 8) {
-			enableBluetooth(true);
-			try {
-				sleep(3000);
-			} catch (InterruptedException e) {
-			}
-			if (Receiver.call_state == UserAgent.UA_STATE_IDLE)
-				android.os.Process.killProcess(android.os.Process.myPid());
-		}
-	}
-	
+
 	public static boolean isBluetoothAvailable() {
 		if (Receiver.headset > 0 || Receiver.docked > 0)
 			return false;
@@ -403,6 +385,7 @@ public class RtpStreamReceiver extends Thread {
 			}
 		} else
 			am.setMode(mode);
+		Bluetooth.enable(bluetoothmode);
 	}
 	
 	public static void restoreMode() {
@@ -479,7 +462,7 @@ public class RtpStreamReceiver extends Thread {
 	int maxjitter,minjitter,minjitteradjust;
 	int cnt,cnt2,user,luser,luser2,lserver;
 	public static int jitter,mu;
-	
+
 	void setCodec() {
 		synchronized (this) {
 			AudioTrack oldtrack;
@@ -590,7 +573,7 @@ public class RtpStreamReceiver extends Thread {
 	}
 	
 	boolean keepon;
-	
+
 	/** Runs it in a new Thread. */
 	public void run() {
 		boolean nodata = PreferenceManager.getDefaultSharedPreferences(Receiver.mContext).getBoolean(org.sipdroid.sipua.ui.Settings.PREF_NODATA, org.sipdroid.sipua.ui.Settings.DEFAULT_NODATA);
@@ -810,8 +793,6 @@ public class RtpStreamReceiver extends Thread {
 
 		if (DEBUG)
 			println("rtp receiver terminated");
-
-		cleanupBluetooth();
 	}
 
 	/** Debug output */

@@ -102,14 +102,14 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
 	public static final String PREF_PROTOCOL = "protocol";
 	public static final String PREF_WLAN = "wlan";
 	public static final String PREF_3G = "3g";
-	public static final String PREF_EDGE = "edge";
+	public static final String PREF_4G = "4g";
+	public static final String PREF_NOTRAIN = "notrain";
 	public static final String PREF_VPN = "vpn";
 	public static final String PREF_PREF = "pref";
 	public static final String PREF_AUTO_ON = "auto_on";
 	public static final String PREF_AUTO_ONDEMAND = "auto_on_demand";
 	public static final String PREF_AUTO_HEADSET = "auto_headset";
 	public static final String PREF_MWI_ENABLED = "MWI_enabled";
-	public static final String PREF_NOTIFY = "notify";
 	public static final String PREF_NODATA = "nodata";
 	public static final String PREF_SIPRINGTONE = "sipringtone";
 	public static final String PREF_SEARCH = "search";
@@ -152,7 +152,8 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
 	public static final String	DEFAULT_PROTOCOL = "tcp";
 	public static final boolean	DEFAULT_WLAN = true;
 	public static final boolean	DEFAULT_3G = false;
-	public static final boolean	DEFAULT_EDGE = false;
+	public static final boolean	DEFAULT_4G = false;
+	public static final boolean DEFAULT_NOTRAIN = false;
 	public static final boolean	DEFAULT_VPN = false;
 	public static final String	DEFAULT_PREF = VAL_PREF_SIP;
 	public static final boolean	DEFAULT_AUTO_ON = false;
@@ -301,14 +302,6 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
 		if (! settings.contains(PREF_MWI_ENABLED)) {
 			CheckBoxPreference cb = (CheckBoxPreference) getPreferenceScreen().findPreference(PREF_MWI_ENABLED);
 			cb.setChecked(true);
-		}
-		if (Sipdroid.market) {
-			CheckBoxPreference cb = (CheckBoxPreference) getPreferenceScreen().findPreference(PREF_3G);
-			cb.setChecked(false);
-			CheckBoxPreference cb2 = (CheckBoxPreference) getPreferenceScreen().findPreference(PREF_EDGE);
-			cb2.setChecked(false);
-			getPreferenceScreen().findPreference(PREF_3G).setEnabled(false);
-			getPreferenceScreen().findPreference(PREF_EDGE).setEnabled(false);
 		}
 
 		settings.registerOnSharedPreferenceChangeListener(this);
@@ -536,7 +529,7 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
     		cb.setChecked(false);
 	    } else if (key.startsWith(PREF_WLAN) ||
         			key.startsWith(PREF_3G) ||
-        			key.startsWith(PREF_EDGE) ||
+        			key.startsWith(PREF_4G) ||
         			key.startsWith(PREF_USERNAME) ||
         			key.startsWith(PREF_PASSWORD) ||
         			key.startsWith(PREF_DOMAIN) ||

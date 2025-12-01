@@ -197,8 +197,6 @@
 <string name="settings_MWI2">Subscribe to SIP message waiting</string>
 <string name="settings_reg">რეგისტრაცია</string>
 <string name="settings_reg2">რჩეული SIP ანგარიშის არჩევის შესაძლებლობა</string>
-<string name="settings_notify">გამოტოვებული ზარი</string>
-<string name="settings_notify2">შეტყობინება ლურჯი LED-ით</string>
 <string name="settings_nodata">მონაცემები არაა</string>
 <string name="settings_nodata2">Indicate missing voice packets by audible tones</string>
 
@@ -258,7 +256,6 @@
 <string name="settings_profile_delete_confirmation">პროფილი წაიშალა.</string>
 
 <string name="settings_wireless_options">უსადენო</string>
-<string name="settings_bluetooth">მოითხოვს Android 2.2-ს ან ზემოთ</string>
 <string name="settings_keepon">ჩართული ეკრანი</string>
 <string name="settings_keepon2">გამოიყენება ზოგიერთი მოწყობილობის მიერ Wi-Fi-ს უპრობლემოდ სამუშაოდ</string>
 <string name="settings_selectwifi">აირჩიეთ Wi-Fi AP</string>
@@ -278,7 +275,6 @@
 <string name="menu_speaker">Speaker</string>
 <string name="menu_endCall">ზარის დასრულება</string>
 <string name="menu_answer">პასუხი</string>
-<string name="menu_bluetooth">Bluetooth (საცდელი)</string>
 
 <string name="transfer_title">ზარის გადართვა</string>
 

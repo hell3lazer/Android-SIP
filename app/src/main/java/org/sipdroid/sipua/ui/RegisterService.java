@@ -48,7 +48,8 @@ public class RegisterService extends Service {
     public void onCreate() {
     	super.onCreate();
     	Receiver.sContext = this;
-    	if (Receiver.mContext == null) Receiver.mContext = this;
+    	if (Receiver.mContext == null)
+				Receiver.mContext = this;
         if (m_receiver == null) {
 			 IntentFilter intentfilter = new IntentFilter();
 			 intentfilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
@@ -62,8 +63,11 @@ public class RegisterService extends Service {
 			 intentfilter.addAction(Receiver.ACTION_VPN_CONNECTIVITY);
 			 intentfilter.addAction(Receiver.ACTION_SCO_AUDIO_STATE_CHANGED);
 			 intentfilter.addAction(WifiManager.WIFI_STATE_CHANGED_ACTION);
-	         registerReceiver(m_receiver = new Receiver(), intentfilter);      
-	         intentfilter = new IntentFilter();
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+				registerReceiver(m_receiver = new Receiver(), intentfilter, RECEIVER_EXPORTED);
+			} else
+				registerReceiver(m_receiver = new Receiver(), intentfilter);
+			intentfilter = new IntentFilter();
         }
         Receiver.engine(this).isRegistered();
     }
