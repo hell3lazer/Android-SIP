@@ -317,11 +317,11 @@ ADDED from B:\user\Antigravity\sipdroid\app\src\main\AndroidManifest.xml:76:17-7
 	android:name
 		ADDED from B:\user\Antigravity\sipdroid\app\src\main\AndroidManifest.xml:76:25-68
 service#org.sipdroid.sipua.ui.RegisterService
-ADDED from B:\user\Antigravity\sipdroid\app\src\main\AndroidManifest.xml:79:9-80:48
+ADDED from B:\user\Antigravity\sipdroid\app\src\main\AndroidManifest.xml:79:9-80:58
 	android:label
 		ADDED from B:\user\Antigravity\sipdroid\app\src\main\AndroidManifest.xml:79:53-85
 	android:foregroundServiceType
-		ADDED from B:\user\Antigravity\sipdroid\app\src\main\AndroidManifest.xml:80:4-46
+		ADDED from B:\user\Antigravity\sipdroid\app\src\main\AndroidManifest.xml:80:4-56
 	android:name
 		ADDED from B:\user\Antigravity\sipdroid\app\src\main\AndroidManifest.xml:79:18-52
 service#org.sipdroid.sipua.ui.SipConnectionService

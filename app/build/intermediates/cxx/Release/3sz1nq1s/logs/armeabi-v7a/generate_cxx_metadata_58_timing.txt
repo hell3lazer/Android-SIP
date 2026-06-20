@@ -49,3 +49,8 @@ generate_cxx_metadata
   create-invalidation-state 24ms
 generate_cxx_metadata completed in 41ms
 
+# C/C++ build system timings
+generate_cxx_metadata
+  create-invalidation-state 15ms
+generate_cxx_metadata completed in 30ms
+

@@ -93,7 +93,7 @@
         errorLine2="           ~~~~~~~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java"
-            line="738"
+            line="744"
             column="12"/>
     </issue>
 
@@ -109,7 +109,7 @@
         errorLine2="         ~~~~~~~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java"
-            line="283"
+            line="308"
             column="10"/>
     </issue>
 
@@ -125,7 +125,7 @@
         errorLine2="        ~~~~~~~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java"
-            line="293"
+            line="318"
             column="9"/>
     </issue>
 
@@ -137,12 +137,12 @@
         priority="6"
         summary="Use `apply()` on `SharedPreferences`"
         explanation="Consider using `apply()` instead of `commit` on shared preferences. Whereas `commit` blocks and writes its data to persistent storage immediately, `apply` will handle it in the background."
-        errorLine1="          edit.commit();"
-        errorLine2="               ~~~~~~~~">
+        errorLine1="     editor.commit();"
+        errorLine2="            ~~~~~~~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java"
-            line="432"
-            column="16"/>
+            line="480"
+            column="13"/>
     </issue>
 
     <issue
@@ -157,7 +157,7 @@
         errorLine2="           ~~~~~~~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java"
-            line="493"
+            line="538"
             column="12"/>
     </issue>
 
@@ -173,7 +173,7 @@
         errorLine2="           ~~~~~~~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java"
-            line="510"
+            line="555"
             column="12"/>
     </issue>
 
@@ -189,7 +189,7 @@
         errorLine2="       ~~~~~~~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java"
-            line="645"
+            line="690"
             column="8"/>
     </issue>
 
@@ -919,24 +919,8 @@
         errorLine2="                                                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java"
-            line="326"
+            line="317"
             column="76"/>
-    </issue>
-
-    <issue
-        id="InlinedApi"
-        severity="Warning"
-        message="Field requires API level 33 (current min is 26): `android.content.Context#RECEIVER_EXPORTED`"
-        category="Correctness"
-        priority="6"
-        summary="Using inlined constants on older versions"
-        explanation="This check scans through all the Android API field references in the application and flags certain constants, such as static final integers and Strings, which were introduced in later versions. These will actually be copied into the class files rather than being referenced, which means that the value is available even when running on older devices. In some cases that&apos;s fine, and in other cases it can result in a runtime crash or incorrect behavior. It depends on the context, so consider the code carefully and decide whether it&apos;s safe and can be suppressed or whether the code needs to be guarded.&#xA;&#xA;If you really want to use this API and don&apos;t need to support older devices just set the `minSdkVersion` in your `build.gradle` or `AndroidManifest.xml` files.&#xA;&#xA;If your code is **deliberately** accessing newer APIs, and you have ensured (e.g. with conditional execution) that this code will only ever be called on a supported platform, then you can annotate your class or method with the `@TargetApi` annotation specifying the local minimum SDK to apply, such as `@TargetApi(11)`, such that this check considers 11 rather than your manifest file&apos;s minimum SDK as the required API level."
-        errorLine1="    registerReceiver(m_receiver = new Receiver(), intentfilter, RECEIVER_EXPORTED);"
-        errorLine2="                                                                ~~~~~~~~~~~~~~~~~">
-        <location
-            file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\RegisterService.java"
-            line="66"
-            column="65"/>
     </issue>
 
     <issue
@@ -1139,12 +1123,12 @@
         priority="6"
         summary="Using inlined constants on older versions"
         explanation="This check scans through all the Android API field references in the application and flags certain constants, such as static final integers and Strings, which were introduced in later versions. These will actually be copied into the class files rather than being referenced, which means that the value is available even when running on older devices. In some cases that&apos;s fine, and in other cases it can result in a runtime crash or incorrect behavior. It depends on the context, so consider the code carefully and decide whether it&apos;s safe and can be suppressed or whether the code needs to be guarded.&#xA;&#xA;If you really want to use this API and don&apos;t need to support older devices just set the `minSdkVersion` in your `build.gradle` or `AndroidManifest.xml` files.&#xA;&#xA;If your code is **deliberately** accessing newer APIs, and you have ensured (e.g. with conditional execution) that this code will only ever be called on a supported platform, then you can annotate your class or method with the `@TargetApi` annotation specifying the local minimum SDK to apply, such as `@TargetApi(11)`, such that this check considers 11 rather than your manifest file&apos;s minimum SDK as the required API level."
-        errorLine1="                    connection.setDisconnected(new android.telecom.DisconnectCause(android.telecom.DisconnectCause.ERROR, &quot;SIP Offline&quot;));"
-        errorLine2="                                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        errorLine1="                    return Connection.createFailedConnection(new android.telecom.DisconnectCause(android.telecom.DisconnectCause.ERROR, &quot;SIP Offline&quot;));"
+        errorLine2="                                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\SipConnectionService.java"
             line="36"
-            column="84"/>
+            column="98"/>
     </issue>
 
     <issue
@@ -1155,12 +1139,12 @@
         priority="6"
         summary="Using inlined constants on older versions"
         explanation="This check scans through all the Android API field references in the application and flags certain constants, such as static final integers and Strings, which were introduced in later versions. These will actually be copied into the class files rather than being referenced, which means that the value is available even when running on older devices. In some cases that&apos;s fine, and in other cases it can result in a runtime crash or incorrect behavior. It depends on the context, so consider the code carefully and decide whether it&apos;s safe and can be suppressed or whether the code needs to be guarded.&#xA;&#xA;If you really want to use this API and don&apos;t need to support older devices just set the `minSdkVersion` in your `build.gradle` or `AndroidManifest.xml` files.&#xA;&#xA;If your code is **deliberately** accessing newer APIs, and you have ensured (e.g. with conditional execution) that this code will only ever be called on a supported platform, then you can annotate your class or method with the `@TargetApi` annotation specifying the local minimum SDK to apply, such as `@TargetApi(11)`, such that this check considers 11 rather than your manifest file&apos;s minimum SDK as the required API level."
-        errorLine1="            connection.setDisconnected(new android.telecom.DisconnectCause(android.telecom.DisconnectCause.ERROR, &quot;No address provided&quot;));"
-        errorLine2="                                                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        errorLine1="            return Connection.createFailedConnection(new android.telecom.DisconnectCause(android.telecom.DisconnectCause.ERROR, &quot;No address provided&quot;));"
+        errorLine2="                                                                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\SipConnectionService.java"
-            line="48"
-            column="76"/>
+            line="45"
+            column="90"/>
     </issue>
 
     <issue
@@ -3359,7 +3343,7 @@
         errorLine2="                       ~~~~~~~~~~~~~~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java"
-            line="326"
+            line="317"
             column="24"/>
     </issue>
 
@@ -3375,7 +3359,7 @@
         errorLine2="                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java"
-            line="326"
+            line="317"
             column="40"/>
     </issue>
 
@@ -3391,7 +3375,7 @@
         errorLine2="                       ~~~~~~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java"
-            line="327"
+            line="318"
             column="24"/>
     </issue>
 
@@ -3407,7 +3391,7 @@
         errorLine2="                       ~~~~~~~~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java"
-            line="342"
+            line="333"
             column="24"/>
     </issue>
 
@@ -3423,7 +3407,7 @@
         errorLine2="                       ~~~~~~~~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java"
-            line="349"
+            line="340"
             column="24"/>
     </issue>
 
@@ -3439,7 +3423,7 @@
         errorLine2="                      ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java"
-            line="354"
+            line="345"
             column="23"/>
     </issue>
 
@@ -3862,17 +3846,17 @@
     <issue
         id="NewApi"
         severity="Error"
-        message="Call requires API level 23 (current min is 16): `android.telecom.Connection#setDisconnected`"
+        message="Call requires API level 23 (current min is 16): `android.telecom.Connection#createFailedConnection`"
         category="Correctness"
         priority="6"
         summary="Calling new methods on older versions"
         explanation="This check scans through all the Android API calls in the application and warns about any calls that are not available on **all** versions targeted by this application (according to its minimum SDK attribute in the manifest).&#xA;&#xA;If you really want to use this API and don&apos;t need to support older devices just set the `minSdkVersion` in your `build.gradle` or `AndroidManifest.xml` files.&#xA;&#xA;If your code is **deliberately** accessing newer APIs, and you have ensured (e.g. with conditional execution) that this code will only ever be called on a supported platform, then you can annotate your class or method with the `@TargetApi` annotation specifying the local minimum SDK to apply, such as `@TargetApi(11)`, such that this check considers 11 rather than your manifest file&apos;s minimum SDK as the required API level.&#xA;&#xA;If you are deliberately setting `android:` attributes in style definitions, make sure you place this in a `values-v`*NN* folder in order to avoid running into runtime conflicts on certain devices where manufacturers have added custom attributes whose ids conflict with the new ones on later platforms.&#xA;&#xA;Similarly, you can use tools:targetApi=&quot;11&quot; in an XML file to indicate that the element will only be inflated in an adequate context."
-        errorLine1="                    connection.setDisconnected(new android.telecom.DisconnectCause(android.telecom.DisconnectCause.ERROR, &quot;SIP Offline&quot;));"
-        errorLine2="                               ~~~~~~~~~~~~~~~">
+        errorLine1="                    return Connection.createFailedConnection(new android.telecom.DisconnectCause(android.telecom.DisconnectCause.ERROR, &quot;SIP Offline&quot;));"
+        errorLine2="                                      ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\SipConnectionService.java"
             line="36"
-            column="32"/>
+            column="39"/>
     </issue>
 
     <issue
@@ -3883,28 +3867,12 @@
         priority="6"
         summary="Calling new methods on older versions"
         explanation="This check scans through all the Android API calls in the application and warns about any calls that are not available on **all** versions targeted by this application (according to its minimum SDK attribute in the manifest).&#xA;&#xA;If you really want to use this API and don&apos;t need to support older devices just set the `minSdkVersion` in your `build.gradle` or `AndroidManifest.xml` files.&#xA;&#xA;If your code is **deliberately** accessing newer APIs, and you have ensured (e.g. with conditional execution) that this code will only ever be called on a supported platform, then you can annotate your class or method with the `@TargetApi` annotation specifying the local minimum SDK to apply, such as `@TargetApi(11)`, such that this check considers 11 rather than your manifest file&apos;s minimum SDK as the required API level.&#xA;&#xA;If you are deliberately setting `android:` attributes in style definitions, make sure you place this in a `values-v`*NN* folder in order to avoid running into runtime conflicts on certain devices where manufacturers have added custom attributes whose ids conflict with the new ones on later platforms.&#xA;&#xA;Similarly, you can use tools:targetApi=&quot;11&quot; in an XML file to indicate that the element will only be inflated in an adequate context."
-        errorLine1="                    connection.setDisconnected(new android.telecom.DisconnectCause(android.telecom.DisconnectCause.ERROR, &quot;SIP Offline&quot;));"
-        errorLine2="                                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        errorLine1="                    return Connection.createFailedConnection(new android.telecom.DisconnectCause(android.telecom.DisconnectCause.ERROR, &quot;SIP Offline&quot;));"
+        errorLine2="                                                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\SipConnectionService.java"
             line="36"
-            column="48"/>
-    </issue>
-
-    <issue
-        id="NewApi"
-        severity="Error"
-        message="Call requires API level 23 (current min is 16): `android.telecom.Connection#destroy`"
-        category="Correctness"
-        priority="6"
-        summary="Calling new methods on older versions"
-        explanation="This check scans through all the Android API calls in the application and warns about any calls that are not available on **all** versions targeted by this application (according to its minimum SDK attribute in the manifest).&#xA;&#xA;If you really want to use this API and don&apos;t need to support older devices just set the `minSdkVersion` in your `build.gradle` or `AndroidManifest.xml` files.&#xA;&#xA;If your code is **deliberately** accessing newer APIs, and you have ensured (e.g. with conditional execution) that this code will only ever be called on a supported platform, then you can annotate your class or method with the `@TargetApi` annotation specifying the local minimum SDK to apply, such as `@TargetApi(11)`, such that this check considers 11 rather than your manifest file&apos;s minimum SDK as the required API level.&#xA;&#xA;If you are deliberately setting `android:` attributes in style definitions, make sure you place this in a `values-v`*NN* folder in order to avoid running into runtime conflicts on certain devices where manufacturers have added custom attributes whose ids conflict with the new ones on later platforms.&#xA;&#xA;Similarly, you can use tools:targetApi=&quot;11&quot; in an XML file to indicate that the element will only be inflated in an adequate context."
-        errorLine1="                    connection.destroy();"
-        errorLine2="                               ~~~~~~~">
-        <location
-            file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\SipConnectionService.java"
-            line="37"
-            column="32"/>
+            column="62"/>
     </issue>
 
     <issue
@@ -3919,24 +3887,8 @@
         errorLine2="                                        ~~~~~~~~~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\SipConnectionService.java"
-            line="40"
+            line="38"
             column="41"/>
-    </issue>
-
-    <issue
-        id="NewApi"
-        severity="Error"
-        message="Call requires API level 23 (current min is 16): `android.telecom.Connection#destroy`"
-        category="Correctness"
-        priority="6"
-        summary="Calling new methods on older versions"
-        explanation="This check scans through all the Android API calls in the application and warns about any calls that are not available on **all** versions targeted by this application (according to its minimum SDK attribute in the manifest).&#xA;&#xA;If you really want to use this API and don&apos;t need to support older devices just set the `minSdkVersion` in your `build.gradle` or `AndroidManifest.xml` files.&#xA;&#xA;If your code is **deliberately** accessing newer APIs, and you have ensured (e.g. with conditional execution) that this code will only ever be called on a supported platform, then you can annotate your class or method with the `@TargetApi` annotation specifying the local minimum SDK to apply, such as `@TargetApi(11)`, such that this check considers 11 rather than your manifest file&apos;s minimum SDK as the required API level.&#xA;&#xA;If you are deliberately setting `android:` attributes in style definitions, make sure you place this in a `values-v`*NN* folder in order to avoid running into runtime conflicts on certain devices where manufacturers have added custom attributes whose ids conflict with the new ones on later platforms.&#xA;&#xA;Similarly, you can use tools:targetApi=&quot;11&quot; in an XML file to indicate that the element will only be inflated in an adequate context."
-        errorLine1="                    connection.destroy();"
-        errorLine2="                               ~~~~~~~">
-        <location
-            file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\SipConnectionService.java"
-            line="43"
-            column="32"/>
     </issue>
 
     <issue
@@ -3951,24 +3903,24 @@
         errorLine2="                                      ~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\SipConnectionService.java"
-            line="44"
+            line="41"
             column="39"/>
     </issue>
 
     <issue
         id="NewApi"
         severity="Error"
-        message="Call requires API level 23 (current min is 16): `android.telecom.Connection#setDisconnected`"
+        message="Call requires API level 23 (current min is 16): `android.telecom.Connection#createFailedConnection`"
         category="Correctness"
         priority="6"
         summary="Calling new methods on older versions"
         explanation="This check scans through all the Android API calls in the application and warns about any calls that are not available on **all** versions targeted by this application (according to its minimum SDK attribute in the manifest).&#xA;&#xA;If you really want to use this API and don&apos;t need to support older devices just set the `minSdkVersion` in your `build.gradle` or `AndroidManifest.xml` files.&#xA;&#xA;If your code is **deliberately** accessing newer APIs, and you have ensured (e.g. with conditional execution) that this code will only ever be called on a supported platform, then you can annotate your class or method with the `@TargetApi` annotation specifying the local minimum SDK to apply, such as `@TargetApi(11)`, such that this check considers 11 rather than your manifest file&apos;s minimum SDK as the required API level.&#xA;&#xA;If you are deliberately setting `android:` attributes in style definitions, make sure you place this in a `values-v`*NN* folder in order to avoid running into runtime conflicts on certain devices where manufacturers have added custom attributes whose ids conflict with the new ones on later platforms.&#xA;&#xA;Similarly, you can use tools:targetApi=&quot;11&quot; in an XML file to indicate that the element will only be inflated in an adequate context."
-        errorLine1="            connection.setDisconnected(new android.telecom.DisconnectCause(android.telecom.DisconnectCause.ERROR, &quot;No address provided&quot;));"
-        errorLine2="                       ~~~~~~~~~~~~~~~">
+        errorLine1="            return Connection.createFailedConnection(new android.telecom.DisconnectCause(android.telecom.DisconnectCause.ERROR, &quot;No address provided&quot;));"
+        errorLine2="                              ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\SipConnectionService.java"
-            line="48"
-            column="24"/>
+            line="45"
+            column="31"/>
     </issue>
 
     <issue
@@ -3979,28 +3931,12 @@
         priority="6"
         summary="Calling new methods on older versions"
         explanation="This check scans through all the Android API calls in the application and warns about any calls that are not available on **all** versions targeted by this application (according to its minimum SDK attribute in the manifest).&#xA;&#xA;If you really want to use this API and don&apos;t need to support older devices just set the `minSdkVersion` in your `build.gradle` or `AndroidManifest.xml` files.&#xA;&#xA;If your code is **deliberately** accessing newer APIs, and you have ensured (e.g. with conditional execution) that this code will only ever be called on a supported platform, then you can annotate your class or method with the `@TargetApi` annotation specifying the local minimum SDK to apply, such as `@TargetApi(11)`, such that this check considers 11 rather than your manifest file&apos;s minimum SDK as the required API level.&#xA;&#xA;If you are deliberately setting `android:` attributes in style definitions, make sure you place this in a `values-v`*NN* folder in order to avoid running into runtime conflicts on certain devices where manufacturers have added custom attributes whose ids conflict with the new ones on later platforms.&#xA;&#xA;Similarly, you can use tools:targetApi=&quot;11&quot; in an XML file to indicate that the element will only be inflated in an adequate context."
-        errorLine1="            connection.setDisconnected(new android.telecom.DisconnectCause(android.telecom.DisconnectCause.ERROR, &quot;No address provided&quot;));"
-        errorLine2="                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        errorLine1="            return Connection.createFailedConnection(new android.telecom.DisconnectCause(android.telecom.DisconnectCause.ERROR, &quot;No address provided&quot;));"
+        errorLine2="                                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\SipConnectionService.java"
-            line="48"
-            column="40"/>
-    </issue>
-
-    <issue
-        id="NewApi"
-        severity="Error"
-        message="Call requires API level 23 (current min is 16): `android.telecom.Connection#destroy`"
-        category="Correctness"
-        priority="6"
-        summary="Calling new methods on older versions"
-        explanation="This check scans through all the Android API calls in the application and warns about any calls that are not available on **all** versions targeted by this application (according to its minimum SDK attribute in the manifest).&#xA;&#xA;If you really want to use this API and don&apos;t need to support older devices just set the `minSdkVersion` in your `build.gradle` or `AndroidManifest.xml` files.&#xA;&#xA;If your code is **deliberately** accessing newer APIs, and you have ensured (e.g. with conditional execution) that this code will only ever be called on a supported platform, then you can annotate your class or method with the `@TargetApi` annotation specifying the local minimum SDK to apply, such as `@TargetApi(11)`, such that this check considers 11 rather than your manifest file&apos;s minimum SDK as the required API level.&#xA;&#xA;If you are deliberately setting `android:` attributes in style definitions, make sure you place this in a `values-v`*NN* folder in order to avoid running into runtime conflicts on certain devices where manufacturers have added custom attributes whose ids conflict with the new ones on later platforms.&#xA;&#xA;Similarly, you can use tools:targetApi=&quot;11&quot; in an XML file to indicate that the element will only be inflated in an adequate context."
-        errorLine1="            connection.destroy();"
-        errorLine2="                       ~~~~~~~">
-        <location
-            file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\SipConnectionService.java"
-            line="49"
-            column="24"/>
+            line="45"
+            column="54"/>
     </issue>
 
     <issue
@@ -4217,11 +4153,11 @@
         errorLine2="          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java"
-            line="410"
+            line="401"
             column="11"/>
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java"
-            line="402"
+            line="393"
             column="8"
             message="Previous statement here"/>
     </issue>
@@ -4238,11 +4174,11 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java"
-            line="424"
+            line="415"
             column="13"/>
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java"
-            line="412"
+            line="403"
             column="10"
             message="Previous statement here"/>
     </issue>
@@ -4280,11 +4216,11 @@
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java"
-            line="485"
+            line="530"
             column="9"/>
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java"
-            line="482"
+            line="527"
             column="6"
             message="Previous statement here"/>
     </issue>
@@ -4301,11 +4237,11 @@
         errorLine2="     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java"
-            line="558"
+            line="603"
             column="6"/>
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java"
-            line="557"
+            line="602"
             column="3"
             message="Previous statement here"/>
     </issue>
@@ -4322,11 +4258,11 @@
         errorLine2="      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java"
-            line="627"
+            line="672"
             column="7"/>
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java"
-            line="626"
+            line="671"
             column="4"
             message="Previous statement here"/>
     </issue>
@@ -4469,11 +4405,11 @@
         errorLine2="~~~~~~~~~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java"
-            line="202"
+            line="193"
             column="1"/>
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java"
-            line="196"
+            line="187"
             column="1"
             message="Previous line indentation here"/>
     </issue>
@@ -4490,11 +4426,11 @@
         errorLine2="~~~~~~~~~~~~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java"
-            line="501"
+            line="507"
             column="1"/>
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java"
-            line="471"
+            line="462"
             column="1"
             message="Previous line indentation here"/>
     </issue>
@@ -4511,11 +4447,11 @@
         errorLine2=" ~~~~~~~~~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java"
-            line="507"
+            line="513"
             column="2"/>
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java"
-            line="426"
+            line="417"
             column="2"
             message="Previous line indentation here"/>
     </issue>
@@ -4532,11 +4468,11 @@
         errorLine2=" ~~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java"
-            line="558"
+            line="564"
             column="2"/>
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java"
-            line="556"
+            line="562"
             column="2"
             message="Previous line indentation here"/>
     </issue>
@@ -4553,11 +4489,11 @@
         errorLine2=" ~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java"
-            line="562"
+            line="568"
             column="2"/>
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java"
-            line="560"
+            line="566"
             column="2"
             message="Previous line indentation here"/>
     </issue>
@@ -4574,11 +4510,11 @@
         errorLine2="    ~~~~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java"
-            line="664"
+            line="670"
             column="5"/>
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java"
-            line="663"
+            line="669"
             column="5"
             message="Previous line indentation here"/>
     </issue>
@@ -4595,11 +4531,11 @@
         errorLine2="~~~~~~~~~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java"
-            line="760"
+            line="766"
             column="1"/>
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java"
-            line="758"
+            line="764"
             column="1"
             message="Previous line indentation here"/>
     </issue>
@@ -4616,11 +4552,11 @@
         errorLine2="~~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java"
-            line="771"
+            line="777"
             column="1"/>
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java"
-            line="770"
+            line="776"
             column="1"
             message="Previous line indentation here"/>
     </issue>
@@ -4637,11 +4573,11 @@
         errorLine2="~~~~~~~~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java"
-            line="859"
+            line="865"
             column="1"/>
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java"
-            line="858"
+            line="864"
             column="1"
             message="Previous line indentation here"/>
     </issue>
@@ -4658,11 +4594,11 @@
         errorLine2=" ~~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java"
-            line="863"
+            line="869"
             column="2"/>
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java"
-            line="862"
+            line="868"
             column="2"
             message="Previous line indentation here"/>
     </issue>
@@ -4679,11 +4615,11 @@
         errorLine2=" ~~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java"
-            line="891"
+            line="897"
             column="2"/>
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java"
-            line="890"
+            line="896"
             column="2"
             message="Previous line indentation here"/>
     </issue>
@@ -4700,11 +4636,11 @@
         errorLine2=" ~~~~~~~~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java"
-            line="916"
+            line="922"
             column="2"/>
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java"
-            line="915"
+            line="921"
             column="2"
             message="Previous line indentation here"/>
     </issue>
@@ -4721,11 +4657,11 @@
         errorLine2="~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\media\RtpStreamReceiver.java"
-            line="363"
+            line="368"
             column="1"/>
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\media\RtpStreamReceiver.java"
-            line="362"
+            line="367"
             column="1"
             message="Previous line indentation here"/>
     </issue>
@@ -4742,11 +4678,11 @@
         errorLine2=" ~~~~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\media\RtpStreamReceiver.java"
-            line="469"
+            line="474"
             column="2"/>
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\media\RtpStreamReceiver.java"
-            line="467"
+            line="472"
             column="2"
             message="Previous line indentation here"/>
     </issue>
@@ -4843,57 +4779,15 @@
         priority="6"
         summary="Suspicious indentation"
         explanation="This check looks for cases where the indentation suggests a grouping that isn&apos;t actually there in the code. A common example of this would be something like&#xA;```kotlin&#xA;if (column > width)&#xA;    line++&#xA;    column = 0&#xA;```&#xA;Here, the `column = 0` line will be executed every single time, not just if the condition is true."
-        errorLine1="         new AlertDialog.Builder(context)"
-        errorLine2="    ~~~~~">
-        <location
-            file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java"
-            line="353"
-            column="5"/>
-        <location
-            file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java"
-            line="352"
-            column="5"
-            message="Previous line indentation here"/>
-    </issue>
-
-    <issue
-        id="SuspiciousIndentation"
-        severity="Warning"
-        message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)"
-        category="Correctness"
-        priority="6"
-        summary="Suspicious indentation"
-        explanation="This check looks for cases where the indentation suggests a grouping that isn&apos;t actually there in the code. A common example of this would be something like&#xA;```kotlin&#xA;if (column > width)&#xA;    line++&#xA;    column = 0&#xA;```&#xA;Here, the `column = 0` line will be executed every single time, not just if the condition is true."
-        errorLine1="      Receiver.engine(context).StartEngine();"
-        errorLine2="   ~~~">
-        <location
-            file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java"
-            line="424"
-            column="4"/>
-        <location
-            file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java"
-            line="423"
-            column="4"
-            message="Previous line indentation here"/>
-    </issue>
-
-    <issue
-        id="SuspiciousIndentation"
-        severity="Warning"
-        message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)"
-        category="Correctness"
-        priority="6"
-        summary="Suspicious indentation"
-        explanation="This check looks for cases where the indentation suggests a grouping that isn&apos;t actually there in the code. A common example of this would be something like&#xA;```kotlin&#xA;if (column > width)&#xA;    line++&#xA;    column = 0&#xA;```&#xA;Here, the `column = 0` line will be executed every single time, not just if the condition is true."
         errorLine1="   transferText.setInputType(InputType.TYPE_CLASS_NUMBER);"
         errorLine2="~~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java"
-            line="496"
+            line="541"
             column="1"/>
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java"
-            line="495"
+            line="540"
             column="1"
             message="Previous line indentation here"/>
     </issue>
@@ -4910,11 +4804,11 @@
         errorLine2="    ~~~~~~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java"
-            line="514"
+            line="559"
             column="5"/>
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java"
-            line="513"
+            line="558"
             column="5"
             message="Previous line indentation here"/>
     </issue>
@@ -4931,11 +4825,11 @@
         errorLine2="    ~~~~~~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java"
-            line="545"
+            line="590"
             column="5"/>
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java"
-            line="544"
+            line="589"
             column="5"
             message="Previous line indentation here"/>
     </issue>
@@ -4952,11 +4846,11 @@
         errorLine2="~~~~~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java"
-            line="601"
+            line="646"
             column="1"/>
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java"
-            line="594"
+            line="639"
             column="1"
             message="Previous line indentation here"/>
     </issue>
@@ -4973,11 +4867,11 @@
         errorLine2="~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java"
-            line="615"
+            line="660"
             column="1"/>
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java"
-            line="577"
+            line="622"
             column="1"
             message="Previous line indentation here"/>
     </issue>
@@ -4994,11 +4888,11 @@
         errorLine2="~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java"
-            line="645"
+            line="690"
             column="1"/>
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java"
-            line="644"
+            line="689"
             column="1"
             message="Previous line indentation here"/>
     </issue>
@@ -5189,7 +5083,7 @@
         errorLine2="                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java"
-            line="743"
+            line="749"
             column="41"/>
     </issue>
 
@@ -5205,7 +5099,7 @@
         errorLine2="                                                                                             ~~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java"
-            line="461"
+            line="452"
             column="94"/>
     </issue>
 
@@ -5221,8 +5115,24 @@
         errorLine2="                                                                     ~~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java"
-            line="542"
+            line="548"
             column="70"/>
+    </issue>
+
+    <issue
+        id="WrongConstant"
+        severity="Error"
+        message="Must be one or more of: ServiceInfo.FOREGROUND_SERVICE_TYPE_MANIFEST, ServiceInfo.FOREGROUND_SERVICE_TYPE_NONE, ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC, ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK, ServiceInfo.FOREGROUND_SERVICE_TYPE_PHONE_CALL, ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION, ServiceInfo.FOREGROUND_SERVICE_TYPE_CONNECTED_DEVICE, ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PROJECTION, ServiceInfo.FOREGROUND_SERVICE_TYPE_CAMERA, ServiceInfo.FOREGROUND_SERVICE_TYPE_MICROPHONE, ServiceInfo.FOREGROUND_SERVICE_TYPE_HEALTH, ServiceInfo.FOREGROUND_SERVICE_TYPE_REMOTE_MESSAGING, ServiceInfo.FOREGROUND_SERVICE_TYPE_SYSTEM_EXEMPTED, ServiceInfo.FOREGROUND_SERVICE_TYPE_SHORT_SERVICE, ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PROCESSING, ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE"
+        category="Correctness"
+        priority="6"
+        summary="Incorrect constant"
+        explanation="Ensures that when parameter in a method only allows a specific set of constants, calls obey those rules."
+        errorLine1="                        startForeground(Receiver.REGISTER_NOTIFICATION, bgNotif, 128); // FOREGROUND_SERVICE_TYPE_MICROPHONE"
+        errorLine2="                                                                                 ~~~">
+        <location
+            file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\RegisterService.java"
+            line="90"
+            column="82"/>
     </issue>
 
     <issue
@@ -5289,7 +5199,7 @@
         errorLine2="                                  ~~~~~~~~~~~~~~~~~~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java"
-            line="684"
+            line="690"
             column="35"/>
     </issue>
 
@@ -5900,6 +5810,22 @@
         <location
             file="B:\user\Antigravity\sipdroid\app\build.gradle"
             line="46"
+            column="24"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        severity="Warning"
+        message="A newer version of androidx.swiperefreshlayout:swiperefreshlayout than 1.1.0 is available: 1.2.0"
+        category="Correctness"
+        priority="4"
+        summary="Obsolete Gradle Dependency"
+        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="        implementation &apos;androidx.swiperefreshlayout:swiperefreshlayout:1.1.0&apos;"
+        errorLine2="                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="B:\user\Antigravity\sipdroid\app\build.gradle"
+            line="47"
             column="24"/>
     </issue>
 
@@ -9631,7 +9557,7 @@
         errorLine2="                 ~~~~~~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java"
-            line="923"
+            line="929"
             column="18"/>
     </issue>
 
@@ -9643,12 +9569,28 @@
         priority="9"
         summary="Incorrect `WakeLock` usage"
         explanation="Failing to release a wakelock properly can keep the Android device in a high power mode, which reduces battery life. There are several causes of this, such as releasing the wake lock in `onDestroy()` instead of in `onPause()`, failing to call `release()` in all possible code paths after an `acquire()`, and so on.&#xA;&#xA;NOTE: If you are using the lock just to keep the screen on, you should strongly consider using `FLAG_KEEP_SCREEN_ON` instead. This window flag will be correctly managed by the platform as the user moves between applications and doesn&apos;t require a special permission. See https://developer.android.com/reference/android/view/WindowManager.LayoutParams.html#FLAG_KEEP_SCREEN_ON."
-        errorLine1="   pwl2.release();"
-        errorLine2="        ~~~~~~~">
+        errorLine1="    pwl2.release();"
+        errorLine2="         ~~~~~~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\media\RtpStreamReceiver.java"
-            line="312"
-            column="9"/>
+            line="313"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="Wakelock"
+        severity="Warning"
+        message="The `release()` call is not always reached"
+        category="Performance"
+        priority="9"
+        summary="Incorrect `WakeLock` usage"
+        explanation="Failing to release a wakelock properly can keep the Android device in a high power mode, which reduces battery life. There are several causes of this, such as releasing the wake lock in `onDestroy()` instead of in `onPause()`, failing to call `release()` in all possible code paths after an `acquire()`, and so on.&#xA;&#xA;NOTE: If you are using the lock just to keep the screen on, you should strongly consider using `FLAG_KEEP_SCREEN_ON` instead. This window flag will be correctly managed by the platform as the user moves between applications and doesn&apos;t require a special permission. See https://developer.android.com/reference/android/view/WindowManager.LayoutParams.html#FLAG_KEEP_SCREEN_ON."
+        errorLine1="    wl.release();"
+        errorLine2="       ~~~~~~~">
+        <location
+            file="B:\user\Antigravity\sipdroid\app\src\main\java\org\zoolu\sip\provider\SipProvider.java"
+            line="1204"
+            column="8"/>
     </issue>
 
     <issue
@@ -9663,7 +9605,7 @@
         errorLine2="             ~~~~~~~~~~~~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java"
-            line="924"
+            line="930"
             column="14"/>
     </issue>
 
@@ -9775,7 +9717,7 @@
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java"
-            line="185"
+            line="176"
             column="9"/>
     </issue>
 
@@ -9919,7 +9861,7 @@
         errorLine2="                               ^">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java"
-            line="838"
+            line="844"
             column="32"/>
     </issue>
 
@@ -11330,6 +11272,22 @@
     <issue
         id="UnusedResources"
         severity="Warning"
+        message="The resource `R.drawable.ic_delete_24` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
+        errorLine2="^">
+        <location
+            file="B:\user\Antigravity\sipdroid\app\src\main\res\drawable\ic_delete_24.xml"
+            line="1"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
         message="The resource `R.drawable.ic_delete_phone_number` appears to be unused"
         category="Performance"
         priority="3"
@@ -11915,6 +11873,22 @@
         errorLine2="^">
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\res\drawable\ic_volume_up_24.xml"
+            line="1"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.drawable.ic_warning_24` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
+        errorLine2="^">
+        <location
+            file="B:\user\Antigravity\sipdroid\app\src\main\res\drawable\ic_warning_24.xml"
             line="1"
             column="1"/>
     </issue>
@@ -13308,6 +13282,134 @@
         <location
             file="B:\user\Antigravity\sipdroid\app\src\main\res\values\strings.xml"
             line="256"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.settings_profile_menu_delete` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="&lt;string name=&quot;settings_profile_menu_delete&quot;>Delete&lt;/string>"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="B:\user\Antigravity\sipdroid\app\src\main\res\values\strings.xml"
+            line="259"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.settings_profile_dialog_profiles_title` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="&lt;string name=&quot;settings_profile_dialog_profiles_title&quot;>Profiles&lt;/string>"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="B:\user\Antigravity\sipdroid\app\src\main\res\values\strings.xml"
+            line="260"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.settings_profile_dialog_delete_title` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="&lt;string name=&quot;settings_profile_dialog_delete_title&quot;>Delete profile&lt;/string>"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="B:\user\Antigravity\sipdroid\app\src\main\res\values\strings.xml"
+            line="261"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.settings_profile_dialog_delete_text` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="&lt;string name=&quot;settings_profile_dialog_delete_text&quot;>Do you really want to delete &lt;xliff:g id=&quot;profile&quot;>%s&lt;/xliff:g> profile?&lt;/string>"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="B:\user\Antigravity\sipdroid\app\src\main\res\values\strings.xml"
+            line="262"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.settings_profile_export_error` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="&lt;string name=&quot;settings_profile_export_error&quot;>Can not export settings!&lt;/string>"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="B:\user\Antigravity\sipdroid\app\src\main\res\values\strings.xml"
+            line="263"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.settings_profile_import_error` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="&lt;string name=&quot;settings_profile_import_error&quot;>Can not import settings!&lt;/string>"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="B:\user\Antigravity\sipdroid\app\src\main\res\values\strings.xml"
+            line="264"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.settings_profile_delete_error` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="&lt;string name=&quot;settings_profile_delete_error&quot;>Can not delete this profile!&lt;/string>"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="B:\user\Antigravity\sipdroid\app\src\main\res\values\strings.xml"
+            line="265"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.settings_profile_delete_confirmation` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="&lt;string name=&quot;settings_profile_delete_confirmation&quot;>Profile has been deleted.&lt;/string>"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="B:\user\Antigravity\sipdroid\app\src\main\res\values\strings.xml"
+            line="266"
             column="9"/>
     </issue>
 

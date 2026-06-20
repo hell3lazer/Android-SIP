@@ -31,10 +31,10 @@
             file="${:app*debug*MAIN*sourceProvider*0*manifest*0}"
             line="117"
             column="36"
-            startOffset="6633"
+            startOffset="6643"
             endLine="117"
             endColumn="70"
-            endOffset="6667"/>
+            endOffset="6677"/>
         <map>
             <condition targetLT="33"/>
         </map>
@@ -2266,17 +2266,17 @@
             replacement="">
             <range
                 file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
-                startOffset="7538"
-                endOffset="7552"/>
+                startOffset="6980"
+                endOffset="6994"/>
         </fix-replace>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
-            line="178"
+            line="169"
             column="3"
-            startOffset="7538"
-            endLine="178"
+            startOffset="6980"
+            endLine="169"
             endColumn="17"
-            endOffset="7552"/>
+            endOffset="6994"/>
         <map>
             <condition minGE="fffffffffe000000"/>
         </map>
@@ -2289,12 +2289,12 @@
         <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
-            line="326"
+            line="317"
             column="24"
-            startOffset="13496"
-            endLine="326"
+            startOffset="12962"
+            endLine="317"
             endColumn="39"
-            endOffset="13511"/>
+            endOffset="12977"/>
         <map>
             <api-levels id="minSdk"
                 value="ffffffffffff8000"/>
@@ -2313,12 +2313,12 @@
         <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
-            line="326"
+            line="317"
             column="40"
-            startOffset="13512"
-            endLine="326"
+            startOffset="12978"
+            endLine="317"
             endColumn="75"
-            endOffset="13547"/>
+            endOffset="13013"/>
         <map>
             <api-levels id="minSdk"
                 value="ffffffffffff8000"/>
@@ -2337,12 +2337,12 @@
         <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
-            line="326"
+            line="317"
             column="76"
-            startOffset="13548"
-            endLine="326"
+            startOffset="13014"
+            endLine="317"
             endColumn="113"
-            endOffset="13585"/>
+            endOffset="13051"/>
         <map>
             <api-levels id="minSdk"
                 value="ffffffffffff8000"/>
@@ -2361,12 +2361,12 @@
         <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
-            line="327"
+            line="318"
             column="24"
-            startOffset="13612"
-            endLine="327"
+            startOffset="13078"
+            endLine="318"
             endColumn="31"
-            endOffset="13619"/>
+            endOffset="13085"/>
         <map>
             <api-levels id="minSdk"
                 value="ffffffffffff8000"/>
@@ -2385,12 +2385,12 @@
         <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
-            line="342"
+            line="333"
             column="24"
-            startOffset="14047"
-            endLine="342"
+            startOffset="13513"
+            endLine="333"
             endColumn="33"
-            endOffset="14056"/>
+            endOffset="13522"/>
         <map>
             <api-levels id="minSdk"
                 value="ffffffffffff8000"/>
@@ -2409,12 +2409,12 @@
         <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
-            line="349"
+            line="340"
             column="24"
-            startOffset="14336"
-            endLine="349"
+            startOffset="13802"
+            endLine="340"
             endColumn="33"
-            endOffset="14345"/>
+            endOffset="13811"/>
         <map>
             <api-levels id="minSdk"
                 value="ffffffffffff8000"/>
@@ -2433,12 +2433,12 @@
         <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
-            line="354"
+            line="345"
             column="23"
-            startOffset="14432"
-            endLine="354"
+            startOffset="13898"
+            endLine="345"
             endColumn="43"
-            endOffset="14452"/>
+            endOffset="13918"/>
         <map>
             <api-levels id="minSdk"
                 value="ffffffffffff8000"/>
@@ -2459,17 +2459,17 @@
             replacement="">
             <range
                 file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
-                startOffset="15115"
-                endOffset="15129"/>
+                startOffset="14581"
+                endOffset="14595"/>
         </fix-replace>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
-            line="388"
+            line="379"
             column="3"
-            startOffset="15115"
-            endLine="388"
+            startOffset="14581"
+            endLine="379"
             endColumn="17"
-            endOffset="15129"/>
+            endOffset="14595"/>
         <map>
             <condition minGE="fffffffffe000000"/>
         </map>
@@ -2482,12 +2482,12 @@
         <fix-data missing="android.permission.POST_NOTIFICATIONS"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
-            line="547"
+            line="553"
             column="6"
-            startOffset="25446"
-            endLine="547"
+            startOffset="25741"
+            endLine="553"
             endColumn="57"
-            endOffset="25497"/>
+            endOffset="25792"/>
     </incident>
 
     <incident
@@ -2499,17 +2499,17 @@
             replacement="">
             <range
                 file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
-                startOffset="28302"
-                endOffset="28316"/>
+                startOffset="28597"
+                endOffset="28611"/>
         </fix-replace>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
-            line="624"
+            line="630"
             column="3"
-            startOffset="28302"
-            endLine="624"
+            startOffset="28597"
+            endLine="630"
             endColumn="17"
-            endOffset="28316"/>
+            endOffset="28611"/>
         <map>
             <condition minGE="ffffffffffc00000"/>
         </map>
@@ -2521,12 +2521,12 @@
         message="Consider adding a `&lt;queries>` declaration to your manifest when calling this \&#xA;method; see https://g.co/dev/packagevisibility for details">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
-            line="684"
+            line="690"
             column="35"
-            startOffset="30708"
-            endLine="684"
+            startOffset="31003"
+            endLine="690"
             endColumn="54"
-            endOffset="30727"/>
+            endOffset="31022"/>
         <map>
             <entry
                 name="queryAll"
@@ -2544,12 +2544,12 @@
             replacement="mContext.getApplicationContext()"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
-            line="743"
+            line="749"
             column="41"
-            startOffset="32539"
-            endLine="743"
+            startOffset="32834"
+            endLine="749"
             endColumn="88"
-            endOffset="32586"/>
+            endOffset="32881"/>
         <map>
             <condition minLT="ffffffffff800000"/>
         </map>
@@ -2564,17 +2564,17 @@
             replacement="">
             <range
                 file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
-                startOffset="35000"
-                endOffset="35014"/>
+                startOffset="35295"
+                endOffset="35309"/>
         </fix-replace>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
-            line="795"
+            line="801"
             column="3"
-            startOffset="35000"
-            endLine="795"
+            startOffset="35295"
+            endLine="801"
             endColumn="17"
-            endOffset="35014"/>
+            endOffset="35309"/>
         <map>
             <condition minGE="ffffffffc0000000"/>
         </map>
@@ -2589,17 +2589,17 @@
             replacement="">
             <range
                 file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
-                startOffset="35276"
-                endOffset="35290"/>
+                startOffset="35571"
+                endOffset="35585"/>
         </fix-replace>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
-            line="805"
+            line="811"
             column="3"
-            startOffset="35276"
-            endLine="805"
+            startOffset="35571"
+            endLine="811"
             endColumn="17"
-            endOffset="35290"/>
+            endOffset="35585"/>
         <map>
             <condition minGE="ffffffffff800000"/>
         </map>
@@ -2631,30 +2631,6 @@
     </incident>
 
     <incident
-        id="InlinedApi"
-        severity="warning"
-        message="">
-        <fix-data minSdk="fffffffffe000000" requiresApi="ffffffff00000000"/>
-        <location
-            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/RegisterService.java"
-            line="66"
-            column="65"
-            startOffset="2467"
-            endLine="66"
-            endColumn="82"
-            endOffset="2484"/>
-        <map>
-            <api-levels id="minSdk"
-                value="fffffffffe000000"/>
-            <api-levels id="requiresApi"
-                value="ffffffff00000000"/>
-            <entry
-                name="message"
-                string="Field requires API level 33 (current min is %1$s): `android.content.Context#RECEIVER_EXPORTED`"/>
-        </map>
-    </incident>
-
-    <incident
         id="UnspecifiedRegisterReceiverFlag"
         severity="error"
         message="`m_receiver = new Receiver()` \&#xA;is missing `RECEIVER_EXPORTED` or `RECEIVER_NOT_EXPORTED` flag for unprotected \&#xA;broadcasts registered for vpn.connectivity">
@@ -2667,8 +2643,8 @@
                 reformat="value">
                 <range
                     file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/RegisterService.java"
-                    startOffset="2547"
-                    endOffset="2559"/>
+                    startOffset="2632"
+                    endOffset="2644"/>
             </fix-replace>
             <fix-replace
                 description="Add RECEIVER_EXPORTED"
@@ -2678,18 +2654,18 @@
                 reformat="value">
                 <range
                     file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/RegisterService.java"
-                    startOffset="2547"
-                    endOffset="2559"/>
+                    startOffset="2632"
+                    endOffset="2644"/>
             </fix-replace>
         </fix-alternatives>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/RegisterService.java"
             line="68"
             column="5"
-            startOffset="2501"
+            startOffset="2586"
             endLine="68"
             endColumn="64"
-            endOffset="2560"/>
+            endOffset="2645"/>
         <map>
             <entry
                 name="hasUnprotected"
@@ -2706,17 +2682,17 @@
             replacement="">
             <range
                 file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Settings.java"
-                startOffset="13918"
-                endOffset="13932"/>
+                startOffset="14971"
+                endOffset="14985"/>
         </fix-replace>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Settings.java"
-            line="319"
+            line="344"
             column="5"
-            startOffset="13918"
-            endLine="319"
+            startOffset="14971"
+            endLine="344"
             endColumn="19"
-            endOffset="13932"/>
+            endOffset="14985"/>
         <map>
             <condition minGE="ffffffffffc00000"/>
         </map>
@@ -2731,17 +2707,17 @@
             replacement="">
             <range
                 file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Settings.java"
-                startOffset="19668"
-                endOffset="19682"/>
+                startOffset="22084"
+                endOffset="22098"/>
         </fix-replace>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Settings.java"
-            line="480"
+            line="525"
             column="5"
-            startOffset="19668"
-            endLine="480"
+            startOffset="22084"
+            endLine="525"
             endColumn="19"
-            endOffset="19682"/>
+            endOffset="22098"/>
         <map>
             <condition minGE="ffffffffffc00000"/>
         </map>
@@ -3667,11 +3643,11 @@
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnectionService.java"
             line="36"
-            column="32"
-            startOffset="1904"
+            column="39"
+            startOffset="1911"
             endLine="36"
-            endColumn="47"
-            endOffset="1919"/>
+            endColumn="61"
+            endOffset="1933"/>
         <map>
             <api-levels id="minSdk"
                 value="ffffffffffff8000"/>
@@ -3679,7 +3655,7 @@
                 value="ffffffffffc00000"/>
             <entry
                 name="message"
-                string="Call requires API level 23 (current min is %1$s): `android.telecom.Connection#setDisconnected`"/>
+                string="Call requires API level 23 (current min is %1$s): `android.telecom.Connection#createFailedConnection`"/>
         </map>
     </incident>
 
@@ -3691,11 +3667,11 @@
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnectionService.java"
             line="36"
-            column="48"
-            startOffset="1920"
+            column="62"
+            startOffset="1934"
             endLine="36"
-            endColumn="83"
-            endOffset="1955"/>
+            endColumn="97"
+            endOffset="1969"/>
         <map>
             <api-levels id="minSdk"
                 value="ffffffffffff8000"/>
@@ -3715,11 +3691,11 @@
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnectionService.java"
             line="36"
-            column="84"
-            startOffset="1956"
+            column="98"
+            startOffset="1970"
             endLine="36"
-            endColumn="121"
-            endOffset="1993"/>
+            endColumn="135"
+            endOffset="2007"/>
         <map>
             <api-levels id="minSdk"
                 value="ffffffffffff8000"/>
@@ -3738,36 +3714,12 @@
         <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnectionService.java"
-            line="37"
-            column="32"
-            startOffset="2043"
-            endLine="37"
-            endColumn="39"
-            endOffset="2050"/>
-        <map>
-            <api-levels id="minSdk"
-                value="ffffffffffff8000"/>
-            <api-levels id="requiresApi"
-                value="ffffffffffc00000"/>
-            <entry
-                name="message"
-                string="Call requires API level 23 (current min is %1$s): `android.telecom.Connection#destroy`"/>
-        </map>
-    </incident>
-
-    <incident
-        id="NewApi"
-        severity="error"
-        message="">
-        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
-        <location
-            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnectionService.java"
-            line="40"
+            line="38"
             column="41"
-            startOffset="2151"
-            endLine="40"
+            startOffset="2084"
+            endLine="38"
             endColumn="51"
-            endOffset="2161"/>
+            endOffset="2094"/>
         <map>
             <api-levels id="minSdk"
                 value="ffffffffffff8000"/>
@@ -3786,36 +3738,12 @@
         <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnectionService.java"
-            line="43"
-            column="32"
-            startOffset="2329"
-            endLine="43"
-            endColumn="39"
-            endOffset="2336"/>
-        <map>
-            <api-levels id="minSdk"
-                value="ffffffffffff8000"/>
-            <api-levels id="requiresApi"
-                value="ffffffffffc00000"/>
-            <entry
-                name="message"
-                string="Call requires API level 23 (current min is %1$s): `android.telecom.Connection#destroy`"/>
-        </map>
-    </incident>
-
-    <incident
-        id="NewApi"
-        severity="error"
-        message="">
-        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
-        <location
-            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnectionService.java"
-            line="44"
+            line="41"
             column="39"
-            startOffset="2378"
-            endLine="44"
+            startOffset="2269"
+            endLine="41"
             endColumn="63"
-            endOffset="2402"/>
+            endOffset="2293"/>
         <map>
             <api-levels id="minSdk"
                 value="ffffffffffff8000"/>
@@ -3834,12 +3762,12 @@
         <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnectionService.java"
-            line="48"
-            column="24"
-            startOffset="2478"
-            endLine="48"
-            endColumn="39"
-            endOffset="2493"/>
+            line="45"
+            column="31"
+            startOffset="2376"
+            endLine="45"
+            endColumn="53"
+            endOffset="2398"/>
         <map>
             <api-levels id="minSdk"
                 value="ffffffffffff8000"/>
@@ -3847,7 +3775,7 @@
                 value="ffffffffffc00000"/>
             <entry
                 name="message"
-                string="Call requires API level 23 (current min is %1$s): `android.telecom.Connection#setDisconnected`"/>
+                string="Call requires API level 23 (current min is %1$s): `android.telecom.Connection#createFailedConnection`"/>
         </map>
     </incident>
 
@@ -3858,12 +3786,12 @@
         <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnectionService.java"
-            line="48"
-            column="40"
-            startOffset="2494"
-            endLine="48"
-            endColumn="75"
-            endOffset="2529"/>
+            line="45"
+            column="54"
+            startOffset="2399"
+            endLine="45"
+            endColumn="89"
+            endOffset="2434"/>
         <map>
             <api-levels id="minSdk"
                 value="ffffffffffff8000"/>
@@ -3882,12 +3810,12 @@
         <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnectionService.java"
-            line="48"
-            column="76"
-            startOffset="2530"
-            endLine="48"
-            endColumn="113"
-            endOffset="2567"/>
+            line="45"
+            column="90"
+            startOffset="2435"
+            endLine="45"
+            endColumn="127"
+            endOffset="2472"/>
         <map>
             <api-levels id="minSdk"
                 value="ffffffffffff8000"/>
@@ -3896,30 +3824,6 @@
             <entry
                 name="message"
                 string="Field requires API level 23 (current min is %1$s): `android.telecom.DisconnectCause#ERROR`"/>
-        </map>
-    </incident>
-
-    <incident
-        id="NewApi"
-        severity="error"
-        message="">
-        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
-        <location
-            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnectionService.java"
-            line="49"
-            column="24"
-            startOffset="2617"
-            endLine="49"
-            endColumn="31"
-            endOffset="2624"/>
-        <map>
-            <api-levels id="minSdk"
-                value="ffffffffffff8000"/>
-            <api-levels id="requiresApi"
-                value="ffffffffffc00000"/>
-            <entry
-                name="message"
-                string="Call requires API level 23 (current min is %1$s): `android.telecom.Connection#destroy`"/>
         </map>
     </incident>
 

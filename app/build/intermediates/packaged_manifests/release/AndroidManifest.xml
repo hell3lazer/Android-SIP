@@ -155,7 +155,7 @@
 
         <service
             android:name="org.sipdroid.sipua.ui.RegisterService"
-            android:foregroundServiceType="microphone"
+            android:foregroundServiceType="microphone|phoneCall"
             android:label="@string/app_name" />
         <service
             android:name="org.sipdroid.sipua.ui.SipConnectionService"

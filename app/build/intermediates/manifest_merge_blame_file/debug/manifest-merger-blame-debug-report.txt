@@ -297,11 +297,11 @@
 155        </receiver>
 156
 157        <service
-157-->B:\user\Antigravity\sipdroid\app\src\main\AndroidManifest.xml:79:9-80:48
+157-->B:\user\Antigravity\sipdroid\app\src\main\AndroidManifest.xml:79:9-80:58
 158            android:name="org.sipdroid.sipua.ui.RegisterService"
 158-->B:\user\Antigravity\sipdroid\app\src\main\AndroidManifest.xml:79:18-52
-159            android:foregroundServiceType="microphone"
-159-->B:\user\Antigravity\sipdroid\app\src\main\AndroidManifest.xml:80:4-46
+159            android:foregroundServiceType="microphone|phoneCall"
+159-->B:\user\Antigravity\sipdroid\app\src\main\AndroidManifest.xml:80:4-56
 160            android:label="@string/app_name" />
 160-->B:\user\Antigravity\sipdroid\app\src\main\AndroidManifest.xml:79:53-85
 161        <service

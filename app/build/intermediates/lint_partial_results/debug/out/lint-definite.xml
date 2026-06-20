@@ -113,10 +113,10 @@
             file="${:app*debug*MAIN*sourceProvider*0*manifest*0}"
             line="90"
             column="3"
-            startOffset="4425"
+            startOffset="4435"
             endLine="90"
             endColumn="18"
-            endOffset="4440"/>
+            endOffset="4450"/>
     </incident>
 
     <incident
@@ -127,10 +127,10 @@
             file="${:app*debug*MAIN*sourceProvider*0*manifest*0}"
             line="108"
             column="22"
-            startOffset="5897"
+            startOffset="5907"
             endLine="108"
             endColumn="82"
-            endOffset="5957"/>
+            endOffset="5967"/>
     </incident>
 
     <incident
@@ -734,31 +734,6 @@
     </incident>
 
     <incident
-        id="UseAppTint"
-        severity="error"
-        message="Must use `app:tint` instead of `android:tint`">
-        <fix-composite>
-            <fix-attribute
-                description="Set tint=&quot;@color/icon_tint_action&quot;"
-                namespace="http://schemas.android.com/apk/res-auto"
-                attribute="tint"
-                value="@color/icon_tint_action"/>
-            <fix-attribute
-                description="Delete tint"
-                namespace="http://schemas.android.com/apk/res/android"
-                attribute="tint"/>
-        </fix-composite>
-        <location
-            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/incall.xml"
-            line="107"
-            column="206"
-            startOffset="5271"
-            endLine="107"
-            endColumn="244"
-            endOffset="5309"/>
-    </incident>
-
-    <incident
         id="ContentDescription"
         severity="warning"
         message="Missing `contentDescription` attribute on image">
@@ -787,20 +762,6 @@
     </incident>
 
     <incident
-        id="HardcodedText"
-        severity="warning"
-        message="Hardcoded string &quot;Keypad&quot;, should use `@string` resource">
-        <location
-            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/incall.xml"
-            line="108"
-            column="104"
-            startOffset="5415"
-            endLine="108"
-            endColumn="125"
-            endOffset="5436"/>
-    </incident>
-
-    <incident
         id="UseAppTint"
         severity="error"
         message="Must use `app:tint` instead of `android:tint`">
@@ -817,12 +778,26 @@
         </fix-composite>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/incall.xml"
-            line="112"
-            column="200"
-            startOffset="5962"
-            endLine="112"
-            endColumn="238"
-            endOffset="6000"/>
+            line="107"
+            column="206"
+            startOffset="5271"
+            endLine="107"
+            endColumn="244"
+            endOffset="5309"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Keypad&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/incall.xml"
+            line="108"
+            column="104"
+            startOffset="5415"
+            endLine="108"
+            endColumn="125"
+            endOffset="5436"/>
     </incident>
 
     <incident
@@ -854,20 +829,6 @@
     </incident>
 
     <incident
-        id="HardcodedText"
-        severity="warning"
-        message="Hardcoded string &quot;Mute&quot;, should use `@string` resource">
-        <location
-            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/incall.xml"
-            line="113"
-            column="104"
-            startOffset="6106"
-            endLine="113"
-            endColumn="123"
-            endOffset="6125"/>
-    </incident>
-
-    <incident
         id="UseAppTint"
         severity="error"
         message="Must use `app:tint` instead of `android:tint`">
@@ -884,12 +845,26 @@
         </fix-composite>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/incall.xml"
-            line="117"
-            column="209"
-            startOffset="6660"
-            endLine="117"
-            endColumn="247"
-            endOffset="6698"/>
+            line="112"
+            column="200"
+            startOffset="5962"
+            endLine="112"
+            endColumn="238"
+            endOffset="6000"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Mute&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/incall.xml"
+            line="113"
+            column="104"
+            startOffset="6106"
+            endLine="113"
+            endColumn="123"
+            endOffset="6125"/>
     </incident>
 
     <incident
@@ -921,20 +896,6 @@
     </incident>
 
     <incident
-        id="HardcodedText"
-        severity="warning"
-        message="Hardcoded string &quot;Speaker&quot;, should use `@string` resource">
-        <location
-            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/incall.xml"
-            line="118"
-            column="104"
-            startOffset="6804"
-            endLine="118"
-            endColumn="126"
-            endOffset="6826"/>
-    </incident>
-
-    <incident
         id="UseAppTint"
         severity="error"
         message="Must use `app:tint` instead of `android:tint`">
@@ -951,12 +912,26 @@
         </fix-composite>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/incall.xml"
-            line="122"
-            column="202"
-            startOffset="7354"
-            endLine="122"
-            endColumn="240"
-            endOffset="7392"/>
+            line="117"
+            column="209"
+            startOffset="6660"
+            endLine="117"
+            endColumn="247"
+            endOffset="6698"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Speaker&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/incall.xml"
+            line="118"
+            column="104"
+            startOffset="6804"
+            endLine="118"
+            endColumn="126"
+            endOffset="6826"/>
     </incident>
 
     <incident
@@ -988,6 +963,31 @@
     </incident>
 
     <incident
+        id="UseAppTint"
+        severity="error"
+        message="Must use `app:tint` instead of `android:tint`">
+        <fix-composite>
+            <fix-attribute
+                description="Set tint=&quot;@color/icon_tint_action&quot;"
+                namespace="http://schemas.android.com/apk/res-auto"
+                attribute="tint"
+                value="@color/icon_tint_action"/>
+            <fix-attribute
+                description="Delete tint"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="tint"/>
+        </fix-composite>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/incall.xml"
+            line="122"
+            column="202"
+            startOffset="7354"
+            endLine="122"
+            endColumn="240"
+            endOffset="7392"/>
+    </incident>
+
+    <incident
         id="HardcodedText"
         severity="warning"
         message="Hardcoded string &quot;More&quot;, should use `@string` resource">
@@ -999,31 +999,6 @@
             endLine="123"
             endColumn="123"
             endOffset="7517"/>
-    </incident>
-
-    <incident
-        id="UseAppTint"
-        severity="error"
-        message="Must use `app:tint` instead of `android:tint`">
-        <fix-composite>
-            <fix-attribute
-                description="Set tint=&quot;#000000&quot;"
-                namespace="http://schemas.android.com/apk/res-auto"
-                attribute="tint"
-                value="#000000"/>
-            <fix-attribute
-                description="Delete tint"
-                namespace="http://schemas.android.com/apk/res/android"
-                attribute="tint"/>
-        </fix-composite>
-        <location
-            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/incall.xml"
-            line="136"
-            column="17"
-            startOffset="8063"
-            endLine="136"
-            endColumn="39"
-            endOffset="8085"/>
     </incident>
 
     <incident
@@ -1055,6 +1030,31 @@
     </incident>
 
     <incident
+        id="UseAppTint"
+        severity="error"
+        message="Must use `app:tint` instead of `android:tint`">
+        <fix-composite>
+            <fix-attribute
+                description="Set tint=&quot;#000000&quot;"
+                namespace="http://schemas.android.com/apk/res-auto"
+                attribute="tint"
+                value="#000000"/>
+            <fix-attribute
+                description="Delete tint"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="tint"/>
+        </fix-composite>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/incall.xml"
+            line="136"
+            column="17"
+            startOffset="8063"
+            endLine="136"
+            endColumn="39"
+            endOffset="8085"/>
+    </incident>
+
+    <incident
         id="HardcodedText"
         severity="warning"
         message="Hardcoded string &quot;Decline&quot;, should use `@string` resource">
@@ -1083,31 +1083,6 @@
     </incident>
 
     <incident
-        id="UseAppTint"
-        severity="error"
-        message="Must use `app:tint` instead of `android:tint`">
-        <fix-composite>
-            <fix-attribute
-                description="Set tint=&quot;#4CAF50&quot;"
-                namespace="http://schemas.android.com/apk/res-auto"
-                attribute="tint"
-                value="#4CAF50"/>
-            <fix-attribute
-                description="Delete tint"
-                namespace="http://schemas.android.com/apk/res/android"
-                attribute="tint"/>
-        </fix-composite>
-        <location
-            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/incall.xml"
-            line="189"
-            column="17"
-            startOffset="10225"
-            endLine="189"
-            endColumn="39"
-            endOffset="10247"/>
-    </incident>
-
-    <incident
         id="ContentDescription"
         severity="warning"
         message="Missing `contentDescription` attribute on image">
@@ -1133,6 +1108,31 @@
             endLine="182"
             endColumn="23"
             endOffset="9901"/>
+    </incident>
+
+    <incident
+        id="UseAppTint"
+        severity="error"
+        message="Must use `app:tint` instead of `android:tint`">
+        <fix-composite>
+            <fix-attribute
+                description="Set tint=&quot;#4CAF50&quot;"
+                namespace="http://schemas.android.com/apk/res-auto"
+                attribute="tint"
+                value="#4CAF50"/>
+            <fix-attribute
+                description="Delete tint"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="tint"/>
+        </fix-composite>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/incall.xml"
+            line="189"
+            column="17"
+            startOffset="10225"
+            endLine="189"
+            endColumn="39"
+            endOffset="10247"/>
     </incident>
 
     <incident
@@ -2118,10 +2118,10 @@
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/media/RtpStreamReceiver.java"
             line="306"
             column="12"
-            startOffset="8465"
+            startOffset="8455"
             endLine="306"
             endColumn="79"
-            endOffset="8532"/>
+            endOffset="8522"/>
     </incident>
 
     <incident
@@ -2136,10 +2136,10 @@
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/media/RtpStreamReceiver.java"
             line="307"
             column="5"
-            startOffset="8538"
+            startOffset="8528"
             endLine="307"
             endColumn="19"
-            endOffset="8552"/>
+            endOffset="8542"/>
     </incident>
 
     <incident
@@ -2148,20 +2148,20 @@
         message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/media/RtpStreamReceiver.java"
-            line="363"
+            line="368"
             column="1"
-            startOffset="10391"
-            endLine="363"
+            startOffset="10470"
+            endLine="368"
             endColumn="3"
-            endOffset="10393"/>
+            endOffset="10472"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/media/RtpStreamReceiver.java"
-            line="362"
+            line="367"
             column="1"
-            startOffset="10338"
-            endLine="362"
+            startOffset="10417"
+            endLine="367"
             endColumn="3"
-            endOffset="10340"
+            endOffset="10419"
             message="Previous line indentation here"/>
     </incident>
 
@@ -2171,20 +2171,20 @@
         message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/media/RtpStreamReceiver.java"
-            line="469"
+            line="474"
             column="2"
-            startOffset="13614"
-            endLine="469"
+            startOffset="13693"
+            endLine="474"
             endColumn="7"
-            endOffset="13619"/>
+            endOffset="13698"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/media/RtpStreamReceiver.java"
-            line="467"
+            line="472"
             column="2"
-            startOffset="13564"
-            endLine="467"
+            startOffset="13643"
+            endLine="472"
             endColumn="7"
-            endOffset="13569"
+            endOffset="13648"
             message="Previous line indentation here"/>
     </incident>
 
@@ -2220,10 +2220,10 @@
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/media/RtpStreamSender.java"
             line="291"
             column="9"
-            startOffset="8596"
+            startOffset="8574"
             endLine="291"
             endColumn="47"
-            endOffset="8634"/>
+            endOffset="8612"/>
     </incident>
 
     <incident
@@ -2234,18 +2234,18 @@
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/media/RtpStreamSender.java"
             line="314"
             column="1"
-            startOffset="9360"
+            startOffset="9338"
             endLine="314"
             endColumn="6"
-            endOffset="9365"/>
+            endOffset="9343"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/media/RtpStreamSender.java"
             line="313"
             column="1"
-            startOffset="9313"
+            startOffset="9291"
             endLine="313"
             endColumn="6"
-            endOffset="9318"
+            endOffset="9296"
             message="Previous line indentation here"/>
     </incident>
 
@@ -2257,18 +2257,18 @@
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/media/RtpStreamSender.java"
             line="321"
             column="1"
-            startOffset="9555"
+            startOffset="9533"
             endLine="321"
             endColumn="8"
-            endOffset="9562"/>
+            endOffset="9540"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/media/RtpStreamSender.java"
             line="320"
             column="1"
-            startOffset="9514"
+            startOffset="9492"
             endLine="320"
             endColumn="8"
-            endOffset="9521"
+            endOffset="9499"
             message="Previous line indentation here"/>
     </incident>
 
@@ -2408,18 +2408,18 @@
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/SipdroidEngine.java"
             line="403"
             column="1"
-            startOffset="14278"
+            startOffset="14369"
             endLine="403"
             endColumn="3"
-            endOffset="14280"/>
+            endOffset="14371"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/SipdroidEngine.java"
             line="399"
             column="1"
-            startOffset="14193"
+            startOffset="14284"
             endLine="399"
             endColumn="3"
-            endOffset="14195"
+            endOffset="14286"
             message="Previous line indentation here"/>
     </incident>
 
@@ -2431,18 +2431,18 @@
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/SipdroidEngine.java"
             line="428"
             column="1"
-            startOffset="15151"
+            startOffset="15242"
             endLine="428"
             endColumn="3"
-            endOffset="15153"/>
+            endOffset="15244"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/SipdroidEngine.java"
             line="427"
             column="1"
-            startOffset="15123"
+            startOffset="15214"
             endLine="427"
             endColumn="3"
-            endOffset="15125"
+            endOffset="15216"
             message="Previous line indentation here"/>
     </incident>
 
@@ -2454,18 +2454,18 @@
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/SipdroidEngine.java"
             line="477"
             column="1"
-            startOffset="16700"
+            startOffset="16791"
             endLine="477"
             endColumn="3"
-            endOffset="16702"/>
+            endOffset="16793"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/SipdroidEngine.java"
             line="462"
             column="1"
-            startOffset="16264"
+            startOffset="16355"
             endLine="462"
             endColumn="3"
-            endOffset="16266"
+            endOffset="16357"
             message="Previous line indentation here"/>
     </incident>
 
@@ -2481,10 +2481,10 @@
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/SipdroidEngine.java"
             line="467"
             column="7"
-            startOffset="16520"
+            startOffset="16611"
             endLine="467"
             endColumn="23"
-            endOffset="16536"/>
+            endOffset="16627"/>
     </incident>
 
     <incident
@@ -2499,10 +2499,10 @@
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/SipdroidEngine.java"
             line="510"
             column="9"
-            startOffset="17874"
+            startOffset="17965"
             endLine="510"
             endColumn="17"
-            endOffset="17882"/>
+            endOffset="17973"/>
     </incident>
 
     <incident
@@ -2799,12 +2799,12 @@
         message="This `Handler` class should be static or leaks might occur (anonymous android.os.Handler)">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
-            line="838"
+            line="844"
             column="32"
-            startOffset="36838"
-            endLine="849"
+            startOffset="37133"
+            endLine="855"
             endColumn="7"
-            endOffset="37105"/>
+            endOffset="37400"/>
     </incident>
 
     <incident
@@ -2842,12 +2842,12 @@
         <fix-data conditional="true"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
-            line="185"
+            line="176"
             column="9"
-            startOffset="7819"
-            endLine="185"
+            startOffset="7285"
+            endLine="176"
             endColumn="45"
-            endOffset="7855"/>
+            endOffset="7321"/>
     </incident>
 
     <incident
@@ -2856,20 +2856,20 @@
         message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
-            line="202"
+            line="193"
             column="1"
-            startOffset="8625"
-            endLine="202"
+            startOffset="8091"
+            endLine="193"
             endColumn="11"
-            endOffset="8635"/>
+            endOffset="8101"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
-            line="196"
+            line="187"
             column="1"
-            startOffset="8213"
-            endLine="196"
+            startOffset="7679"
+            endLine="187"
             endColumn="11"
-            endOffset="8223"
+            endOffset="7689"
             message="Previous line indentation here"/>
     </incident>
 
@@ -2879,20 +2879,20 @@
         message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
-            line="562"
+            line="568"
             column="2"
-            startOffset="26075"
-            endLine="562"
+            startOffset="26370"
+            endLine="568"
             endColumn="4"
-            endOffset="26077"/>
+            endOffset="26372"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
-            line="560"
+            line="566"
             column="2"
-            startOffset="25998"
-            endLine="560"
+            startOffset="26293"
+            endLine="566"
             endColumn="4"
-            endOffset="26000"
+            endOffset="26295"
             message="Previous line indentation here"/>
     </incident>
 
@@ -2902,20 +2902,20 @@
         message="Suspicious indentation: This is indented but is not nested under the previous expression (`if (android.os.Build`...)">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
-            line="410"
+            line="401"
             column="11"
-            startOffset="16485"
-            endLine="410"
+            startOffset="15951"
+            endLine="401"
             endColumn="50"
-            endOffset="16524"/>
+            endOffset="15990"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
-            line="402"
+            line="393"
             column="8"
-            startOffset="15688"
-            endLine="402"
+            startOffset="15154"
+            endLine="393"
             endColumn="83"
-            endOffset="15763"
+            endOffset="15229"
             message="Previous statement here"/>
     </incident>
 
@@ -2925,21 +2925,44 @@
         message="Suspicious indentation: This is indented but is not nested under the previous expression (`if (android.os.Build`...)">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
-            line="424"
+            line="415"
             column="13"
-            startOffset="17276"
-            endLine="424"
+            startOffset="16742"
+            endLine="415"
             endColumn="45"
-            endOffset="17308"/>
+            endOffset="16774"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
-            line="412"
+            line="403"
             column="10"
-            startOffset="16579"
-            endLine="412"
+            startOffset="16045"
+            endLine="403"
             endColumn="83"
-            endOffset="16652"
+            endOffset="16118"
             message="Previous statement here"/>
+    </incident>
+
+    <incident
+        id="SuspiciousIndentation"
+        severity="warning"
+        message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
+            line="513"
+            column="2"
+            startOffset="23599"
+            endLine="513"
+            endColumn="12"
+            endOffset="23609"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
+            line="417"
+            column="2"
+            startOffset="16796"
+            endLine="417"
+            endColumn="12"
+            endOffset="16806"
+            message="Previous line indentation here"/>
     </incident>
 
     <incident
@@ -2949,42 +2972,19 @@
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
             line="507"
-            column="2"
-            startOffset="23304"
+            column="1"
+            startOffset="23326"
             endLine="507"
-            endColumn="12"
-            endOffset="23314"/>
-        <location
-            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
-            line="426"
-            column="2"
-            startOffset="17330"
-            endLine="426"
-            endColumn="12"
-            endOffset="17340"
-            message="Previous line indentation here"/>
-    </incident>
-
-    <incident
-        id="SuspiciousIndentation"
-        severity="warning"
-        message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)">
-        <location
-            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
-            line="501"
-            column="1"
-            startOffset="23031"
-            endLine="501"
             endColumn="14"
-            endOffset="23044"/>
+            endOffset="23339"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
-            line="471"
+            line="462"
             column="1"
-            startOffset="20236"
-            endLine="471"
+            startOffset="19702"
+            endLine="462"
             endColumn="14"
-            endOffset="20249"
+            endOffset="19715"
             message="Previous line indentation here"/>
     </incident>
 
@@ -2998,12 +2998,12 @@
             shortenNames="true"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
-            line="461"
+            line="452"
             column="94"
-            startOffset="19739"
-            endLine="461"
+            startOffset="19205"
+            endLine="452"
             endColumn="97"
-            endOffset="19742"/>
+            endOffset="19208"/>
     </incident>
 
     <incident
@@ -3016,12 +3016,12 @@
             shortenNames="true"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
-            line="542"
+            line="548"
             column="70"
-            startOffset="25273"
-            endLine="542"
+            startOffset="25568"
+            endLine="548"
             endColumn="73"
-            endOffset="25276"/>
+            endOffset="25571"/>
     </incident>
 
     <incident
@@ -3030,20 +3030,20 @@
         message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
-            line="558"
+            line="564"
             column="2"
-            startOffset="25952"
-            endLine="558"
+            startOffset="26247"
+            endLine="564"
             endColumn="5"
-            endOffset="25955"/>
+            endOffset="26250"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
-            line="556"
+            line="562"
             column="2"
-            startOffset="25886"
-            endLine="556"
+            startOffset="26181"
+            endLine="562"
             endColumn="5"
-            endOffset="25889"
+            endOffset="26184"
             message="Previous line indentation here"/>
     </incident>
 
@@ -3053,20 +3053,20 @@
         message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
-            line="664"
+            line="670"
             column="5"
-            startOffset="30008"
-            endLine="664"
+            startOffset="30303"
+            endLine="670"
             endColumn="10"
-            endOffset="30013"/>
+            endOffset="30308"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
-            line="663"
+            line="669"
             column="5"
-            startOffset="29961"
-            endLine="663"
+            startOffset="30256"
+            endLine="669"
             endColumn="10"
-            endOffset="29966"
+            endOffset="30261"
             message="Previous line indentation here"/>
     </incident>
 
@@ -3080,12 +3080,12 @@
             replacement="apply"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
-            line="738"
+            line="744"
             column="12"
-            startOffset="32405"
-            endLine="738"
+            startOffset="32700"
+            endLine="744"
             endColumn="20"
-            endOffset="32413"/>
+            endOffset="32708"/>
     </incident>
 
     <incident
@@ -3094,20 +3094,20 @@
         message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
-            line="771"
+            line="777"
             column="1"
-            startOffset="34406"
-            endLine="771"
+            startOffset="34701"
+            endLine="777"
             endColumn="4"
-            endOffset="34409"/>
+            endOffset="34704"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
-            line="770"
+            line="776"
             column="1"
-            startOffset="34380"
-            endLine="770"
+            startOffset="34675"
+            endLine="776"
             endColumn="4"
-            endOffset="34383"
+            endOffset="34678"
             message="Previous line indentation here"/>
     </incident>
 
@@ -3117,20 +3117,20 @@
         message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
-            line="760"
+            line="766"
             column="1"
-            startOffset="33593"
-            endLine="760"
+            startOffset="33888"
+            endLine="766"
             endColumn="11"
-            endOffset="33603"/>
+            endOffset="33898"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
-            line="758"
+            line="764"
             column="1"
-            startOffset="33439"
-            endLine="758"
+            startOffset="33734"
+            endLine="764"
             endColumn="11"
-            endOffset="33449"
+            endOffset="33744"
             message="Previous line indentation here"/>
     </incident>
 
@@ -3140,20 +3140,20 @@
         message="The indentation string here is different from on the previous line (`\t` vs `&quot; &quot;`)">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
-            line="859"
+            line="865"
             column="1"
-            startOffset="37393"
-            endLine="859"
+            startOffset="37688"
+            endLine="865"
             endColumn="10"
-            endOffset="37402"/>
+            endOffset="37697"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
-            line="858"
+            line="864"
             column="1"
-            startOffset="37349"
-            endLine="858"
+            startOffset="37644"
+            endLine="864"
             endColumn="10"
-            endOffset="37358"
+            endOffset="37653"
             message="Previous line indentation here"/>
     </incident>
 
@@ -3163,20 +3163,20 @@
         message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
-            line="863"
+            line="869"
             column="2"
-            startOffset="37597"
-            endLine="863"
+            startOffset="37892"
+            endLine="869"
             endColumn="5"
-            endOffset="37600"/>
+            endOffset="37895"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
-            line="862"
+            line="868"
             column="2"
-            startOffset="37572"
-            endLine="862"
+            startOffset="37867"
+            endLine="868"
             endColumn="5"
-            endOffset="37575"
+            endOffset="37870"
             message="Previous line indentation here"/>
     </incident>
 
@@ -3186,20 +3186,20 @@
         message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
-            line="891"
+            line="897"
             column="2"
-            startOffset="38933"
-            endLine="891"
+            startOffset="39228"
+            endLine="897"
             endColumn="5"
-            endOffset="38936"/>
+            endOffset="39231"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
-            line="890"
+            line="896"
             column="2"
-            startOffset="38864"
-            endLine="890"
+            startOffset="39159"
+            endLine="896"
             endColumn="5"
-            endOffset="38867"
+            endOffset="39162"
             message="Previous line indentation here"/>
     </incident>
 
@@ -3209,20 +3209,20 @@
         message="The indentation string here is different from on the previous line (`\t` vs `&quot; &quot;`)">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
-            line="916"
+            line="922"
             column="2"
-            startOffset="39949"
-            endLine="916"
+            startOffset="40244"
+            endLine="922"
             endColumn="11"
-            endOffset="39958"/>
+            endOffset="40253"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
-            line="915"
+            line="921"
             column="2"
-            startOffset="39896"
-            endLine="915"
+            startOffset="40191"
+            endLine="921"
             endColumn="11"
-            endOffset="39905"
+            endOffset="40200"
             message="Previous line indentation here"/>
     </incident>
 
@@ -3236,12 +3236,12 @@
             replacement="10*60*1000L /*10 minutes*/"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
-            line="924"
+            line="930"
             column="14"
-            startOffset="40327"
-            endLine="924"
+            startOffset="40622"
+            endLine="930"
             endColumn="27"
-            endOffset="40340"/>
+            endOffset="40635"/>
     </incident>
 
     <incident
@@ -3268,6 +3268,24 @@
     </incident>
 
     <incident
+        id="WrongConstant"
+        severity="error"
+        message="Must be one or more of: ServiceInfo.FOREGROUND_SERVICE_TYPE_MANIFEST, ServiceInfo.FOREGROUND_SERVICE_TYPE_NONE, ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC, ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK, ServiceInfo.FOREGROUND_SERVICE_TYPE_PHONE_CALL, ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION, ServiceInfo.FOREGROUND_SERVICE_TYPE_CONNECTED_DEVICE, ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PROJECTION, ServiceInfo.FOREGROUND_SERVICE_TYPE_CAMERA, ServiceInfo.FOREGROUND_SERVICE_TYPE_MICROPHONE, ServiceInfo.FOREGROUND_SERVICE_TYPE_HEALTH, ServiceInfo.FOREGROUND_SERVICE_TYPE_REMOTE_MESSAGING, ServiceInfo.FOREGROUND_SERVICE_TYPE_SYSTEM_EXEMPTED, ServiceInfo.FOREGROUND_SERVICE_TYPE_SHORT_SERVICE, ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PROCESSING, ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE">
+        <fix-replace
+            description="Change to ServiceInfo.FOREGROUND_SERVICE_TYPE_MICROPHONE (128)"
+            replacement="android.content.pm.ServiceInfo.FOREGROUND_SERVICE_TYPE_MICROPHONE"
+            shortenNames="true"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/RegisterService.java"
+            line="90"
+            column="82"
+            startOffset="4202"
+            endLine="90"
+            endColumn="85"
+            endOffset="4205"/>
+    </incident>
+
+    <incident
         id="SdCardPath"
         severity="warning"
         message="Do not hardcode &quot;`/data/`&quot;; use `Context.getFilesDir().getPath()` instead">
@@ -3287,61 +3305,20 @@
         message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Settings.java"
-            line="424"
-            column="4"
-            startOffset="17974"
-            endLine="424"
-            endColumn="7"
-            endOffset="17977"/>
-        <location
-            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Settings.java"
-            line="423"
-            column="4"
-            startOffset="17932"
-            endLine="423"
-            endColumn="7"
-            endOffset="17935"
-            message="Previous line indentation here"/>
-    </incident>
-
-    <incident
-        id="ApplySharedPref"
-        severity="warning"
-        message="Consider using `apply()` instead; `commit` writes its data to persistent storage immediately, whereas `apply` will handle it in the background">
-        <fix-replace
-            description="Replace commit() with apply()"
-            oldPattern="(commit)\s*\("
-            replacement="apply"/>
-        <location
-            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Settings.java"
-            line="432"
-            column="16"
-            startOffset="18255"
-            endLine="432"
-            endColumn="24"
-            endOffset="18263"/>
-    </incident>
-
-    <incident
-        id="SuspiciousIndentation"
-        severity="warning"
-        message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)">
-        <location
-            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Settings.java"
             line="242"
             column="1"
-            startOffset="11290"
+            startOffset="11293"
             endLine="242"
             endColumn="3"
-            endOffset="11292"/>
+            endOffset="11295"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Settings.java"
             line="231"
             column="1"
-            startOffset="10822"
+            startOffset="10825"
             endLine="231"
             endColumn="3"
-            endOffset="10824"
+            endOffset="10827"
             message="Previous line indentation here"/>
     </incident>
 
@@ -3355,12 +3332,12 @@
             replacement="apply"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Settings.java"
-            line="283"
+            line="308"
             column="10"
-            startOffset="12684"
-            endLine="283"
+            startOffset="13853"
+            endLine="308"
             endColumn="18"
-            endOffset="12692"/>
+            endOffset="13861"/>
     </incident>
 
     <incident
@@ -3373,35 +3350,30 @@
             replacement="apply"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Settings.java"
-            line="293"
+            line="318"
             column="9"
-            startOffset="13002"
-            endLine="293"
+            startOffset="14171"
+            endLine="318"
             endColumn="17"
-            endOffset="13010"/>
+            endOffset="14179"/>
     </incident>
 
     <incident
-        id="SuspiciousIndentation"
+        id="ApplySharedPref"
         severity="warning"
-        message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)">
+        message="Consider using `apply()` instead; `commit` writes its data to persistent storage immediately, whereas `apply` will handle it in the background">
+        <fix-replace
+            description="Replace commit() with apply()"
+            oldPattern="(commit)\s*\("
+            replacement="apply"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Settings.java"
-            line="353"
-            column="5"
-            startOffset="15303"
-            endLine="353"
-            endColumn="10"
-            endOffset="15308"/>
-        <location
-            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Settings.java"
-            line="352"
-            column="5"
-            startOffset="15262"
-            endLine="352"
-            endColumn="10"
-            endOffset="15267"
-            message="Previous line indentation here"/>
+            line="480"
+            column="13"
+            startOffset="20632"
+            endLine="480"
+            endColumn="21"
+            endOffset="20640"/>
     </incident>
 
     <incident
@@ -3410,20 +3382,20 @@
         message="Suspicious indentation: This is indented but is not nested under the previous expression (`if (!Thread.currentT`...)">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Settings.java"
-            line="485"
+            line="530"
             column="9"
-            startOffset="19864"
-            endLine="485"
+            startOffset="22295"
+            endLine="530"
             endColumn="39"
-            endOffset="19894"/>
+            endOffset="22325"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Settings.java"
-            line="482"
+            line="527"
             column="6"
-            startOffset="19778"
-            endLine="482"
-            endColumn="59"
-            endOffset="19831"
+            startOffset="22194"
+            endLine="527"
+            endColumn="74"
+            endOffset="22262"
             message="Previous statement here"/>
     </incident>
 
@@ -3433,20 +3405,20 @@
         message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Settings.java"
-            line="496"
+            line="541"
             column="1"
-            startOffset="20221"
-            endLine="496"
+            startOffset="22652"
+            endLine="541"
             endColumn="4"
-            endOffset="20224"/>
+            endOffset="22655"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Settings.java"
-            line="495"
+            line="540"
             column="1"
-            startOffset="20156"
-            endLine="495"
+            startOffset="22587"
+            endLine="540"
             endColumn="4"
-            endOffset="20159"
+            endOffset="22590"
             message="Previous line indentation here"/>
     </incident>
 
@@ -3460,12 +3432,12 @@
             replacement="apply"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Settings.java"
-            line="493"
+            line="538"
             column="12"
-            startOffset="20145"
-            endLine="493"
+            startOffset="22576"
+            endLine="538"
             endColumn="20"
-            endOffset="20153"/>
+            endOffset="22584"/>
     </incident>
 
     <incident
@@ -3478,12 +3450,12 @@
             replacement="apply"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Settings.java"
-            line="510"
+            line="555"
             column="12"
-            startOffset="20738"
-            endLine="510"
+            startOffset="23169"
+            endLine="555"
             endColumn="20"
-            endOffset="20746"/>
+            endOffset="23177"/>
     </incident>
 
     <incident
@@ -3492,20 +3464,20 @@
         message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Settings.java"
-            line="514"
+            line="559"
             column="5"
-            startOffset="20843"
-            endLine="514"
+            startOffset="23274"
+            endLine="559"
             endColumn="12"
-            endOffset="20850"/>
+            endOffset="23281"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Settings.java"
-            line="513"
+            line="558"
             column="5"
-            startOffset="20790"
-            endLine="513"
+            startOffset="23221"
+            endLine="558"
             endColumn="12"
-            endOffset="20797"
+            endOffset="23228"
             message="Previous line indentation here"/>
     </incident>
 
@@ -3515,20 +3487,20 @@
         message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Settings.java"
-            line="545"
+            line="590"
             column="5"
-            startOffset="22049"
-            endLine="545"
+            startOffset="24480"
+            endLine="590"
             endColumn="12"
-            endOffset="22056"/>
+            endOffset="24487"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Settings.java"
-            line="544"
+            line="589"
             column="5"
-            startOffset="21996"
-            endLine="544"
+            startOffset="24427"
+            endLine="589"
             endColumn="12"
-            endOffset="22003"
+            endOffset="24434"
             message="Previous line indentation here"/>
     </incident>
 
@@ -3538,20 +3510,20 @@
         message="Suspicious indentation: This is indented but is not nested under the previous expression (`if (p == null) retur`...)">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Settings.java"
-            line="558"
+            line="603"
             column="6"
-            startOffset="22405"
-            endLine="558"
+            startOffset="24836"
+            endLine="603"
             endColumn="75"
-            endOffset="22474"/>
+            endOffset="24905"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Settings.java"
-            line="557"
+            line="602"
             column="3"
-            startOffset="22377"
-            endLine="557"
+            startOffset="24808"
+            endLine="602"
             endColumn="25"
-            endOffset="22399"
+            endOffset="24830"
             message="Previous statement here"/>
     </incident>
 
@@ -3561,20 +3533,20 @@
         message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Settings.java"
-            line="615"
+            line="660"
             column="1"
-            startOffset="25491"
-            endLine="615"
+            startOffset="27922"
+            endLine="660"
             endColumn="3"
-            endOffset="25493"/>
+            endOffset="27924"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Settings.java"
-            line="577"
+            line="622"
             column="1"
-            startOffset="23409"
-            endLine="577"
+            startOffset="25840"
+            endLine="622"
             endColumn="3"
-            endOffset="23411"
+            endOffset="25842"
             message="Previous line indentation here"/>
     </incident>
 
@@ -3584,20 +3556,20 @@
         message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Settings.java"
-            line="601"
+            line="646"
             column="1"
-            startOffset="24713"
-            endLine="601"
+            startOffset="27144"
+            endLine="646"
             endColumn="7"
-            endOffset="24719"/>
+            endOffset="27150"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Settings.java"
-            line="594"
+            line="639"
             column="1"
-            startOffset="24407"
-            endLine="594"
+            startOffset="26838"
+            endLine="639"
             endColumn="7"
-            endOffset="24413"
+            endOffset="26844"
             message="Previous line indentation here"/>
     </incident>
 
@@ -3607,20 +3579,20 @@
         message="Suspicious indentation: This is indented but is not nested under the previous expression (`if (pStunServer != n`...)">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Settings.java"
-            line="627"
+            line="672"
             column="7"
-            startOffset="26228"
-            endLine="627"
+            startOffset="28659"
+            endLine="672"
             endColumn="69"
-            endOffset="26290"/>
+            endOffset="28721"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Settings.java"
-            line="626"
+            line="671"
             column="4"
-            startOffset="26167"
-            endLine="626"
+            startOffset="28598"
+            endLine="671"
             endColumn="58"
-            endOffset="26221"
+            endOffset="28652"
             message="Previous statement here"/>
     </incident>
 
@@ -3630,20 +3602,20 @@
         message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Settings.java"
-            line="645"
+            line="690"
             column="1"
-            startOffset="26890"
-            endLine="645"
+            startOffset="29321"
+            endLine="690"
             endColumn="3"
-            endOffset="26892"/>
+            endOffset="29323"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Settings.java"
-            line="644"
+            line="689"
             column="1"
-            startOffset="26830"
-            endLine="644"
+            startOffset="29261"
+            endLine="689"
             endColumn="3"
-            endOffset="26832"
+            endOffset="29263"
             message="Previous line indentation here"/>
     </incident>
 
@@ -3657,12 +3629,12 @@
             replacement="apply"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Settings.java"
-            line="645"
+            line="690"
             column="8"
-            startOffset="26897"
-            endLine="645"
+            startOffset="29328"
+            endLine="690"
             endColumn="16"
-            endOffset="26905"/>
+            endOffset="29336"/>
     </incident>
 
     <incident
@@ -4220,12 +4192,12 @@
         message="The `release()` call is not always reached">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/media/RtpStreamReceiver.java"
-            line="312"
-            column="9"
-            startOffset="8667"
-            endLine="312"
-            endColumn="16"
-            endOffset="8674"/>
+            line="313"
+            column="10"
+            startOffset="8682"
+            endLine="313"
+            endColumn="17"
+            endOffset="8689"/>
     </incident>
 
     <incident
@@ -4234,12 +4206,26 @@
         message="The `release()` call is not always reached">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
-            line="923"
+            line="929"
             column="18"
-            startOffset="40303"
-            endLine="923"
+            startOffset="40598"
+            endLine="929"
             endColumn="25"
-            endOffset="40310"/>
+            endOffset="40605"/>
+    </incident>
+
+    <incident
+        id="Wakelock"
+        severity="warning"
+        message="The `release()` call is not always reached">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/zoolu/sip/provider/SipProvider.java"
+            line="1204"
+            column="8"
+            startOffset="39138"
+            endLine="1204"
+            endColumn="15"
+            endOffset="39145"/>
     </incident>
 
     <incident
@@ -4296,6 +4282,53 @@
             endLine="46"
             endColumn="69"
             endOffset="1105"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.swiperefreshlayout:swiperefreshlayout than 1.1.0 is available: 1.2.0">
+        <fix-replace
+            description="Change to 1.2.0"
+            family="Update versions"
+            oldString="1.1.0"
+            replacement="1.2.0"/>
+        <location
+            file="${:app*projectDir}/build.gradle"
+            line="47"
+            column="24"
+            startOffset="1129"
+            endLine="47"
+            endColumn="78"
+            endOffset="1183"/>
+    </incident>
+
+    <incident
+        id="Overdraw"
+        severity="warning"
+        message="Possible overdraw: Root element paints background `?android:attr/colorBackground` with a theme that also paints a background (inferred theme is `@style/MyHoloTheme`)">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/incall.xml"
+            line="6"
+            column="5"
+            startOffset="177"
+            endLine="6"
+            endColumn="55"
+            endOffset="227"/>
+    </incident>
+
+    <incident
+        id="Overdraw"
+        severity="warning"
+        message="Possible overdraw: Root element paints background `?android:attr/colorBackground` with a theme that also paints a background (inferred theme is `@style/MyHoloTheme`)">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/sipdroid.xml"
+            line="6"
+            column="5"
+            startOffset="255"
+            endLine="6"
+            endColumn="55"
+            endOffset="305"/>
     </incident>
 
     <incident
@@ -4858,34 +4891,6 @@
             file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable/sym_call_hold_on.png"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable/sym_call_hold_off.png"/>
-    </incident>
-
-    <incident
-        id="Overdraw"
-        severity="warning"
-        message="Possible overdraw: Root element paints background `?android:attr/colorBackground` with a theme that also paints a background (inferred theme is `@style/MyHoloTheme`)">
-        <location
-            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/incall.xml"
-            line="6"
-            column="5"
-            startOffset="177"
-            endLine="6"
-            endColumn="55"
-            endOffset="227"/>
-    </incident>
-
-    <incident
-        id="Overdraw"
-        severity="warning"
-        message="Possible overdraw: Root element paints background `?android:attr/colorBackground` with a theme that also paints a background (inferred theme is `@style/MyHoloTheme`)">
-        <location
-            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/sipdroid.xml"
-            line="6"
-            column="5"
-            startOffset="255"
-            endLine="6"
-            endColumn="55"
-            endOffset="305"/>
     </incident>
 
     <incident

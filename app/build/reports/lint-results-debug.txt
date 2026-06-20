@@ -13,25 +13,25 @@ B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\CreateAccou
 B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\codecs\GSM.java:43: Warning: Consider using apply() instead; commit writes its data to persistent storage immediately, whereas apply will handle it in the background [ApplySharedPref]
    e.commit();
      ~~~~~~~~
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:738: Warning: Consider using apply() instead; commit writes its data to persistent storage immediately, whereas apply will handle it in the background [ApplySharedPref]
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:744: Warning: Consider using apply() instead; commit writes its data to persistent storage immediately, whereas apply will handle it in the background [ApplySharedPref]
       edit.commit();
            ~~~~~~~~
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java:283: Warning: Consider using apply() instead; commit writes its data to persistent storage immediately, whereas apply will handle it in the background [ApplySharedPref]
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java:308: Warning: Consider using apply() instead; commit writes its data to persistent storage immediately, whereas apply will handle it in the background [ApplySharedPref]
     edit.commit();
          ~~~~~~~~
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java:293: Warning: Consider using apply() instead; commit writes its data to persistent storage immediately, whereas apply will handle it in the background [ApplySharedPref]
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java:318: Warning: Consider using apply() instead; commit writes its data to persistent storage immediately, whereas apply will handle it in the background [ApplySharedPref]
    edit.commit();
         ~~~~~~~~
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java:432: Warning: Consider using apply() instead; commit writes its data to persistent storage immediately, whereas apply will handle it in the background [ApplySharedPref]
-          edit.commit();
-               ~~~~~~~~
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java:493: Warning: Consider using apply() instead; commit writes its data to persistent storage immediately, whereas apply will handle it in the background [ApplySharedPref]
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java:480: Warning: Consider using apply() instead; commit writes its data to persistent storage immediately, whereas apply will handle it in the background [ApplySharedPref]
+     editor.commit();
+            ~~~~~~~~
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java:538: Warning: Consider using apply() instead; commit writes its data to persistent storage immediately, whereas apply will handle it in the background [ApplySharedPref]
       edit.commit();
            ~~~~~~~~
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java:510: Warning: Consider using apply() instead; commit writes its data to persistent storage immediately, whereas apply will handle it in the background [ApplySharedPref]
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java:555: Warning: Consider using apply() instead; commit writes its data to persistent storage immediately, whereas apply will handle it in the background [ApplySharedPref]
       edit.commit();
            ~~~~~~~~
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java:645: Warning: Consider using apply() instead; commit writes its data to persistent storage immediately, whereas apply will handle it in the background [ApplySharedPref]
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java:690: Warning: Consider using apply() instead; commit writes its data to persistent storage immediately, whereas apply will handle it in the background [ApplySharedPref]
   edit.commit();
        ~~~~~~~~
 B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\SipRingtonePreference.java:58: Warning: Consider using apply() instead; commit writes its data to persistent storage immediately, whereas apply will handle it in the background [ApplySharedPref]
@@ -176,12 +176,9 @@ B:\user\Antigravity\sipdroid\app\src\main\java\org\zoolu\sip\header\ViaHeader.ja
 
    https://developer.android.com/reference/java/util/Locale.html#default_locale
 
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:326: Warning: Field requires API level 23 (current min is 16): android.telecom.DisconnectCause#LOCAL [InlinedApi]
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:317: Warning: Field requires API level 23 (current min is 16): android.telecom.DisconnectCause#LOCAL [InlinedApi]
       activeConnection.setDisconnected(new android.telecom.DisconnectCause(android.telecom.DisconnectCause.LOCAL));
                                                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\RegisterService.java:66: Warning: Field requires API level 33 (current min is 26): android.content.Context#RECEIVER_EXPORTED [InlinedApi]
-    registerReceiver(m_receiver = new Receiver(), intentfilter, RECEIVER_EXPORTED);
-                                                                ~~~~~~~~~~~~~~~~~
 B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\SipConnection.java:32: Warning: Field requires API level 23 (current min is 16): android.telecom.DisconnectCause#REJECTED [InlinedApi]
         setDisconnected(new DisconnectCause(DisconnectCause.REJECTED));
                                             ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -219,11 +216,11 @@ B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\SipConnecti
         connection.setAddress(request.getAddress(), android.telecom.TelecomManager.PRESENTATION_ALLOWED);
                                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\SipConnectionService.java:36: Warning: Field requires API level 23 (current min is 16): android.telecom.DisconnectCause#ERROR [InlinedApi]
-                    connection.setDisconnected(new android.telecom.DisconnectCause(android.telecom.DisconnectCause.ERROR, "SIP Offline"));
-                                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\SipConnectionService.java:48: Warning: Field requires API level 23 (current min is 16): android.telecom.DisconnectCause#ERROR [InlinedApi]
-            connection.setDisconnected(new android.telecom.DisconnectCause(android.telecom.DisconnectCause.ERROR, "No address provided"));
-                                                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                    return Connection.createFailedConnection(new android.telecom.DisconnectCause(android.telecom.DisconnectCause.ERROR, "SIP Offline"));
+                                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\SipConnectionService.java:45: Warning: Field requires API level 23 (current min is 16): android.telecom.DisconnectCause#ERROR [InlinedApi]
+            return Connection.createFailedConnection(new android.telecom.DisconnectCause(android.telecom.DisconnectCause.ERROR, "No address provided"));
+                                                                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
    Explanation for issues of type "InlinedApi":
    This check scans through all the Android API field references in the
@@ -518,22 +515,22 @@ B:\user\Antigravity\sipdroid\app\src\main\res\drawable-finger\tray_handle_select
    translation. There is a dedicated issue id for that scenario, with the id
    ExtraTranslation.)
 
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:326: Error: Call requires API level 23 (current min is 16): android.telecom.Connection#setDisconnected [NewApi]
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:317: Error: Call requires API level 23 (current min is 16): android.telecom.Connection#setDisconnected [NewApi]
       activeConnection.setDisconnected(new android.telecom.DisconnectCause(android.telecom.DisconnectCause.LOCAL));
                        ~~~~~~~~~~~~~~~
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:326: Error: Call requires API level 23 (current min is 16): new android.telecom.DisconnectCause [NewApi]
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:317: Error: Call requires API level 23 (current min is 16): new android.telecom.DisconnectCause [NewApi]
       activeConnection.setDisconnected(new android.telecom.DisconnectCause(android.telecom.DisconnectCause.LOCAL));
                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:327: Error: Call requires API level 23 (current min is 16): android.telecom.Connection#destroy [NewApi]
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:318: Error: Call requires API level 23 (current min is 16): android.telecom.Connection#destroy [NewApi]
       activeConnection.destroy();
                        ~~~~~~~
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:342: Error: Call requires API level 23 (current min is 16): android.telecom.Connection#setActive [NewApi]
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:333: Error: Call requires API level 23 (current min is 16): android.telecom.Connection#setActive [NewApi]
       activeConnection.setActive();
                        ~~~~~~~~~
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:349: Error: Call requires API level 23 (current min is 16): android.telecom.Connection#setOnHold [NewApi]
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:340: Error: Call requires API level 23 (current min is 16): android.telecom.Connection#setOnHold [NewApi]
       activeConnection.setOnHold();
                        ~~~~~~~~~
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:354: Error: Call requires API level 23 (current min is 16): android.telecom.Connection#setRingbackRequested [NewApi]
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:345: Error: Call requires API level 23 (current min is 16): android.telecom.Connection#setRingbackRequested [NewApi]
      activeConnection.setRingbackRequested(false);
                       ~~~~~~~~~~~~~~~~~~~~
 B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\SipConnection.java:7: Error: Class requires API level 23 (current min is 16): android.telecom.Connection [NewApi]
@@ -614,33 +611,24 @@ B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\SipConnecti
 B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\SipConnectionService.java:33: Error: Call requires API level 23 (current min is 16): android.telecom.ConnectionRequest#getAddress [NewApi]
         if (request.getAddress() != null) {
                     ~~~~~~~~~~
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\SipConnectionService.java:36: Error: Call requires API level 23 (current min is 16): android.telecom.Connection#setDisconnected [NewApi]
-                    connection.setDisconnected(new android.telecom.DisconnectCause(android.telecom.DisconnectCause.ERROR, "SIP Offline"));
-                               ~~~~~~~~~~~~~~~
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\SipConnectionService.java:36: Error: Call requires API level 23 (current min is 16): android.telecom.Connection#createFailedConnection [NewApi]
+                    return Connection.createFailedConnection(new android.telecom.DisconnectCause(android.telecom.DisconnectCause.ERROR, "SIP Offline"));
+                                      ~~~~~~~~~~~~~~~~~~~~~~
 B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\SipConnectionService.java:36: Error: Call requires API level 23 (current min is 16): new android.telecom.DisconnectCause [NewApi]
-                    connection.setDisconnected(new android.telecom.DisconnectCause(android.telecom.DisconnectCause.ERROR, "SIP Offline"));
-                                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\SipConnectionService.java:37: Error: Call requires API level 23 (current min is 16): android.telecom.Connection#destroy [NewApi]
-                    connection.destroy();
-                               ~~~~~~~
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\SipConnectionService.java:40: Error: Call requires API level 23 (current min is 16): android.telecom.ConnectionRequest#getAddress [NewApi]
+                    return Connection.createFailedConnection(new android.telecom.DisconnectCause(android.telecom.DisconnectCause.ERROR, "SIP Offline"));
+                                                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\SipConnectionService.java:38: Error: Call requires API level 23 (current min is 16): android.telecom.ConnectionRequest#getAddress [NewApi]
                 String number = request.getAddress().getSchemeSpecificPart();
                                         ~~~~~~~~~~
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\SipConnectionService.java:43: Error: Call requires API level 23 (current min is 16): android.telecom.Connection#destroy [NewApi]
-                    connection.destroy();
-                               ~~~~~~~
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\SipConnectionService.java:44: Error: Call requires API level 23 (current min is 16): android.telecom.Connection#createCanceledConnection [NewApi]
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\SipConnectionService.java:41: Error: Call requires API level 23 (current min is 16): android.telecom.Connection#createCanceledConnection [NewApi]
                     return Connection.createCanceledConnection();
                                       ~~~~~~~~~~~~~~~~~~~~~~~~
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\SipConnectionService.java:48: Error: Call requires API level 23 (current min is 16): android.telecom.Connection#setDisconnected [NewApi]
-            connection.setDisconnected(new android.telecom.DisconnectCause(android.telecom.DisconnectCause.ERROR, "No address provided"));
-                       ~~~~~~~~~~~~~~~
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\SipConnectionService.java:48: Error: Call requires API level 23 (current min is 16): new android.telecom.DisconnectCause [NewApi]
-            connection.setDisconnected(new android.telecom.DisconnectCause(android.telecom.DisconnectCause.ERROR, "No address provided"));
-                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\SipConnectionService.java:49: Error: Call requires API level 23 (current min is 16): android.telecom.Connection#destroy [NewApi]
-            connection.destroy();
-                       ~~~~~~~
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\SipConnectionService.java:45: Error: Call requires API level 23 (current min is 16): android.telecom.Connection#createFailedConnection [NewApi]
+            return Connection.createFailedConnection(new android.telecom.DisconnectCause(android.telecom.DisconnectCause.ERROR, "No address provided"));
+                              ~~~~~~~~~~~~~~~~~~~~~~
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\SipConnectionService.java:45: Error: Call requires API level 23 (current min is 16): new android.telecom.DisconnectCause [NewApi]
+            return Connection.createFailedConnection(new android.telecom.DisconnectCause(android.telecom.DisconnectCause.ERROR, "No address provided"));
+                                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\UserAgent.java:618: Error: Call requires API level 23 (current min is 16): android.telecom.Connection#setRingbackRequested [NewApi]
     Receiver.activeConnection.setRingbackRequested(true);
                               ~~~~~~~~~~~~~~~~~~~~
@@ -732,30 +720,30 @@ B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\media\JAudioLauncher
       if (level<=LogLevel.HIGH) e.printStackTrace();
       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\media\JAudioLauncher.java:189: Previous statement here
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:410: Error: Suspicious indentation: This is indented but is not nested under the previous expression (if (android.os.Build...) [SuspiciousIndentation]
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:401: Error: Suspicious indentation: This is indented but is not nested under the previous expression (if (android.os.Build...) [SuspiciousIndentation]
           notification.setSmallIcon(mInCallResId);
           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:402: Previous statement here
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:424: Error: Suspicious indentation: This is indented but is not nested under the previous expression (if (android.os.Build...) [SuspiciousIndentation]
+    B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:393: Previous statement here
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:415: Error: Suspicious indentation: This is indented but is not nested under the previous expression (if (android.os.Build...) [SuspiciousIndentation]
             notification.setAutoCancel(true);
             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:412: Previous statement here
+    B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:403: Previous statement here
 B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\RegisterService.java:52: Error: Suspicious indentation: This is indented but is not nested under the previous expression (if (Receiver.mContex...) [SuspiciousIndentation]
         if (m_receiver == null) {
         ~~~~~~~~~~~~~~~~~~~~~~~~~
     B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\RegisterService.java:50: Previous statement here
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java:485: Error: Suspicious indentation: This is indented but is not nested under the previous expression (if (!Thread.currentT...) [SuspiciousIndentation]
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java:530: Error: Suspicious indentation: This is indented but is not nested under the previous expression (if (!Thread.currentT...) [SuspiciousIndentation]
         if ("app_theme".equals(key)) {
         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java:482: Previous statement here
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java:558: Error: Suspicious indentation: This is indented but is not nested under the previous expression (if (p == null) retur...) [SuspiciousIndentation]
+    B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java:527: Previous statement here
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java:603: Error: Suspicious indentation: This is indented but is not nested under the previous expression (if (p == null) retur...) [SuspiciousIndentation]
      for (int i = 0; i < getResources().getStringArray(val).length; i++) {
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java:557: Previous statement here
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java:627: Error: Suspicious indentation: This is indented but is not nested under the previous expression (if (pStunServer != n...) [SuspiciousIndentation]
+    B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java:602: Previous statement here
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java:672: Error: Suspicious indentation: This is indented but is not nested under the previous expression (if (pStunServer != n...) [SuspiciousIndentation]
       if (pStunServerPort != null) pStunServerPort.setEnabled(true);
       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java:626: Previous statement here
+    B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java:671: Previous statement here
 B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\media\Bluetooth.java:55: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
    am.setBluetoothScoOn(true);
  ~~
@@ -780,62 +768,62 @@ B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\OneShotAlar
   for (int i = 0; i < SipdroidEngine.LINES; i++)
 ~~
     B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\OneShotAlarm2.java:38: Previous line indentation here
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:202: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:193: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
           try {
 ~~~~~~~~~~
-    B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:196: Previous line indentation here
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:501: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
+    B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:187: Previous line indentation here
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:507: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
              return; // Skip persistent registration notifications from appearing in UI
 ~~~~~~~~~~~~~
-    B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:471: Previous line indentation here
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:507: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
+    B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:462: Previous line indentation here
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:513: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
            notification.setOngoing(true);
  ~~~~~~~~~~
-    B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:426: Previous line indentation here
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:558: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
+    B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:417: Previous line indentation here
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:564: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
     mNotificationMgr.cancel(type);
  ~~~
-    B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:556: Previous line indentation here
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:562: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
+    B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:562: Previous line indentation here
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:568: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
    if (mSipdroidEngine != null && otype >= REGISTER_NOTIFICATION && otype != REGISTER_NOTIFICATION+mSipdroidEngine.pref)
  ~~
-    B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:560: Previous line indentation here
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:664: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
+    B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:566: Previous line indentation here
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:670: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
          startActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     ~~~~~
-    B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:663: Previous line indentation here
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:760: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
+    B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:669: Previous line indentation here
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:766: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
           if (wi.getIpAddress() != 0 && (WifiInfo.getDetailedStateOf(wi.getSupplicantState()) == DetailedState.OBTAINING_IPADDR
 ~~~~~~~~~~
-    B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:758: Previous line indentation here
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:771: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
+    B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:764: Previous line indentation here
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:777: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
    return isFastGSM(i);
 ~~~
-    B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:770: Previous line indentation here
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:859: Warning: The indentation string here is different from on the previous line (\t vs " ") [SuspiciousIndentation]
+    B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:776: Previous line indentation here
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:865: Warning: The indentation string here is different from on the previous line (\t vs " ") [SuspiciousIndentation]
          if (!Sipdroid.release) Log.i("SipUA:",intentAction);
 ~~~~~~~~~
-    B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:858: Previous line indentation here
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:863: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
+    B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:864: Previous line indentation here
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:869: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
     engine(context).register();
  ~~~
-    B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:862: Previous line indentation here
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:891: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
+    B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:868: Previous line indentation here
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:897: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
     if (bluetooth > 0 && last_bluetooth_state == 0 && last2_bluetooth_state > 0 &&
  ~~~
-    B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:890: Previous line indentation here
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:916: Warning: The indentation string here is different from on the previous line (\t vs " ") [SuspiciousIndentation]
+    B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:896: Previous line indentation here
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:922: Warning: The indentation string here is different from on the previous line (\t vs " ") [SuspiciousIndentation]
           if (call_state == UserAgent.UA_STATE_INCALL)
  ~~~~~~~~~
-    B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:915: Previous line indentation here
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\media\RtpStreamReceiver.java:363: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
+    B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:921: Previous line indentation here
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\media\RtpStreamReceiver.java:368: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
   saveSettings();
 ~~
-    B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\media\RtpStreamReceiver.java:362: Previous line indentation here
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\media\RtpStreamReceiver.java:469: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
+    B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\media\RtpStreamReceiver.java:367: Previous line indentation here
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\media\RtpStreamReceiver.java:474: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
       todo = jitter - headroom;
  ~~~~~
-    B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\media\RtpStreamReceiver.java:467: Previous line indentation here
+    B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\media\RtpStreamReceiver.java:472: Previous line indentation here
 B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\media\RtpStreamSender.java:235: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
   android.os.Process.setThreadPriority(android.os.Process.THREAD_PRIORITY_URGENT_AUDIO);
 ~~
@@ -852,38 +840,30 @@ B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.ja
   super.onCreate(savedInstanceState);
 ~~
     B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java:231: Previous line indentation here
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java:353: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
-         new AlertDialog.Builder(context)
-    ~~~~~
-    B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java:352: Previous line indentation here
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java:424: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
-      Receiver.engine(context).StartEngine();
-   ~~~
-    B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java:423: Previous line indentation here
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java:496: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java:541: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
    transferText.setInputType(InputType.TYPE_CLASS_NUMBER);
 ~~~
-    B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java:495: Previous line indentation here
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java:514: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
+    B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java:540: Previous line indentation here
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java:559: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
            Receiver.engine(Settings.this).StartEngine();
     ~~~~~~~
-    B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java:513: Previous line indentation here
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java:545: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
+    B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java:558: Previous line indentation here
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java:590: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
            Receiver.engine(Settings.this).StartEngine();
     ~~~~~~~
-    B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java:544: Previous line indentation here
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java:601: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
+    B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java:589: Previous line indentation here
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java:646: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
       fill(PREF_PORT+j,DEFAULT_PORT,R.array.port_values2,R.array.port_values2);
 ~~~~~~
-    B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java:594: Previous line indentation here
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java:615: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
+    B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java:639: Previous line indentation here
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java:660: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
   if (getPreferenceScreen().getRootAdapter() != null && getPreferenceScreen().getRootAdapter() instanceof android.widget.BaseAdapter) {
 ~~
-    B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java:577: Previous line indentation here
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java:645: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
+    B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java:622: Previous line indentation here
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java:690: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
   edit.commit();
 ~~
-    B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java:644: Previous line indentation here
+    B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Settings.java:689: Previous line indentation here
 B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\SipRingtonePreference.java:41: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
      mContext = context;
     ~
@@ -970,7 +950,7 @@ B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\SipdroidEngine
    application context. Change context.getSystemService(...) to
    context.getApplicationContext().getSystemService(...).
 
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:743: Warning: The WIFI_SERVICE must be looked up on the Application context or memory will leak on devices < Android N. Try changing mContext to mContext.getApplicationContext() [WifiManagerPotentialLeak]
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:749: Warning: The WIFI_SERVICE must be looked up on the Application context or memory will leak on devices < Android N. Try changing mContext to mContext.getApplicationContext() [WifiManagerPotentialLeak]
          WifiManager wm = (WifiManager) mContext.getSystemService(Context.WIFI_SERVICE);
                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -986,12 +966,15 @@ B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.ja
    changing context.getSystemService(...) to
    context.getApplicationContext().getSystemService(...).
 
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:461: Error: Must be one or more of: ServiceInfo.FOREGROUND_SERVICE_TYPE_MANIFEST, ServiceInfo.FOREGROUND_SERVICE_TYPE_NONE, ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC, ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK, ServiceInfo.FOREGROUND_SERVICE_TYPE_PHONE_CALL, ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION, ServiceInfo.FOREGROUND_SERVICE_TYPE_CONNECTED_DEVICE, ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PROJECTION, ServiceInfo.FOREGROUND_SERVICE_TYPE_CAMERA, ServiceInfo.FOREGROUND_SERVICE_TYPE_MICROPHONE, ServiceInfo.FOREGROUND_SERVICE_TYPE_HEALTH, ServiceInfo.FOREGROUND_SERVICE_TYPE_REMOTE_MESSAGING, ServiceInfo.FOREGROUND_SERVICE_TYPE_SYSTEM_EXEMPTED, ServiceInfo.FOREGROUND_SERVICE_TYPE_SHORT_SERVICE, ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PROCESSING, ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE [WrongConstant]
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:452: Error: Must be one or more of: ServiceInfo.FOREGROUND_SERVICE_TYPE_MANIFEST, ServiceInfo.FOREGROUND_SERVICE_TYPE_NONE, ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC, ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK, ServiceInfo.FOREGROUND_SERVICE_TYPE_PHONE_CALL, ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION, ServiceInfo.FOREGROUND_SERVICE_TYPE_CONNECTED_DEVICE, ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PROJECTION, ServiceInfo.FOREGROUND_SERVICE_TYPE_CAMERA, ServiceInfo.FOREGROUND_SERVICE_TYPE_MICROPHONE, ServiceInfo.FOREGROUND_SERVICE_TYPE_HEALTH, ServiceInfo.FOREGROUND_SERVICE_TYPE_REMOTE_MESSAGING, ServiceInfo.FOREGROUND_SERVICE_TYPE_SYSTEM_EXEMPTED, ServiceInfo.FOREGROUND_SERVICE_TYPE_SHORT_SERVICE, ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PROCESSING, ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE [WrongConstant]
                                             Receiver.sContext.startForeground(type, bgNotif, 128); // FOREGROUND_SERVICE_TYPE_MICROPHONE is 128
                                                                                              ~~~
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:542: Error: Must be one or more of: ServiceInfo.FOREGROUND_SERVICE_TYPE_MANIFEST, ServiceInfo.FOREGROUND_SERVICE_TYPE_NONE, ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC, ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK, ServiceInfo.FOREGROUND_SERVICE_TYPE_PHONE_CALL, ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION, ServiceInfo.FOREGROUND_SERVICE_TYPE_CONNECTED_DEVICE, ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PROJECTION, ServiceInfo.FOREGROUND_SERVICE_TYPE_CAMERA, ServiceInfo.FOREGROUND_SERVICE_TYPE_MICROPHONE, ServiceInfo.FOREGROUND_SERVICE_TYPE_HEALTH, ServiceInfo.FOREGROUND_SERVICE_TYPE_REMOTE_MESSAGING, ServiceInfo.FOREGROUND_SERVICE_TYPE_SYSTEM_EXEMPTED, ServiceInfo.FOREGROUND_SERVICE_TYPE_SHORT_SERVICE, ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PROCESSING, ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE [WrongConstant]
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:548: Error: Must be one or more of: ServiceInfo.FOREGROUND_SERVICE_TYPE_MANIFEST, ServiceInfo.FOREGROUND_SERVICE_TYPE_NONE, ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC, ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK, ServiceInfo.FOREGROUND_SERVICE_TYPE_PHONE_CALL, ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION, ServiceInfo.FOREGROUND_SERVICE_TYPE_CONNECTED_DEVICE, ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PROJECTION, ServiceInfo.FOREGROUND_SERVICE_TYPE_CAMERA, ServiceInfo.FOREGROUND_SERVICE_TYPE_MICROPHONE, ServiceInfo.FOREGROUND_SERVICE_TYPE_HEALTH, ServiceInfo.FOREGROUND_SERVICE_TYPE_REMOTE_MESSAGING, ServiceInfo.FOREGROUND_SERVICE_TYPE_SYSTEM_EXEMPTED, ServiceInfo.FOREGROUND_SERVICE_TYPE_SHORT_SERVICE, ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PROCESSING, ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE [WrongConstant]
        Receiver.sContext.startForeground(type, notification.build(), 128); // FOREGROUND_SERVICE_TYPE_MICROPHONE
                                                                      ~~~
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\RegisterService.java:90: Error: Must be one or more of: ServiceInfo.FOREGROUND_SERVICE_TYPE_MANIFEST, ServiceInfo.FOREGROUND_SERVICE_TYPE_NONE, ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC, ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK, ServiceInfo.FOREGROUND_SERVICE_TYPE_PHONE_CALL, ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION, ServiceInfo.FOREGROUND_SERVICE_TYPE_CONNECTED_DEVICE, ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PROJECTION, ServiceInfo.FOREGROUND_SERVICE_TYPE_CAMERA, ServiceInfo.FOREGROUND_SERVICE_TYPE_MICROPHONE, ServiceInfo.FOREGROUND_SERVICE_TYPE_HEALTH, ServiceInfo.FOREGROUND_SERVICE_TYPE_REMOTE_MESSAGING, ServiceInfo.FOREGROUND_SERVICE_TYPE_SYSTEM_EXEMPTED, ServiceInfo.FOREGROUND_SERVICE_TYPE_SHORT_SERVICE, ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PROCESSING, ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE [WrongConstant]
+                        startForeground(Receiver.REGISTER_NOTIFICATION, bgNotif, 128); // FOREGROUND_SERVICE_TYPE_MICROPHONE
+                                                                                 ~~~
 
    Explanation for issues of type "WrongConstant":
    Ensures that when parameter in a method only allows a specific set of
@@ -1021,7 +1004,7 @@ B:\user\Antigravity\sipdroid\app\src\main\AndroidManifest.xml:108: Error: Permis
 B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\CreateAccount.java:97: Warning: Consider adding a <queries> declaration to your manifest when calling this method; see https://g.co/dev/packagevisibility for details [QueryPermissionsNeeded]
   List<ResolveInfo> a = context.getPackageManager().queryIntentActivities(intent,PackageManager.GET_INTENT_FILTERS);
                                                     ~~~~~~~~~~~~~~~~~~~~~
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:684: Warning: Consider adding a <queries> declaration to your manifest when calling this method; see https://g.co/dev/packagevisibility for details [QueryPermissionsNeeded]
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:690: Warning: Consider adding a <queries> declaration to your manifest when calling this method; see https://g.co/dev/packagevisibility for details [QueryPermissionsNeeded]
          ActivityInfo ai = intent.resolveActivityInfo(
                                   ~~~~~~~~~~~~~~~~~~~
 
@@ -1195,6 +1178,9 @@ B:\user\Antigravity\sipdroid\app\build.gradle:45: Warning: A newer version of an
 B:\user\Antigravity\sipdroid\app\build.gradle:46: Warning: A newer version of com.google.android.material:material than 1.11.0 is available: 1.14.0 [GradleDependency]
         implementation 'com.google.android.material:material:1.11.0'
                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+B:\user\Antigravity\sipdroid\app\build.gradle:47: Warning: A newer version of androidx.swiperefreshlayout:swiperefreshlayout than 1.1.0 is available: 1.2.0 [GradleDependency]
+        implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
    Explanation for issues of type "GradleDependency":
    This detector looks for usages of libraries where the version you are using
@@ -1977,12 +1963,15 @@ B:\user\Antigravity\sipdroid\app\src\main\AndroidManifest.xml:73: Warning: Expor
 
    https://goo.gle/ExportedReceiver
 
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:923: Warning: The release() call is not always reached [Wakelock]
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:929: Warning: The release() call is not always reached [Wakelock]
              pwl.release();
                  ~~~~~~~
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\media\RtpStreamReceiver.java:312: Warning: The release() call is not always reached [Wakelock]
-   pwl2.release();
-        ~~~~~~~
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\media\RtpStreamReceiver.java:313: Warning: The release() call is not always reached [Wakelock]
+    pwl2.release();
+         ~~~~~~~
+B:\user\Antigravity\sipdroid\app\src\main\java\org\zoolu\sip\provider\SipProvider.java:1204: Warning: The release() call is not always reached [Wakelock]
+    wl.release();
+       ~~~~~~~
 
    Explanation for issues of type "Wakelock":
    Failing to release a wakelock properly can keep the Android device in a
@@ -1998,7 +1987,7 @@ B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\media\RtpStreamRecei
    https://developer.android.com/reference/android/view/WindowManager.LayoutPa
    rams.html#FLAG_KEEP_SCREEN_ON.
 
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:924: Warning: Provide a timeout when requesting a wakelock with PowerManager.Wakelock.acquire(long timeout). This will ensure the OS will cleanup any wakelocks that last longer than you intend, and will save your user's battery. [WakelockTimeout]
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:930: Warning: Provide a timeout when requesting a wakelock with PowerManager.Wakelock.acquire(long timeout). This will ensure the OS will cleanup any wakelocks that last longer than you intend, and will save your user's battery. [WakelockTimeout]
              pwl.acquire();
              ~~~~~~~~~~~~~
 B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\media\RtpStreamReceiver.java:307: Warning: Provide a timeout when requesting a wakelock with PowerManager.Wakelock.acquire(long timeout). This will ensure the OS will cleanup any wakelocks that last longer than you intend, and will save your user's battery. [WakelockTimeout]
@@ -2028,7 +2017,7 @@ B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\SipdroidEngine
    service instead (which is a stronger run guarantee and lets the user know
    something long/important is happening).
 
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:185: Warning: Unnecessary; SDK_INT is always >= 16 [ObsoleteSdkInt]
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:176: Warning: Unnecessary; SDK_INT is always >= 16 [ObsoleteSdkInt]
     if (android.os.Build.VERSION.SDK_INT > 9) {
         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\ReceiverNew.java:28: Warning: Unnecessary; SDK_INT is always >= 9 [ObsoleteSdkInt]
@@ -2092,7 +2081,7 @@ B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\phone\CallerIn
 B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\CreateAccount.java:109: Warning: This Handler class should be static or leaks might occur (anonymous android.os.Handler) [HandlerLeak]
     Handler mHandler = new Handler() {
                        ^
-B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:838: Warning: This Handler class should be static or leaks might occur (anonymous android.os.Handler) [HandlerLeak]
+B:\user\Antigravity\sipdroid\app\src\main\java\org\sipdroid\sipua\ui\Receiver.java:844: Warning: This Handler class should be static or leaks might occur (anonymous android.os.Handler) [HandlerLeak]
      static Handler mHandler = new Handler() {
                                ^
 
@@ -2339,6 +2328,9 @@ B:\user\Antigravity\sipdroid\app\src\main\res\drawable\ic_cancel_24.xml:1: Warni
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
 ^
 B:\user\Antigravity\sipdroid\app\src\main\res\drawable\ic_contacts_edit_contacts.png: Warning: The resource R.drawable.ic_contacts_edit_contacts appears to be unused [UnusedResources]
+B:\user\Antigravity\sipdroid\app\src\main\res\drawable\ic_delete_24.xml:1: Warning: The resource R.drawable.ic_delete_24 appears to be unused [UnusedResources]
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+^
 B:\user\Antigravity\sipdroid\app\src\main\res\drawable-finger\ic_delete_phone_number.xml:17: Warning: The resource R.drawable.ic_delete_phone_number appears to be unused [UnusedResources]
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 ^
@@ -2413,6 +2405,9 @@ B:\user\Antigravity\sipdroid\app\src\main\res\drawable-finger\ic_tab_unselected_
 B:\user\Antigravity\sipdroid\app\src\main\res\drawable-finger\ic_tab_unselected_recent.png: Warning: The resource R.drawable.ic_tab_unselected_recent appears to be unused [UnusedResources]
 B:\user\Antigravity\sipdroid\app\src\main\res\drawable-finger\ic_tab_unselected_stared.png: Warning: The resource R.drawable.ic_tab_unselected_stared appears to be unused [UnusedResources]
 B:\user\Antigravity\sipdroid\app\src\main\res\drawable\ic_volume_up_24.xml:1: Warning: The resource R.drawable.ic_volume_up_24 appears to be unused [UnusedResources]
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+^
+B:\user\Antigravity\sipdroid\app\src\main\res\drawable\ic_warning_24.xml:1: Warning: The resource R.drawable.ic_warning_24 appears to be unused [UnusedResources]
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
 ^
 B:\user\Antigravity\sipdroid\app\src\main\res\color\icon_tint_action.xml:2: Warning: The resource R.color.icon_tint_action appears to be unused [UnusedResources]
@@ -2641,6 +2636,30 @@ B:\user\Antigravity\sipdroid\app\src\main\res\values\strings.xml:254: Warning: T
 B:\user\Antigravity\sipdroid\app\src\main\res\values\strings.xml:256: Warning: The resource R.string.settings_profile_title appears to be unused [UnusedResources]
 <string name="settings_profile_title">Android SIP Settings (<xliff:g id="profile">%s</xliff:g>)</string>
         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+B:\user\Antigravity\sipdroid\app\src\main\res\values\strings.xml:259: Warning: The resource R.string.settings_profile_menu_delete appears to be unused [UnusedResources]
+<string name="settings_profile_menu_delete">Delete</string>
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+B:\user\Antigravity\sipdroid\app\src\main\res\values\strings.xml:260: Warning: The resource R.string.settings_profile_dialog_profiles_title appears to be unused [UnusedResources]
+<string name="settings_profile_dialog_profiles_title">Profiles</string>
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+B:\user\Antigravity\sipdroid\app\src\main\res\values\strings.xml:261: Warning: The resource R.string.settings_profile_dialog_delete_title appears to be unused [UnusedResources]
+<string name="settings_profile_dialog_delete_title">Delete profile</string>
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+B:\user\Antigravity\sipdroid\app\src\main\res\values\strings.xml:262: Warning: The resource R.string.settings_profile_dialog_delete_text appears to be unused [UnusedResources]
+<string name="settings_profile_dialog_delete_text">Do you really want to delete <xliff:g id="profile">%s</xliff:g> profile?</string>
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+B:\user\Antigravity\sipdroid\app\src\main\res\values\strings.xml:263: Warning: The resource R.string.settings_profile_export_error appears to be unused [UnusedResources]
+<string name="settings_profile_export_error">Can not export settings!</string>
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+B:\user\Antigravity\sipdroid\app\src\main\res\values\strings.xml:264: Warning: The resource R.string.settings_profile_import_error appears to be unused [UnusedResources]
+<string name="settings_profile_import_error">Can not import settings!</string>
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+B:\user\Antigravity\sipdroid\app\src\main\res\values\strings.xml:265: Warning: The resource R.string.settings_profile_delete_error appears to be unused [UnusedResources]
+<string name="settings_profile_delete_error">Can not delete this profile!</string>
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+B:\user\Antigravity\sipdroid\app\src\main\res\values\strings.xml:266: Warning: The resource R.string.settings_profile_delete_confirmation appears to be unused [UnusedResources]
+<string name="settings_profile_delete_confirmation">Profile has been deleted.</string>
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 B:\user\Antigravity\sipdroid\app\src\main\res\values\strings.xml:268: Warning: The resource R.string.settings_wireless_options appears to be unused [UnusedResources]
 <string name="settings_wireless_options">Wireless</string>
         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -3359,4 +3378,4 @@ B:\user\Antigravity\sipdroid\app\src\main\res\layout\sipdroid.xml:17: Warning: C
    the left bitmask. Therefore, you can use gravity="start" rather than
    gravity="left|start".)
 
-452 errors, 653 warnings
+450 errors, 662 warnings

@@ -26,6 +26,19 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
+      name="androidx.swiperefreshlayout:swiperefreshlayout:1.1.0@aar"
+      jars="C:\Users\user\scoop\apps\gradle\current\.gradle\caches\transforms-3\2c5619bb1ea609c51145a3a985967a85\transformed\swiperefreshlayout-1.1.0\jars\classes.jar"
+      resolved="androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+      folder="C:\Users\user\scoop\apps\gradle\current\.gradle\caches\transforms-3\2c5619bb1ea609c51145a3a985967a85\transformed\swiperefreshlayout-1.1.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
       name="androidx.constraintlayout:constraintlayout:2.0.1@aar"
       jars="C:\Users\user\scoop\apps\gradle\current\.gradle\caches\transforms-3\f5a117e862d8ee16e81e35344a305879\transformed\constraintlayout-2.0.1\jars\classes.jar"
       resolved="androidx.constraintlayout:constraintlayout:2.0.1"
@@ -342,6 +355,19 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
+      name="androidx.interpolator:interpolator:1.0.0@aar"
+      jars="C:\Users\user\scoop\apps\gradle\current\.gradle\caches\transforms-3\0ed2ff369ec70ec88af5eab409a0d481\transformed\interpolator-1.0.0\jars\classes.jar"
+      resolved="androidx.interpolator:interpolator:1.0.0"
+      folder="C:\Users\user\scoop\apps\gradle\current\.gradle\caches\transforms-3\0ed2ff369ec70ec88af5eab409a0d481\transformed\interpolator-1.0.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
       name="androidx.versionedparcelable:versionedparcelable:1.1.1@aar"
       jars="C:\Users\user\scoop\apps\gradle\current\.gradle\caches\transforms-3\8ffac6dc2af6cae7f7879d12748c27d7\transformed\versionedparcelable-1.1.1\jars\classes.jar"
       resolved="androidx.versionedparcelable:versionedparcelable:1.1.1"
@@ -419,19 +445,6 @@
       jars="C:\Users\user\scoop\apps\gradle\current\.gradle\caches\transforms-3\b526e88c631a70840b775ed6ef6153d1\transformed\print-1.0.0\jars\classes.jar"
       resolved="androidx.print:print:1.0.0"
       folder="C:\Users\user\scoop\apps\gradle\current\.gradle\caches\transforms-3\b526e88c631a70840b775ed6ef6153d1\transformed\print-1.0.0"
-      manifest="AndroidManifest.xml"
-      resFolder="res"
-      assetsFolder="assets"
-      lintJar="lint.jar"
-      publicResources="public.txt"
-      symbolFile="R.txt"
-      externalAnnotations="annotations.zip"
-      proguardRules="proguard.txt"/>
-  <library
-      name="androidx.interpolator:interpolator:1.0.0@aar"
-      jars="C:\Users\user\scoop\apps\gradle\current\.gradle\caches\transforms-3\0ed2ff369ec70ec88af5eab409a0d481\transformed\interpolator-1.0.0\jars\classes.jar"
-      resolved="androidx.interpolator:interpolator:1.0.0"
-      folder="C:\Users\user\scoop\apps\gradle\current\.gradle\caches\transforms-3\0ed2ff369ec70ec88af5eab409a0d481\transformed\interpolator-1.0.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
