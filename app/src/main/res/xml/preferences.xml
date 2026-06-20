@@ -1,13 +1,13 @@
 <PreferenceScreen
 	xmlns:android="http://schemas.android.com/apk/res/android">
 	
-	<ListPreference
-		android:key="app_theme"
-		android:title="@string/settings_theme"
-		android:entries="@array/theme_display_values"
-		android:entryValues="@array/theme_values"
-		android:defaultValue="-1" />
-		
+
+	<Preference 
+		android:title="System Calling Accounts" 
+		android:summary="Configure Android native calling accounts (Enable Sipdroid here)">
+		<intent android:action="android.telecom.action.CHANGE_PHONE_ACCOUNTS" />
+	</Preference>
+
 	<PreferenceScreen android:title="SIP Account 1"
 					android:key="account">
 			<EditTextPreference
@@ -120,31 +120,7 @@
 				android:title="@string/settings_vpn"
 				android:summary="@string/settings_vpn2" />
 	</PreferenceScreen>
-	<PreferenceScreen android:title="@string/settings_options">
-			<ListPreference
-				android:key="pref"
-				android:title="@string/settings_pref"
-				android:entries="@array/pref_display_values"
-				android:entryValues="@array/pref_values"
-				android:summary="@string/settings_pref2"
-				android:dialogTitle="@string/settings_pref" />
-			<CheckBoxPreference
-				android:key="auto_on"
-				android:title="@string/settings_auto_on"
-				android:summary="@string/settings_auto_on2" />
-			<CheckBoxPreference
-				android:key="auto_ondemand"
-				android:title="@string/settings_auto_ondemand"
-				android:summary="@string/settings_auto_ondemand2" />
-			<CheckBoxPreference
-				android:key="auto_headset"
-				android:title="@string/settings_auto_headset"
-				android:summary="@string/settings_auto_headset2" />
-			<CheckBoxPreference
-				android:key="callrecord"
-				android:title="@string/settings_callrecord"
-				android:summary="@string/settings_callrecord2" />
-	</PreferenceScreen>
+
 	<PreferenceScreen android:title="@string/settings_notifications">
 			<CheckBoxPreference
 				android:key="MWI_enabled"
@@ -162,8 +138,7 @@
 				android:persistent="false"
 				android:ringtoneType="ringtone" /> 
 	</PreferenceScreen>
-	<PreferenceScreen android:title="@string/settings_av_options">
-	</PreferenceScreen>
+
 	<PreferenceScreen
 		android:key="codecs"
 		android:title="@string/codecs" >
@@ -201,40 +176,5 @@
 				android:title="@string/settings_mmtel_qvalue"
 				android:singleLine="true" />													
 	</PreferenceScreen>
-	<PreferenceScreen android:title="@string/settings_wireless_options">
-			<CheckBoxPreference
-				android:key="keepon"
-				android:title="@string/settings_keepon"
-				android:summary="@string/settings_keepon2" />
-			<CheckBoxPreference
-				android:key="bluetooth"
-				android:title="@string/menu_bluetooth" />
-	</PreferenceScreen>
-	<PreferenceScreen android:title="@string/settings_pbxes_options">
-			<CheckBoxPreference
-				android:key="par"
-				android:title="@string/settings_par"
-				android:summary="@string/settings_par2" />
-			<CheckBoxPreference
-				android:key="improve"
-				android:title="@string/settings_improve"/>
-			<EditTextPreference
-				android:key="posurl"
-				android:title="@string/settings_posurl"
-				android:hint="https://www1.pbxes.com/name"
-				android:singleLine="true" />
-			<CheckBoxPreference
-				android:key="callback"
-				android:title="@string/settings_callback"
-				android:summary="@string/settings_callback2" />
-			<CheckBoxPreference
-				android:key="callthru"
-				android:title="@string/settings_callthru"
-				android:summary="@string/settings_callback2" />
-			<EditTextPreference
-				android:key="callthru2"
-				android:title="@string/settings_callthru2"
-				android:hint="Accessno.,PIN#"
-				android:singleLine="true" />
-	</PreferenceScreen> 
+
 </PreferenceScreen>

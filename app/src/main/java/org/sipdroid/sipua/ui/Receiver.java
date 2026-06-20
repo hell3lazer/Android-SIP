@@ -132,6 +132,31 @@ import org.zoolu.sip.provider.SipProvider;
 		public static Service sContext;
 		public static SipdroidListener listener_video;
 		public static Call ccCall;
+		public static SipConnection activeConnection;
+		public static android.telecom.PhoneAccountHandle phoneAccountHandle = null;
+		public static String telecomSetupError = null;
+
+		public static void initTelecom(Context context) {
+			if (android.os.Build.VERSION.SDK_INT >= 26 && phoneAccountHandle == null) {
+				try {
+					android.telecom.TelecomManager telecomManager = (android.telecom.TelecomManager) context.getSystemService(Context.TELECOM_SERVICE);
+					android.content.ComponentName componentName = new android.content.ComponentName(context, SipConnectionService.class);
+					
+					try {
+						telecomManager.unregisterPhoneAccount(new android.telecom.PhoneAccountHandle(componentName, "SipdroidAccount"));
+					} catch (Exception ignored) {}
+					
+					String callerId = getActiveCallerId(context);
+					if (callerId == null || callerId.isEmpty()) callerId = "Android SIP Calls";
+
+					phoneAccountHandle = new android.telecom.PhoneAccountHandle(componentName, "SipdroidCallProvider");
+				} catch (Throwable e) {
+					telecomSetupError = android.util.Log.getStackTraceString(e);
+					phoneAccountHandle = null;
+				}
+			}
+		}
+
 		public static Connection ccConn;
 		public static int call_state;
 		public static int call_end_reason = -1;
@@ -143,8 +168,10 @@ import org.zoolu.sip.provider.SipProvider;
 		
 		@TargetApi(26)
 		public static synchronized SipdroidEngine engine(Context context) {
-			if (mContext == null || !context.getClass().getName().contains("ReceiverRestrictedContext"))
-				mContext = context;
+			if (mContext == null || !context.getClass().getName().contains("ReceiverRestrictedContext")) {
+				mContext = context.getApplicationContext();
+				initTelecom(mContext);
+			}
 			if (mSipdroidEngine == null) {
 				if (android.os.Build.VERSION.SDK_INT > 9) {
 					ReceiverNew.setPolicy();
@@ -156,8 +183,19 @@ import org.zoolu.sip.provider.SipProvider;
 			} else
 				mSipdroidEngine.CheckEngine();
 			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                boolean isIgnoringBatteryOptimizations = false;
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                    android.os.PowerManager pm = (android.os.PowerManager) context.getSystemService(Context.POWER_SERVICE);
+                    if (pm != null) {
+                        isIgnoringBatteryOptimizations = pm.isIgnoringBatteryOptimizations(context.getPackageName());
+                    }
+                }
 		        try {
-					context.startForegroundService(new Intent(context, RegisterService.class));
+                    if (isIgnoringBatteryOptimizations) {
+                        context.startService(new Intent(context, RegisterService.class));
+                    } else {
+					    context.startForegroundService(new Intent(context, RegisterService.class));
+                    }
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -214,44 +252,42 @@ import org.zoolu.sip.provider.SipProvider;
 					ccConn.setIncoming(true);
 					ccConn.date = System.currentTimeMillis();
 					ccCall.base = 0;
-					AudioManager am = (AudioManager) mContext.getSystemService(Context.AUDIO_SERVICE);
-					int rm = am.getRingerMode();
-					int vs = am.getVibrateSetting(AudioManager.VIBRATE_TYPE_RINGER);
-			        KeyguardManager mKeyguardManager = (KeyguardManager) mContext.getSystemService(Context.KEYGUARD_SERVICE);
-					if (v == null) v = (Vibrator) mContext.getSystemService(Context.VIBRATOR_SERVICE);
-					if ((pstn_state == null || pstn_state.equals("IDLE")) &&
-							PreferenceManager.getDefaultSharedPreferences(mContext).getBoolean(org.sipdroid.sipua.ui.Settings.PREF_AUTO_ON, org.sipdroid.sipua.ui.Settings.DEFAULT_AUTO_ON) &&
-							!mKeyguardManager.inKeyguardRestrictedInputMode())
-						v.vibrate(vibratePattern,1);
-					else {
-						if ((pstn_state == null || pstn_state.equals("IDLE")) &&
-								(rm == AudioManager.RINGER_MODE_VIBRATE ||
-								(rm == AudioManager.RINGER_MODE_NORMAL && vs == AudioManager.VIBRATE_SETTING_ON)))
-							v.vibrate(vibratePattern,1);
-						if (am.getStreamVolume(AudioManager.STREAM_RING) > 0) {				 
-							String sUriSipRingtone = PreferenceManager.getDefaultSharedPreferences(mContext).getString(org.sipdroid.sipua.ui.Settings.PREF_SIPRINGTONE,
-									Settings.System.DEFAULT_RINGTONE_URI.toString());
-							if(!TextUtils.isEmpty(sUriSipRingtone)) {
-								oRingtone = RingtoneManager.getRingtone(mContext, Uri.parse(sUriSipRingtone));
-								if (oRingtone != null) oRingtone.play();	
+					String cleanAddress = caller;
+					if (cleanAddress != null) {
+						if (cleanAddress.contains("<sip:")) {
+							cleanAddress = cleanAddress.substring(cleanAddress.indexOf("<sip:") + 5);
+							if (cleanAddress.contains(">")) {
+								cleanAddress = cleanAddress.substring(0, cleanAddress.indexOf(">"));
 							}
+						} else if (cleanAddress.startsWith("sip:")) {
+							cleanAddress = cleanAddress.substring(4);
+						}
+						
+						if (cleanAddress.contains(";")) {
+							cleanAddress = cleanAddress.substring(0, cleanAddress.indexOf(";"));
+						}
+						if (cleanAddress.contains("@")) {
+							cleanAddress = cleanAddress.substring(0, cleanAddress.indexOf("@"));
 						}
 					}
-					moveTop();
-					if (wl == null) {
-						PowerManager pm = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
-						wl = pm.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK |
-								PowerManager.ACQUIRE_CAUSES_WAKEUP, "Sipdroid:onState");
+					
+					if (android.os.Build.VERSION.SDK_INT >= 26 && phoneAccountHandle != null) {
+						android.telecom.TelecomManager tm = (android.telecom.TelecomManager) mContext.getSystemService(Context.TELECOM_SERVICE);
+						android.os.Bundle extras = new android.os.Bundle();
+						android.net.Uri uri = android.net.Uri.fromParts("sip", cleanAddress != null ? cleanAddress : caller, null);
+						extras.putParcelable(android.telecom.TelecomManager.EXTRA_INCOMING_CALL_ADDRESS, uri);
+						try {
+							tm.addNewIncomingCall(phoneAccountHandle, extras);
+						} catch (SecurityException e) {
+							e.printStackTrace();
+						}
 					}
-					wl.acquire();
-		        	Checkin.checkin(true);
 					break;
 				case UserAgent.UA_STATE_OUTGOING_CALL:
 					RtpStreamReceiver.good = RtpStreamReceiver.lost = RtpStreamReceiver.loss = RtpStreamReceiver.late = 0;
 					RtpStreamReceiver.speakermode = speakermode();
 					bluetooth = -1;
 					onText(MISSED_CALL_NOTIFICATION, null, 0,0);
-					engine(mContext).register();
 					broadcastCallStateChanged("OFFHOOK", caller);
 					ccCall.setState(Call.State.DIALING);
 					ccConn.setUserData(null);
@@ -259,7 +295,16 @@ import org.zoolu.sip.provider.SipProvider;
 					ccConn.setIncoming(false);
 					ccConn.date = System.currentTimeMillis();
 					ccCall.base = 0;
-					moveTop();
+					if (android.os.Build.VERSION.SDK_INT >= 26 && phoneAccountHandle != null && activeConnection == null) {
+						android.telecom.TelecomManager tm = (android.telecom.TelecomManager) mContext.getSystemService(Context.TELECOM_SERVICE);
+						android.os.Bundle extras = new android.os.Bundle();
+						extras.putParcelable(android.telecom.TelecomManager.EXTRA_PHONE_ACCOUNT_HANDLE, phoneAccountHandle);
+						try {
+							tm.placeCall(android.net.Uri.fromParts("sip", caller, null), extras);
+						} catch (SecurityException e) {
+							e.printStackTrace();
+						}
+					}
 		        	Checkin.checkin(true);
 					break;
 				case UserAgent.UA_STATE_IDLE:
@@ -268,10 +313,11 @@ import org.zoolu.sip.provider.SipProvider;
 					ccCall.setState(Call.State.DISCONNECTED);
 					if (listener_video != null)
 						listener_video.onHangup();
-					stopRingtone();
-					if (wl != null && wl.isHeld())
-						wl.release();
-			        mContext.startActivity(createIntent(InCallScreen.class));
+					if (activeConnection != null) {
+						activeConnection.setDisconnected(new android.telecom.DisconnectCause(android.telecom.DisconnectCause.LOCAL));
+						activeConnection.destroy();
+						activeConnection = null;
+					}
 					ccConn.log(ccCall.base);
 					ccConn.date = 0;
 					engine(mContext).listen();
@@ -283,18 +329,23 @@ import org.zoolu.sip.provider.SipProvider;
 					}
 					progress();
 					ccCall.setState(Call.State.ACTIVE);
-					stopRingtone();
-					if (wl != null && wl.isHeld())
-						wl.release();
-			        mContext.startActivity(createIntent(InCallScreen.class));
+					if (activeConnection != null) {
+						activeConnection.setActive();
+					}
 					break;
 				case UserAgent.UA_STATE_HOLD:
 					onText(CALL_NOTIFICATION, mContext.getString(R.string.card_title_on_hold), R.drawable.ic_call_hold_24,ccCall.base);
 					ccCall.setState(Call.State.HOLDING);
-			        if (InCallScreen.started && (pstn_state == null || !pstn_state.equals("RINGING"))) mContext.startActivity(createIntent(InCallScreen.class));
+					if (activeConnection != null) {
+						activeConnection.setOnHold();
+					}
 					break;
 				}
-				RtpStreamReceiver.ringback(false);
+				if (activeConnection != null) {
+					activeConnection.setRingbackRequested(false);
+				} else {
+					RtpStreamReceiver.ringback(false);
+				}
 			}
 		}
 		
@@ -374,24 +425,84 @@ import org.zoolu.sip.provider.SipProvider;
 						notification.setContentIntent(PendingIntent.getActivity(mContext, 0,
 								createMWIIntent(), flags));
 						break;
-		        	case AUTO_ANSWER_NOTIFICATION:
-						notification.setContentIntent(PendingIntent.getActivity(mContext, 0,
-				                createIntent(AutoAnswer.class), flags));
-						break;
+
 		        	case CALL_NOTIFICATION:
-					    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O && !InCallScreen.started)
-					    	notification = new NotificationCompat.Builder(mContext,"call")
-		        				.setFullScreenIntent(PendingIntent.getActivity(mContext, 0,
-		        						createIntent(Sipdroid.class), flags), true)
-		        				.setSmallIcon(mInCallResId);
+						// Skip CALL_NOTIFICATION entirely when using Telecom framework.
+						return;
 		        	default:
-		        		if (type >= REGISTER_NOTIFICATION && mSipdroidEngine != null && type != REGISTER_NOTIFICATION+mSipdroidEngine.pref &&
-		        				mInCallResId == R.drawable.sym_presence_available)
-							notification.setContentIntent(PendingIntent.getActivity(mContext, 0,
-						            createIntent(ChangeAccount.class), flags));
-		        		else
-		        			notification.setContentIntent(PendingIntent.getActivity(mContext, 0,
-		        					createIntent(Sipdroid.class), flags));
+		        		if (type >= REGISTER_NOTIFICATION) {
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && Receiver.sContext != null && type == REGISTER_NOTIFICATION) {
+                                boolean isIgnoringBatteryOptimizations = false;
+                                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                                    android.os.PowerManager pm = (android.os.PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
+                                    if (pm != null) {
+                                        isIgnoringBatteryOptimizations = pm.isIgnoringBatteryOptimizations(mContext.getPackageName());
+                                    }
+                                }
+                                if (!isIgnoringBatteryOptimizations) {
+                                    mNotificationMgr.createNotificationChannel(new NotificationChannel("sipdroid_bg", "SIP Background Service", NotificationManager.IMPORTANCE_MIN));
+                                    Notification bgNotif = new NotificationCompat.Builder(mContext, "sipdroid_bg")
+                                        .setSmallIcon(R.drawable.icon)
+                                        .setContentTitle("Android SIP")
+                                        .setContentText("Running in background")
+                                        .setPriority(NotificationCompat.PRIORITY_MIN)
+                                        .build();
+                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                                        try {
+                                            Receiver.sContext.startForeground(type, bgNotif, 128); // FOREGROUND_SERVICE_TYPE_MICROPHONE is 128
+                                        } catch (Exception e) {}
+                                    } else {
+                                        try {
+                                            Receiver.sContext.startForeground(type, bgNotif);
+                                        } catch (Exception e) {}
+                                    }
+                                }
+                            }
+                            
+                            if (android.os.Build.VERSION.SDK_INT >= 26 && Receiver.phoneAccountHandle != null && mContext != null) {
+                                try {
+                                    android.telecom.TelecomManager tm = (android.telecom.TelecomManager) mContext.getSystemService(Context.TELECOM_SERVICE);
+                                    if (tm != null) {
+                                        boolean isAnyRegistered = false;
+                                        if (mSipdroidEngine != null) {
+                                            for (int i=0; i<org.sipdroid.sipua.SipdroidEngine.LINES; i++) {
+                                                if (mSipdroidEngine.isRegistered(i)) {
+                                                    isAnyRegistered = true;
+                                                    break;
+                                                }
+                                            }
+                                        } else {
+                                            isAnyRegistered = text != null && (text.equals(mContext.getString(R.string.regpref)) || text.equals(mContext.getString(R.string.regclick)));
+                                        }
+                                        
+                                        android.telecom.PhoneAccount.Builder builder = android.telecom.PhoneAccount.builder(phoneAccountHandle, "Android SIP")
+                                                .setShortDescription(isAnyRegistered ? "Android SIP Account" : "Android SIP (Offline)")
+                                                .addSupportedUriScheme("sip")
+                                                .addSupportedUriScheme("sipdroid")
+                                                .addSupportedUriScheme("tel")
+                                                .setIcon(android.graphics.drawable.Icon.createWithResource(mContext, org.sipdroid.sipua.R.drawable.icon));
+                                                
+                                        if (isAnyRegistered) {
+                                            builder.setCapabilities(android.telecom.PhoneAccount.CAPABILITY_CALL_PROVIDER);
+                                        } else {
+                                            builder.setCapabilities(0); // Removes CAPABILITY_CALL_PROVIDER to hide from dialer without unregistering
+                                        }
+                                        
+                                        tm.registerPhoneAccount(builder.build());
+                                        android.util.Log.i("Sipdroid", "Registered PhoneAccount: Android SIP (Active: " + isAnyRegistered + ")");
+                                    }
+                                } catch (Throwable e) {
+                                    android.util.Log.e("Sipdroid", "Failed to interact with TelecomManager dynamically: " + e.getMessage());
+                                    if (mContext != null) {
+                                        android.widget.Toast.makeText(mContext, "Telecom Error: " + e.getMessage(), android.widget.Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            }
+                            
+		        			return; // Skip persistent registration notifications from appearing in UI
+		        		}
+		        		notification.setContentIntent(PendingIntent.getActivity(mContext, 0,
+		        					createIntent(Settings.class), flags));
 		        		break;
 		        	}			
 		        	notification.setOngoing(true);
@@ -427,10 +538,12 @@ import org.zoolu.sip.provider.SipProvider;
 				else if (type >= REGISTER_NOTIFICATION)
 					type = alloc(type);
 		    	if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && Receiver.sContext != null && type == REGISTER_NOTIFICATION) {
-					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
-						Receiver.sContext.startForeground(type, notification.build(), 128); // FOREGROUND_SERVICE_TYPE_MICROPHONE
-					else
-						Receiver.sContext.startForeground(type, notification.build());
+					try {
+						if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
+							Receiver.sContext.startForeground(type, notification.build(), 128); // FOREGROUND_SERVICE_TYPE_MICROPHONE
+						else
+							Receiver.sContext.startForeground(type, notification.build());
+					} catch (Exception e) {}
 				} else {
 					mNotificationMgr.notify(type, notification.build());
 				}
@@ -505,29 +618,6 @@ import org.zoolu.sip.provider.SipProvider;
 		static boolean was_playing;
 		
 		static void broadcastCallStateChanged(String state,String number) {
-			if (state == null) {
-				state = laststate;
-				number = lastnumber;
-			}
-			if (android.os.Build.VERSION.SDK_INT < 19) {
-				Intent intent = new Intent(ACTION_PHONE_STATE_CHANGED);
-				intent.putExtra("state",state);
-				if (number != null)
-					intent.putExtra("incoming_number", number);
-				intent.putExtra(mContext.getString(R.string.app_name), true);
-				mContext.sendBroadcast(intent, android.Manifest.permission.READ_PHONE_STATE);
-			}
-			if (state.equals("IDLE")) {
-				if (was_playing) {
-					if (pstn_state == null || pstn_state.equals("IDLE"))
-						mContext.sendBroadcast(new Intent(TOGGLEPAUSE_ACTION));
-					was_playing = false;
-				}
-			} else {
-				AudioManager am = (AudioManager) mContext.getSystemService(Context.AUDIO_SERVICE);
-				if ((laststate == null || laststate.equals("IDLE")) && (was_playing = am.isMusicActive()))
-					mContext.sendBroadcast(new Intent(PAUSE_ACTION));
-			}
 			laststate = state;
 			lastnumber = number;
 		}
@@ -629,31 +719,10 @@ import org.zoolu.sip.provider.SipProvider;
 			return intent;
 		}
 		
-		public static void moveTop() {
-			progress();
-			mContext.startActivity(createIntent(Activity2.class)); 
-		}
+
 
 		public static void progress() {
-			if (call_state == UserAgent.UA_STATE_IDLE) return;
-			int mode = RtpStreamReceiver.speakermode;
-			if (mode == -1)
-				mode = speakermode();
-			if (mode == AudioManager.MODE_NORMAL)
-				Receiver.onText(Receiver.CALL_NOTIFICATION, mContext.getString(R.string.menu_speaker), R.drawable.ic_volume_up_24,Receiver.ccCall.base);
-			else if (bluetooth > 0)
-				Receiver.onText(Receiver.CALL_NOTIFICATION, mContext.getString(R.string.menu_bluetooth), R.drawable.stat_sys_phone_call_bluetooth,Receiver.ccCall.base);
-			else switch (call_state) {
-			case UserAgent.UA_STATE_INCALL:
-				Receiver.onText(Receiver.CALL_NOTIFICATION, mContext.getString(R.string.card_title_in_progress), R.drawable.stat_sys_phone_call,Receiver.ccCall.base);
-				break;
-			case UserAgent.UA_STATE_OUTGOING_CALL:
-				Receiver.onText(Receiver.CALL_NOTIFICATION, mContext.getString(R.string.card_title_dialing), R.drawable.stat_sys_phone_call,Receiver.ccCall.base);
-				break;
-			case UserAgent.UA_STATE_INCOMING_CALL:
-				Receiver.onText(Receiver.CALL_NOTIFICATION, mContext.getString(R.string.card_title_incoming_call), R.drawable.stat_sys_phone_call,Receiver.ccCall.base);
-				break;
-			}
+			// Removed legacy progress notifications. Telecom handles active call notifications natively.
 			RtpStreamSender.changed = true;
 		}
 
@@ -813,24 +882,6 @@ import org.zoolu.sip.provider.SipProvider;
 	        if (intentAction.equals(ACTION_DATA_STATE_CHANGED)) {
 	        	engine(context).registerMore();
 			} else
-	        if (intentAction.equals(ACTION_PHONE_STATE_CHANGED) &&
-	        		!intent.getBooleanExtra(context.getString(R.string.app_name),false)) {
-	        	stopRingtone();
-	    		pstn_state = intent.getStringExtra("state");
-	    		pstn_time = SystemClock.elapsedRealtime();
-	    		if (pstn_state.equals("IDLE") && call_state != UserAgent.UA_STATE_IDLE)
-	    			broadcastCallStateChanged(null,null);
-	    		if (!pstn_state.equals("IDLE") && call_state == UserAgent.UA_STATE_INCALL)
-	    			mHandler.sendEmptyMessageDelayed(MSG_HOLD, 5000);
-	    		else if (!pstn_state.equals("IDLE") && (call_state == UserAgent.UA_STATE_INCOMING_CALL || call_state == UserAgent.UA_STATE_OUTGOING_CALL))
-	    			mHandler.sendEmptyMessageDelayed(MSG_HANGUP, 5000);
-	    		else if (pstn_state.equals("IDLE")) {
-	    			mHandler.removeMessages(MSG_HOLD);
-	    			mHandler.removeMessages(MSG_HANGUP);
-	    			if (call_state == UserAgent.UA_STATE_HOLD)
-	    				mHandler.sendEmptyMessageDelayed(MSG_HOLD, 1000);
-	    		}
-	        } else
 	        if (intentAction.equals(ACTION_DOCK_EVENT)) {
 	        	docked = intent.getIntExtra(EXTRA_DOCK_STATE, -1) & 7;
 	        	if (call_state == UserAgent.UA_STATE_INCALL)
@@ -875,5 +926,37 @@ import org.zoolu.sip.provider.SipProvider;
 	        			}
 	        }
 		}   
+
+		public static String getActiveCallerId(Context context) {
+			org.sipdroid.sipua.SipdroidEngine engine = Receiver.mSipdroidEngine;
+			if (engine != null && engine.ras != null) {
+				for (int i=0; i<engine.ras.length; i++) {
+					if (engine.ras[i] != null && engine.ras[i].isRegistered()) {
+						String suffix = (i == 0) ? "" : String.valueOf(i);
+						String callerId = android.preference.PreferenceManager.getDefaultSharedPreferences(context).getString(org.sipdroid.sipua.ui.Settings.PREF_FROMUSER + suffix, "");
+						if (callerId == null || callerId.trim().isEmpty()) {
+							callerId = android.preference.PreferenceManager.getDefaultSharedPreferences(context).getString(org.sipdroid.sipua.ui.Settings.PREF_USERNAME + suffix, "");
+						}
+						if (callerId != null && !callerId.trim().isEmpty()) {
+							return callerId;
+						}
+					}
+				}
+			}
+			for (int i=0; i<org.sipdroid.sipua.SipdroidEngine.LINES; i++) {
+				String suffix = (i == 0) ? "" : String.valueOf(i);
+				String callerId = android.preference.PreferenceManager.getDefaultSharedPreferences(context).getString(org.sipdroid.sipua.ui.Settings.PREF_FROMUSER + suffix, "");
+				if (callerId == null || callerId.trim().isEmpty()) {
+					callerId = android.preference.PreferenceManager.getDefaultSharedPreferences(context).getString(org.sipdroid.sipua.ui.Settings.PREF_USERNAME + suffix, "");
+				}
+				String server = android.preference.PreferenceManager.getDefaultSharedPreferences(context).getString(org.sipdroid.sipua.ui.Settings.PREF_SERVER + suffix, "");
+				String domain = android.preference.PreferenceManager.getDefaultSharedPreferences(context).getString(org.sipdroid.sipua.ui.Settings.PREF_DOMAIN + suffix, "");
+				boolean hasRealm = (server != null && !server.trim().isEmpty()) || (domain != null && !domain.trim().isEmpty());
+				if (callerId != null && !callerId.trim().isEmpty() && hasRealm) {
+					return callerId;
+				}
+			}
+			return "Android SIP Calls";
+		}
 }
 

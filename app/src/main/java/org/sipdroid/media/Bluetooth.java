@@ -11,6 +11,7 @@ import android.bluetooth.BluetoothClass.Device;
 import android.bluetooth.BluetoothClass.Service;
 import android.content.Context;
 import android.media.AudioManager;
+import android.annotation.SuppressLint;
 
 /*
  * Copyright (C) 2010 The Sipdroid Open Source Project
@@ -56,6 +57,23 @@ public class Bluetooth {
 			am.stopBluetoothSco();
 	}
 	
+	@SuppressLint("MissingPermission")
+	public static int isBTHeadsetConnected() {
+		BluetoothAdapter ba = BluetoothAdapter.getDefaultAdapter();
+		if (ba == null) return 0;
+		Set<BluetoothDevice> devs = ba.getBondedDevices();
+		for (final BluetoothDevice dev : devs) {
+			BluetoothClass cl = dev.getBluetoothClass();
+			if (cl != null && (cl.hasService(Service.RENDER) ||
+					cl.getDeviceClass() == Device.AUDIO_VIDEO_HANDSFREE ||
+					cl.getDeviceClass() == Device.AUDIO_VIDEO_CAR_AUDIO ||
+					cl.getDeviceClass() == Device.AUDIO_VIDEO_WEARABLE_HEADSET))
+				return 1;
+		}
+		return 0;
+	}
+
+	@SuppressLint("MissingPermission")
 	public static boolean isAvailable() {
 		if (!ba.isEnabled())
 			return false;

@@ -609,16 +609,25 @@ public class UserAgent extends CallListenerAdapter {
 			printLog("NOT the current call", LogLevel.LOW);
 			return;
 		}
-		
+
+
 		String remote_sdp = call.getRemoteSessionDescriptor();
 		if (remote_sdp==null || remote_sdp.length()==0) {
 			printLog("RINGING", LogLevel.HIGH);
-			RtpStreamReceiver.ringback(true);
+			if (Receiver.activeConnection != null) {
+				Receiver.activeConnection.setRingbackRequested(true);
+			} else {
+				RtpStreamReceiver.ringback(true);
+			}
 		}
 		else {
 			printLog("RINGING(with SDP)", LogLevel.HIGH);
 			if (! user_profile.no_offer) { 
-				RtpStreamReceiver.ringback(false);
+				if (Receiver.activeConnection != null) {
+					Receiver.activeConnection.setRingbackRequested(false);
+				} else {
+					RtpStreamReceiver.ringback(false);
+				}
 				// Update the local SDP along with offer/answer 
 				sessionProduct(new SessionDescriptor(remote_sdp));
 				launchMediaApplication();

@@ -25,7 +25,7 @@ import java.io.IOException;
 import java.net.UnknownHostException;
 
 import org.sipdroid.net.KeepAliveSip;
-import org.sipdroid.sipua.ui.ChangeAccount;
+
 import org.sipdroid.sipua.ui.LoopAlarm;
 import org.sipdroid.sipua.ui.Receiver;
 import org.sipdroid.sipua.ui.Settings;
@@ -97,7 +97,7 @@ public class SipdroidEngine implements RegisterAgentListener {
 		return user_profile;
 	}
 
-	public boolean StartEngine() {
+	public synchronized boolean StartEngine() {
 			PowerManager pm = (PowerManager) getUIContext().getSystemService(Context.POWER_SERVICE);
 			WifiManager wm = (WifiManager) getUIContext().getSystemService(Context.WIFI_SERVICE);
 			if (wl == null) {
@@ -111,8 +111,15 @@ public class SipdroidEngine implements RegisterAgentListener {
 				pwl = new PowerManager.WakeLock[LINES];
 				wwl = new WifiManager.WifiLock[LINES];
 			}
-			pref = ChangeAccount.getPref(Receiver.mContext);
-
+			try {
+				pref = Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(Receiver.mContext).getString(org.sipdroid.sipua.ui.Settings.PREF_ACCOUNT, String.valueOf(org.sipdroid.sipua.ui.Settings.DEFAULT_ACCOUNT)));
+			} catch (Exception e) {
+				try {
+					pref = PreferenceManager.getDefaultSharedPreferences(Receiver.mContext).getInt(org.sipdroid.sipua.ui.Settings.PREF_ACCOUNT, org.sipdroid.sipua.ui.Settings.DEFAULT_ACCOUNT);
+				} catch (Exception e2) {
+					pref = org.sipdroid.sipua.ui.Settings.DEFAULT_ACCOUNT;
+				}
+			}
 			uas = new UserAgent[LINES];
 			ras = new RegisterAgent[LINES];
 			kas = new KeepAliveSip[LINES];
@@ -121,7 +128,7 @@ public class SipdroidEngine implements RegisterAgentListener {
 			user_profiles = new UserAgentProfile[LINES];
 			user_profiles[0] = getUserAgentProfile("");
 			for (int i = 1; i < LINES; i++)
-				user_profiles[1] = getUserAgentProfile(""+i);
+				user_profiles[i] = getUserAgentProfile(""+i);
 			
 			SipStack.init(null);
 			int i = 0;
@@ -167,12 +174,14 @@ public class SipdroidEngine implements RegisterAgentListener {
 						icsi = "\"urn%3Aurn-7%3A3gpp-service.ims.icsi.mmtel\"";
 					}
 		
-					uas[i] = ua = new UserAgent(sip_providers[i], user_profile);
-					ras[i] = new RegisterAgent(sip_providers[i], user_profile.from_url, // modified
-							user_profile.contact_url, user_profile.username,
-							user_profile.realm, user_profile.passwd, this, user_profile,
-							user_profile.qvalue, icsi, user_profile.pub); // added by mandrajg
-					kas[i] = new KeepAliveSip(sip_providers[i]);
+					if (sip_providers[i] != null) {
+						uas[i] = ua = new UserAgent(sip_providers[i], user_profile);
+						ras[i] = new RegisterAgent(sip_providers[i], user_profile.from_url, // modified
+								user_profile.contact_url, user_profile.username,
+								user_profile.realm, user_profile.passwd, this, user_profile,
+								user_profile.qvalue, icsi, user_profile.pub); // added by mandrajg
+						kas[i] = new KeepAliveSip(sip_providers[i]);
+					}
 				} catch (Exception E) {
 				}
 				i++;
@@ -324,7 +333,8 @@ public class SipdroidEngine implements RegisterAgentListener {
 			Receiver.onText(Receiver.REGISTER_NOTIFICATION_0,getUIContext().getString(R.string.regfailed),R.drawable.sym_presence_away,0);
 	}
 	
-	public void halt() { // modified
+	public synchronized void halt() { // modified
+		if (ras == null || sip_providers == null) return;
 		long time = SystemClock.elapsedRealtime();
 		
 		int i = 0;
@@ -337,12 +347,12 @@ public class SipdroidEngine implements RegisterAgentListener {
 					Thread.sleep(100);
 				} catch (InterruptedException e1) {
 				}
-			if (wl[i].isHeld()) {
+			if (wl != null && wl[i] != null && wl[i].isHeld()) {
 				wl[i].release();
-				if (pwl[i] != null && pwl[i].isHeld()) pwl[i].release();
-				if (wwl[i] != null && wwl[i].isHeld()) wwl[i].release();
+				if (pwl != null && pwl[i] != null && pwl[i].isHeld()) pwl[i].release();
+				if (wwl != null && wwl[i] != null && wwl[i].isHeld()) wwl[i].release();
 			}
-			if (kas[i] != null) {
+			if (kas != null && kas[i] != null) {
 				Receiver.alarm(0, LoopAlarm.class);
 			}
 			Receiver.onText(Receiver.REGISTER_NOTIFICATION+i, null, 0, 0);
@@ -367,7 +377,7 @@ public class SipdroidEngine implements RegisterAgentListener {
 	
 	public boolean isRegistered(int i)
 	{
-		if (ras[i] == null)
+		if (ras == null || ras[i] == null)
 		{
 			return false;
 		}
@@ -487,6 +497,7 @@ public class SipdroidEngine implements RegisterAgentListener {
 	}
 	
 	public void updateDNS() {
+		if (sip_providers == null) return;
 		Editor edit = PreferenceManager.getDefaultSharedPreferences(getUIContext()).edit();
 		int i = 0;
 		for (SipProvider sip_provider : sip_providers) {

@@ -1197,8 +1197,13 @@ public class SipProvider implements Configurable, TransportListener,
 			wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "Sipdroid.SipProvider");
 		}
 		wl.acquire(); // modified
-		processReceivedMessage(msg);
-		wl.release();
+		try {
+			processReceivedMessage(msg);
+		} finally {
+			if (wl != null && wl.isHeld()) {
+				wl.release();
+			}
+		}
 	}
 
 	/** When Transport terminates. */

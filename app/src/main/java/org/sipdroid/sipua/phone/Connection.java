@@ -274,8 +274,11 @@ public class Connection
 	        } else {
 	            ci = ((PhoneUtils.CallerInfoToken) o).currentInfo;
 	        }
-	        if (callLogType == CallLog.Calls.MISSED_TYPE)
-	        	Receiver.onText(Receiver.MISSED_CALL_NOTIFICATION, ci != null && ci.name != null?ci.name:number, R.drawable.ic_missed_call_24, 0);
+	        if (callLogType == CallLog.Calls.MISSED_TYPE) {
+	        	// Sipdroid no longer triggers its own missed call notifications.
+				// The Android Telecom framework already displays missed calls perfectly 
+				// when we use the ConnectionService API, so this redundant notification is obsolete.
+			}
 	        addCall(ci, Receiver.mContext, number, isPrivateNumber,
 	                callLogType, date, (int) duration / 1000);
 	    }

@@ -40,6 +40,8 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
+import android.preference.EditTextPreference;
+import android.preference.Preference;
 import android.preference.ListPreference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
@@ -61,14 +63,14 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
 	private final String sharedPrefsFile = "com.androidsip.app_preferences";
 	// List of profile files available on the SD card
 	private String[] profileFiles = null;
-	// Which profile file to delete
-	private int profileToDelete;
 
 	// IDs of the menu items
 	private static final int MENU_IMPORT = 0;
-	private static final int MENU_DELETE = 1;
-	private static final int MENU_EXPORT = 2;
-	private static final int MENU_ABOUT  = 3;
+	private static final int MENU_EXPORT = 1;
+	private static final int MENU_ABOUT  = 2;
+
+	private static final int REQUEST_CODE_IMPORT = 1001;
+	private static final int REQUEST_CODE_EXPORT = 1002;
 
 	// All possible values of the PREF_PREF preference (see bellow) 
 	public static final String VAL_PREF_PSTN = "PSTN";
@@ -222,6 +224,8 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
 	//public static final String	DEFAULT_RINGTONEx = "";
 	//public static final String	DEFAULT_VOLUMEx = "";
 
+	public static Settings instance;
+
 	public void onCreate(Bundle savedInstanceState) {
 		String themePref = PreferenceManager.getDefaultSharedPreferences(this).getString("app_theme", "-1");
         if ("1".equals(themePref)) {
@@ -239,9 +243,44 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
         
     	if (Receiver.mContext == null) Receiver.mContext = this;
 		addPreferencesFromResource(R.xml.preferences);
+		
+		android.widget.ListView listView = getListView();
+		android.view.ViewGroup parent = (android.view.ViewGroup) listView.getParent();
+		int index = parent.indexOfChild(listView);
+		parent.removeView(listView);
+		
+		final androidx.swiperefreshlayout.widget.SwipeRefreshLayout swipeLayout = new androidx.swiperefreshlayout.widget.SwipeRefreshLayout(this);
+		swipeLayout.addView(listView, new android.view.ViewGroup.LayoutParams(android.view.ViewGroup.LayoutParams.MATCH_PARENT, android.view.ViewGroup.LayoutParams.MATCH_PARENT));
+		swipeLayout.setOnRefreshListener(new androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener() {
+			@Override
+			public void onRefresh() {
+				new Thread(() -> {
+					try {
+						Receiver.engine(Settings.this).halt();
+						Receiver.engine(Settings.this).StartEngine();
+					} catch (Exception e) {
+						e.printStackTrace();
+					} finally {
+						runOnUiThread(() -> swipeLayout.setRefreshing(false));
+					}
+				}).start();
+			}
+		});
+		parent.addView(swipeLayout, index, new android.view.ViewGroup.LayoutParams(android.view.ViewGroup.LayoutParams.MATCH_PARENT, android.view.ViewGroup.LayoutParams.MATCH_PARENT));
+
 		setDefaultValues();
 		if (Build.VERSION.SDK_INT >= 24) {
 			SettingsNew.ignoreBattery(this);
+		}
+		if (Build.VERSION.SDK_INT >= 23) {
+			requestPermissions(new String[]{
+				android.Manifest.permission.RECORD_AUDIO,
+				android.Manifest.permission.USE_SIP,
+				android.Manifest.permission.CALL_PHONE,
+				android.Manifest.permission.READ_PHONE_STATE,
+				android.Manifest.permission.READ_CONTACTS,
+				"android.permission.POST_NOTIFICATIONS"
+			}, 1);
 		}
 	}
 	
@@ -256,8 +295,10 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
 		for (int i = 0; i < SipdroidEngine.LINES; i++) {
 			String j = (i!=0?""+i:"");
 			if (!settings.contains(PREF_SERVER+j)) {
-				CheckBoxPreference cb = (CheckBoxPreference) getPreferenceScreen().findPreference(PREF_WLAN+j);
-				cb.setChecked(true);
+				if (getPreferenceScreen() != null) {
+					CheckBoxPreference cb = (CheckBoxPreference) getPreferenceScreen().findPreference(PREF_WLAN+j);
+					if (cb != null) cb.setChecked(true);
+				}
 				Editor edit = settings.edit();
 
 				edit.putString(PREF_PORT+j, DEFAULT_PORT);
@@ -279,8 +320,10 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
 		}
 
 		if (! settings.contains(PREF_MWI_ENABLED)) {
-			CheckBoxPreference cb = (CheckBoxPreference) getPreferenceScreen().findPreference(PREF_MWI_ENABLED);
-			cb.setChecked(true);
+			if (getPreferenceScreen() != null) {
+				CheckBoxPreference cb = (CheckBoxPreference) getPreferenceScreen().findPreference(PREF_MWI_ENABLED);
+				if (cb != null) cb.setChecked(true);
+			}
 		}
 
 		settings.registerOnSharedPreferenceChangeListener(this);
@@ -293,7 +336,7 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
     public boolean onCreateOptionsMenu(Menu menu) {
 	    menu.add(0, MENU_IMPORT, 0, getString(R.string.settings_profile_menu_import)).setIcon(R.drawable.ic_upload_24);
 	    menu.add(0, MENU_EXPORT, 0, getString(R.string.settings_profile_menu_export)).setIcon(R.drawable.ic_save_24);
-	    menu.add(0, MENU_DELETE, 0, getString(R.string.settings_profile_menu_delete)).setIcon(R.drawable.ic_delete_24);
+
 	    menu.add(0, MENU_ABOUT, 0, getString(R.string.menu_about)).setIcon(R.drawable.ic_info_24);
 	    return true;
     }
@@ -304,49 +347,23 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
 
     	switch (item.getItemId()) {
             case MENU_IMPORT:            	
-            	// Get the content of the directory
-            	profileFiles = getProfileList();
-            	if (profileFiles != null && profileFiles.length > 0) {
-	            	// Show dialog with the files
-	    			new AlertDialog.Builder(this)
-	    			.setTitle(getString(R.string.settings_profile_dialog_profiles_title))
-	    			.setIcon(R.drawable.ic_upload_24)
-	    			.setItems(profileFiles, profileOnClick)
-	    			.show();
-            	} else {
-	                Toast.makeText(this, "No profile found.", Toast.LENGTH_SHORT).show();
-            	}
+				android.content.Intent intentImport = new android.content.Intent(android.content.Intent.ACTION_OPEN_DOCUMENT);
+				intentImport.addCategory(android.content.Intent.CATEGORY_OPENABLE);
+				intentImport.setType("*/*");
+				startActivityForResult(intentImport, REQUEST_CODE_IMPORT);
                 return true;
                 
             case MENU_EXPORT:
-            	exportSettings();
-            	break;
-
-            case MENU_DELETE:
-            	// Get the content of the directory
-            	profileFiles = getProfileList();
-            	new AlertDialog.Builder(this)
-                .setTitle(getString(R.string.settings_profile_dialog_delete_title))
-                .setIcon(R.drawable.ic_delete_24)
-    			.setItems(profileFiles, new DialogInterface.OnClickListener() {
-    				// Ask the user to be sure to delete it
-    				public void onClick(DialogInterface dialog, int whichItem) {
-        				profileToDelete = whichItem;
-    					new AlertDialog.Builder(context)
-    	                .setIcon(R.drawable.ic_warning_24)
-    	                .setTitle(getString(R.string.settings_profile_dialog_delete_title))
-    	                .setMessage(getString(R.string.settings_profile_dialog_delete_text, profileFiles[whichItem]))
-    	                .setPositiveButton(android.R.string.ok, deleteOkButtonClick)
-    	                .setNegativeButton(android.R.string.cancel, null)
-    	                .show();
-    				}
-    			})
-                .show();
-                return true;
+				android.content.Intent intentExport = new android.content.Intent(android.content.Intent.ACTION_CREATE_DOCUMENT);
+				intentExport.addCategory(android.content.Intent.CATEGORY_OPENABLE);
+				intentExport.setType("application/xml");
+				intentExport.putExtra(android.content.Intent.EXTRA_TITLE, "sipdroid_settings_backup.xml");
+				startActivityForResult(intentExport, REQUEST_CODE_EXPORT);
+            	return true;
                 
     		case MENU_ABOUT:
     			new AlertDialog.Builder(this)
-    			.setMessage(getString(R.string.about).replace("\\n","\n").replace("${VERSION}", Sipdroid.getVersion(this)))
+    			.setMessage(getString(R.string.about).replace("\\n","\n"))
     			.setTitle(getString(R.string.menu_about))
     			.setIcon(R.drawable.icon)
     			.setCancelable(true)
@@ -376,16 +393,123 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
     	return s.getString(PREF_USERNAME, DEFAULT_USERNAME) + "@" + provider;
     }
 
-    private void exportSettings() {
-		if (! settings.getString(PREF_USERNAME, "").equals("") && ! settings.getString(PREF_SERVER, "").equals(""))
-	        try {
-	        	// Copy shared preference file
-	        	copyFile(new File(sharedPrefsPath + sharedPrefsFile + ".xml"), new File(sharedPrefsPath + getProfileNameString()));
-	        } catch (Exception e) {
-	        	e.printStackTrace();
-	            Toast.makeText(this, getString(R.string.settings_profile_export_error), Toast.LENGTH_SHORT).show();
-	        }
-    }
+    @Override
+	protected void onActivityResult(int requestCode, int resultCode, android.content.Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if (resultCode == RESULT_OK && data != null) {
+			android.net.Uri uri = data.getData();
+			if (uri == null) return;
+
+			if (requestCode == REQUEST_CODE_EXPORT) {
+				try (java.io.OutputStream os = getContentResolver().openOutputStream(uri)) {
+					org.xmlpull.v1.XmlSerializer serializer = android.util.Xml.newSerializer();
+					serializer.setOutput(os, "UTF-8");
+					serializer.startDocument(null, true);
+					serializer.startTag(null, "map");
+					
+					java.util.Map<String, ?> allEntries = settings.getAll();
+					for (java.util.Map.Entry<String, ?> entry : allEntries.entrySet()) {
+						String key = entry.getKey();
+						Object value = entry.getValue();
+						if (value instanceof String) {
+							serializer.startTag(null, "string");
+							serializer.attribute(null, "name", key);
+							serializer.text((String) value);
+							serializer.endTag(null, "string");
+						} else if (value instanceof Boolean) {
+							serializer.startTag(null, "boolean");
+							serializer.attribute(null, "name", key);
+							serializer.attribute(null, "value", value.toString());
+							serializer.endTag(null, "boolean");
+						} else if (value instanceof Integer) {
+							serializer.startTag(null, "int");
+							serializer.attribute(null, "name", key);
+							serializer.attribute(null, "value", value.toString());
+							serializer.endTag(null, "int");
+						} else if (value instanceof Long) {
+							serializer.startTag(null, "long");
+							serializer.attribute(null, "name", key);
+							serializer.attribute(null, "value", value.toString());
+							serializer.endTag(null, "long");
+						} else if (value instanceof Float) {
+							serializer.startTag(null, "float");
+							serializer.attribute(null, "name", key);
+							serializer.attribute(null, "value", value.toString());
+							serializer.endTag(null, "float");
+						}
+					}
+					serializer.endTag(null, "map");
+					serializer.endDocument();
+					serializer.flush();
+					Toast.makeText(this, "Settings exported successfully", Toast.LENGTH_SHORT).show();
+				} catch (Exception e) {
+					e.printStackTrace();
+					Toast.makeText(this, "Error exporting settings", Toast.LENGTH_SHORT).show();
+				}
+			} else if (requestCode == REQUEST_CODE_IMPORT) {
+				try (java.io.InputStream is = getContentResolver().openInputStream(uri)) {
+					org.xmlpull.v1.XmlPullParserFactory factory = org.xmlpull.v1.XmlPullParserFactory.newInstance();
+					org.xmlpull.v1.XmlPullParser parser = factory.newPullParser();
+					parser.setInput(is, null);
+					
+					android.content.SharedPreferences.Editor editor = settings.edit();
+					editor.clear();
+					
+					int eventType = parser.getEventType();
+					while (eventType != org.xmlpull.v1.XmlPullParser.END_DOCUMENT) {
+						if (eventType == org.xmlpull.v1.XmlPullParser.START_TAG) {
+							String name = parser.getAttributeValue(null, "name");
+							if (name != null) {
+								String tag = parser.getName();
+								if (tag.equals("string")) {
+									editor.putString(name, parser.nextText());
+								} else if (tag.equals("boolean")) {
+									editor.putBoolean(name, Boolean.parseBoolean(parser.getAttributeValue(null, "value")));
+								} else if (tag.equals("int")) {
+									editor.putInt(name, Integer.parseInt(parser.getAttributeValue(null, "value")));
+								} else if (tag.equals("long")) {
+									editor.putLong(name, Long.parseLong(parser.getAttributeValue(null, "value")));
+								} else if (tag.equals("float")) {
+									editor.putFloat(name, Float.parseFloat(parser.getAttributeValue(null, "value")));
+								}
+							}
+						}
+						eventType = parser.next();
+					}
+					settings.unregisterOnSharedPreferenceChangeListener(context);
+					editor.commit();
+					
+					Toast.makeText(this, "Settings imported successfully", Toast.LENGTH_SHORT).show();
+					setDefaultValues();
+					Receiver.engine(context).halt();
+					Receiver.engine(context).StartEngine();
+					reload();
+					settings.registerOnSharedPreferenceChangeListener(context);
+					updateSummaries();
+
+				} catch (Exception e) {
+					e.printStackTrace();
+					java.io.StringWriter sw = new java.io.StringWriter();
+					e.printStackTrace(new java.io.PrintWriter(sw));
+					final String stackTrace = sw.toString();
+					
+					new android.app.AlertDialog.Builder(this)
+						.setTitle("Import Error")
+						.setMessage(stackTrace)
+						.setPositiveButton("Copy", new android.content.DialogInterface.OnClickListener() {
+							public void onClick(android.content.DialogInterface dialog, int which) {
+								android.content.ClipboardManager clipboard = (android.content.ClipboardManager) getSystemService(android.content.Context.CLIPBOARD_SERVICE);
+								android.content.ClipData clip = android.content.ClipData.newPlainText("Error", stackTrace);
+								clipboard.setPrimaryClip(clip);
+								Toast.makeText(Settings.this, "Copied to clipboard", Toast.LENGTH_SHORT).show();
+							}
+						})
+						.setNegativeButton("Close", null)
+						.show();
+				}
+			}
+		}
+	}
 
 	private OnClickListener profileOnClick = new DialogInterface.OnClickListener() {
 		public void onClick(DialogInterface dialog, int whichItem) {
@@ -416,21 +540,7 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
 		}
 	};
 
-	private OnClickListener deleteOkButtonClick = new DialogInterface.OnClickListener() {
-		public void onClick(DialogInterface dialog, int whichButton) {
-        	File profile = new File(sharedPrefsPath + profileFiles[profileToDelete]);
-        	boolean rv = false;
-        	// Check if the file exists and try to delete it
-        	if (profile.exists()) {
-        		rv = profile.delete();
-        	}
-        	if (rv) {
-        		Toast.makeText(context, getString(R.string.settings_profile_delete_confirmation), Toast.LENGTH_SHORT).show();
-        	} else {
-        		Toast.makeText(context, getString(R.string.settings_profile_delete_error), Toast.LENGTH_SHORT).show();
-        	}
-		}
-	};
+
 
     public void copyFile(File in, File out) throws Exception {
         FileInputStream  fis = new FileInputStream(in);
@@ -461,7 +571,7 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
 
     @TargetApi(23)
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-    	if (!Thread.currentThread().getName().equals("main"))
+    	if (!Thread.currentThread().getName().equals("main") || key == null)
     		return;
         	
         if ("app_theme".equals(key)) {
@@ -490,13 +600,17 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
     			edit.putString(PREF_DNS+i, DEFAULT_DNS);
     		}
     		edit.commit();
-        	Receiver.engine(this).halt();
-    		Receiver.engine(this).StartEngine();
-        	Receiver.engine(this).updateDNS();
-        	Checkin.checkin(false);
-        } else if (sharedPreferences.getBoolean(PREF_CALLBACK, DEFAULT_CALLBACK) && sharedPreferences.getBoolean(PREF_CALLTHRU, DEFAULT_CALLTHRU)) {
-    		CheckBoxPreference cb = (CheckBoxPreference) getPreferenceScreen().findPreference(key.equals(PREF_CALLBACK) ? PREF_CALLTHRU : PREF_CALLBACK);
-    		cb.setChecked(false);
+        	new Thread(() -> {
+				try {
+        	    	Receiver.engine(Settings.this).halt();
+    		    	Receiver.engine(Settings.this).StartEngine();
+        	    	Receiver.engine(Settings.this).updateDNS();
+        	    	Checkin.checkin(false);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+        	}).start();
+
 	    } else if (key.startsWith(PREF_WLAN) ||
         			key.startsWith(PREF_3G) ||
         			key.startsWith(PREF_4G) ||
@@ -517,83 +631,103 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
         			key.equals(PREF_AUTO_ONDEMAND) ||
         			key.equals(PREF_MWI_ENABLED) ||
         			key.equals(PREF_KEEPON)) {
-        	Receiver.engine(this).halt();
-    		Receiver.engine(this).StartEngine();
+        	new Thread(() -> {
+				try {
+        	    	Receiver.engine(Settings.this).halt();
+    		    	Receiver.engine(Settings.this).StartEngine();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+        	}).start();
 		}
 		updateSummaries();
     }
 
 	void fill(String pref,String def,int val,int disp) {
+		if (getPreferenceScreen() == null) return;
+		Preference p = getPreferenceScreen().findPreference(pref);
+		if (p == null) return;
     	for (int i = 0; i < getResources().getStringArray(val).length; i++) {
         	if (settings.getString(pref, def).equals(getResources().getStringArray(val)[i])) {
-        		getPreferenceScreen().findPreference(pref).setSummary(getResources().getStringArray(disp)[i]);
+        		p.setSummary(getResources().getStringArray(disp)[i]);
         	}
     	}
     }
 
 	public void updateSummaries() {
-    	getPreferenceScreen().findPreference(PREF_STUN_SERVER).setSummary(settings.getString(PREF_STUN_SERVER, DEFAULT_STUN_SERVER));
-    	getPreferenceScreen().findPreference(PREF_STUN_SERVER_PORT).setSummary(settings.getString(PREF_STUN_SERVER_PORT, DEFAULT_STUN_SERVER_PORT));
+		if (getPreferenceScreen() == null) return;
+		Preference pStunServer = getPreferenceScreen().findPreference(PREF_STUN_SERVER);
+		if (pStunServer != null) pStunServer.setSummary(settings.getString(PREF_STUN_SERVER, DEFAULT_STUN_SERVER));
+		
+		Preference pStunServerPort = getPreferenceScreen().findPreference(PREF_STUN_SERVER_PORT);
+		if (pStunServerPort != null) pStunServerPort.setSummary(settings.getString(PREF_STUN_SERVER_PORT, DEFAULT_STUN_SERVER_PORT));
 
        	// MMTel settings (added by mandrajg)
-       	getPreferenceScreen().findPreference(PREF_MMTEL_QVALUE).setSummary(settings.getString(PREF_MMTEL_QVALUE, DEFAULT_MMTEL_QVALUE));	
+		Preference pMmtelQvalue = getPreferenceScreen().findPreference(PREF_MMTEL_QVALUE);
+       	if (pMmtelQvalue != null) pMmtelQvalue.setSummary(settings.getString(PREF_MMTEL_QVALUE, DEFAULT_MMTEL_QVALUE));	
     	
        	for (int i = 0; i < SipdroidEngine.LINES; i++) {
        		String j = (i!=0?""+i:"");
        		String username = settings.getString(PREF_USERNAME+j, DEFAULT_USERNAME),
        			server = settings.getString(PREF_SERVER+j, DEFAULT_SERVER);
-	    	getPreferenceScreen().findPreference(PREF_USERNAME+j).setSummary(username); 
-	    	getPreferenceScreen().findPreference(PREF_SERVER+j).setSummary(server);
-	    	if (settings.getString(PREF_DOMAIN+j, DEFAULT_DOMAIN).length() == 0) {
-	    		getPreferenceScreen().findPreference(PREF_DOMAIN+j).setSummary(getString(R.string.settings_domain2));
-	    	} else {
-	    		getPreferenceScreen().findPreference(PREF_DOMAIN+j).setSummary(settings.getString(PREF_DOMAIN+j, DEFAULT_DOMAIN));
-	    	}
-	    	if (settings.getString(PREF_FROMUSER+j,DEFAULT_FROMUSER).length() == 0) {
-	    		getPreferenceScreen().findPreference(PREF_FROMUSER+j).setSummary(getString(R.string.settings_callerid2));
-	    	} else {
-	    		getPreferenceScreen().findPreference(PREF_FROMUSER+j).setSummary(settings.getString(PREF_FROMUSER+j, DEFAULT_FROMUSER));
-	    	}
+       		Preference pUsername = getPreferenceScreen().findPreference(PREF_USERNAME+j);
+       		if (pUsername != null) pUsername.setSummary(username);
+       		Preference pServer = getPreferenceScreen().findPreference(PREF_SERVER+j);
+       		if (pServer != null) pServer.setSummary(server);
+       		Preference pDomain = getPreferenceScreen().findPreference(PREF_DOMAIN+j);
+       		if (pDomain != null) {
+		    	if (settings.getString(PREF_DOMAIN+j, DEFAULT_DOMAIN).length() == 0) {
+		    		pDomain.setSummary(getString(R.string.settings_domain2));
+		    	} else {
+		    		pDomain.setSummary(settings.getString(PREF_DOMAIN+j, DEFAULT_DOMAIN));
+		    	}
+       		}
+       		Preference pCallerId = getPreferenceScreen().findPreference(PREF_FROMUSER+j);
+       		if (pCallerId != null) {
+		    	if (settings.getString(PREF_FROMUSER+j,DEFAULT_FROMUSER).length() == 0) {
+		    		pCallerId.setSummary(getString(R.string.settings_callerid2));
+		    	} else {
+		    		pCallerId.setSummary(settings.getString(PREF_FROMUSER+j, DEFAULT_FROMUSER));
+		    	}
+       		}
 	    	fill(PREF_PORT+j,DEFAULT_PORT,R.array.port_values2,R.array.port_values2);
 	    	fill(PREF_PROTOCOL+j,DEFAULT_PROTOCOL,R.array.protocol_values2,R.array.protocol_display_values2);
-	    	getPreferenceScreen().findPreference(PREF_ACCOUNT+j).setSummary(username.equals("")||server.equals("")?"Not Configured":username+"@"+server);
+	    	Preference pAccount = getPreferenceScreen().findPreference(PREF_ACCOUNT+j);
+	    	if (pAccount != null) {
+				pAccount.setSummary(username.equals("")||server.equals("")?"Not Configured":username+"@"+server);
+				boolean isReg = false;
+				org.sipdroid.sipua.SipdroidEngine engine = Receiver.engine(this);
+				if (engine != null && engine.ras != null && engine.ras[i] != null) {
+					isReg = (engine.ras[i].CurrentState == org.sipdroid.sipua.RegisterAgent.REGISTERED);
+				}
+				pAccount.setIcon(isReg ? R.drawable.ic_connected_modern : R.drawable.ic_disconnected_modern);
+			}
        	}
+
+		if (getPreferenceScreen().getRootAdapter() != null && getPreferenceScreen().getRootAdapter() instanceof android.widget.BaseAdapter) {
+			((android.widget.BaseAdapter) getPreferenceScreen().getRootAdapter()).notifyDataSetChanged();
+		}
        	
-    	getPreferenceScreen().findPreference(PREF_SEARCH).setSummary(settings.getString(PREF_SEARCH, DEFAULT_SEARCH)); 
-    	getPreferenceScreen().findPreference(PREF_EXCLUDEPAT).setSummary(settings.getString(PREF_EXCLUDEPAT, DEFAULT_EXCLUDEPAT)); 
-    	getPreferenceScreen().findPreference(PREF_POSURL).setSummary(settings.getString(PREF_POSURL, DEFAULT_POSURL)); 
-    	getPreferenceScreen().findPreference(PREF_CALLTHRU2).setSummary(settings.getString(PREF_CALLTHRU2, DEFAULT_CALLTHRU2)); 
-    	if (! settings.getString(PREF_PREF, DEFAULT_PREF).equals(VAL_PREF_PSTN)) {
-    		getPreferenceScreen().findPreference(PREF_PAR).setEnabled(true);
-    	} else {
-    		getPreferenceScreen().findPreference(PREF_PAR).setEnabled(false);
-      	}
+		Preference pSearch = getPreferenceScreen().findPreference(PREF_SEARCH);
+    	if (pSearch != null) pSearch.setSummary(settings.getString(PREF_SEARCH, DEFAULT_SEARCH)); 
+		
+		Preference pExcludePat = getPreferenceScreen().findPreference(PREF_EXCLUDEPAT);
+    	if (pExcludePat != null) pExcludePat.setSummary(settings.getString(PREF_EXCLUDEPAT, DEFAULT_EXCLUDEPAT)); 
+		
     	if (settings.getBoolean(PREF_STUN, DEFAULT_STUN)) {
-    		getPreferenceScreen().findPreference(PREF_STUN_SERVER).setEnabled(true);
-    		getPreferenceScreen().findPreference(PREF_STUN_SERVER_PORT).setEnabled(true);
+			if (pStunServer != null) pStunServer.setEnabled(true);
+    		if (pStunServerPort != null) pStunServerPort.setEnabled(true);
     	} else {
-    		getPreferenceScreen().findPreference(PREF_STUN_SERVER).setEnabled(false);
-    		getPreferenceScreen().findPreference(PREF_STUN_SERVER_PORT).setEnabled(false);       	
+    		if (pStunServer != null) pStunServer.setEnabled(false);
+    		if (pStunServerPort != null) pStunServerPort.setEnabled(false);       	
     	}
     	
     	// MMTel configuration (added by mandrajg)
     	if (settings.getBoolean(PREF_MMTEL, DEFAULT_MMTEL)) {
-    		getPreferenceScreen().findPreference(PREF_MMTEL_QVALUE).setEnabled(true);
+    		if (pMmtelQvalue != null) pMmtelQvalue.setEnabled(true);
     	} else {
-    		getPreferenceScreen().findPreference(PREF_MMTEL_QVALUE).setEnabled(false);       	
+    		if (pMmtelQvalue != null) pMmtelQvalue.setEnabled(false);       	
     	}
-    	
-    	if (settings.getBoolean(PREF_CALLTHRU, DEFAULT_CALLTHRU)) {
-    		getPreferenceScreen().findPreference(PREF_CALLTHRU2).setEnabled(true);
-    	} else {
-    		getPreferenceScreen().findPreference(PREF_CALLTHRU2).setEnabled(false);
-    	}
-       	if (! settings.getString(PREF_POSURL, DEFAULT_POSURL).equals(DEFAULT_POSURL)) {
-    		getPreferenceScreen().findPreference(PREF_CALLBACK).setEnabled(! DEFAULT_CALLBACK);
-       	} else {
-    		getPreferenceScreen().findPreference(PREF_CALLBACK).setEnabled(DEFAULT_CALLBACK);
-       	}
-       	getPreferenceScreen().findPreference(PREF_BLUETOOTH).setEnabled(RtpStreamReceiver.isBluetoothSupported());
     }
 
     @Override

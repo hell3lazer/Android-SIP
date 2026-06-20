@@ -15,6 +15,18 @@ public class SipdroidApp extends Application implements SharedPreferences.OnShar
     @Override
     public void onCreate() {
         super.onCreate();
+        Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
+            @Override
+            public void uncaughtException(Thread t, Throwable e) {
+                try {
+                    java.io.File file = new java.io.File(getExternalFilesDir(null), "crash.txt");
+                    java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.FileWriter(file));
+                    e.printStackTrace(pw);
+                    pw.close();
+                } catch (Exception ex) {}
+                System.exit(1);
+            }
+        });
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         prefs.registerOnSharedPreferenceChangeListener(this);
         applyTheme(prefs.getString(PREF_THEME, THEME_SYSTEM));
