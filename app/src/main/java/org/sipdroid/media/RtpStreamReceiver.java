@@ -309,9 +309,14 @@ public class RtpStreamReceiver extends Thread {
 				wwl.acquire();
 			}
 		} else if (pwl2 != null) {
-			pwl2.release();
+			if (pwl2.isHeld()) {
+				pwl2.release();
+			}
 			pwl2 = null;
-			wwl.release();
+			if (wwl != null && wwl.isHeld()) {
+				wwl.release();
+			}
+			wwl = null;
 		}
 	}
 

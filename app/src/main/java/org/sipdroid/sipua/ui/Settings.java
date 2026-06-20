@@ -511,53 +511,6 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
 		}
 	}
 
-	private OnClickListener profileOnClick = new DialogInterface.OnClickListener() {
-		public void onClick(DialogInterface dialog, int whichItem) {
-			boolean message = settings.getBoolean(PREF_MESSAGE, DEFAULT_MESSAGE);
-
-			try {
-				copyFile(new File(sharedPrefsPath + profileFiles[whichItem]), new File(sharedPrefsPath + sharedPrefsFile + ".xml"));
-            } catch (Exception e) {
-                Toast.makeText(context, getString(R.string.settings_profile_import_error), Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-   			settings.unregisterOnSharedPreferenceChangeListener(context);
-   			setDefaultValues();
-
-           	// Restart the engine
-       		Receiver.engine(context).halt();
-   			Receiver.engine(context).StartEngine();
-   			
-   			reload();
-   			settings.registerOnSharedPreferenceChangeListener(context);
-   			updateSummaries();
-   			if (message) {
-   	    		Editor edit = settings.edit();
-   	    		edit.putBoolean(PREF_MESSAGE, true);
-   	    		edit.commit();
-   			}
-		}
-	};
-
-
-
-    public void copyFile(File in, File out) throws Exception {
-        FileInputStream  fis = new FileInputStream(in);
-        FileOutputStream fos = new FileOutputStream(out);
-        try {
-            byte[] buf = new byte[1024];
-            int i = 0;
-            while ((i = fis.read(buf)) != -1) {
-                fos.write(buf, 0, i);
-            }
-        } catch (Exception e) {
-            throw e;
-        } finally {
-            if (fis != null) fis.close();
-            if (fos != null) fos.close();
-        }
-    }
 
 	@Override
 	public void onDestroy()	{

@@ -494,7 +494,12 @@ import org.zoolu.sip.provider.SipProvider;
                                 } catch (Throwable e) {
                                     android.util.Log.e("Sipdroid", "Failed to interact with TelecomManager dynamically: " + e.getMessage());
                                     if (mContext != null) {
-                                        android.widget.Toast.makeText(mContext, "Telecom Error: " + e.getMessage(), android.widget.Toast.LENGTH_LONG).show();
+                                        new android.os.Handler(android.os.Looper.getMainLooper()).post(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                android.widget.Toast.makeText(mContext, "Telecom Error: " + e.getMessage(), android.widget.Toast.LENGTH_LONG).show();
+                                            }
+                                        });
                                     }
                                 }
                             }

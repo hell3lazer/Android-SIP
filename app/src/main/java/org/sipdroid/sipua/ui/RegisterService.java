@@ -62,11 +62,39 @@ public class RegisterService extends Service {
 			 intentfilter.addAction(Receiver.ACTION_VPN_CONNECTIVITY);
 			 intentfilter.addAction(Receiver.ACTION_SCO_AUDIO_STATE_CHANGED);
 			 intentfilter.addAction(WifiManager.WIFI_STATE_CHANGED_ACTION);
-			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-				registerReceiver(m_receiver = new Receiver(), intentfilter, RECEIVER_EXPORTED);
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+				androidx.core.content.ContextCompat.registerReceiver(this, m_receiver = new Receiver(), intentfilter, androidx.core.content.ContextCompat.RECEIVER_EXPORTED);
 			} else
 				registerReceiver(m_receiver = new Receiver(), intentfilter);
 			intentfilter = new IntentFilter();
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            boolean isIgnoringBatteryOptimizations = false;
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                android.os.PowerManager pm = (android.os.PowerManager) getSystemService(android.content.Context.POWER_SERVICE);
+                if (pm != null) {
+                    isIgnoringBatteryOptimizations = pm.isIgnoringBatteryOptimizations(getPackageName());
+                }
+            }
+            if (!isIgnoringBatteryOptimizations) {
+                android.app.NotificationManager mNotificationMgr = (android.app.NotificationManager) getSystemService(android.content.Context.NOTIFICATION_SERVICE);
+                mNotificationMgr.createNotificationChannel(new android.app.NotificationChannel("sipdroid_bg", "SIP Background Service", android.app.NotificationManager.IMPORTANCE_MIN));
+                android.app.Notification bgNotif = new androidx.core.app.NotificationCompat.Builder(this, "sipdroid_bg")
+                    .setSmallIcon(org.sipdroid.sipua.R.drawable.icon)
+                    .setContentTitle("Android SIP")
+                    .setContentText("Running in background")
+                    .setPriority(androidx.core.app.NotificationCompat.PRIORITY_MIN)
+                    .build();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    try {
+                        startForeground(Receiver.REGISTER_NOTIFICATION, bgNotif, 128); // FOREGROUND_SERVICE_TYPE_MICROPHONE
+                    } catch (Exception e) {}
+                } else {
+                    try {
+                        startForeground(Receiver.REGISTER_NOTIFICATION, bgNotif);
+                    } catch (Exception e) {}
+                }
+            }
         }
         Receiver.engine(this).isRegistered();
     }
