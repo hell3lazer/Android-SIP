@@ -33,13 +33,12 @@ import android.os.IBinder;
 
 public class RegisterService extends Service {
 	Receiver m_receiver;
-	Caller m_caller;
+
 	
     public void onDestroy() {
 		super.onDestroy();
 		if (m_receiver != null) {
 			unregisterReceiver(m_receiver);
-			m_receiver = null;
 		}
 		Receiver.alarm(0, OneShotAlarm2.class);
 	}

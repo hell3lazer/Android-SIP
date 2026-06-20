@@ -171,33 +171,7 @@ public class RtpStreamReceiver extends Thread {
 	}
 	
 	public static synchronized void ringback(boolean ringback) {
-		if (ringback && ringbackPlayer == null) {
-			ringbackPlayer = new ToneGenerator(stream(),ToneGenerator.MAX_VOLUME);
-			AudioManager am = (AudioManager) Receiver.mContext.getSystemService(
-                    Context.AUDIO_SERVICE);
-			oldvol = am.getStreamVolume(AudioManager.STREAM_MUSIC);
-			setMode(speakermode);
-			enableBluetooth(PreferenceManager.getDefaultSharedPreferences(Receiver.mContext).getBoolean(org.sipdroid.sipua.ui.Settings.PREF_BLUETOOTH,
-					org.sipdroid.sipua.ui.Settings.DEFAULT_BLUETOOTH));
-			am.setStreamVolume(stream(),
-					PreferenceManager.getDefaultSharedPreferences(Receiver.mContext).getInt("volume"+speakermode, 
-					am.getStreamMaxVolume(stream())*
-					(speakermode == AudioManager.MODE_NORMAL?4:3)/4
-					),0);
-			ringbackPlayer.startTone(ToneGenerator.TONE_SUP_RINGTONE);
-		} else if (!ringback && ringbackPlayer != null) {
-			ringbackPlayer.stopTone();
-			ringbackPlayer.release();
-			ringbackPlayer = null;
-			if (Receiver.call_state == UserAgent.UA_STATE_IDLE) {
-		        AudioManager am = (AudioManager) Receiver.mContext.getSystemService(
-	                    Context.AUDIO_SERVICE);
-				restoreMode();
-				enableBluetooth(false);
-				am.setStreamVolume(AudioManager.STREAM_MUSIC,oldvol,0);
-				oldvol = -1;
-			}
-		}
+		// Telecom handles ringback locally when connection.setRingbackRequested(true) is called.
 	}
 	
 	public static void adjust(int keyCode,boolean down,boolean show) {
@@ -225,136 +199,28 @@ public class RtpStreamReceiver extends Thread {
 	
 	static boolean restored;
 	
-	void restoreVolume() {
-		switch (getMode()) {
-		case AudioManager.MODE_IN_COMMUNICATION:
-				int oldring = PreferenceManager.getDefaultSharedPreferences(Receiver.mContext).getInt("oldring",0);
-				if (oldring > 0 && Integer.parseInt(Build.VERSION.SDK) < 25)
-					setStreamVolume(AudioManager.STREAM_RING,(int)(
-						am.getStreamMaxVolume(AudioManager.STREAM_RING)), 0);
-				track.setStereoVolume(AudioTrack.getMaxVolume()
-						,AudioTrack.getMaxVolume());
-				break;
-		case AudioManager.MODE_NORMAL:
-				track.setStereoVolume(AudioTrack.getMaxVolume(),AudioTrack.getMaxVolume());
-				break;
-		}
-		setStreamVolume(stream(),
-				PreferenceManager.getDefaultSharedPreferences(Receiver.mContext).getInt("volume"+speakermode, 
-				am.getStreamMaxVolume(stream())*
-				(speakermode == AudioManager.MODE_NORMAL?4:3)/4
-				),0);
-	}
+	void restoreVolume() {}
 	
-	void saveVolume() {
-		if (restored) {
-			Editor edit = PreferenceManager.getDefaultSharedPreferences(Receiver.mContext).edit();
-			edit.putInt("volume"+speakermode,am.getStreamVolume(stream()));
-			edit.commit();
-		}
-	}
+	void saveVolume() {}
 	
-	void saveSettings() {
-		if (!PreferenceManager.getDefaultSharedPreferences(Receiver.mContext).getBoolean(org.sipdroid.sipua.ui.Settings.PREF_OLDVALID, org.sipdroid.sipua.ui.Settings.DEFAULT_OLDVALID)) {
-			int oldvibrate = am.getVibrateSetting(AudioManager.VIBRATE_TYPE_RINGER);
-			int oldvibrate2 = am.getVibrateSetting(AudioManager.VIBRATE_TYPE_NOTIFICATION);
-			if (!PreferenceManager.getDefaultSharedPreferences(Receiver.mContext).contains(org.sipdroid.sipua.ui.Settings.PREF_OLDVIBRATE2))
-				oldvibrate2 = AudioManager.VIBRATE_SETTING_ON;
-			Editor edit = PreferenceManager.getDefaultSharedPreferences(Receiver.mContext).edit();
-			edit.putInt(org.sipdroid.sipua.ui.Settings.PREF_OLDVIBRATE, oldvibrate);
-			edit.putInt(org.sipdroid.sipua.ui.Settings.PREF_OLDVIBRATE2, oldvibrate2);
-			edit.putInt(org.sipdroid.sipua.ui.Settings.PREF_OLDRING, am.getStreamVolume(AudioManager.STREAM_RING));
-			edit.putBoolean(org.sipdroid.sipua.ui.Settings.PREF_OLDVALID, true);
-			edit.commit();
-		}
-	}
+	void saveSettings() {}
 	
 	public static int getMode() {
-		AudioManager am = (AudioManager) Receiver.mContext.getSystemService(Context.AUDIO_SERVICE);
-		if (Integer.parseInt(Build.VERSION.SDK) >= 5)
-			return am.isSpeakerphoneOn()?AudioManager.MODE_NORMAL:AudioManager.MODE_IN_COMMUNICATION;
-		else
-			return am.getMode();
+		return speakermode;
 	}
 	
 	static boolean samsung;
 	
 	@TargetApi(23)
 	public static void setMode(int mode) {
-		Editor edit = PreferenceManager.getDefaultSharedPreferences(Receiver.mContext).edit();
-		edit.putBoolean(org.sipdroid.sipua.ui.Settings.PREF_SETMODE, true);
-		edit.commit();
-		AudioManager am = (AudioManager) Receiver.mContext.getSystemService(Context.AUDIO_SERVICE);
-		if (Integer.parseInt(Build.VERSION.SDK) >= 5) {
-			am.setSpeakerphoneOn(mode == AudioManager.MODE_NORMAL);
-			if (samsung) RtpStreamSender.changed = true;
-			if (Integer.parseInt(Build.VERSION.SDK) >= 31) {
-				ArrayList<Integer> targetTypes = new ArrayList<Integer>();
-				if (mode != AudioManager.MODE_NORMAL) {
-				    targetTypes.add(AudioDeviceInfo.TYPE_BUILTIN_EARPIECE);
-				} else {
-				    targetTypes.add(AudioDeviceInfo.TYPE_BUILTIN_SPEAKER);
-				}
-				List<AudioDeviceInfo> devices = am.getAvailableCommunicationDevices();
-				outer:
-				for (Integer targetType : targetTypes) {
-				    for (AudioDeviceInfo device : devices) {
-				        if (device.getType() == targetType) {
-				            boolean result = am.setCommunicationDevice(device);
-				            if (result) break outer;
-				        }
-				    }
-				}
-			}
-		} else
-			am.setMode(mode);
-		Bluetooth.enable(bluetoothmode);
-	}
-	
-	public static void restoreMode() {
-		if (PreferenceManager.getDefaultSharedPreferences(Receiver.mContext).getBoolean(org.sipdroid.sipua.ui.Settings.PREF_SETMODE, org.sipdroid.sipua.ui.Settings.DEFAULT_SETMODE)) {
-			Editor edit = PreferenceManager.getDefaultSharedPreferences(Receiver.mContext).edit();
-			edit.putBoolean(org.sipdroid.sipua.ui.Settings.PREF_SETMODE, false);
-			edit.commit();
-			if (Receiver.pstn_state == null || Receiver.pstn_state.equals("IDLE")) {
-				AudioManager am = (AudioManager) Receiver.mContext.getSystemService(Context.AUDIO_SERVICE);
-				if (Integer.parseInt(Build.VERSION.SDK) >= 5)
-					am.setSpeakerphoneOn(false);
-				else
-					am.setMode(AudioManager.MODE_NORMAL);
-			}
-		}
+		speakermode = mode;
 	}
 
-	void initMode() {
-		samsung = Build.MODEL.contains("SAMSUNG") || Build.MODEL.contains("SPH-") ||
-			Build.MODEL.contains("SGH-") || Build.MODEL.contains("GT-");
-		if (Receiver.call_state == UserAgent.UA_STATE_INCOMING_CALL &&
-				(Receiver.pstn_state == null || Receiver.pstn_state.equals("IDLE")))
-			setMode(AudioManager.MODE_NORMAL);	
-	}
+	public static void restoreMode() {}
+
+	void initMode() {}
 	
-	public static void restoreSettings() {
-		if (PreferenceManager.getDefaultSharedPreferences(Receiver.mContext).getBoolean(org.sipdroid.sipua.ui.Settings.PREF_OLDVALID, org.sipdroid.sipua.ui.Settings.DEFAULT_OLDVALID)) {
-			AudioManager am = (AudioManager) Receiver.mContext.getSystemService(Context.AUDIO_SERVICE);
-	        ContentResolver cr = Receiver.mContext.getContentResolver();
-			int oldvibrate = PreferenceManager.getDefaultSharedPreferences(Receiver.mContext).getInt(org.sipdroid.sipua.ui.Settings.PREF_OLDVIBRATE, org.sipdroid.sipua.ui.Settings.DEFAULT_OLDVIBRATE);
-			int oldvibrate2 = PreferenceManager.getDefaultSharedPreferences(Receiver.mContext).getInt(org.sipdroid.sipua.ui.Settings.PREF_OLDVIBRATE2, org.sipdroid.sipua.ui.Settings.DEFAULT_OLDVIBRATE2);
-			am.setVibrateSetting(AudioManager.VIBRATE_TYPE_RINGER,oldvibrate);
-			am.setVibrateSetting(AudioManager.VIBRATE_TYPE_NOTIFICATION,oldvibrate2);
-			int oldring = PreferenceManager.getDefaultSharedPreferences(Receiver.mContext).getInt("oldring",0);
-			if (oldring > 0 && Integer.parseInt(Build.VERSION.SDK) < 25)
-					am.setStreamVolume(AudioManager.STREAM_RING, oldring, 0);
-			Editor edit = PreferenceManager.getDefaultSharedPreferences(Receiver.mContext).edit();
-			edit.putBoolean(org.sipdroid.sipua.ui.Settings.PREF_OLDVALID, false);
-			edit.commit();
-			PowerManager pm = (PowerManager) Receiver.mContext.getSystemService(Context.POWER_SERVICE);
-			PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK |
-					PowerManager.ACQUIRE_CAUSES_WAKEUP, "Sipdroid.RtpStreamReceiver");
-			wl.acquire(1000);
-		}
-		restoreMode();
-	}
+	public static void restoreSettings() {}
 
 	public static float good, late, lost, loss, loss2;
 	double avgheadroom,devheadroom;
@@ -403,7 +269,7 @@ public class RtpStreamReceiver extends Thread {
 			if (maxjitter < 2*1024*mu)
 				maxjitter = 2*1024*mu;
 			oldtrack = track;
-			track = new AudioTrack(stream(), p_type.codec.samp_rate(), AudioFormat.CHANNEL_CONFIGURATION_MONO, AudioFormat.ENCODING_PCM_16BIT,
+			track = new AudioTrack(stream(), p_type.codec.samp_rate(), AudioFormat.CHANNEL_OUT_MONO, AudioFormat.ENCODING_PCM_16BIT,
 					maxjitter*2, AudioTrack.MODE_STREAM);
 			maxjitter /= 2*2;
 			minjitter = minjitteradjust = 500*mu;
@@ -429,38 +295,10 @@ public class RtpStreamReceiver extends Thread {
 		}
 	}
 
-	PowerManager.WakeLock pwl,pwl2;
+	PowerManager.WakeLock pwl2;
 	WifiManager.WifiLock wwl;
-	static final int PROXIMITY_SCREEN_OFF_WAKE_LOCK = 32;
-	boolean lockLast,lockFirst;
 	
 	void lock(boolean lock) {
-		try {
-			if (lock) {
-				boolean lockNew = keepon ||
-					Receiver.call_state == UserAgent.UA_STATE_HOLD ||
-					Receiver.call_state == UserAgent.UA_STATE_INCOMING_CALL ||
-					RtpStreamReceiver.speakermode == AudioManager.MODE_NORMAL ||
-					Receiver.headset > 0 || Receiver.docked > 0;
-				if (lockFirst || lockLast != lockNew) {
-					lockLast = lockNew;
-					lock(false);
-					lockFirst = false;
-					if (pwl == null && lockNew) {
-						PowerManager pm = (PowerManager) Receiver.mContext.getSystemService(Context.POWER_SERVICE);
-						pwl = pm.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP, "Sipdroid.Receiver");
-						pwl.acquire();
-					}
-				}
-			} else {
-				lockFirst = true;
-				if (pwl != null) {
-					pwl.release();
-					pwl = null;
-				}
-			}
-		} catch (Exception e) {
-		}
 		if (lock) {
 			if (pwl2 == null) {
 				PowerManager pm = (PowerManager) Receiver.mContext.getSystemService(Context.POWER_SERVICE);
@@ -534,7 +372,6 @@ public class RtpStreamReceiver extends Thread {
 		ToneGenerator tg = new ToneGenerator(AudioManager.STREAM_VOICE_CALL,(int)(ToneGenerator.MAX_VOLUME));
 		System.gc();
 		empty();
-		lockFirst = true;
 		while (running) {
 			lock(Receiver.call_state != UserAgent.UA_STATE_INCOMING_CALL);
 			if (Receiver.call_state == UserAgent.UA_STATE_HOLD) {

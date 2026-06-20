@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2" xmlns:ns2="http://schemas.android.com/tools">
+    <string-array name="compression_display_values">
+        <item>Nur über WLAN</item>
+        <item>Nur über WLAN und 3G</item>
+        <item>Immer versuchen</item>
+        <item>Nie</item>
+    </string-array>
+    <string-array name="eargain_display_values">
+        <item>Leise (kein Echo)</item>
+        <item>Mittel</item>
+        <item>Laut (evtl. Echo beim Gesprächspartner)</item>
+        <item>Sehr laut</item>
+    </string-array>
+    <string-array name="port_display_values">
+		<item>53</item>
+		<item>69</item>
+		<item>80</item>
+		<item>135</item>
+		<item>161</item>
+		<item>443</item>
+		<item>500</item>
+		<item>1433</item>
+		<item>1701</item>
+		<item>1812</item>
+		<item>3389</item>
+		<item>4500</item>
+		<item>5060 (standard)</item>
+		<item>5061</item>
+		<item>5900</item>
+		<item>16999</item>
+		<item>26999</item>
+		<item>36999</item>
+		<item>benutzerdefiniert</item>
+	</string-array>
+    <string-array name="pref_display_values">
+        <item>Android SIP</item>
+        <item>Android SIP, wenn verfügbar</item>
+        <item>Telefon</item>
+        <item>Immer fragen</item>
+    </string-array>
+    <string-array name="protocol_display_values2">
+        <item>UDP (kürzerer Standby mit 3G)</item>
+        <item>TCP (längerer Standby mit 3G)</item>
+        <item>TLS (verschlüsselt)</item>
+        </string-array>
+    <string-array name="vquality_display_values">
+        <item>Hoch (352x288 @ 360kbit)</item>
+        <item>Niedrig (176x144 @ 192kbit)</item>
+    </string-array>
+    <plurals name="mtrl_badge_content_description">
+    <item quantity="one">%d neue Benachrichtigung</item>
+    <item quantity="other">%d neue Benachrichtigungen</item>
+  </plurals>
+    <string msgid="5976598919945601918" name="abc_action_bar_home_description">"Zur Startseite"</string>
+    <string msgid="8388173803310557296" name="abc_action_bar_up_description">"Nach oben"</string>
+    <string msgid="3937310113216875497" name="abc_action_menu_overflow_description">"Weitere Optionen"</string>
+    <string msgid="4692188335987374352" name="abc_action_mode_done">"Fertig"</string>
+    <string msgid="1189761859438369441" name="abc_activity_chooser_view_see_all">"Alle anzeigen"</string>
+    <string msgid="2165779757652331008" name="abc_activitychooserview_choose_application">"App auswählen"</string>
+    <string msgid="4215997306490295099" name="abc_capital_off">"AUS"</string>
+    <string msgid="884982626291842264" name="abc_capital_on">"AN"</string>
+    <string msgid="8833365367933412986" name="abc_menu_alt_shortcut_label">"Alt +"</string>
+    <string msgid="2223301931652355242" name="abc_menu_ctrl_shortcut_label">"Strg +"</string>
+    <string msgid="838001238306846836" name="abc_menu_delete_shortcut_label">"Löschen"</string>
+    <string msgid="7986526966204849475" name="abc_menu_enter_shortcut_label">"Eingabetaste"</string>
+    <string msgid="375214403600139847" name="abc_menu_function_shortcut_label">"Funktionstaste +"</string>
+    <string msgid="4192209724446364286" name="abc_menu_meta_shortcut_label">"Meta-Taste +"</string>
+    <string msgid="4741552369836443843" name="abc_menu_shift_shortcut_label">"Umschalttaste +"</string>
+    <string msgid="5473865519181928982" name="abc_menu_space_shortcut_label">"Leertaste"</string>
+    <string msgid="6180552449598693998" name="abc_menu_sym_shortcut_label">"Sym-Taste +"</string>
+    <string msgid="5520303668377388990" name="abc_prepend_shortcut_label">"Menütaste +"</string>
+    <string msgid="7208076849092622260" name="abc_search_hint">"Suchen…"</string>
+    <string msgid="3741173234950517107" name="abc_searchview_description_clear">"Suchanfrage löschen"</string>
+    <string msgid="693312494995508443" name="abc_searchview_description_query">"Suchanfrage"</string>
+    <string msgid="3417662926640357176" name="abc_searchview_description_search">"Suche"</string>
+    <string msgid="1486535517437947103" name="abc_searchview_description_submit">"Anfrage senden"</string>
+    <string msgid="2293578557972875415" name="abc_searchview_description_voice">"Sprachsuche"</string>
+    <string msgid="8875138169939072951" name="abc_shareactionprovider_share_with">"Teilen mit"</string>
+    <string msgid="9055268688411532828" name="abc_shareactionprovider_share_with_application">"Mit <ns1:g id="APPLICATION_NAME">%s</ns1:g> teilen"</string>
+    <string msgid="1656852541809559762" name="abc_toolbar_collapse_description">"Minimieren"</string>
+    <string name="about">Android SIP ist ein freier SIP-Client für Android
+\n
+\nSiehe http://sipdroid.org für weitere Infos
+\n
+\nVersion ${VERSION}
+\nDas Programm befindet sich noch in der Testphase.
+\n
+\nCopyright (C) 2009 The Sipdroid Open Source Project (http://sipdroid.org)
+\nCopyright (C) 2008 Hughes Systique Corporation, USA (http://hsc.com)
+\nCopyright (C) 2006 The Android Open Source Project (http://android.com)
+\nCopyright (C) 2005 Luca Veltri - University of Parma - Italy (http://mjsip.org)
+\n
+\nDieses Programm ist freie Software. Sie können es unter den Bedingungen der GNU General Public License, wie von der Free Software Foundation veröffentlicht, weitergeben und/oder modifizieren, entweder gemäß Version 3 der Lizenz oder (nach Ihrer Option) jeder späteren Version.
+\n
+\nDie Veröffentlichung dieses Programms erfolgt in der Hoffnung, daß es Ihnen von Nutzen sein wird, aber OHNE IRGENDEINE GARANTIE, sogar ohne die implizite Garantie der MARKTREIFE oder der VERWENDBARKEIT FÜR EINEN BESTIMMTEN ZWECK. Details finden Sie in der GNU General Public License (siehe http://www.gnu.org/licenses).</string>
+    <string name="auto_disabled">Automatische Rufannahme aus</string>
+    <string name="auto_enabled">Autom. Rufannahme/Freisprechen</string>
+    <string name="bottomsheet_action_collapse">Ansicht am unteren Rand minimieren</string>
+    <string name="bottomsheet_action_expand">Ansicht am unteren Rand maximieren</string>
+    <string name="bottomsheet_action_expand_halfway">Zur Hälfte maximieren</string>
+    <string name="bottomsheet_drag_handle_clicked">Auf Ziehpunkt doppelt getippt</string>
+    <string name="bottomsheet_drag_handle_content_description">Ziehpunkt</string>
+    <string name="card_title_call_ended">Anruf beendet</string>
+    <string name="card_title_dialing">Rufaufbau</string>
+    <string name="card_title_in_progress">Aktiver Anruf</string>
+    <string name="card_title_incoming_call">Eingehender Anruf</string>
+    <string name="card_title_on_hold">Gehalten</string>
+    <string name="character_counter_content_description">Eingegebene Zeichen: %1$d von %2$d</string>
+    <string name="character_counter_overflowed_content_description">Zeichenbeschränkung überschritten: %1$d/%2$d</string>
+    <string name="clear_text_end_icon_content_description">Text löschen</string>
+    <string name="dialog_default">Android SIP ist nicht als Telefon voreingestellt. Möchten Sie es als Telefon voreinstellen?
+\n
+\nAuch wenn Sie mit \'Nein\' antworten, können Sie aus dem System über Android SIP wählen, indem Sie \'+\' hinter eine Nummer im Telefon anhängen oder bei einem Kontakt auf \'Textnachricht an\' klicken.</string>
+    <string name="dialog_port">Möchten Sie den SIP-Port von 5060 auf 5061 ändern, um die Zuverlässigkeit zu erhöhen?</string>
+    <string name="dontask">Nicht fragen</string>
+    <string name="empty">Bitte Zieladresse als name@domain.com eingeben</string>
+    <string name="error_icon_content_description">Fehler</string>
+    <string name="exposed_dropdown_menu_content_description">Drop-down-Menü anzeigen</string>
+    <string name="help_speakerphone">Sie können die Lautstärkeregler als Sprechtaste verwenden</string>
+    <string name="hint">Zieladresse</string>
+    <string name="hint2">Telefonnummer</string>
+    <string name="icon_content_description">Dialogfeldsymbol</string>
+    <string name="item_view_role_description">Tab</string>
+    <string name="material_clock_toggle_content_description">Vormittags oder Nachmittags auswählen</string>
+    <string name="material_hour_24h_suffix">%1$s Stunden</string>
+    <string name="material_hour_selection">Stunde auswählen</string>
+    <string name="material_hour_suffix">%1$s Uhr</string>
+    <string name="material_minute_selection">Minuten auswählen</string>
+    <string name="material_minute_suffix">%1$s Minuten</string>
+    <string name="material_timepicker_am">AM</string>
+    <string name="material_timepicker_clock_mode_description">In den Uhrzeitmodus wechseln, um die Uhrzeit einzugeben.</string>
+    <string name="material_timepicker_hour">Stunde</string>
+    <string name="material_timepicker_minute">Minute</string>
+    <string name="material_timepicker_pm">PM</string>
+    <string name="material_timepicker_select_time">Uhrzeit auswählen</string>
+    <string name="material_timepicker_text_input_mode_description">In den Texteingabemodus wechseln, um die Uhrzeit einzugeben.</string>
+    <string name="menu_about">Info</string>
+    <string name="menu_answer">Annehmen</string>
+    <string name="menu_call">Wählen</string>
+    <string name="menu_dtmf">DTMF senden</string>
+    <string name="menu_endCall">Anruf beenden</string>
+    <string name="menu_exit">Beenden</string>
+    <string name="menu_hold">Halten</string>
+    <string name="menu_mute">Stumm</string>
+    <string name="menu_settings">Einstellungen</string>
+    <string name="menu_speaker">Lautsprecher</string>
+    <string name="menu_transfer">Verbinden</string>
+    <string name="menu_video">Video senden</string>
+    <string name="mtrl_badge_numberless_content_description">Neue Benachrichtigung</string>
+    <string name="mtrl_chip_close_icon_content_description">%1$s entfernen</string>
+    <string name="mtrl_exceed_max_badge_number_content_description" ns2:ignore="PluralsCandidate">Mehr als %1$d neue Benachrichtigungen</string>
+    <string name="mtrl_picker_a11y_next_month">Zum nächsten Monat wechseln</string>
+    <string name="mtrl_picker_a11y_prev_month">Zum vorherigen Monat wechseln</string>
+    <string name="mtrl_picker_announce_current_range_selection">Ausgewähltes Startdatum: %1$s – Ausgewähltes Enddatum: %2$s</string>
+    <string name="mtrl_picker_announce_current_selection">Aktuelle Auswahl: %1$s</string>
+    <string name="mtrl_picker_announce_current_selection_none">Keines</string>
+    <string name="mtrl_picker_cancel">Abbrechen</string>
+    <string name="mtrl_picker_confirm">OK</string>
+    <string name="mtrl_picker_date_header_selected">%1$s</string>
+    <string name="mtrl_picker_date_header_title">Datum auswählen</string>
+    <string name="mtrl_picker_date_header_unselected">Ausgewähltes Datum</string>
+    <string name="mtrl_picker_day_of_week_column_header">Spalte \"Wochentag\": %1$s</string>
+    <string name="mtrl_picker_end_date_description">Enddatum %1$s</string>
+    <string name="mtrl_picker_invalid_format">Ungültiges Format.</string>
+    <string name="mtrl_picker_invalid_format_example">Beispiel: %1$s</string>
+    <string name="mtrl_picker_invalid_format_use">Format: %1$s</string>
+    <string name="mtrl_picker_invalid_range">Ungültiger Bereich.</string>
+    <string name="mtrl_picker_navigate_to_current_year_description">Zum aktuellen Jahr %1$d wechseln</string>
+    <string name="mtrl_picker_navigate_to_year_description">Zum Jahr %1$d wechseln</string>
+    <string name="mtrl_picker_out_of_range">Außerhalb des Bereichs: %1$s</string>
+    <string name="mtrl_picker_range_header_only_end_selected">Startdatum – %1$s</string>
+    <string name="mtrl_picker_range_header_only_start_selected">%1$s – Enddatum</string>
+    <string name="mtrl_picker_range_header_selected">%1$s – %2$s</string>
+    <string name="mtrl_picker_range_header_title">Zeitraum auswählen</string>
+    <string name="mtrl_picker_range_header_unselected">Startdatum – Enddatum</string>
+    <string name="mtrl_picker_save">Speichern</string>
+    <string name="mtrl_picker_start_date_description">Startdatum %1$s</string>
+    <string name="mtrl_picker_text_input_date_hint">Datum</string>
+    <string name="mtrl_picker_text_input_date_range_end_hint">Enddatum</string>
+    <string name="mtrl_picker_text_input_date_range_start_hint">Startdatum</string>
+    <string name="mtrl_picker_text_input_day_abbr">T</string>
+    <string name="mtrl_picker_text_input_month_abbr">M</string>
+    <string name="mtrl_picker_text_input_year_abbr">J</string>
+    <string name="mtrl_picker_today_description">Heute %1$s</string>
+    <string name="mtrl_picker_toggle_to_calendar_input_mode">In den Kalendereingabemodus wechseln</string>
+    <string name="mtrl_picker_toggle_to_day_selection">Tippen, um zur Kalenderansicht zu wechseln</string>
+    <string name="mtrl_picker_toggle_to_text_input_mode">In den Texteingabemodus wechseln</string>
+    <string name="mtrl_picker_toggle_to_year_selection">Tippen, um zur Jahresansicht zu wechseln</string>
+    <string name="mtrl_timepicker_cancel">Abbrechen</string>
+    <string name="mtrl_timepicker_confirm">OK</string>
+    <string name="no">Nein</string>
+    <string name="notfast">Keine geeignete Datenverbindung verfügbar</string>
+    <string name="onHold">Gehalten</string>
+    <string name="ongoing">Aktuelle Anruf</string>
+    <string name="password_toggle_content_description">Passwort anzeigen</string>
+    <string name="pstn_name">Telefon-Anruf</string>
+    <string name="reg">Angefordert</string>
+    <string name="regfailed">Anmeldung fehlgeschlagen</string>
+    <string name="regok">Angemeldet</string>
+    <string msgid="6264217191555673260" name="search_menu_title">"Suche"</string>
+    <string name="settings_3g">3G verwenden</string>
+    <string name="settings_4g">4G verwenden</string>
+    <string name="settings_MWI">Anrufbeantworter</string>
+    <string name="settings_MWI2">Eingang neuer Nachrichten anzeigen</string>
+    <string name="settings_account">Zugangsdaten</string>
+    <string name="settings_advanced_options">Erweiterte Einstellungen</string>
+    <string name="settings_auto_headset">Rufannahme mit Headset</string>
+    <string name="settings_auto_headset2">Bei angeschlossenem Headset</string>
+    <string name="settings_auto_on">Rufannahme im Betrieb</string>
+    <string name="settings_auto_on2">Bei eingeschaltetem Bildschirm mit kurzem Vibrationsalarm</string>
+    <string name="settings_auto_ondemand">Rufannahme nach Bedarf</string>
+    <string name="settings_auto_ondemand2">Option in Statusleiste anzeigen</string>
+    <string name="settings_callback">Callback auslösen</string>
+    <string name="settings_callback2">Wenn keine geeignete Datenverbindung verfügbar</string>
+    <string name="settings_callerid2">Nur eintragen, wenn Benutzername und Authentifizierungsname verschieden sind</string>
+    <string name="settings_callthru">Callthru auslösen</string>
+    <string name="settings_callthru2">Prefix für Callthru</string>
+    <string name="settings_check">Prüfen Sie, ob Ihr Mobilfunkanbieter VoIP-Nutzung erlaubt</string>
+    <string name="settings_compression">Sprachkompression</string>
+    <string name="settings_domain">Domäne</string>
+    <string name="settings_domain2">Nur eintragen, wenn Domäne und Server verschieden sind</string>
+    <string name="settings_eargain">Hörerlautstärke</string>
+    <string name="settings_excludepat">Muster ausschließen</string>
+    <string name="settings_hdvoice">PBXes unterstützt HD Voice</string>
+    <string name="settings_heargain">Headsetlautstärke</string>
+    <string name="settings_hmicgain">Headsetmikrofon</string>
+    <string name="settings_improve">Bessere Tonqualität</string>
+    <string name="settings_improve2">erfordert bezahlten Account</string>
+    <string name="settings_keepon">Bildschirm an</string>
+    <string name="settings_keepon2">An manchen Telefonen für unterbrechungsfreies Wi-Fi</string>
+    <string name="settings_micgain">Mikrofonlautstärke</string>
+    <string name="settings_nodata">Unterbrechung</string>
+    <string name="settings_nodata2">Fehlende Sprachpakete mit Hinweistönen anzeigen</string>
+    <string name="settings_notifications">Benachrichtigungen</string>
+    <string name="settings_notrain">In Zügen pausieren</string>
+    <string name="settings_options">Anrufeinstellungen</string>
+    <string name="settings_ownwifi">Wi-Fi an/abschalten</string>
+    <string name="settings_ownwifi2">Spart Batterie</string>
+    <string name="settings_par">Gleichzeitige Anwahl</string>
+    <string name="settings_par2">Wählt alle Nummern eines Gesprächspartners gleichzeitig an</string>
+    <string name="settings_password">Passwort</string>
+    <string name="settings_pbxes_options">PBXes-Funktionen</string>
+    <string name="settings_policy_default">Systemeinstellung wiederhergestellt: WLAN geht bei Standby außer Betrieb</string>
+    <string name="settings_policy_never">Systemeinstellung geändert: WLAN bleibt bei Standy in Betrieb</string>
+    <string name="settings_port">Port</string>
+    <string name="settings_pos">Position aktualisieren</string>
+    <string name="settings_pos2">Kann PBXes-Kontakten angesagt werden (erfordert Premium-Account)</string>
+    <string name="settings_pos3">Position aktualisiert</string>
+    <string name="settings_posurl">URL für Callback</string>
+    <string name="settings_pref">Bevorzugte Anrufart</string>
+    <string name="settings_pref2">Ausnahmen durch \'+\' hinter Nummern anhängen oder auf \'Textnachricht an\' klicken</string>
+    <string name="settings_protocol">Protokoll</string>
+    <string name="settings_reg">Registrierung</string>
+    <string name="settings_reg2">Ermöglicht die Auswahl des bevorzugten SIP-Accounts</string>
+    <string name="settings_search">Suchen &amp; Ersetzen</string>
+    <string name="settings_selectwifi">Wi-Fi-Basis wählen</string>
+    <string name="settings_selectwifi2">Nach Signalstärke</string>
+    <string name="settings_server">Server oder Proxy</string>
+    <string name="settings_sipringtone">SIP Klingelton</string>
+    <string name="settings_sipringtone2">Klingelton für eingehende SIP-Anrufe</string>
+    <string name="settings_sipringtone_dialog">Klingeltöne</string>
+    <string name="settings_username">Authentifizierungsname</string>
+    <string name="settings_username1">Benutzername</string>
+    <string name="settings_vpn">VPN verwenden</string>
+    <string name="settings_vpn2">PBXes bietet einen VPN-Dienst gratis an, siehe PBXes >> HILFE</string>
+    <string name="settings_vquality">Video-Qualität</string>
+    <string name="settings_wireless_options">Drahtlos</string>
+    <string name="settings_wlan">WLAN verwenden</string>
+    <string name="sip_name">Android SIP-Anruf, wenn verfügbar</string>
+    <string name="slide_hint_down_to_end_call">Nach unten schieben, um das Gepräch zu beenden.</string>
+    <string name="slide_hint_up_to_answer">Nach oben schieben, um zu antworten.</string>
+    <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
+    <string name="transfer_title">Weiterverbinden mit</string>
+    <string name="unknown">Unbekannt</string>
+    <string name="voicemail">Neue Nachricht(en)</string>
+    <string name="yes">Ja</string>
+</resources>

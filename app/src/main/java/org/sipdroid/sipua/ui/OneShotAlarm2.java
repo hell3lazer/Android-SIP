@@ -42,7 +42,18 @@ public class OneShotAlarm2 extends BroadcastReceiver {
 	        		PreferenceManager.getDefaultSharedPreferences(context).getBoolean(Settings.PREF_VPN+(i!=0?i:""), Settings.DEFAULT_VPN) ||
 	        		PreferenceManager.getDefaultSharedPreferences(context).getBoolean(Settings.PREF_4G+(i!=0?i:""), Settings.DEFAULT_4G)) {
 				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-			        context.startForegroundService(new Intent(context, RegisterService.class));
+                    boolean isIgnoringBatteryOptimizations = false;
+                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                        android.os.PowerManager pm = (android.os.PowerManager) context.getSystemService(Context.POWER_SERVICE);
+                        if (pm != null) {
+                            isIgnoringBatteryOptimizations = pm.isIgnoringBatteryOptimizations(context.getPackageName());
+                        }
+                    }
+                    if (isIgnoringBatteryOptimizations) {
+                        context.startService(new Intent(context, RegisterService.class));
+                    } else {
+			            context.startForegroundService(new Intent(context, RegisterService.class));
+                    }
 			    } else {
 			    	context.startService(new Intent(context,RegisterService.class));
 			    }

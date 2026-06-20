@@ -235,7 +235,7 @@ public class RtpStreamSender extends Thread {
 		android.os.Process.setThreadPriority(android.os.Process.THREAD_PRIORITY_URGENT_AUDIO);
 		mu = p_type.codec.samp_rate()/8000;
 		int min = AudioRecord.getMinBufferSize(p_type.codec.samp_rate(), 
-				AudioFormat.CHANNEL_CONFIGURATION_MONO, 
+				AudioFormat.CHANNEL_IN_MONO, 
 				AudioFormat.ENCODING_PCM_16BIT);
 		if (min == 640) {
 			if (frame_size == 960) frame_size = 320;
@@ -279,14 +279,10 @@ public class RtpStreamSender extends Thread {
 				if (record != null) {
 					record.stop();
 					record.release();
-					if (RtpStreamReceiver.samsung) {
-						AudioManager am = (AudioManager) Receiver.mContext.getSystemService(Context.AUDIO_SERVICE);
-						am.setMode(AudioManager.MODE_IN_COMMUNICATION);
-						am.setMode(AudioManager.MODE_NORMAL);
-					}
+					// removed samsung-specific audio mode toggle
 				}
 				changed = false;
-				record = new AudioRecord(MediaRecorder.AudioSource.VOICE_COMMUNICATION, p_type.codec.samp_rate(), AudioFormat.CHANNEL_CONFIGURATION_MONO, AudioFormat.ENCODING_PCM_16BIT, 
+				record = new AudioRecord(MediaRecorder.AudioSource.VOICE_COMMUNICATION, p_type.codec.samp_rate(), AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_16BIT, 
 							min);
 				if (record.getState() != AudioRecord.STATE_INITIALIZED) {
 					record = null;

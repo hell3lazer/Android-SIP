@@ -1,0 +1,19 @@
+<lint-module
+    format="1"
+    dir="B:\user\Antigravity\sipdroid\app"
+    name=":app"
+    type="APP"
+    maven="sipdroid:app:"
+    agpVersion="8.2.0"
+    buildFolder="build"
+    bootClassPath="C:\Users\user\scoop\apps\android-clt\current\platforms\android-35\android.jar;C:\Users\user\scoop\apps\android-clt\current\build-tools\34.0.0\core-lambda-stubs.jar"
+    javaSourceLevel="1.8"
+    compileTarget="android-35"
+    neverShrinking="true">
+  <lintOptions
+      abortOnError="true"
+      absolutePaths="true"
+      checkReleaseBuilds="true"
+      explainIssues="true"/>
+  <variant name="release"/>
+</lint-module>

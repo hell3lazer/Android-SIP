@@ -1,0 +1,3974 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<incidents format="6" by="lint 8.2.0" type="conditional_incidents">
+
+    <incident
+        id="ExportedPreferenceActivity"
+        severity="warning"
+        message="`PreferenceActivity` subclass org.sipdroid.sipua.ui.Settings should not be exported">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*manifest*0}"
+            line="44"
+            column="9"
+            startOffset="2128"
+            endLine="51"
+            endColumn="20"
+            endOffset="2540"/>
+        <map>
+            <entry
+                name="implicit"
+                boolean="false"/>
+            <entry
+                name="overrides"
+                boolean="false"/>
+        </map>
+    </incident>
+
+    <incident
+        id="ExactAlarm"
+        severity="error"
+        message="`USE_EXACT_ALARM` can only be used when targeting API level 33 or higher">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*manifest*0}"
+            line="117"
+            column="36"
+            startOffset="6633"
+            endLine="117"
+            endColumn="70"
+            endOffset="6667"/>
+        <map>
+            <condition targetLT="33"/>
+        </map>
+    </incident>
+
+    <incident
+        id="VectorRaster"
+        severity="warning"
+        message="">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable/ic_call_end_24.xml"
+            line="8"
+            column="26"
+            startOffset="242"
+            endLine="8"
+            endColumn="46"
+            endOffset="262"/>
+        <map>
+            <entry
+                name="folderVersion"
+                int="-1"/>
+            <entry
+                name="containsFillType"
+                boolean="false"/>
+            <entry
+                name="message"
+                string="Resource references will not work correctly in images generated for this vector icon for API &lt; %1$d; check generated icon to make sure it looks acceptable"/>
+            <entry
+                name="containsGradient"
+                boolean="false"/>
+        </map>
+    </incident>
+
+    <incident
+        id="VectorRaster"
+        severity="warning"
+        message="">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable/ic_call_hold_24.xml"
+            line="6"
+            column="19"
+            startOffset="199"
+            endLine="6"
+            endColumn="43"
+            endOffset="223"/>
+        <map>
+            <entry
+                name="folderVersion"
+                int="-1"/>
+            <entry
+                name="containsFillType"
+                boolean="false"/>
+            <entry
+                name="message"
+                string="Resource references will not work correctly in images generated for this vector icon for API &lt; %1$d; check generated icon to make sure it looks acceptable"/>
+            <entry
+                name="containsGradient"
+                boolean="false"/>
+        </map>
+    </incident>
+
+    <incident
+        id="VectorRaster"
+        severity="warning"
+        message="">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable/ic_call_hold_24.xml"
+            line="8"
+            column="26"
+            startOffset="259"
+            endLine="8"
+            endColumn="46"
+            endOffset="279"/>
+        <map>
+            <entry
+                name="folderVersion"
+                int="-1"/>
+            <entry
+                name="containsFillType"
+                boolean="false"/>
+            <entry
+                name="message"
+                string="Resource references will not work correctly in images generated for this vector icon for API &lt; %1$d; check generated icon to make sure it looks acceptable"/>
+            <entry
+                name="containsGradient"
+                boolean="false"/>
+        </map>
+    </incident>
+
+    <incident
+        id="VectorRaster"
+        severity="warning"
+        message="">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable/ic_camera_24.xml"
+            line="6"
+            column="19"
+            startOffset="199"
+            endLine="6"
+            endColumn="43"
+            endOffset="223"/>
+        <map>
+            <entry
+                name="folderVersion"
+                int="-1"/>
+            <entry
+                name="containsFillType"
+                boolean="false"/>
+            <entry
+                name="message"
+                string="Resource references will not work correctly in images generated for this vector icon for API &lt; %1$d; check generated icon to make sure it looks acceptable"/>
+            <entry
+                name="containsGradient"
+                boolean="false"/>
+        </map>
+    </incident>
+
+    <incident
+        id="VectorRaster"
+        severity="warning"
+        message="">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable/ic_camera_24.xml"
+            line="8"
+            column="26"
+            startOffset="259"
+            endLine="8"
+            endColumn="46"
+            endOffset="279"/>
+        <map>
+            <entry
+                name="folderVersion"
+                int="-1"/>
+            <entry
+                name="containsFillType"
+                boolean="false"/>
+            <entry
+                name="message"
+                string="Resource references will not work correctly in images generated for this vector icon for API &lt; %1$d; check generated icon to make sure it looks acceptable"/>
+            <entry
+                name="containsGradient"
+                boolean="false"/>
+        </map>
+    </incident>
+
+    <incident
+        id="VectorRaster"
+        severity="warning"
+        message="">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable/ic_cancel_24.xml"
+            line="6"
+            column="19"
+            startOffset="199"
+            endLine="6"
+            endColumn="43"
+            endOffset="223"/>
+        <map>
+            <entry
+                name="folderVersion"
+                int="-1"/>
+            <entry
+                name="containsFillType"
+                boolean="false"/>
+            <entry
+                name="message"
+                string="Resource references will not work correctly in images generated for this vector icon for API &lt; %1$d; check generated icon to make sure it looks acceptable"/>
+            <entry
+                name="containsGradient"
+                boolean="false"/>
+        </map>
+    </incident>
+
+    <incident
+        id="VectorRaster"
+        severity="warning"
+        message="">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable/ic_cancel_24.xml"
+            line="8"
+            column="26"
+            startOffset="259"
+            endLine="8"
+            endColumn="46"
+            endOffset="279"/>
+        <map>
+            <entry
+                name="folderVersion"
+                int="-1"/>
+            <entry
+                name="containsFillType"
+                boolean="false"/>
+            <entry
+                name="message"
+                string="Resource references will not work correctly in images generated for this vector icon for API &lt; %1$d; check generated icon to make sure it looks acceptable"/>
+            <entry
+                name="containsGradient"
+                boolean="false"/>
+        </map>
+    </incident>
+
+    <incident
+        id="VectorRaster"
+        severity="warning"
+        message="">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable/ic_delete_24.xml"
+            line="6"
+            column="19"
+            startOffset="199"
+            endLine="6"
+            endColumn="43"
+            endOffset="223"/>
+        <map>
+            <entry
+                name="folderVersion"
+                int="-1"/>
+            <entry
+                name="containsFillType"
+                boolean="false"/>
+            <entry
+                name="message"
+                string="Resource references will not work correctly in images generated for this vector icon for API &lt; %1$d; check generated icon to make sure it looks acceptable"/>
+            <entry
+                name="containsGradient"
+                boolean="false"/>
+        </map>
+    </incident>
+
+    <incident
+        id="VectorRaster"
+        severity="warning"
+        message="">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable/ic_delete_24.xml"
+            line="8"
+            column="26"
+            startOffset="259"
+            endLine="8"
+            endColumn="46"
+            endOffset="279"/>
+        <map>
+            <entry
+                name="folderVersion"
+                int="-1"/>
+            <entry
+                name="containsFillType"
+                boolean="false"/>
+            <entry
+                name="message"
+                string="Resource references will not work correctly in images generated for this vector icon for API &lt; %1$d; check generated icon to make sure it looks acceptable"/>
+            <entry
+                name="containsGradient"
+                boolean="false"/>
+        </map>
+    </incident>
+
+    <incident
+        id="VectorRaster"
+        severity="warning"
+        message="">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable/ic_dialpad_24.xml"
+            line="8"
+            column="26"
+            startOffset="242"
+            endLine="8"
+            endColumn="46"
+            endOffset="262"/>
+        <map>
+            <entry
+                name="folderVersion"
+                int="-1"/>
+            <entry
+                name="containsFillType"
+                boolean="false"/>
+            <entry
+                name="message"
+                string="Resource references will not work correctly in images generated for this vector icon for API &lt; %1$d; check generated icon to make sure it looks acceptable"/>
+            <entry
+                name="containsGradient"
+                boolean="false"/>
+        </map>
+    </incident>
+
+    <incident
+        id="VectorRaster"
+        severity="warning"
+        message="">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable/ic_info_24.xml"
+            line="6"
+            column="19"
+            startOffset="199"
+            endLine="6"
+            endColumn="43"
+            endOffset="223"/>
+        <map>
+            <entry
+                name="folderVersion"
+                int="-1"/>
+            <entry
+                name="containsFillType"
+                boolean="false"/>
+            <entry
+                name="message"
+                string="Resource references will not work correctly in images generated for this vector icon for API &lt; %1$d; check generated icon to make sure it looks acceptable"/>
+            <entry
+                name="containsGradient"
+                boolean="false"/>
+        </map>
+    </incident>
+
+    <incident
+        id="VectorRaster"
+        severity="warning"
+        message="">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable/ic_info_24.xml"
+            line="8"
+            column="26"
+            startOffset="259"
+            endLine="8"
+            endColumn="46"
+            endOffset="279"/>
+        <map>
+            <entry
+                name="folderVersion"
+                int="-1"/>
+            <entry
+                name="containsFillType"
+                boolean="false"/>
+            <entry
+                name="message"
+                string="Resource references will not work correctly in images generated for this vector icon for API &lt; %1$d; check generated icon to make sure it looks acceptable"/>
+            <entry
+                name="containsGradient"
+                boolean="false"/>
+        </map>
+    </incident>
+
+    <incident
+        id="VectorRaster"
+        severity="warning"
+        message="">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable/ic_menu_dial_pad.xml"
+            line="6"
+            column="19"
+            startOffset="203"
+            endLine="6"
+            endColumn="43"
+            endOffset="227"/>
+        <map>
+            <entry
+                name="folderVersion"
+                int="-1"/>
+            <entry
+                name="containsFillType"
+                boolean="false"/>
+            <entry
+                name="message"
+                string="Resource references will not work correctly in images generated for this vector icon for API &lt; %1$d; check generated icon to make sure it looks acceptable"/>
+            <entry
+                name="containsGradient"
+                boolean="false"/>
+        </map>
+    </incident>
+
+    <incident
+        id="VectorRaster"
+        severity="warning"
+        message="">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable/ic_menu_preferences.xml"
+            line="6"
+            column="19"
+            startOffset="203"
+            endLine="6"
+            endColumn="43"
+            endOffset="227"/>
+        <map>
+            <entry
+                name="folderVersion"
+                int="-1"/>
+            <entry
+                name="containsFillType"
+                boolean="false"/>
+            <entry
+                name="message"
+                string="Resource references will not work correctly in images generated for this vector icon for API &lt; %1$d; check generated icon to make sure it looks acceptable"/>
+            <entry
+                name="containsGradient"
+                boolean="false"/>
+        </map>
+    </incident>
+
+    <incident
+        id="VectorRaster"
+        severity="warning"
+        message="">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable/ic_mic_24.xml"
+            line="8"
+            column="26"
+            startOffset="242"
+            endLine="8"
+            endColumn="46"
+            endOffset="262"/>
+        <map>
+            <entry
+                name="folderVersion"
+                int="-1"/>
+            <entry
+                name="containsFillType"
+                boolean="false"/>
+            <entry
+                name="message"
+                string="Resource references will not work correctly in images generated for this vector icon for API &lt; %1$d; check generated icon to make sure it looks acceptable"/>
+            <entry
+                name="containsGradient"
+                boolean="false"/>
+        </map>
+    </incident>
+
+    <incident
+        id="VectorRaster"
+        severity="warning"
+        message="">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable/ic_mic_off_24.xml"
+            line="6"
+            column="19"
+            startOffset="199"
+            endLine="6"
+            endColumn="43"
+            endOffset="223"/>
+        <map>
+            <entry
+                name="folderVersion"
+                int="-1"/>
+            <entry
+                name="containsFillType"
+                boolean="false"/>
+            <entry
+                name="message"
+                string="Resource references will not work correctly in images generated for this vector icon for API &lt; %1$d; check generated icon to make sure it looks acceptable"/>
+            <entry
+                name="containsGradient"
+                boolean="false"/>
+        </map>
+    </incident>
+
+    <incident
+        id="VectorRaster"
+        severity="warning"
+        message="">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable/ic_mic_off_24.xml"
+            line="8"
+            column="26"
+            startOffset="259"
+            endLine="8"
+            endColumn="46"
+            endOffset="279"/>
+        <map>
+            <entry
+                name="folderVersion"
+                int="-1"/>
+            <entry
+                name="containsFillType"
+                boolean="false"/>
+            <entry
+                name="message"
+                string="Resource references will not work correctly in images generated for this vector icon for API &lt; %1$d; check generated icon to make sure it looks acceptable"/>
+            <entry
+                name="containsGradient"
+                boolean="false"/>
+        </map>
+    </incident>
+
+    <incident
+        id="VectorRaster"
+        severity="warning"
+        message="">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable/ic_missed_call_24.xml"
+            line="6"
+            column="19"
+            startOffset="199"
+            endLine="6"
+            endColumn="43"
+            endOffset="223"/>
+        <map>
+            <entry
+                name="folderVersion"
+                int="-1"/>
+            <entry
+                name="containsFillType"
+                boolean="false"/>
+            <entry
+                name="message"
+                string="Resource references will not work correctly in images generated for this vector icon for API &lt; %1$d; check generated icon to make sure it looks acceptable"/>
+            <entry
+                name="containsGradient"
+                boolean="false"/>
+        </map>
+    </incident>
+
+    <incident
+        id="VectorRaster"
+        severity="warning"
+        message="">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable/ic_missed_call_24.xml"
+            line="8"
+            column="26"
+            startOffset="259"
+            endLine="8"
+            endColumn="46"
+            endOffset="279"/>
+        <map>
+            <entry
+                name="folderVersion"
+                int="-1"/>
+            <entry
+                name="containsFillType"
+                boolean="false"/>
+            <entry
+                name="message"
+                string="Resource references will not work correctly in images generated for this vector icon for API &lt; %1$d; check generated icon to make sure it looks acceptable"/>
+            <entry
+                name="containsGradient"
+                boolean="false"/>
+        </map>
+    </incident>
+
+    <incident
+        id="VectorRaster"
+        severity="warning"
+        message="">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable/ic_pause_24.xml"
+            line="8"
+            column="26"
+            startOffset="242"
+            endLine="8"
+            endColumn="46"
+            endOffset="262"/>
+        <map>
+            <entry
+                name="folderVersion"
+                int="-1"/>
+            <entry
+                name="containsFillType"
+                boolean="false"/>
+            <entry
+                name="message"
+                string="Resource references will not work correctly in images generated for this vector icon for API &lt; %1$d; check generated icon to make sure it looks acceptable"/>
+            <entry
+                name="containsGradient"
+                boolean="false"/>
+        </map>
+    </incident>
+
+    <incident
+        id="VectorRaster"
+        severity="warning"
+        message="">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable/ic_preferences_24.xml"
+            line="6"
+            column="19"
+            startOffset="199"
+            endLine="6"
+            endColumn="43"
+            endOffset="223"/>
+        <map>
+            <entry
+                name="folderVersion"
+                int="-1"/>
+            <entry
+                name="containsFillType"
+                boolean="false"/>
+            <entry
+                name="message"
+                string="Resource references will not work correctly in images generated for this vector icon for API &lt; %1$d; check generated icon to make sure it looks acceptable"/>
+            <entry
+                name="containsGradient"
+                boolean="false"/>
+        </map>
+    </incident>
+
+    <incident
+        id="VectorRaster"
+        severity="warning"
+        message="">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable/ic_preferences_24.xml"
+            line="8"
+            column="26"
+            startOffset="259"
+            endLine="8"
+            endColumn="46"
+            endOffset="279"/>
+        <map>
+            <entry
+                name="folderVersion"
+                int="-1"/>
+            <entry
+                name="containsFillType"
+                boolean="false"/>
+            <entry
+                name="message"
+                string="Resource references will not work correctly in images generated for this vector icon for API &lt; %1$d; check generated icon to make sure it looks acceptable"/>
+            <entry
+                name="containsGradient"
+                boolean="false"/>
+        </map>
+    </incident>
+
+    <incident
+        id="VectorRaster"
+        severity="warning"
+        message="">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable/ic_save_24.xml"
+            line="6"
+            column="19"
+            startOffset="199"
+            endLine="6"
+            endColumn="43"
+            endOffset="223"/>
+        <map>
+            <entry
+                name="folderVersion"
+                int="-1"/>
+            <entry
+                name="containsFillType"
+                boolean="false"/>
+            <entry
+                name="message"
+                string="Resource references will not work correctly in images generated for this vector icon for API &lt; %1$d; check generated icon to make sure it looks acceptable"/>
+            <entry
+                name="containsGradient"
+                boolean="false"/>
+        </map>
+    </incident>
+
+    <incident
+        id="VectorRaster"
+        severity="warning"
+        message="">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable/ic_save_24.xml"
+            line="8"
+            column="26"
+            startOffset="259"
+            endLine="8"
+            endColumn="46"
+            endOffset="279"/>
+        <map>
+            <entry
+                name="folderVersion"
+                int="-1"/>
+            <entry
+                name="containsFillType"
+                boolean="false"/>
+            <entry
+                name="message"
+                string="Resource references will not work correctly in images generated for this vector icon for API &lt; %1$d; check generated icon to make sure it looks acceptable"/>
+            <entry
+                name="containsGradient"
+                boolean="false"/>
+        </map>
+    </incident>
+
+    <incident
+        id="VectorRaster"
+        severity="warning"
+        message="">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable/ic_upload_24.xml"
+            line="6"
+            column="19"
+            startOffset="199"
+            endLine="6"
+            endColumn="43"
+            endOffset="223"/>
+        <map>
+            <entry
+                name="folderVersion"
+                int="-1"/>
+            <entry
+                name="containsFillType"
+                boolean="false"/>
+            <entry
+                name="message"
+                string="Resource references will not work correctly in images generated for this vector icon for API &lt; %1$d; check generated icon to make sure it looks acceptable"/>
+            <entry
+                name="containsGradient"
+                boolean="false"/>
+        </map>
+    </incident>
+
+    <incident
+        id="VectorRaster"
+        severity="warning"
+        message="">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable/ic_upload_24.xml"
+            line="8"
+            column="26"
+            startOffset="259"
+            endLine="8"
+            endColumn="46"
+            endOffset="279"/>
+        <map>
+            <entry
+                name="folderVersion"
+                int="-1"/>
+            <entry
+                name="containsFillType"
+                boolean="false"/>
+            <entry
+                name="message"
+                string="Resource references will not work correctly in images generated for this vector icon for API &lt; %1$d; check generated icon to make sure it looks acceptable"/>
+            <entry
+                name="containsGradient"
+                boolean="false"/>
+        </map>
+    </incident>
+
+    <incident
+        id="VectorRaster"
+        severity="warning"
+        message="">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable/ic_voicemail_24.xml"
+            line="6"
+            column="19"
+            startOffset="199"
+            endLine="6"
+            endColumn="43"
+            endOffset="223"/>
+        <map>
+            <entry
+                name="folderVersion"
+                int="-1"/>
+            <entry
+                name="containsFillType"
+                boolean="false"/>
+            <entry
+                name="message"
+                string="Resource references will not work correctly in images generated for this vector icon for API &lt; %1$d; check generated icon to make sure it looks acceptable"/>
+            <entry
+                name="containsGradient"
+                boolean="false"/>
+        </map>
+    </incident>
+
+    <incident
+        id="VectorRaster"
+        severity="warning"
+        message="">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable/ic_voicemail_24.xml"
+            line="8"
+            column="26"
+            startOffset="259"
+            endLine="8"
+            endColumn="46"
+            endOffset="279"/>
+        <map>
+            <entry
+                name="folderVersion"
+                int="-1"/>
+            <entry
+                name="containsFillType"
+                boolean="false"/>
+            <entry
+                name="message"
+                string="Resource references will not work correctly in images generated for this vector icon for API &lt; %1$d; check generated icon to make sure it looks acceptable"/>
+            <entry
+                name="containsGradient"
+                boolean="false"/>
+        </map>
+    </incident>
+
+    <incident
+        id="VectorRaster"
+        severity="warning"
+        message="">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable/ic_volume_up_24.xml"
+            line="8"
+            column="26"
+            startOffset="242"
+            endLine="8"
+            endColumn="46"
+            endOffset="262"/>
+        <map>
+            <entry
+                name="folderVersion"
+                int="-1"/>
+            <entry
+                name="containsFillType"
+                boolean="false"/>
+            <entry
+                name="message"
+                string="Resource references will not work correctly in images generated for this vector icon for API &lt; %1$d; check generated icon to make sure it looks acceptable"/>
+            <entry
+                name="containsGradient"
+                boolean="false"/>
+        </map>
+    </incident>
+
+    <incident
+        id="VectorRaster"
+        severity="warning"
+        message="">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable/ic_warning_24.xml"
+            line="6"
+            column="19"
+            startOffset="199"
+            endLine="6"
+            endColumn="43"
+            endOffset="223"/>
+        <map>
+            <entry
+                name="folderVersion"
+                int="-1"/>
+            <entry
+                name="containsFillType"
+                boolean="false"/>
+            <entry
+                name="message"
+                string="Resource references will not work correctly in images generated for this vector icon for API &lt; %1$d; check generated icon to make sure it looks acceptable"/>
+            <entry
+                name="containsGradient"
+                boolean="false"/>
+        </map>
+    </incident>
+
+    <incident
+        id="VectorRaster"
+        severity="warning"
+        message="">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable/ic_warning_24.xml"
+            line="8"
+            column="26"
+            startOffset="259"
+            endLine="8"
+            endColumn="46"
+            endOffset="279"/>
+        <map>
+            <entry
+                name="folderVersion"
+                int="-1"/>
+            <entry
+                name="containsFillType"
+                boolean="false"/>
+            <entry
+                name="message"
+                string="Resource references will not work correctly in images generated for this vector icon for API &lt; %1$d; check generated icon to make sure it looks acceptable"/>
+            <entry
+                name="containsGradient"
+                boolean="false"/>
+        </map>
+    </incident>
+
+    <incident
+        id="VectorRaster"
+        severity="warning"
+        message="">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable/sym_call_done.xml"
+            line="6"
+            column="19"
+            startOffset="203"
+            endLine="6"
+            endColumn="43"
+            endOffset="227"/>
+        <map>
+            <entry
+                name="folderVersion"
+                int="-1"/>
+            <entry
+                name="containsFillType"
+                boolean="false"/>
+            <entry
+                name="message"
+                string="Resource references will not work correctly in images generated for this vector icon for API &lt; %1$d; check generated icon to make sure it looks acceptable"/>
+            <entry
+                name="containsGradient"
+                boolean="false"/>
+        </map>
+    </incident>
+
+    <incident
+        id="RtlHardcoded"
+        severity="warning"
+        message="Consider adding `android:layout_marginEnd=&quot;8dip&quot;` to better support right-to-left layouts">
+        <fix-attribute
+            description="Add android:layout_marginEnd=&quot;8dip&quot;"
+            namespace="http://schemas.android.com/apk/res/android"
+            attribute="layout_marginEnd"
+            value="8dip"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/call_card.xml"
+            line="98"
+            column="28"
+            startOffset="4175"
+            endLine="98"
+            endColumn="54"
+            endOffset="4201"/>
+        <map>
+            <entry
+                name="applies"
+                int="4"/>
+        </map>
+    </incident>
+
+    <incident
+        id="RtlHardcoded"
+        severity="warning"
+        message="Consider replacing `android:layout_marginRight` with `android:layout_marginEnd=&quot;8dip&quot;` to better support right-to-left layouts">
+        <fix-replace
+            description="Replace with android:layout_marginEnd=&quot;8dip&quot;"
+            oldString="layout_marginRight"
+            replacement="layout_marginEnd"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/call_card.xml"
+            line="98"
+            column="28"
+            startOffset="4175"
+            endLine="98"
+            endColumn="54"
+            endOffset="4201"/>
+        <map>
+            <entry
+                name="applies"
+                int="10"/>
+        </map>
+    </incident>
+
+    <incident
+        id="RtlHardcoded"
+        severity="warning"
+        message="Consider adding `android:layout_marginStart=&quot;6dip&quot;` to better support right-to-left layouts">
+        <fix-attribute
+            description="Add android:layout_marginStart=&quot;6dip&quot;"
+            namespace="http://schemas.android.com/apk/res/android"
+            attribute="layout_marginStart"
+            value="6dip"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/call_card.xml"
+            line="151"
+            column="13"
+            startOffset="6691"
+            endLine="151"
+            endColumn="38"
+            endOffset="6716"/>
+        <map>
+            <entry
+                name="applies"
+                int="4"/>
+        </map>
+    </incident>
+
+    <incident
+        id="RtlHardcoded"
+        severity="warning"
+        message="Consider replacing `android:layout_marginLeft` with `android:layout_marginStart=&quot;6dip&quot;` to better support right-to-left layouts">
+        <fix-replace
+            description="Replace with android:layout_marginStart=&quot;6dip&quot;"
+            oldString="layout_marginLeft"
+            replacement="layout_marginStart"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/call_card.xml"
+            line="151"
+            column="13"
+            startOffset="6691"
+            endLine="151"
+            endColumn="38"
+            endOffset="6716"/>
+        <map>
+            <entry
+                name="applies"
+                int="10"/>
+        </map>
+    </incident>
+
+    <incident
+        id="RtlHardcoded"
+        severity="warning"
+        message="Consider adding `android:layout_marginEnd=&quot;8dip&quot;` to better support right-to-left layouts">
+        <fix-attribute
+            description="Add android:layout_marginEnd=&quot;8dip&quot;"
+            namespace="http://schemas.android.com/apk/res/android"
+            attribute="layout_marginEnd"
+            value="8dip"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/call_card.xml"
+            line="152"
+            column="13"
+            startOffset="6736"
+            endLine="152"
+            endColumn="39"
+            endOffset="6762"/>
+        <map>
+            <entry
+                name="applies"
+                int="4"/>
+        </map>
+    </incident>
+
+    <incident
+        id="RtlHardcoded"
+        severity="warning"
+        message="Consider replacing `android:layout_marginRight` with `android:layout_marginEnd=&quot;8dip&quot;` to better support right-to-left layouts">
+        <fix-replace
+            description="Replace with android:layout_marginEnd=&quot;8dip&quot;"
+            oldString="layout_marginRight"
+            replacement="layout_marginEnd"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/call_card.xml"
+            line="152"
+            column="13"
+            startOffset="6736"
+            endLine="152"
+            endColumn="39"
+            endOffset="6762"/>
+        <map>
+            <entry
+                name="applies"
+                int="10"/>
+        </map>
+    </incident>
+
+    <incident
+        id="RtlHardcoded"
+        severity="warning"
+        message="Use &quot;`start`&quot; instead of &quot;`left`&quot; to ensure correct behavior in right-to-left locales">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/call_card.xml"
+            line="162"
+            column="32"
+            startOffset="7210"
+            endLine="162"
+            endColumn="36"
+            endOffset="7214"/>
+        <map>
+            <entry
+                name="applies"
+                int="2"/>
+        </map>
+    </incident>
+
+    <incident
+        id="RtlHardcoded"
+        severity="warning"
+        message="Consider adding `android:layout_marginEnd=&quot;6dip&quot;` to better support right-to-left layouts">
+        <fix-attribute
+            description="Add android:layout_marginEnd=&quot;6dip&quot;"
+            namespace="http://schemas.android.com/apk/res/android"
+            attribute="layout_marginEnd"
+            value="6dip"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/call_card.xml"
+            line="169"
+            column="15"
+            startOffset="7503"
+            endLine="169"
+            endColumn="41"
+            endOffset="7529"/>
+        <map>
+            <entry
+                name="applies"
+                int="4"/>
+        </map>
+    </incident>
+
+    <incident
+        id="RtlHardcoded"
+        severity="warning"
+        message="Consider replacing `android:layout_marginRight` with `android:layout_marginEnd=&quot;6dip&quot;` to better support right-to-left layouts">
+        <fix-replace
+            description="Replace with android:layout_marginEnd=&quot;6dip&quot;"
+            oldString="layout_marginRight"
+            replacement="layout_marginEnd"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/call_card.xml"
+            line="169"
+            column="15"
+            startOffset="7503"
+            endLine="169"
+            endColumn="41"
+            endOffset="7529"/>
+        <map>
+            <entry
+                name="applies"
+                int="10"/>
+        </map>
+    </incident>
+
+    <incident
+        id="RtlHardcoded"
+        severity="warning"
+        message="Consider adding `android:layout_marginStart=&quot;6dip&quot;` to better support right-to-left layouts">
+        <fix-attribute
+            description="Add android:layout_marginStart=&quot;6dip&quot;"
+            namespace="http://schemas.android.com/apk/res/android"
+            attribute="layout_marginStart"
+            value="6dip"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/call_card.xml"
+            line="186"
+            column="13"
+            startOffset="8195"
+            endLine="186"
+            endColumn="38"
+            endOffset="8220"/>
+        <map>
+            <entry
+                name="applies"
+                int="4"/>
+        </map>
+    </incident>
+
+    <incident
+        id="RtlHardcoded"
+        severity="warning"
+        message="Consider replacing `android:layout_marginLeft` with `android:layout_marginStart=&quot;6dip&quot;` to better support right-to-left layouts">
+        <fix-replace
+            description="Replace with android:layout_marginStart=&quot;6dip&quot;"
+            oldString="layout_marginLeft"
+            replacement="layout_marginStart"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/call_card.xml"
+            line="186"
+            column="13"
+            startOffset="8195"
+            endLine="186"
+            endColumn="38"
+            endOffset="8220"/>
+        <map>
+            <entry
+                name="applies"
+                int="10"/>
+        </map>
+    </incident>
+
+    <incident
+        id="RtlHardcoded"
+        severity="warning"
+        message="Consider adding `android:layout_marginEnd=&quot;8dip&quot;` to better support right-to-left layouts">
+        <fix-attribute
+            description="Add android:layout_marginEnd=&quot;8dip&quot;"
+            namespace="http://schemas.android.com/apk/res/android"
+            attribute="layout_marginEnd"
+            value="8dip"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/call_card.xml"
+            line="187"
+            column="13"
+            startOffset="8240"
+            endLine="187"
+            endColumn="39"
+            endOffset="8266"/>
+        <map>
+            <entry
+                name="applies"
+                int="4"/>
+        </map>
+    </incident>
+
+    <incident
+        id="RtlHardcoded"
+        severity="warning"
+        message="Consider replacing `android:layout_marginRight` with `android:layout_marginEnd=&quot;8dip&quot;` to better support right-to-left layouts">
+        <fix-replace
+            description="Replace with android:layout_marginEnd=&quot;8dip&quot;"
+            oldString="layout_marginRight"
+            replacement="layout_marginEnd"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/call_card.xml"
+            line="187"
+            column="13"
+            startOffset="8240"
+            endLine="187"
+            endColumn="39"
+            endOffset="8266"/>
+        <map>
+            <entry
+                name="applies"
+                int="10"/>
+        </map>
+    </incident>
+
+    <incident
+        id="RtlHardcoded"
+        severity="warning"
+        message="Use &quot;`start`&quot; instead of &quot;`left`&quot; to ensure correct behavior in right-to-left locales">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/call_card.xml"
+            line="197"
+            column="32"
+            startOffset="8721"
+            endLine="197"
+            endColumn="36"
+            endOffset="8725"/>
+        <map>
+            <entry
+                name="applies"
+                int="2"/>
+        </map>
+    </incident>
+
+    <incident
+        id="RtlHardcoded"
+        severity="warning"
+        message="Consider adding `android:layout_marginEnd=&quot;6dip&quot;` to better support right-to-left layouts">
+        <fix-attribute
+            description="Add android:layout_marginEnd=&quot;6dip&quot;"
+            namespace="http://schemas.android.com/apk/res/android"
+            attribute="layout_marginEnd"
+            value="6dip"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/call_card.xml"
+            line="204"
+            column="15"
+            startOffset="9012"
+            endLine="204"
+            endColumn="41"
+            endOffset="9038"/>
+        <map>
+            <entry
+                name="applies"
+                int="4"/>
+        </map>
+    </incident>
+
+    <incident
+        id="RtlHardcoded"
+        severity="warning"
+        message="Consider replacing `android:layout_marginRight` with `android:layout_marginEnd=&quot;6dip&quot;` to better support right-to-left layouts">
+        <fix-replace
+            description="Replace with android:layout_marginEnd=&quot;6dip&quot;"
+            oldString="layout_marginRight"
+            replacement="layout_marginEnd"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/call_card.xml"
+            line="204"
+            column="15"
+            startOffset="9012"
+            endLine="204"
+            endColumn="41"
+            endOffset="9038"/>
+        <map>
+            <entry
+                name="applies"
+                int="10"/>
+        </map>
+    </incident>
+
+    <incident
+        id="RtlSymmetry"
+        severity="warning"
+        message="When you define `paddingRight` you should probably also define `paddingLeft` for right-to-left symmetry">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/call_card_person_info.xml"
+            line="79"
+            column="19"
+            startOffset="3711"
+            endLine="79"
+            endColumn="39"
+            endOffset="3731"/>
+        <map>
+            <entry
+                name="applies"
+                int="2"/>
+        </map>
+    </incident>
+
+    <incident
+        id="RtlHardcoded"
+        severity="warning"
+        message="Consider adding `android:paddingEnd=&quot;6dip&quot;` to better support right-to-left layouts">
+        <fix-attribute
+            description="Add android:paddingEnd=&quot;6dip&quot;"
+            namespace="http://schemas.android.com/apk/res/android"
+            attribute="paddingEnd"
+            value="6dip"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/call_card_person_info.xml"
+            line="79"
+            column="19"
+            startOffset="3711"
+            endLine="79"
+            endColumn="39"
+            endOffset="3731"/>
+        <map>
+            <entry
+                name="applies"
+                int="4"/>
+        </map>
+    </incident>
+
+    <incident
+        id="RtlHardcoded"
+        severity="warning"
+        message="Consider replacing `android:paddingRight` with `android:paddingEnd=&quot;6dip&quot;` to better support right-to-left layouts">
+        <fix-replace
+            description="Replace with android:paddingEnd=&quot;6dip&quot;"
+            oldString="paddingRight"
+            replacement="paddingEnd"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/call_card_person_info.xml"
+            line="79"
+            column="19"
+            startOffset="3711"
+            endLine="79"
+            endColumn="39"
+            endOffset="3731"/>
+        <map>
+            <entry
+                name="applies"
+                int="10"/>
+        </map>
+    </incident>
+
+    <incident
+        id="Deprecated"
+        severity="warning"
+        message="`android:password` is deprecated: Use `inputType` instead">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/create_dialog.xml"
+            line="91"
+            column="3"
+            startOffset="3382"
+            endLine="91"
+            endColumn="26"
+            endOffset="3405"/>
+        <map>
+            <condition minGE="fffffffffffffffc"/>
+        </map>
+    </incident>
+
+    <incident
+        id="Deprecated"
+        severity="warning"
+        message="`android:password` is deprecated: Use `inputType` instead">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/create_dialog.xml"
+            line="106"
+            column="3"
+            startOffset="3887"
+            endLine="106"
+            endColumn="26"
+            endOffset="3910"/>
+        <map>
+            <condition minGE="fffffffffffffffc"/>
+        </map>
+    </incident>
+
+    <incident
+        id="RtlHardcoded"
+        severity="warning"
+        message="Use &quot;`start`&quot; instead of &quot;`left`&quot; to ensure correct behavior in right-to-left locales">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/create_dialog.xml"
+            line="118"
+            column="57"
+            startOffset="4471"
+            endLine="118"
+            endColumn="61"
+            endOffset="4475"/>
+        <map>
+            <entry
+                name="applies"
+                int="2"/>
+        </map>
+    </incident>
+
+    <incident
+        id="RtlHardcoded"
+        severity="warning"
+        message="Use &quot;`end`&quot; instead of &quot;`right`&quot; to ensure correct behavior in right-to-left locales">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/create_dialog.xml"
+            line="127"
+            column="57"
+            startOffset="4915"
+            endLine="127"
+            endColumn="62"
+            endOffset="4920"/>
+        <map>
+            <entry
+                name="applies"
+                int="2"/>
+        </map>
+    </incident>
+
+    <incident
+        id="LabelFor"
+        severity="warning"
+        message="">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/create_dialog.xml"
+            line="40"
+            column="6"
+            startOffset="1613"
+            endLine="40"
+            endColumn="14"
+            endOffset="1621"/>
+        <map>
+            <entry
+                name="hint"
+                boolean="false"/>
+            <entry
+                name="label"
+                boolean="false"/>
+        </map>
+    </incident>
+
+    <incident
+        id="LabelFor"
+        severity="warning"
+        message="">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/create_dialog.xml"
+            line="90"
+            column="6"
+            startOffset="3342"
+            endLine="90"
+            endColumn="14"
+            endOffset="3350"/>
+        <map>
+            <entry
+                name="hint"
+                boolean="false"/>
+            <entry
+                name="label"
+                boolean="false"/>
+        </map>
+    </incident>
+
+    <incident
+        id="LabelFor"
+        severity="warning"
+        message="">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/create_dialog.xml"
+            line="105"
+            column="6"
+            startOffset="3847"
+            endLine="105"
+            endColumn="14"
+            endOffset="3855"/>
+        <map>
+            <entry
+                name="hint"
+                boolean="false"/>
+            <entry
+                name="label"
+                boolean="false"/>
+        </map>
+    </incident>
+
+    <incident
+        id="RtlHardcoded"
+        severity="warning"
+        message="Consider adding `android:layout_marginStart=&quot;12dp&quot;` to better support right-to-left layouts">
+        <fix-attribute
+            description="Add android:layout_marginStart=&quot;12dp&quot;"
+            namespace="http://schemas.android.com/apk/res/android"
+            attribute="layout_marginStart"
+            value="12dp"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/incall.xml"
+            line="111"
+            column="152"
+            startOffset="5729"
+            endLine="111"
+            endColumn="177"
+            endOffset="5754"/>
+        <map>
+            <entry
+                name="applies"
+                int="4"/>
+        </map>
+    </incident>
+
+    <incident
+        id="RtlHardcoded"
+        severity="warning"
+        message="Consider replacing `android:layout_marginLeft` with `android:layout_marginStart=&quot;12dp&quot;` to better support right-to-left layouts">
+        <fix-replace
+            description="Replace with android:layout_marginStart=&quot;12dp&quot;"
+            oldString="layout_marginLeft"
+            replacement="layout_marginStart"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/incall.xml"
+            line="111"
+            column="152"
+            startOffset="5729"
+            endLine="111"
+            endColumn="177"
+            endOffset="5754"/>
+        <map>
+            <entry
+                name="applies"
+                int="10"/>
+        </map>
+    </incident>
+
+    <incident
+        id="RtlHardcoded"
+        severity="warning"
+        message="Consider adding `android:layout_marginStart=&quot;12dp&quot;` to better support right-to-left layouts">
+        <fix-attribute
+            description="Add android:layout_marginStart=&quot;12dp&quot;"
+            namespace="http://schemas.android.com/apk/res/android"
+            attribute="layout_marginStart"
+            value="12dp"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/incall.xml"
+            line="116"
+            column="152"
+            startOffset="6418"
+            endLine="116"
+            endColumn="177"
+            endOffset="6443"/>
+        <map>
+            <entry
+                name="applies"
+                int="4"/>
+        </map>
+    </incident>
+
+    <incident
+        id="RtlHardcoded"
+        severity="warning"
+        message="Consider replacing `android:layout_marginLeft` with `android:layout_marginStart=&quot;12dp&quot;` to better support right-to-left layouts">
+        <fix-replace
+            description="Replace with android:layout_marginStart=&quot;12dp&quot;"
+            oldString="layout_marginLeft"
+            replacement="layout_marginStart"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/incall.xml"
+            line="116"
+            column="152"
+            startOffset="6418"
+            endLine="116"
+            endColumn="177"
+            endOffset="6443"/>
+        <map>
+            <entry
+                name="applies"
+                int="10"/>
+        </map>
+    </incident>
+
+    <incident
+        id="RtlHardcoded"
+        severity="warning"
+        message="Consider adding `android:layout_marginStart=&quot;12dp&quot;` to better support right-to-left layouts">
+        <fix-attribute
+            description="Add android:layout_marginStart=&quot;12dp&quot;"
+            namespace="http://schemas.android.com/apk/res/android"
+            attribute="layout_marginStart"
+            value="12dp"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/incall.xml"
+            line="121"
+            column="152"
+            startOffset="7119"
+            endLine="121"
+            endColumn="177"
+            endOffset="7144"/>
+        <map>
+            <entry
+                name="applies"
+                int="4"/>
+        </map>
+    </incident>
+
+    <incident
+        id="RtlHardcoded"
+        severity="warning"
+        message="Consider replacing `android:layout_marginLeft` with `android:layout_marginStart=&quot;12dp&quot;` to better support right-to-left layouts">
+        <fix-replace
+            description="Replace with android:layout_marginStart=&quot;12dp&quot;"
+            oldString="layout_marginLeft"
+            replacement="layout_marginStart"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/incall.xml"
+            line="121"
+            column="152"
+            startOffset="7119"
+            endLine="121"
+            endColumn="177"
+            endOffset="7144"/>
+        <map>
+            <entry
+                name="applies"
+                int="10"/>
+        </map>
+    </incident>
+
+    <incident
+        id="UnusedAttribute"
+        severity="warning"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="fffffffffff00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/incall.xml"
+            line="191"
+            column="17"
+            startOffset="10307"
+            endLine="191"
+            endColumn="40"
+            endOffset="10330"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="fffffffffff00000"/>
+            <entry
+                name="message"
+                string="Attribute `elevation` is only used in API level 21 and higher (current min is %1$s)"/>
+        </map>
+    </incident>
+
+    <incident
+        id="RtlHardcoded"
+        severity="warning"
+        message="Consider adding `android:layout_marginEnd=&quot;6dip&quot;` to better support right-to-left layouts">
+        <fix-attribute
+            description="Add android:layout_marginEnd=&quot;6dip&quot;"
+            namespace="http://schemas.android.com/apk/res/android"
+            attribute="layout_marginEnd"
+            value="6dip"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/ongoing_call_notification.xml"
+            line="33"
+            column="9"
+            startOffset="1338"
+            endLine="33"
+            endColumn="35"
+            endOffset="1364"/>
+        <map>
+            <entry
+                name="applies"
+                int="4"/>
+        </map>
+    </incident>
+
+    <incident
+        id="RtlHardcoded"
+        severity="warning"
+        message="Consider replacing `android:layout_marginRight` with `android:layout_marginEnd=&quot;6dip&quot;` to better support right-to-left layouts">
+        <fix-replace
+            description="Replace with android:layout_marginEnd=&quot;6dip&quot;"
+            oldString="layout_marginRight"
+            replacement="layout_marginEnd"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/ongoing_call_notification.xml"
+            line="33"
+            column="9"
+            startOffset="1338"
+            endLine="33"
+            endColumn="35"
+            endOffset="1364"/>
+        <map>
+            <entry
+                name="applies"
+                int="10"/>
+        </map>
+    </incident>
+
+    <incident
+        id="RtlSymmetry"
+        severity="warning"
+        message="When you define `paddingLeft` you should probably also define `paddingRight` for right-to-left symmetry">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/ongoing_call_notification.xml"
+            line="32"
+            column="9"
+            startOffset="1303"
+            endLine="32"
+            endColumn="28"
+            endOffset="1322"/>
+        <map>
+            <entry
+                name="applies"
+                int="2"/>
+        </map>
+    </incident>
+
+    <incident
+        id="RtlHardcoded"
+        severity="warning"
+        message="Consider adding `android:paddingStart=&quot;4dip&quot;` to better support right-to-left layouts">
+        <fix-attribute
+            description="Add android:paddingStart=&quot;4dip&quot;"
+            namespace="http://schemas.android.com/apk/res/android"
+            attribute="paddingStart"
+            value="4dip"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/ongoing_call_notification.xml"
+            line="32"
+            column="9"
+            startOffset="1303"
+            endLine="32"
+            endColumn="28"
+            endOffset="1322"/>
+        <map>
+            <entry
+                name="applies"
+                int="4"/>
+        </map>
+    </incident>
+
+    <incident
+        id="RtlHardcoded"
+        severity="warning"
+        message="Consider replacing `android:paddingLeft` with `android:paddingStart=&quot;4dip&quot;` to better support right-to-left layouts">
+        <fix-replace
+            description="Replace with android:paddingStart=&quot;4dip&quot;"
+            oldString="paddingLeft"
+            replacement="paddingStart"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/ongoing_call_notification.xml"
+            line="32"
+            column="9"
+            startOffset="1303"
+            endLine="32"
+            endColumn="28"
+            endOffset="1322"/>
+        <map>
+            <entry
+                name="applies"
+                int="10"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="fffffffffff00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/sipdroid.xml"
+            line="13"
+            column="9"
+            startOffset="514"
+            endLine="13"
+            endColumn="78"
+            endOffset="583"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="fffffffffff00000"/>
+            <entry
+                name="message"
+                string="`?android:attr/selectableItemBackgroundBorderless` requires API level 21 (current min is %1$s)"/>
+        </map>
+    </incident>
+
+    <incident
+        id="RtlHardcoded"
+        severity="warning"
+        message="Consider adding `android:layout_alignParentEnd=&quot;true&quot;` to better support right-to-left layouts">
+        <fix-attribute
+            description="Add android:layout_alignParentEnd=&quot;true&quot;"
+            namespace="http://schemas.android.com/apk/res/android"
+            attribute="layout_alignParentEnd"
+            value="true"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/sipdroid.xml"
+            line="17"
+            column="9"
+            startOffset="700"
+            endLine="17"
+            endColumn="40"
+            endOffset="731"/>
+        <map>
+            <entry
+                name="applies"
+                int="4"/>
+        </map>
+    </incident>
+
+    <incident
+        id="RtlHardcoded"
+        severity="warning"
+        message="Consider replacing `android:layout_alignParentRight` with `android:layout_alignParentEnd=&quot;true&quot;` to better support right-to-left layouts">
+        <fix-replace
+            description="Replace with android:layout_alignParentEnd=&quot;true&quot;"
+            oldString="layout_alignParentRight"
+            replacement="layout_alignParentEnd"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/sipdroid.xml"
+            line="17"
+            column="9"
+            startOffset="700"
+            endLine="17"
+            endColumn="40"
+            endOffset="731"/>
+        <map>
+            <entry
+                name="applies"
+                int="10"/>
+        </map>
+    </incident>
+
+    <incident
+        id="UnusedAttribute"
+        severity="warning"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="fffffffffff00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/sipdroid.xml"
+            line="117"
+            column="13"
+            startOffset="4806"
+            endLine="117"
+            endColumn="45"
+            endOffset="4838"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="fffffffffff00000"/>
+            <entry
+                name="message"
+                string="Attribute `backgroundTint` is only used in API level 21 and higher (current min is %1$s)"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="fffffffffff00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/sipdroid.xml"
+            line="138"
+            column="13"
+            startOffset="5517"
+            endLine="138"
+            endColumn="82"
+            endOffset="5586"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="fffffffffff00000"/>
+            <entry
+                name="message"
+                string="`?android:attr/selectableItemBackgroundBorderless` requires API level 21 (current min is %1$s)"/>
+        </map>
+    </incident>
+
+    <incident
+        id="LabelFor"
+        severity="warning"
+        message="">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout-finger/dtmf_display.xml"
+            line="25"
+            column="6"
+            startOffset="1011"
+            endLine="25"
+            endColumn="14"
+            endOffset="1019"/>
+        <map>
+            <entry
+                name="hint"
+                boolean="false"/>
+            <entry
+                name="label"
+                boolean="false"/>
+        </map>
+    </incident>
+
+    <incident
+        id="RtlHardcoded"
+        severity="warning"
+        message="Use &quot;`start`&quot; instead of &quot;`left`&quot; to ensure correct behavior in right-to-left locales">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout-land/call_card_person_info.xml"
+            line="48"
+            column="26"
+            startOffset="2230"
+            endLine="48"
+            endColumn="30"
+            endOffset="2234"/>
+        <map>
+            <entry
+                name="applies"
+                int="2"/>
+        </map>
+    </incident>
+
+    <incident
+        id="RtlHardcoded"
+        severity="warning"
+        message="Consider adding `android:layout_marginStart=&quot;4dip&quot;` to better support right-to-left layouts">
+        <fix-attribute
+            description="Add android:layout_marginStart=&quot;4dip&quot;"
+            namespace="http://schemas.android.com/apk/res/android"
+            attribute="layout_marginStart"
+            value="4dip"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout-land/call_card_person_info.xml"
+            line="51"
+            column="9"
+            startOffset="2333"
+            endLine="51"
+            endColumn="34"
+            endOffset="2358"/>
+        <map>
+            <entry
+                name="applies"
+                int="4"/>
+        </map>
+    </incident>
+
+    <incident
+        id="RtlHardcoded"
+        severity="warning"
+        message="Consider replacing `android:layout_marginLeft` with `android:layout_marginStart=&quot;4dip&quot;` to better support right-to-left layouts">
+        <fix-replace
+            description="Replace with android:layout_marginStart=&quot;4dip&quot;"
+            oldString="layout_marginLeft"
+            replacement="layout_marginStart"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout-land/call_card_person_info.xml"
+            line="51"
+            column="9"
+            startOffset="2333"
+            endLine="51"
+            endColumn="34"
+            endOffset="2358"/>
+        <map>
+            <entry
+                name="applies"
+                int="10"/>
+        </map>
+    </incident>
+
+    <incident
+        id="RtlSymmetry"
+        severity="warning"
+        message="When you define `paddingRight` you should probably also define `paddingLeft` for right-to-left symmetry">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout-land/call_card_person_info.xml"
+            line="77"
+            column="23"
+            startOffset="3668"
+            endLine="77"
+            endColumn="43"
+            endOffset="3688"/>
+        <map>
+            <entry
+                name="applies"
+                int="2"/>
+        </map>
+    </incident>
+
+    <incident
+        id="RtlHardcoded"
+        severity="warning"
+        message="Consider adding `android:paddingEnd=&quot;6dip&quot;` to better support right-to-left layouts">
+        <fix-attribute
+            description="Add android:paddingEnd=&quot;6dip&quot;"
+            namespace="http://schemas.android.com/apk/res/android"
+            attribute="paddingEnd"
+            value="6dip"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout-land/call_card_person_info.xml"
+            line="77"
+            column="23"
+            startOffset="3668"
+            endLine="77"
+            endColumn="43"
+            endOffset="3688"/>
+        <map>
+            <entry
+                name="applies"
+                int="4"/>
+        </map>
+    </incident>
+
+    <incident
+        id="RtlHardcoded"
+        severity="warning"
+        message="Consider replacing `android:paddingRight` with `android:paddingEnd=&quot;6dip&quot;` to better support right-to-left layouts">
+        <fix-replace
+            description="Replace with android:paddingEnd=&quot;6dip&quot;"
+            oldString="paddingRight"
+            replacement="paddingEnd"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout-land/call_card_person_info.xml"
+            line="77"
+            column="23"
+            startOffset="3668"
+            endLine="77"
+            endColumn="43"
+            endOffset="3688"/>
+        <map>
+            <entry
+                name="applies"
+                int="10"/>
+        </map>
+    </incident>
+
+    <incident
+        id="Deprecated"
+        severity="warning"
+        message="`android:password` is deprecated: Use `inputType` instead">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/xml/preferences.xml"
+            line="20"
+            column="5"
+            startOffset="622"
+            endLine="20"
+            endColumn="28"
+            endOffset="645"/>
+        <map>
+            <condition minGE="fffffffffffffffc"/>
+        </map>
+    </incident>
+
+    <incident
+        id="Deprecated"
+        severity="warning"
+        message="`android:password` is deprecated: Use `inputType` instead">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/xml/preferences.xml"
+            line="76"
+            column="5"
+            startOffset="2570"
+            endLine="76"
+            endColumn="28"
+            endOffset="2593"/>
+        <map>
+            <condition minGE="fffffffffffffffc"/>
+        </map>
+    </incident>
+
+    <incident
+        id="ObsoleteSdkInt"
+        severity="warning"
+        message="Unnecessary; SDK_INT is always >= 24">
+        <fix-replace
+            description="Delete @TargetApi"
+            replacement="">
+            <range
+                file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/codecs/CodecBase.java"
+                startOffset="2687"
+                endOffset="2701"/>
+        </fix-replace>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/codecs/CodecBase.java"
+            line="101"
+            column="2"
+            startOffset="2687"
+            endLine="101"
+            endColumn="16"
+            endOffset="2701"/>
+        <map>
+            <condition minGE="ffffffffff800000"/>
+        </map>
+    </incident>
+
+    <incident
+        id="ObsoleteSdkInt"
+        severity="warning"
+        message="Unnecessary; SDK_INT is always >= 23">
+        <fix-replace
+            description="Delete @TargetApi"
+            replacement="">
+            <range
+                file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/media/RtpStreamReceiver.java"
+                startOffset="6079"
+                endOffset="6093"/>
+        </fix-replace>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/media/RtpStreamReceiver.java"
+            line="214"
+            column="2"
+            startOffset="6079"
+            endLine="214"
+            endColumn="16"
+            endOffset="6093"/>
+        <map>
+            <condition minGE="ffffffffffc00000"/>
+        </map>
+    </incident>
+
+    <incident
+        id="ObsoleteSdkInt"
+        severity="warning"
+        message="Unnecessary; SDK_INT is always >= 23">
+        <fix-replace
+            description="Delete @TargetApi"
+            replacement="">
+            <range
+                file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/media/RtpStreamSender.java"
+                startOffset="5996"
+                endOffset="6010"/>
+        </fix-replace>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/media/RtpStreamSender.java"
+            line="213"
+            column="2"
+            startOffset="5996"
+            endLine="213"
+            endColumn="16"
+            endOffset="6010"/>
+        <map>
+            <condition minGE="ffffffffffc00000"/>
+        </map>
+    </incident>
+
+    <incident
+        id="ObsoleteSdkInt"
+        severity="warning"
+        message="Unnecessary; SDK_INT is always >= 23">
+        <fix-replace
+            description="Delete @TargetApi"
+            replacement="">
+            <range
+                file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/phone/Connection.java"
+                startOffset="4856"
+                endOffset="4870"/>
+        </fix-replace>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/phone/Connection.java"
+            line="171"
+            column="5"
+            startOffset="4856"
+            endLine="171"
+            endColumn="19"
+            endOffset="4870"/>
+        <map>
+            <condition minGE="ffffffffffc00000"/>
+        </map>
+    </incident>
+
+    <incident
+        id="WifiManagerLeak"
+        severity="error"
+        message="The WIFI_SERVICE must be looked up on the Application context or memory will leak on devices &lt; Android N. Try changing `getUIContext()` to `getUIContext().getApplicationContext()`">
+        <fix-replace
+            description="Add getApplicationContext()"
+            oldString="getUIContext()"
+            replacement="getUIContext().getApplicationContext()"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/SipdroidEngine.java"
+            line="102"
+            column="35"
+            startOffset="4420"
+            endLine="102"
+            endColumn="88"
+            endOffset="4473"/>
+        <map>
+            <condition minLT="ffffffffff800000"/>
+        </map>
+    </incident>
+
+    <incident
+        id="QueryPermissionsNeeded"
+        severity="warning"
+        message="Consider adding a `&lt;queries>` declaration to your manifest when calling this \&#xA;method; see https://g.co/dev/packagevisibility for details">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/CreateAccount.java"
+            line="97"
+            column="53"
+            startOffset="3865"
+            endLine="97"
+            endColumn="74"
+            endOffset="3886"/>
+        <map>
+            <entry
+                name="queryAll"
+                boolean="false"/>
+        </map>
+    </incident>
+
+    <incident
+        id="ObsoleteSdkInt"
+        severity="warning"
+        message="Unnecessary; SDK_INT is always >= 26">
+        <fix-replace
+            description="Delete @TargetApi"
+            replacement="">
+            <range
+                file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/OneShotAlarm2.java"
+                startOffset="1222"
+                endOffset="1236"/>
+        </fix-replace>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/OneShotAlarm2.java"
+            line="35"
+            column="5"
+            startOffset="1222"
+            endLine="35"
+            endColumn="19"
+            endOffset="1236"/>
+        <map>
+            <condition minGE="fffffffffe000000"/>
+        </map>
+    </incident>
+
+    <incident
+        id="ObsoleteSdkInt"
+        severity="warning"
+        message="Unnecessary; SDK_INT is always >= 26">
+        <fix-replace
+            description="Delete @TargetApi"
+            replacement="">
+            <range
+                file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
+                startOffset="7538"
+                endOffset="7552"/>
+        </fix-replace>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
+            line="178"
+            column="3"
+            startOffset="7538"
+            endLine="178"
+            endColumn="17"
+            endOffset="7552"/>
+        <map>
+            <condition minGE="fffffffffe000000"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
+            line="326"
+            column="24"
+            startOffset="13496"
+            endLine="326"
+            endColumn="39"
+            endOffset="13511"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Call requires API level 23 (current min is %1$s): `android.telecom.Connection#setDisconnected`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
+            line="326"
+            column="40"
+            startOffset="13512"
+            endLine="326"
+            endColumn="75"
+            endOffset="13547"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Call requires API level 23 (current min is %1$s): `new android.telecom.DisconnectCause`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="InlinedApi"
+        severity="warning"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
+            line="326"
+            column="76"
+            startOffset="13548"
+            endLine="326"
+            endColumn="113"
+            endOffset="13585"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Field requires API level 23 (current min is %1$s): `android.telecom.DisconnectCause#LOCAL`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
+            line="327"
+            column="24"
+            startOffset="13612"
+            endLine="327"
+            endColumn="31"
+            endOffset="13619"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Call requires API level 23 (current min is %1$s): `android.telecom.Connection#destroy`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
+            line="342"
+            column="24"
+            startOffset="14047"
+            endLine="342"
+            endColumn="33"
+            endOffset="14056"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Call requires API level 23 (current min is %1$s): `android.telecom.Connection#setActive`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
+            line="349"
+            column="24"
+            startOffset="14336"
+            endLine="349"
+            endColumn="33"
+            endOffset="14345"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Call requires API level 23 (current min is %1$s): `android.telecom.Connection#setOnHold`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
+            line="354"
+            column="23"
+            startOffset="14432"
+            endLine="354"
+            endColumn="43"
+            endOffset="14452"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Call requires API level 23 (current min is %1$s): `android.telecom.Connection#setRingbackRequested`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="ObsoleteSdkInt"
+        severity="warning"
+        message="Unnecessary; SDK_INT is always >= 26">
+        <fix-replace
+            description="Delete @TargetApi"
+            replacement="">
+            <range
+                file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
+                startOffset="15115"
+                endOffset="15129"/>
+        </fix-replace>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
+            line="388"
+            column="3"
+            startOffset="15115"
+            endLine="388"
+            endColumn="17"
+            endOffset="15129"/>
+        <map>
+            <condition minGE="fffffffffe000000"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NotificationPermission"
+        severity="error"
+        message="When targeting Android 13 or higher, posting a permission requires holding the `POST_NOTIFICATIONS` permission">
+        <fix-data missing="android.permission.POST_NOTIFICATIONS"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
+            line="547"
+            column="6"
+            startOffset="25446"
+            endLine="547"
+            endColumn="57"
+            endOffset="25497"/>
+    </incident>
+
+    <incident
+        id="ObsoleteSdkInt"
+        severity="warning"
+        message="Unnecessary; SDK_INT is always >= 23">
+        <fix-replace
+            description="Delete @TargetApi"
+            replacement="">
+            <range
+                file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
+                startOffset="28302"
+                endOffset="28316"/>
+        </fix-replace>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
+            line="624"
+            column="3"
+            startOffset="28302"
+            endLine="624"
+            endColumn="17"
+            endOffset="28316"/>
+        <map>
+            <condition minGE="ffffffffffc00000"/>
+        </map>
+    </incident>
+
+    <incident
+        id="QueryPermissionsNeeded"
+        severity="warning"
+        message="Consider adding a `&lt;queries>` declaration to your manifest when calling this \&#xA;method; see https://g.co/dev/packagevisibility for details">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
+            line="684"
+            column="35"
+            startOffset="30708"
+            endLine="684"
+            endColumn="54"
+            endOffset="30727"/>
+        <map>
+            <entry
+                name="queryAll"
+                boolean="false"/>
+        </map>
+    </incident>
+
+    <incident
+        id="WifiManagerPotentialLeak"
+        severity="warning"
+        message="The WIFI_SERVICE must be looked up on the Application context or memory will leak on devices &lt; Android N. Try changing `mContext` to `mContext.getApplicationContext()`">
+        <fix-replace
+            description="Add getApplicationContext()"
+            oldString="mContext"
+            replacement="mContext.getApplicationContext()"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
+            line="743"
+            column="41"
+            startOffset="32539"
+            endLine="743"
+            endColumn="88"
+            endOffset="32586"/>
+        <map>
+            <condition minLT="ffffffffff800000"/>
+        </map>
+    </incident>
+
+    <incident
+        id="ObsoleteSdkInt"
+        severity="warning"
+        message="Unnecessary; SDK_INT is always >= 31">
+        <fix-replace
+            description="Delete @TargetApi"
+            replacement="">
+            <range
+                file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
+                startOffset="35000"
+                endOffset="35014"/>
+        </fix-replace>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
+            line="795"
+            column="3"
+            startOffset="35000"
+            endLine="795"
+            endColumn="17"
+            endOffset="35014"/>
+        <map>
+            <condition minGE="ffffffffc0000000"/>
+        </map>
+    </incident>
+
+    <incident
+        id="ObsoleteSdkInt"
+        severity="warning"
+        message="Unnecessary; SDK_INT is always >= 24">
+        <fix-replace
+            description="Delete @TargetApi"
+            replacement="">
+            <range
+                file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
+                startOffset="35276"
+                endOffset="35290"/>
+        </fix-replace>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Receiver.java"
+            line="805"
+            column="3"
+            startOffset="35276"
+            endLine="805"
+            endColumn="17"
+            endOffset="35290"/>
+        <map>
+            <condition minGE="ffffffffff800000"/>
+        </map>
+    </incident>
+
+    <incident
+        id="ObsoleteSdkInt"
+        severity="warning"
+        message="Unnecessary; SDK_INT is always >= 9">
+        <fix-replace
+            description="Delete @TargetApi"
+            replacement="">
+            <range
+                file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/ReceiverNew.java"
+                startOffset="1028"
+                endOffset="1071"/>
+        </fix-replace>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/ReceiverNew.java"
+            line="28"
+            column="1"
+            startOffset="1028"
+            endLine="28"
+            endColumn="44"
+            endOffset="1071"/>
+        <map>
+            <condition minGE="ffffffffffffff00"/>
+        </map>
+    </incident>
+
+    <incident
+        id="InlinedApi"
+        severity="warning"
+        message="">
+        <fix-data minSdk="fffffffffe000000" requiresApi="ffffffff00000000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/RegisterService.java"
+            line="66"
+            column="65"
+            startOffset="2467"
+            endLine="66"
+            endColumn="82"
+            endOffset="2484"/>
+        <map>
+            <api-levels id="minSdk"
+                value="fffffffffe000000"/>
+            <api-levels id="requiresApi"
+                value="ffffffff00000000"/>
+            <entry
+                name="message"
+                string="Field requires API level 33 (current min is %1$s): `android.content.Context#RECEIVER_EXPORTED`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="UnspecifiedRegisterReceiverFlag"
+        severity="error"
+        message="`m_receiver = new Receiver()` \&#xA;is missing `RECEIVER_EXPORTED` or `RECEIVER_NOT_EXPORTED` flag for unprotected \&#xA;broadcasts registered for vpn.connectivity">
+        <fix-alternatives>
+            <fix-replace
+                description="Add RECEIVER_NOT_EXPORTED (preferred)"
+                oldString="_lint_insert_end_"
+                replacement=", android.content.Context.RECEIVER_NOT_EXPORTED"
+                shortenNames="true"
+                reformat="value">
+                <range
+                    file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/RegisterService.java"
+                    startOffset="2547"
+                    endOffset="2559"/>
+            </fix-replace>
+            <fix-replace
+                description="Add RECEIVER_EXPORTED"
+                oldString="_lint_insert_end_"
+                replacement=", android.content.Context.RECEIVER_EXPORTED"
+                shortenNames="true"
+                reformat="value">
+                <range
+                    file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/RegisterService.java"
+                    startOffset="2547"
+                    endOffset="2559"/>
+            </fix-replace>
+        </fix-alternatives>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/RegisterService.java"
+            line="68"
+            column="5"
+            startOffset="2501"
+            endLine="68"
+            endColumn="64"
+            endOffset="2560"/>
+        <map>
+            <entry
+                name="hasUnprotected"
+                boolean="true"/>
+        </map>
+    </incident>
+
+    <incident
+        id="ObsoleteSdkInt"
+        severity="warning"
+        message="Unnecessary; SDK_INT is always >= 23">
+        <fix-replace
+            description="Delete @TargetApi"
+            replacement="">
+            <range
+                file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Settings.java"
+                startOffset="13918"
+                endOffset="13932"/>
+        </fix-replace>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Settings.java"
+            line="319"
+            column="5"
+            startOffset="13918"
+            endLine="319"
+            endColumn="19"
+            endOffset="13932"/>
+        <map>
+            <condition minGE="ffffffffffc00000"/>
+        </map>
+    </incident>
+
+    <incident
+        id="ObsoleteSdkInt"
+        severity="warning"
+        message="Unnecessary; SDK_INT is always >= 23">
+        <fix-replace
+            description="Delete @TargetApi"
+            replacement="">
+            <range
+                file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Settings.java"
+                startOffset="19668"
+                endOffset="19682"/>
+        </fix-replace>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/Settings.java"
+            line="480"
+            column="5"
+            startOffset="19668"
+            endLine="480"
+            endColumn="19"
+            endOffset="19682"/>
+        <map>
+            <condition minGE="ffffffffffc00000"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnection.java"
+            line="7"
+            column="36"
+            startOffset="168"
+            endLine="7"
+            endColumn="46"
+            endOffset="178"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Class requires API level 23 (current min is %1$s): `android.telecom.Connection`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnection.java"
+            line="11"
+            column="9"
+            startOffset="274"
+            endLine="11"
+            endColumn="14"
+            endOffset="279"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Call requires API level 23 (current min is %1$s): `new android.telecom.Connection`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnection.java"
+            line="12"
+            column="9"
+            startOffset="291"
+            endLine="12"
+            endColumn="27"
+            endOffset="309"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Call requires API level 23 (current min is %1$s): `android.telecom.Connection#setAudioModeIsVoip`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnection.java"
+            line="22"
+            column="9"
+            startOffset="554"
+            endLine="22"
+            endColumn="18"
+            endOffset="563"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Call requires API level 23 (current min is %1$s): `android.telecom.Connection#setActive`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnection.java"
+            line="32"
+            column="9"
+            startOffset="804"
+            endLine="32"
+            endColumn="24"
+            endOffset="819"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Call requires API level 23 (current min is %1$s): `android.telecom.Connection#setDisconnected`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnection.java"
+            line="32"
+            column="25"
+            startOffset="820"
+            endLine="32"
+            endColumn="44"
+            endOffset="839"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Call requires API level 23 (current min is %1$s): `new android.telecom.DisconnectCause`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="InlinedApi"
+        severity="warning"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnection.java"
+            line="32"
+            column="45"
+            startOffset="840"
+            endLine="32"
+            endColumn="69"
+            endOffset="864"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Field requires API level 23 (current min is %1$s): `android.telecom.DisconnectCause#REJECTED`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnection.java"
+            line="33"
+            column="9"
+            startOffset="876"
+            endLine="33"
+            endColumn="16"
+            endOffset="883"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Call requires API level 23 (current min is %1$s): `android.telecom.Connection#destroy`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnection.java"
+            line="43"
+            column="9"
+            startOffset="1201"
+            endLine="43"
+            endColumn="24"
+            endOffset="1216"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Call requires API level 23 (current min is %1$s): `android.telecom.Connection#setDisconnected`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnection.java"
+            line="43"
+            column="25"
+            startOffset="1217"
+            endLine="43"
+            endColumn="44"
+            endOffset="1236"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Call requires API level 23 (current min is %1$s): `new android.telecom.DisconnectCause`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="InlinedApi"
+        severity="warning"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnection.java"
+            line="43"
+            column="45"
+            startOffset="1237"
+            endLine="43"
+            endColumn="66"
+            endOffset="1258"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Field requires API level 23 (current min is %1$s): `android.telecom.DisconnectCause#LOCAL`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnection.java"
+            line="44"
+            column="9"
+            startOffset="1270"
+            endLine="44"
+            endColumn="16"
+            endOffset="1277"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Call requires API level 23 (current min is %1$s): `android.telecom.Connection#destroy`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnection.java"
+            line="54"
+            column="9"
+            startOffset="1515"
+            endLine="54"
+            endColumn="24"
+            endOffset="1530"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Call requires API level 23 (current min is %1$s): `android.telecom.Connection#setDisconnected`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnection.java"
+            line="54"
+            column="25"
+            startOffset="1531"
+            endLine="54"
+            endColumn="44"
+            endOffset="1550"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Call requires API level 23 (current min is %1$s): `new android.telecom.DisconnectCause`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="InlinedApi"
+        severity="warning"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnection.java"
+            line="54"
+            column="45"
+            startOffset="1551"
+            endLine="54"
+            endColumn="69"
+            endOffset="1575"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Field requires API level 23 (current min is %1$s): `android.telecom.DisconnectCause#CANCELED`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnection.java"
+            line="55"
+            column="9"
+            startOffset="1587"
+            endLine="55"
+            endColumn="16"
+            endOffset="1594"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Call requires API level 23 (current min is %1$s): `android.telecom.Connection#destroy`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnection.java"
+            line="65"
+            column="9"
+            startOffset="1829"
+            endLine="65"
+            endColumn="18"
+            endOffset="1838"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Call requires API level 23 (current min is %1$s): `android.telecom.Connection#setOnHold`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnection.java"
+            line="75"
+            column="9"
+            startOffset="2079"
+            endLine="75"
+            endColumn="18"
+            endOffset="2088"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Call requires API level 23 (current min is %1$s): `android.telecom.Connection#setActive`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnectionService.java"
+            line="9"
+            column="43"
+            startOffset="262"
+            endLine="9"
+            endColumn="60"
+            endOffset="279"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Class requires API level 23 (current min is %1$s): `android.telecom.ConnectionService`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnectionService.java"
+            line="16"
+            column="20"
+            startOffset="612"
+            endLine="16"
+            endColumn="45"
+            endOffset="637"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Call requires API level 23 (current min is %1$s): `android.telecom.Connection#setConnectionCapabilities`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="InlinedApi"
+        severity="warning"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnectionService.java"
+            line="16"
+            column="46"
+            startOffset="638"
+            endLine="16"
+            endColumn="72"
+            endOffset="664"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Field requires API level 23 (current min is %1$s): `android.telecom.Connection#CAPABILITY_MUTE`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="InlinedApi"
+        severity="warning"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnectionService.java"
+            line="16"
+            column="75"
+            startOffset="667"
+            endLine="16"
+            endColumn="109"
+            endOffset="701"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Field requires API level 23 (current min is %1$s): `android.telecom.Connection#CAPABILITY_SUPPORT_HOLD`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="InlinedApi"
+        severity="warning"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnectionService.java"
+            line="16"
+            column="112"
+            startOffset="704"
+            endLine="16"
+            endColumn="138"
+            endOffset="730"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Field requires API level 23 (current min is %1$s): `android.telecom.Connection#CAPABILITY_HOLD`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnectionService.java"
+            line="17"
+            column="20"
+            startOffset="752"
+            endLine="17"
+            endColumn="30"
+            endOffset="762"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Call requires API level 23 (current min is %1$s): `android.telecom.Connection#setAddress`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnectionService.java"
+            line="17"
+            column="39"
+            startOffset="771"
+            endLine="17"
+            endColumn="49"
+            endOffset="781"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Call requires API level 23 (current min is %1$s): `android.telecom.ConnectionRequest#getAddress`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="InlinedApi"
+        severity="warning"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="fffffffffff00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnectionService.java"
+            line="17"
+            column="53"
+            startOffset="785"
+            endLine="17"
+            endColumn="104"
+            endOffset="836"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="fffffffffff00000"/>
+            <entry
+                name="message"
+                string="Field requires API level 21 (current min is %1$s): `android.telecom.TelecomManager#PRESENTATION_ALLOWED`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnectionService.java"
+            line="18"
+            column="20"
+            startOffset="858"
+            endLine="18"
+            endColumn="40"
+            endOffset="878"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Call requires API level 23 (current min is %1$s): `android.telecom.Connection#setCallerDisplayName`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="InlinedApi"
+        severity="warning"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="fffffffffff00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnectionService.java"
+            line="18"
+            column="58"
+            startOffset="896"
+            endLine="18"
+            endColumn="109"
+            endOffset="947"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="fffffffffff00000"/>
+            <entry
+                name="message"
+                string="Field requires API level 21 (current min is %1$s): `android.telecom.TelecomManager#PRESENTATION_ALLOWED`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnectionService.java"
+            line="19"
+            column="20"
+            startOffset="969"
+            endLine="19"
+            endColumn="30"
+            endOffset="979"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Call requires API level 23 (current min is %1$s): `android.telecom.Connection#setRinging`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnectionService.java"
+            line="28"
+            column="20"
+            startOffset="1332"
+            endLine="28"
+            endColumn="45"
+            endOffset="1357"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Call requires API level 23 (current min is %1$s): `android.telecom.Connection#setConnectionCapabilities`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="InlinedApi"
+        severity="warning"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnectionService.java"
+            line="28"
+            column="46"
+            startOffset="1358"
+            endLine="28"
+            endColumn="72"
+            endOffset="1384"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Field requires API level 23 (current min is %1$s): `android.telecom.Connection#CAPABILITY_MUTE`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="InlinedApi"
+        severity="warning"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnectionService.java"
+            line="28"
+            column="75"
+            startOffset="1387"
+            endLine="28"
+            endColumn="109"
+            endOffset="1421"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Field requires API level 23 (current min is %1$s): `android.telecom.Connection#CAPABILITY_SUPPORT_HOLD`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="InlinedApi"
+        severity="warning"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnectionService.java"
+            line="28"
+            column="112"
+            startOffset="1424"
+            endLine="28"
+            endColumn="138"
+            endOffset="1450"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Field requires API level 23 (current min is %1$s): `android.telecom.Connection#CAPABILITY_HOLD`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnectionService.java"
+            line="29"
+            column="20"
+            startOffset="1472"
+            endLine="29"
+            endColumn="30"
+            endOffset="1482"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Call requires API level 23 (current min is %1$s): `android.telecom.Connection#setAddress`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnectionService.java"
+            line="29"
+            column="39"
+            startOffset="1491"
+            endLine="29"
+            endColumn="49"
+            endOffset="1501"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Call requires API level 23 (current min is %1$s): `android.telecom.ConnectionRequest#getAddress`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="InlinedApi"
+        severity="warning"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="fffffffffff00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnectionService.java"
+            line="29"
+            column="53"
+            startOffset="1505"
+            endLine="29"
+            endColumn="104"
+            endOffset="1556"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="fffffffffff00000"/>
+            <entry
+                name="message"
+                string="Field requires API level 21 (current min is %1$s): `android.telecom.TelecomManager#PRESENTATION_ALLOWED`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnectionService.java"
+            line="30"
+            column="20"
+            startOffset="1578"
+            endLine="30"
+            endColumn="30"
+            endOffset="1588"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Call requires API level 23 (current min is %1$s): `android.telecom.Connection#setDialing`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnectionService.java"
+            line="33"
+            column="21"
+            startOffset="1661"
+            endLine="33"
+            endColumn="31"
+            endOffset="1671"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Call requires API level 23 (current min is %1$s): `android.telecom.ConnectionRequest#getAddress`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnectionService.java"
+            line="36"
+            column="32"
+            startOffset="1904"
+            endLine="36"
+            endColumn="47"
+            endOffset="1919"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Call requires API level 23 (current min is %1$s): `android.telecom.Connection#setDisconnected`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnectionService.java"
+            line="36"
+            column="48"
+            startOffset="1920"
+            endLine="36"
+            endColumn="83"
+            endOffset="1955"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Call requires API level 23 (current min is %1$s): `new android.telecom.DisconnectCause`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="InlinedApi"
+        severity="warning"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnectionService.java"
+            line="36"
+            column="84"
+            startOffset="1956"
+            endLine="36"
+            endColumn="121"
+            endOffset="1993"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Field requires API level 23 (current min is %1$s): `android.telecom.DisconnectCause#ERROR`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnectionService.java"
+            line="37"
+            column="32"
+            startOffset="2043"
+            endLine="37"
+            endColumn="39"
+            endOffset="2050"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Call requires API level 23 (current min is %1$s): `android.telecom.Connection#destroy`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnectionService.java"
+            line="40"
+            column="41"
+            startOffset="2151"
+            endLine="40"
+            endColumn="51"
+            endOffset="2161"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Call requires API level 23 (current min is %1$s): `android.telecom.ConnectionRequest#getAddress`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnectionService.java"
+            line="43"
+            column="32"
+            startOffset="2329"
+            endLine="43"
+            endColumn="39"
+            endOffset="2336"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Call requires API level 23 (current min is %1$s): `android.telecom.Connection#destroy`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnectionService.java"
+            line="44"
+            column="39"
+            startOffset="2378"
+            endLine="44"
+            endColumn="63"
+            endOffset="2402"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Call requires API level 23 (current min is %1$s): `android.telecom.Connection#createCanceledConnection`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnectionService.java"
+            line="48"
+            column="24"
+            startOffset="2478"
+            endLine="48"
+            endColumn="39"
+            endOffset="2493"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Call requires API level 23 (current min is %1$s): `android.telecom.Connection#setDisconnected`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnectionService.java"
+            line="48"
+            column="40"
+            startOffset="2494"
+            endLine="48"
+            endColumn="75"
+            endOffset="2529"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Call requires API level 23 (current min is %1$s): `new android.telecom.DisconnectCause`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="InlinedApi"
+        severity="warning"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnectionService.java"
+            line="48"
+            column="76"
+            startOffset="2530"
+            endLine="48"
+            endColumn="113"
+            endOffset="2567"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Field requires API level 23 (current min is %1$s): `android.telecom.DisconnectCause#ERROR`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/ui/SipConnectionService.java"
+            line="49"
+            column="24"
+            startOffset="2617"
+            endLine="49"
+            endColumn="31"
+            endOffset="2624"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Call requires API level 23 (current min is %1$s): `android.telecom.Connection#destroy`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/UserAgent.java"
+            line="618"
+            column="31"
+            startOffset="17842"
+            endLine="618"
+            endColumn="51"
+            endOffset="17862"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Call requires API level 23 (current min is %1$s): `android.telecom.Connection#setRingbackRequested`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffffff8000" requiresApi="ffffffffffc00000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/org/sipdroid/sipua/UserAgent.java"
+            line="627"
+            column="32"
+            startOffset="18098"
+            endLine="627"
+            endColumn="52"
+            endOffset="18118"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffffff8000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffffc00000"/>
+            <entry
+                name="message"
+                string="Call requires API level 23 (current min is %1$s): `android.telecom.Connection#setRingbackRequested`"/>
+        </map>
+    </incident>
+
+</incidents>

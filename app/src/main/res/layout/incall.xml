@@ -203,9 +203,6 @@
         android:layout_above="@+id/bottom_controls"
         android:background="?android:attr/colorBackground"
         android:visibility="gone">
-        <include
-            layout="@layout/dtmf_twelve_key_dialer"
-            android:id="@+id/dtmf_dialer"/>
     </FrameLayout>
 
 </RelativeLayout>
