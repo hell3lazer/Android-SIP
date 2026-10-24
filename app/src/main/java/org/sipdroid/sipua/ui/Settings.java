@@ -512,9 +512,29 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
 	}
 
 
+	public static Settings mInstance;
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		mInstance = this;
+		updateSummaries();
+	}
+
+	public static void notifyRegistrationChanged() {
+		if (mInstance != null) {
+			mInstance.runOnUiThread(() -> {
+				if (mInstance != null) {
+					mInstance.updateSummaries();
+				}
+			});
+		}
+	}
+
 	@Override
 	public void onDestroy()	{
 		super.onDestroy();
+		if (mInstance == this) mInstance = null;
 
 		settings.unregisterOnSharedPreferenceChangeListener(this);
 	}

@@ -43,6 +43,7 @@ import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.PowerManager;
 import android.os.SystemClock;
+import android.util.Log;
 import android.preference.PreferenceManager;
 
 public class SipdroidEngine implements RegisterAgentListener {
@@ -144,7 +145,7 @@ public class SipdroidEngine implements RegisterAgentListener {
 				}
 				
 				try {
-					SipStack.debug_level = 0;
+					SipStack.debug_level = 8;
 					SipStack.max_retransmission_timeout = 4000;
 					SipStack.default_transport_protocols = new String[1];
 					SipStack.default_transport_protocols[0] = PreferenceManager.getDefaultSharedPreferences(getUIContext()).getString(Settings.PREF_PROTOCOL+(i!=0?i:""),
@@ -158,7 +159,8 @@ public class SipdroidEngine implements RegisterAgentListener {
 						
 					IpAddress.setLocalIpAddress();
 					sip_providers[i] = new SipProvider(IpAddress.localIpAddress, 0);
-					user_profile.contact_url = getContactURL(user_profile.username,sip_providers[i]);
+					String contactUser = (user_profile.from_url != null && user_profile.from_url.length() > 0) ? user_profile.from_url : user_profile.username;
+					user_profile.contact_url = getContactURL(contactUser, sip_providers[i]);
 					
 					if (user_profile.from_url.indexOf("@") < 0) {
 						user_profile.from_url +=
@@ -183,6 +185,7 @@ public class SipdroidEngine implements RegisterAgentListener {
 						kas[i] = new KeepAliveSip(sip_providers[i]);
 					}
 				} catch (Exception E) {
+					if (!Sipdroid.release) Log.e("SipUA", "Exception in StartEngine line " + i + ": " + E.getMessage(), E);
 				}
 				i++;
 			}
@@ -200,6 +203,10 @@ public class SipdroidEngine implements RegisterAgentListener {
 			username = username.substring(0, i);
 		}
 
+		if (sip_provider == null) {
+			return username + "@" + IpAddress.localIpAddress + ";transport=udp";
+		}
+
 		return username + "@" + IpAddress.localIpAddress
 		+ (sip_provider.getPort() != 0?":"+sip_provider.getPort():"")
 		+ ";transport=" + sip_provider.getDefaultTransport();		
@@ -211,11 +218,19 @@ public class SipdroidEngine implements RegisterAgentListener {
 					PreferenceManager.getDefaultSharedPreferences(getUIContext()).getString(Settings.PREF_SERVER+(i!=0?i:""), Settings.DEFAULT_SERVER):null;
 			if (host != null && host.equals(Settings.DEFAULT_SERVER))
 				host = "www1.pbxes.com";	
-			if (sip_provider != null) sip_provider.setOutboundProxy(new SocketAddress(
-					IpAddress.getByName(PreferenceManager.getDefaultSharedPreferences(getUIContext()).getString(Settings.PREF_DNS+i, Settings.DEFAULT_DNS)),
-					Integer.valueOf(PreferenceManager.getDefaultSharedPreferences(getUIContext()).getString(Settings.PREF_PORT+(i!=0?i:""), Settings.DEFAULT_PORT))),
-					host);
+			String dns = PreferenceManager.getDefaultSharedPreferences(getUIContext()).getString(Settings.PREF_DNS+i, "");
+			if (dns == null || dns.length() == 0) {
+				dns = PreferenceManager.getDefaultSharedPreferences(getUIContext()).getString(Settings.PREF_SERVER+(i!=0?i:""), Settings.DEFAULT_SERVER);
+			}
+			if (dns != null && dns.length() > 0 && sip_provider != null) {
+				sip_provider.setOutboundProxy(new SocketAddress(
+						IpAddress.getByName(dns),
+						Integer.valueOf(PreferenceManager.getDefaultSharedPreferences(getUIContext()).getString(Settings.PREF_PORT+(i!=0?i:""), Settings.DEFAULT_PORT))),
+						host);
+				if (!Sipdroid.release) Log.i("SipUA", "setOutboundProxy[" + i + "] server=" + dns + " port=" + PreferenceManager.getDefaultSharedPreferences(getUIContext()).getString(Settings.PREF_PORT+(i!=0?i:""), Settings.DEFAULT_PORT));
+			}
 		} catch (Exception e) {
+			if (!Sipdroid.release) Log.e("SipUA", "Exception in setOutboundProxy: " + e.getMessage(), e);
 		}
 	}
 	
@@ -272,6 +287,10 @@ public class SipdroidEngine implements RegisterAgentListener {
 	
 	public void registerMore() {
 		if (Receiver.sContext == null) return;
+		if (ras == null || sip_providers == null || sip_providers[0] == null) {
+			StartEngine();
+			return;
+		}
 		IpAddress.setLocalIpAddress();
 		int i = 0,c = 0;
 		for (RegisterAgent ra : ras) {
@@ -293,7 +312,7 @@ public class SipdroidEngine implements RegisterAgentListener {
 						}
 					}
 			} catch (Exception ex) {
-				
+				if (!Sipdroid.release) Log.e("SipUA", "registerMore() line " + i + " exception: " + ex.getMessage(), ex);
 			}
 			i++;
 		}
@@ -303,6 +322,11 @@ public class SipdroidEngine implements RegisterAgentListener {
 	
 	public void register() {
 		if (Receiver.sContext == null) return;
+		if (ras == null || sip_providers == null || sip_providers[0] == null) {
+			StartEngine();
+			return;
+		}
+		if (!Sipdroid.release) Log.i("SipUA", "register() called");
 		IpAddress.setLocalIpAddress();
 		int i = 0,c = 0;
 		for (RegisterAgent ra : ras) {
@@ -315,17 +339,20 @@ public class SipdroidEngine implements RegisterAgentListener {
 				user_profiles[i].contact_url = getContactURL(user_profiles[i].from_url,sip_providers[i]);
 
 				if (!Receiver.isFast(i)) {
+					if (!Sipdroid.release) Log.i("SipUA", "register(): isFast(" + i + ") is false -> unregister(" + i + ")");
 					unregister(i);
-				} else
+				} else {
 					if (ra != null) {
 						c++;
+						if (!Sipdroid.release) Log.i("SipUA", "register(): calling ra.register() for line " + i);
 						if (ra.register()) {
 							Receiver.onText(Receiver.REGISTER_NOTIFICATION+i,getUIContext().getString(R.string.reg),R.drawable.sym_presence_idle,0);
 							wl[i].acquire();
 						}
 					}
+				}
 			} catch (Exception ex) {
-
+				if (!Sipdroid.release) Log.e("SipUA", "register() line " + i + " exception: " + ex.getMessage(), ex);
 			}
 			i++;
 		}
@@ -455,6 +482,7 @@ public class SipdroidEngine implements RegisterAgentListener {
     	if (isRegistered(i)) {
     		reg_ra.CurrentState = RegisterAgent.UNREGISTERED;
     		Receiver.onText(Receiver.REGISTER_NOTIFICATION+i, null, 0, 0);
+    		org.sipdroid.sipua.ui.Settings.notifyRegistrationChanged();
     	} else {
     		retry = true;
     		Receiver.onText(Receiver.REGISTER_NOTIFICATION+i,getUIContext().getString(R.string.regfailed)+" ("+result+")",R.drawable.sym_presence_away,0);
@@ -601,6 +629,16 @@ public class SipdroidEngine implements RegisterAgentListener {
 			Receiver.onText(Receiver.CALL_NOTIFICATION, getUIContext().getString(R.string.menu_mute), R.drawable.ic_mic_off_24,Receiver.ccCall.base);
 		else
 			Receiver.progress();
+	}
+
+	public void mute(boolean mute) {
+		if (ua != null) {
+			ua.muteMediaApplication(mute);
+			if (mute)
+				Receiver.onText(Receiver.CALL_NOTIFICATION, getUIContext().getString(R.string.menu_mute), R.drawable.ic_mic_off_24, Receiver.ccCall.base);
+			else
+				Receiver.progress();
+		}
 	}
 	
 	public void togglebluetooth() {

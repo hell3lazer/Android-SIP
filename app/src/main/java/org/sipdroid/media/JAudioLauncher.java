@@ -145,6 +145,12 @@ public class JAudioLauncher implements MediaLauncher
 		   return sender.mute();
 	   return false;
    }
+
+   public void muteMedia(boolean mute)
+   {
+	   if (sender != null)
+		   sender.setMute(mute);
+   }
    
    public int speakerMedia(int mode)
    {

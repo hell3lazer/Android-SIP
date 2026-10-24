@@ -143,35 +143,18 @@ public class RtpStreamReceiver extends Thread {
 	
 	public int speaker(int mode) {
 		int old = speakermode;
-		
-		if ((Receiver.headset > 0 || Receiver.docked > 0 || Receiver.bluetooth > 0) &&
-				mode != Receiver.speakermode())
-			return old;
-		if (mode == old)
-			return old;
-		enableBluetooth(false);
-		saveVolume();
-		setMode(speakermode = mode);
-		setCodec();
-		restoreVolume();
-		if (notoast) {
-			notoast = false;
-			return old;
-		}
-		if (mode == AudioManager.MODE_NORMAL && Thread.currentThread().getName().equals("main"))
-			Toast.makeText(Receiver.mContext, R.string.help_speakerphone, Toast.LENGTH_LONG).show();
+		speakermode = mode;
 		return old;
 	}
-
+	
 	static ToneGenerator ringbackPlayer;
 	static int oldvol = -1;
 	
 	static int stream() {
-		return speakermode == AudioManager.MODE_IN_COMMUNICATION?AudioManager.STREAM_VOICE_CALL:AudioManager.STREAM_MUSIC;
+		return AudioManager.STREAM_VOICE_CALL;
 	}
 	
 	public static synchronized void ringback(boolean ringback) {
-		// Telecom handles ringback locally when connection.setRingbackRequested(true) is called.
 	}
 	
 	public static void adjust(int keyCode,boolean down,boolean show) {
@@ -199,26 +182,74 @@ public class RtpStreamReceiver extends Thread {
 	
 	static boolean restored;
 	
-	void restoreVolume() {}
+	void restoreVolume() {
+		if (track != null) {
+			try {
+				track.setStereoVolume(AudioTrack.getMaxVolume(), AudioTrack.getMaxVolume());
+			} catch (Exception e) {}
+		}
+		Context context = Receiver.mContext;
+		if (context == null) return;
+		AudioManager am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+		if (am == null) return;
+		try {
+			int vol = PreferenceManager.getDefaultSharedPreferences(Receiver.mContext).getInt("volume" + speakermode,
+				am.getStreamMaxVolume(stream()) * (speakermode == AudioManager.MODE_NORMAL ? 4 : 3) / 4);
+			setStreamVolume(stream(), vol, 0);
+		} catch (Exception e) {}
+	}
 	
-	void saveVolume() {}
+	void saveVolume() {
+		if (restored) {
+			Context context = Receiver.mContext;
+			if (context == null) return;
+			AudioManager am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+			if (am == null) return;
+			try {
+				Editor edit = PreferenceManager.getDefaultSharedPreferences(Receiver.mContext).edit();
+				edit.putInt("volume" + speakermode, am.getStreamVolume(stream()));
+				edit.apply();
+			} catch (Exception e) {}
+		}
+	}
 	
 	void saveSettings() {}
 	
 	public static int getMode() {
+		Context context = Receiver.mContext;
+		if (context != null) {
+			AudioManager am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+			if (am != null) {
+				if (am.isSpeakerphoneOn())
+					return AudioManager.MODE_NORMAL;
+				return speakermode;
+			}
+		}
 		return speakermode;
 	}
 	
 	static boolean samsung;
 	
-	@TargetApi(23)
 	public static void setMode(int mode) {
 		speakermode = mode;
 	}
 
-	public static void restoreMode() {}
+	public static void restoreMode() {
+		Context context = Receiver.mContext;
+		if (context == null) return;
+		AudioManager am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+		if (am == null) return;
+		try {
+			if (Build.VERSION.SDK_INT >= 31) {
+				am.clearCommunicationDevice();
+			}
+			am.setSpeakerphoneOn(false);
+			am.setMode(AudioManager.MODE_NORMAL);
+		} catch (Exception e) {}
+	}
 
-	void initMode() {}
+	void initMode() {
+	}
 	
 	public static void restoreSettings() {}
 
@@ -414,12 +445,10 @@ public class RtpStreamReceiver extends Thread {
 				if (timeout == 0 && nodata) {
 					tg.startTone(ToneGenerator.TONE_SUP_RINGTONE);
 				}
-				rtp_socket.getDatagramSocket().disconnect();
-				if (RtpStreamSender.new_socket != null) {
-					rtp_socket = new RtpSocket(RtpStreamSender.new_socket);
-					RtpStreamSender.new_socket = null;
-				}
 				timeout = (System.currentTimeMillis()-timeoutstart)/1000 + 1;
+				if (timeout % 5 == 0) {
+					android.util.Log.w("SipUA", "RtpStreamReceiver timeout: " + timeout + "s (error: " + e.getMessage() + ")");
+				}
 				if (timeout > 60) {
 					Receiver.engine(Receiver.mContext).rejectcall();
 					break;
@@ -427,6 +456,10 @@ public class RtpStreamReceiver extends Thread {
 			}
 			if (running && timeout == 0) {		
 				 gseq = rtp_packet.getSequenceNumber();
+				 if (gseq % 100 == 1) {
+					 android.util.Log.d("SipUA", "RtpStreamReceiver: received packet " + gseq + " len=" + rtp_packet.getPayloadLength());
+				 }
+
 				 if (seq == gseq) {
 					 m++;
 					 continue;
@@ -514,10 +547,8 @@ public class RtpStreamReceiver extends Thread {
 				 if (user >= luser + 8000*mu && (
 						 Receiver.call_state == UserAgent.UA_STATE_INCALL ||
 						 Receiver.call_state == UserAgent.UA_STATE_OUTGOING_CALL)) {
-					 if (luser == -8000*mu || getMode() != speakermode) {
-						 saveVolume();
+					 if (luser == -8000*mu) {
 						 setMode(speakermode);
-						 restoreVolume();
 					 }
 					 luser = user;
 					 if (user >= luser2 + 160000*mu)
@@ -532,10 +563,14 @@ public class RtpStreamReceiver extends Thread {
 		tg.stopTone();
 		tg.release();
 		saveVolume();
-		am.setStreamVolume(AudioManager.STREAM_MUSIC,oldvol,0);
+		if (oldvol >= 0) {
+			am.setStreamVolume(AudioManager.STREAM_MUSIC,oldvol,0);
+		}
 		restoreSettings();
 		enableBluetooth(false);
-		am.setStreamVolume(AudioManager.STREAM_MUSIC,oldvol,0);
+		if (oldvol >= 0) {
+			am.setStreamVolume(AudioManager.STREAM_MUSIC,oldvol,0);
+		}
 		oldvol = -1;
 		p_type.codec.close();
 		rtp_socket.close();

@@ -27,18 +27,29 @@ import android.app.Service;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkCapabilities;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.IBinder;
 
 public class RegisterService extends Service {
 	Receiver m_receiver;
+	private ConnectivityManager.NetworkCallback mNetworkCallback;
 
-	
     public void onDestroy() {
 		super.onDestroy();
 		if (m_receiver != null) {
 			unregisterReceiver(m_receiver);
+		}
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && mNetworkCallback != null) {
+			ConnectivityManager cm = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+			if (cm != null) {
+				try {
+					cm.unregisterNetworkCallback(mNetworkCallback);
+				} catch (Exception e) {}
+			}
+			mNetworkCallback = null;
 		}
 		Receiver.alarm(0, OneShotAlarm2.class);
 	}
@@ -69,30 +80,60 @@ public class RegisterService extends Service {
 			intentfilter = new IntentFilter();
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            boolean isIgnoringBatteryOptimizations = false;
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-                android.os.PowerManager pm = (android.os.PowerManager) getSystemService(android.content.Context.POWER_SERVICE);
-                if (pm != null) {
-                    isIgnoringBatteryOptimizations = pm.isIgnoringBatteryOptimizations(getPackageName());
-                }
-            }
-            if (!isIgnoringBatteryOptimizations) {
-                android.app.NotificationManager mNotificationMgr = (android.app.NotificationManager) getSystemService(android.content.Context.NOTIFICATION_SERVICE);
+            android.app.NotificationManager mNotificationMgr = (android.app.NotificationManager) getSystemService(android.content.Context.NOTIFICATION_SERVICE);
+            if (mNotificationMgr != null) {
                 mNotificationMgr.createNotificationChannel(new android.app.NotificationChannel("sipdroid_bg", "SIP Background Service", android.app.NotificationManager.IMPORTANCE_MIN));
-                android.app.Notification bgNotif = new androidx.core.app.NotificationCompat.Builder(this, "sipdroid_bg")
-                    .setSmallIcon(org.sipdroid.sipua.R.drawable.icon)
-                    .setContentTitle("Android SIP")
-                    .setContentText("Running in background")
-                    .setPriority(androidx.core.app.NotificationCompat.PRIORITY_MIN)
-                    .build();
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                    try {
-                        startForeground(Receiver.REGISTER_NOTIFICATION, bgNotif, 128); // FOREGROUND_SERVICE_TYPE_MICROPHONE
-                    } catch (Exception e) {}
-                } else {
+            }
+            android.app.Notification bgNotif = new androidx.core.app.NotificationCompat.Builder(this, "sipdroid_bg")
+                .setSmallIcon(org.sipdroid.sipua.R.drawable.icon)
+                .setContentTitle("Android SIP")
+                .setContentText("Running in background")
+                .setPriority(androidx.core.app.NotificationCompat.PRIORITY_MIN)
+                .build();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                try {
+                    int serviceTypes = 128 | 4; // FOREGROUND_SERVICE_TYPE_MICROPHONE | FOREGROUND_SERVICE_TYPE_PHONE_CALL
+                    startForeground(Receiver.REGISTER_NOTIFICATION, bgNotif, serviceTypes);
+                } catch (Exception e) {
                     try {
                         startForeground(Receiver.REGISTER_NOTIFICATION, bgNotif);
-                    } catch (Exception e) {}
+                    } catch (Exception ex) {}
+                }
+            } else {
+                try {
+                    startForeground(Receiver.REGISTER_NOTIFICATION, bgNotif);
+                } catch (Exception e) {}
+            }
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && mNetworkCallback == null) {
+            ConnectivityManager cm = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+            if (cm != null) {
+                mNetworkCallback = new ConnectivityManager.NetworkCallback() {
+                    @Override
+                    public void onAvailable(Network network) {
+                        if (!Sipdroid.release) android.util.Log.i("SipUA", "NetworkCallback onAvailable");
+                        if (Receiver.call_state == 0) {
+                            Receiver.engine(RegisterService.this).register();
+                        }
+                    }
+
+                    @Override
+                    public void onLost(Network network) {
+                        if (!Sipdroid.release) android.util.Log.i("SipUA", "NetworkCallback onLost");
+                        if (Receiver.call_state == 0) {
+                            Receiver.engine(RegisterService.this).register();
+                        }
+                    }
+
+                    @Override
+                    public void onCapabilitiesChanged(Network network, NetworkCapabilities networkCapabilities) {
+                        // Do not re-register on radio capability fluctuations mid-call
+                    }
+                };
+                try {
+                    cm.registerDefaultNetworkCallback(mNetworkCallback);
+                } catch (Exception e) {
+                    if (!Sipdroid.release) android.util.Log.e("SipUA", "registerDefaultNetworkCallback failed", e);
                 }
             }
         }

@@ -26,6 +26,7 @@ package org.zoolu.net;
 
 import java.net.BindException;
 import java.net.InetAddress;
+import java.net.Inet4Address;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.util.Enumeration;
@@ -36,6 +37,12 @@ import org.sipdroid.sipua.ui.Sipdroid;
 
 import android.preference.PreferenceManager;
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.LinkProperties;
+import android.net.LinkAddress;
+import android.os.Build;
+import android.util.Log;
 
 import com.jstun.demo.DiscoveryTest;
 
@@ -137,6 +144,32 @@ public class IpAddress {
 		localIpAddress = "127.0.0.1";
 
 		try {
+			boolean useStun = false;
+			if (getUIContext() != null) {
+				useStun = PreferenceManager.getDefaultSharedPreferences(getUIContext()).getBoolean(Settings.PREF_STUN, Settings.DEFAULT_STUN);
+			}
+
+			// If STUN is not enabled, try getting active network IP directly via ConnectivityManager
+			if (!useStun && getUIContext() != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+				ConnectivityManager cm = (ConnectivityManager) getUIContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+				if (cm != null) {
+					Network activeNetwork = cm.getActiveNetwork();
+					if (activeNetwork != null) {
+						LinkProperties lp = cm.getLinkProperties(activeNetwork);
+						if (lp != null) {
+							for (LinkAddress la : lp.getLinkAddresses()) {
+								InetAddress addr = la.getAddress();
+								if (addr instanceof Inet4Address && !addr.isLoopbackAddress()) {
+									localIpAddress = addr.getHostAddress();
+									if (!Sipdroid.release) Log.i("SipUA", "setLocalIpAddress (from active network): " + localIpAddress);
+									return;
+								}
+							}
+						}
+					}
+				}
+			}
+
 			for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements();) {
 				NetworkInterface intf = en.nextElement();
 
@@ -146,7 +179,7 @@ public class IpAddress {
 					if (!inetAddress.isLoopbackAddress()) { 
 						if (inetAddress.getHostAddress().toString().contains(":"))
 							continue;
-						if (!PreferenceManager.getDefaultSharedPreferences(getUIContext()).getBoolean(Settings.PREF_STUN, Settings.DEFAULT_STUN)) {
+						if (!useStun) {
 							localIpAddress = inetAddress.getHostAddress().toString();
 						} else {
 							try {
@@ -157,7 +190,6 @@ public class IpAddress {
 
 								// call out to stun server 
 								StunDiscover.test();
-								//System.out.println("Public ip is:" + StunDiscover.di.getPublicIP().getHostAddress());
 								localIpAddress = StunDiscover.di.getPublicIP().getHostAddress();
 							} catch (BindException be) {
 								if (!Sipdroid.release)
@@ -173,7 +205,8 @@ public class IpAddress {
 				}
 			}
 		} catch (Exception ex) {
-			// do nothing
+			if (!Sipdroid.release) Log.e("SipUA", "setLocalIpAddress exception: " + ex.getMessage(), ex);
 		}
+		if (!Sipdroid.release) Log.i("SipUA", "setLocalIpAddress result: " + localIpAddress);
 	}
 }

@@ -3,7 +3,7 @@ package org.sipdroid.sipua.ui;
 import android.content.Context;
 
 public class Sipdroid {
-    public static final boolean release = true;
+    public static final boolean release = false;
     public static final boolean market = false;
 
     public static boolean on(Context context) {

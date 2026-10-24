@@ -28,6 +28,7 @@ public interface MediaLauncher {
 	public boolean stopMedia();
 	
 	public boolean muteMedia();
+	public void muteMedia(boolean mute);
 	public int speakerMedia(int mode);
 	public void bluetoothMedia();
 

@@ -36,6 +36,25 @@ public class SipConnectionService extends ConnectionService {
                     return Connection.createFailedConnection(new android.telecom.DisconnectCause(android.telecom.DisconnectCause.ERROR, "SIP Offline"));
                 }
                 String number = request.getAddress().getSchemeSpecificPart();
+                if ("tel".equals(request.getAddress().getScheme())) {
+                    android.telephony.TelephonyManager tm = (android.telephony.TelephonyManager) getSystemService(android.content.Context.TELEPHONY_SERVICE);
+                    String countryIso = tm != null ? tm.getNetworkCountryIso() : null;
+                    if (countryIso == null || countryIso.isEmpty()) {
+                        countryIso = tm != null ? tm.getSimCountryIso() : null;
+                    }
+                    if (countryIso == null || countryIso.isEmpty()) {
+                        countryIso = java.util.Locale.getDefault().getCountry();
+                    }
+                    String formatted = null;
+                    if (countryIso != null && !countryIso.isEmpty()) {
+                        formatted = android.telephony.PhoneNumberUtils.formatNumberToE164(number, countryIso.toUpperCase(java.util.Locale.US));
+                    }
+                    if (formatted != null) {
+                        number = formatted;
+                    } else {
+                        number = android.telephony.PhoneNumberUtils.stripSeparators(number);
+                    }
+                }
                 boolean success = Receiver.engine(this).call(number, false);
                 if (!success) {
                     return Connection.createCanceledConnection();

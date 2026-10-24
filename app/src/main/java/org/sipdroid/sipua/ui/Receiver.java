@@ -56,6 +56,9 @@ import android.media.AudioManager;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkCapabilities;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.net.NetworkInfo.DetailedState;
 import android.net.wifi.ScanResult;
@@ -183,21 +186,14 @@ import org.zoolu.sip.provider.SipProvider;
 			} else
 				mSipdroidEngine.CheckEngine();
 			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                boolean isIgnoringBatteryOptimizations = false;
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-                    android.os.PowerManager pm = (android.os.PowerManager) context.getSystemService(Context.POWER_SERVICE);
-                    if (pm != null) {
-                        isIgnoringBatteryOptimizations = pm.isIgnoringBatteryOptimizations(context.getPackageName());
-                    }
-                }
 		        try {
-                    if (isIgnoringBatteryOptimizations) {
-                        context.startService(new Intent(context, RegisterService.class));
-                    } else {
-					    context.startForegroundService(new Intent(context, RegisterService.class));
-                    }
+					context.startForegroundService(new Intent(context, RegisterService.class));
 				} catch (Exception e) {
-					e.printStackTrace();
+					try {
+						context.startService(new Intent(context, RegisterService.class));
+					} catch (Exception e2) {
+						e2.printStackTrace();
+					}
 				}
 		    } else {
 		    	context.startService(new Intent(context,RegisterService.class));
@@ -320,9 +316,14 @@ import org.zoolu.sip.provider.SipProvider;
 					}
 					ccConn.log(ccCall.base);
 					ccConn.date = 0;
+					RtpStreamReceiver.speakermode = -1;
+					RtpStreamReceiver.restoreMode();
 					engine(mContext).listen();
 					break;
 				case UserAgent.UA_STATE_INCALL:
+					if (RtpStreamReceiver.speakermode == -1) {
+						RtpStreamReceiver.speakermode = speakermode();
+					}
 					broadcastCallStateChanged("OFFHOOK", null);
 					if (ccCall.base == 0) {
 						ccCall.base = SystemClock.elapsedRealtime();
@@ -599,6 +600,7 @@ import org.zoolu.sip.provider.SipProvider;
 		}
 		
 		public static void registered() {
+			org.sipdroid.sipua.ui.Settings.notifyRegistrationChanged();
 		}
 		
 		public static void url(final String opt) {
@@ -746,35 +748,73 @@ import org.zoolu.sip.provider.SipProvider;
 		
 		@SuppressLint("MissingPermission")
 		public static boolean isFast(int i) {
-        	WifiManager wm = (WifiManager) mContext.getSystemService(Context.WIFI_SERVICE);
-        	WifiInfo wi = wm.getConnectionInfo();
+			if (mContext == null) return false;
 
 			if (tm == null)
 				tm = (TelephonyManager) mContext.getSystemService(Context.TELEPHONY_SERVICE);
-			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
-				handleNetworkTypeChange(tm.getDataNetworkType());
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && tm != null) {
+				try {
+					handleNetworkTypeChange(tm.getDataNetworkType());
+				} catch (Exception e) {}
+			}
 			if (PreferenceManager.getDefaultSharedPreferences(mContext).getString(org.sipdroid.sipua.ui.Settings.PREF_USERNAME+(i!=0?i:""),"").equals("") ||
-        			PreferenceManager.getDefaultSharedPreferences(mContext).getString(org.sipdroid.sipua.ui.Settings.PREF_SERVER+(i!=0?i:""),"").equals(""))
+        			PreferenceManager.getDefaultSharedPreferences(mContext).getString(org.sipdroid.sipua.ui.Settings.PREF_SERVER+(i!=0?i:""),"").equals("")) {
+				if (!Sipdroid.release) Log.i("SipUA", "isFast(" + i + ") = false (empty user/server)");
         		return false;
+			}
 			if (getRecentNetworkTypeChangesCount() > 3 &&
 					PreferenceManager.getDefaultSharedPreferences(mContext).getBoolean(org.sipdroid.sipua.ui.Settings.PREF_NOTRAIN+(i!=0?i:""), org.sipdroid.sipua.ui.Settings.DEFAULT_NOTRAIN)) {
+				if (!Sipdroid.release) Log.i("SipUA", "isFast(" + i + ") = false (notrain)");
 				return false;
 			}
+
+			ConnectivityManager cm = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
+			if (cm != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+				Network activeNetwork = cm.getActiveNetwork();
+				if (activeNetwork != null) {
+					NetworkCapabilities caps = cm.getNetworkCapabilities(activeNetwork);
+					if (caps != null) {
+						if (caps.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) || caps.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)) {
+							on_wlan = true;
+							boolean res = !on_vpn() ?
+								PreferenceManager.getDefaultSharedPreferences(mContext).getBoolean(org.sipdroid.sipua.ui.Settings.PREF_WLAN+(i!=0?i:""), org.sipdroid.sipua.ui.Settings.DEFAULT_WLAN) :
+								PreferenceManager.getDefaultSharedPreferences(mContext).getBoolean(org.sipdroid.sipua.ui.Settings.PREF_VPN+(i!=0?i:""), org.sipdroid.sipua.ui.Settings.DEFAULT_VPN);
+							if (!Sipdroid.release) Log.i("SipUA", "isFast(" + i + ") = " + res + " (via ConnectivityManager WLAN)");
+							return res;
+						} else if (caps.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
+							on_wlan = false;
+							boolean res = isFastGSM(i);
+							if (!Sipdroid.release) Log.i("SipUA", "isFast(" + i + ") = " + res + " (via ConnectivityManager CELLULAR)");
+							return res;
+						} else if (caps.hasTransport(NetworkCapabilities.TRANSPORT_VPN)) {
+							boolean res = PreferenceManager.getDefaultSharedPreferences(mContext).getBoolean(org.sipdroid.sipua.ui.Settings.PREF_VPN+(i!=0?i:""), org.sipdroid.sipua.ui.Settings.DEFAULT_VPN);
+							if (!Sipdroid.release) Log.i("SipUA", "isFast(" + i + ") = " + res + " (via ConnectivityManager VPN)");
+							return res;
+						}
+					}
+				}
+			}
+
+        	WifiManager wm = (WifiManager) mContext.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        	WifiInfo wi = wm != null ? wm.getConnectionInfo() : null;
 			if (wi != null) {
-        		if (!Sipdroid.release) Log.i("SipUA:","isFastWifi() "+WifiInfo.getDetailedStateOf(wi.getSupplicantState())
-        				+" "+wi.getIpAddress());
-	        	if (wi.getIpAddress() != 0 && (WifiInfo.getDetailedStateOf(wi.getSupplicantState()) == DetailedState.OBTAINING_IPADDR
-	        			|| WifiInfo.getDetailedStateOf(wi.getSupplicantState()) == DetailedState.CONNECTED)
-	        			|| WifiInfo.getDetailedStateOf(wi.getSupplicantState()) == DetailedState.CONNECTING) {
+        		if (!Sipdroid.release) Log.i("SipUA", "isFastWifi() state=" + WifiInfo.getDetailedStateOf(wi.getSupplicantState())
+        				+ " ip=" + wi.getIpAddress() + " netId=" + wi.getNetworkId());
+	        	if ((wi.getIpAddress() != 0 || wi.getNetworkId() != -1) && (WifiInfo.getDetailedStateOf(wi.getSupplicantState()) == DetailedState.OBTAINING_IPADDR
+	        			|| WifiInfo.getDetailedStateOf(wi.getSupplicantState()) == DetailedState.CONNECTED
+	        			|| WifiInfo.getDetailedStateOf(wi.getSupplicantState()) == DetailedState.CONNECTING)) {
 	        		on_wlan = true;
-	        		if (!on_vpn())
-	        			return PreferenceManager.getDefaultSharedPreferences(mContext).getBoolean(org.sipdroid.sipua.ui.Settings.PREF_WLAN+(i!=0?i:""), org.sipdroid.sipua.ui.Settings.DEFAULT_WLAN);
-	        		else
-	        			return PreferenceManager.getDefaultSharedPreferences(mContext).getBoolean(org.sipdroid.sipua.ui.Settings.PREF_VPN+(i!=0?i:""), org.sipdroid.sipua.ui.Settings.DEFAULT_VPN);  
+	        		boolean res = !on_vpn() ?
+	        			PreferenceManager.getDefaultSharedPreferences(mContext).getBoolean(org.sipdroid.sipua.ui.Settings.PREF_WLAN+(i!=0?i:""), org.sipdroid.sipua.ui.Settings.DEFAULT_WLAN) :
+	        			PreferenceManager.getDefaultSharedPreferences(mContext).getBoolean(org.sipdroid.sipua.ui.Settings.PREF_VPN+(i!=0?i:""), org.sipdroid.sipua.ui.Settings.DEFAULT_VPN);
+					if (!Sipdroid.release) Log.i("SipUA", "isFast(" + i + ") = " + res + " (via WifiManager WLAN)");
+					return res;
 	        	}
         	}
         	on_wlan = false;
-			return isFastGSM(i);
+			boolean res = isFastGSM(i);
+			if (!Sipdroid.release) Log.i("SipUA", "isFast(" + i + ") = " + res + " (via fallback GSM)");
+			return res;
 		}
 
 		public static List<Long> changeTimestamps = new ArrayList<>();
@@ -818,10 +858,14 @@ import org.zoolu.sip.provider.SipProvider;
         		        nt = TelephonyManager.NETWORK_TYPE_LTE;
         		}
         	if (nt == 0) {
-				if (android.os.Build.VERSION.SDK_INT >= 24)
-					nt = tm.getDataNetworkType();
-				else
-					nt = tm.getNetworkType();
+				try {
+					if (android.os.Build.VERSION.SDK_INT >= 24 && tm != null)
+						nt = tm.getDataNetworkType();
+					else if (tm != null)
+						nt = tm.getNetworkType();
+				} catch (SecurityException e) {
+					nt = TelephonyManager.NETWORK_TYPE_LTE;
+				}
         	}
         	if (Sipdroid.market)
         		return false;

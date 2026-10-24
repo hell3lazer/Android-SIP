@@ -198,6 +198,14 @@ public class RtpStreamSender extends Thread {
 		return muted = !muted;
 	}
 
+	public void setMute(boolean mute) {
+		muted = mute;
+	}
+
+	public boolean isMuted() {
+		return muted;
+	}
+
 	public static int delay = 0;
 	public static boolean changed;
 	
@@ -293,11 +301,10 @@ public class RtpStreamSender extends Thread {
 				}
 				record.startRecording();
 			 }
-			 if (muted || Receiver.call_state == UserAgent.UA_STATE_HOLD) {
-				if (Receiver.call_state == UserAgent.UA_STATE_HOLD)
-					RtpStreamReceiver.restoreMode();
+			 if (Receiver.call_state == UserAgent.UA_STATE_HOLD) {
+				RtpStreamReceiver.restoreMode();
 				record.stop();
-				while (running && (muted || Receiver.call_state == UserAgent.UA_STATE_HOLD)) {
+				while (running && Receiver.call_state == UserAgent.UA_STATE_HOLD) {
 					try {
 						sleep(1000);
 					} catch (InterruptedException e1) {
@@ -360,31 +367,31 @@ public class RtpStreamSender extends Thread {
 					 last_tx_time += next_tx_delay-sync_adj;
 				 }
 			 }
-			 pos = Integer.parseInt(Build.VERSION.SDK) == 21?0:((ring+delay*frame_rate*frame_size/2)%(frame_size*(frame_rate+1)));
-			 num = record.read(lin,pos,frame_size);
-			 if (num <= 0)
+			 pos = 0;
+			 num = record.read(lin, 0, frame_size);
+			 if (num <= 0) {
+				 if (running && num != AudioRecord.SUCCESS) {
+					 android.util.Log.e("SipUA", "AudioRecord read error: " + num);
+				 }
 				 continue;
+			 }
 			 if (!p_type.codec.isValid())
 				 continue;
 			 
-			 // Boost the microphone volume 4x
-			 for (int i = 0; i < num; i++) {
-				 int sample = lin[pos+i] * 4;
-				 if (sample > 32767) sample = 32767;
-				 else if (sample < -32768) sample = -32768;
-				 lin[pos+i] = (short) sample;
+			 if (muted) {
+				 java.util.Arrays.fill(lin, 0, num, (short) 0);
 			 }
 			 
 			 // Call recording: Save the frame to the CallRecorder.
 			 if (call_recorder != null)
-			 	call_recorder.writeOutgoing(lin, pos, num);
+			 	call_recorder.writeOutgoing(lin, 0, num);
 
 			 if (Receiver.call_state != UserAgent.UA_STATE_INCALL &&
 					 Receiver.call_state != UserAgent.UA_STATE_OUTGOING_CALL && alerting != null) {
 				 try {
 					if (alerting.available() < num/mu)
 						alerting.reset();
-					alerting.read(buffer,12,num/mu);
+					alerting.read(buffer, 12, num/mu);
 				 } catch (IOException e) {
 					if (!Sipdroid.release) e.printStackTrace();
 				 }
@@ -393,33 +400,27 @@ public class RtpStreamSender extends Thread {
 					 num = p_type.codec.encode(lin, 0, buffer, num);
 				 }
 			 } else {
-				 num = p_type.codec.encode(lin, Integer.parseInt(Build.VERSION.SDK) == 21?0:(ring%(frame_size*(frame_rate+1))), buffer, num);
+				 num = p_type.codec.encode(lin, 0, buffer, num);
 			 }
 			 
- 			 ring += frame_size;
- 			 rtp_packet.setSequenceNumber(seqn++);
- 			 rtp_packet.setTimestamp(time);
- 			 rtp_packet.setPayloadLength(num);
- 			 now = SystemClock.elapsedRealtime();
- 			 if (RtpStreamReceiver.timeout == 0 || Receiver.on_wlan || now-lastsent > 500)
-	 			 try {
-	 				 lastsent = now;
-	 				 rtp_socket.send(rtp_packet);
-	 				 if (m > 1 && (RtpStreamReceiver.timeout == 0 || Receiver.on_wlan))
-	 					 for (int i = 1; i < m; i++)
-	 						 rtp_socket.send(rtp_packet);
-	 			 } catch (Exception e) {
-	 				if (new_socket == null) {
-		 				rtp_socket.getDatagramSocket().close();
-		 				try {
-							if (running)
-								rtp_socket = new RtpSocket(new_socket = new SipdroidSocket(local_port), InetAddress
-									.getByName(dest_addr), dest_port);
-						} catch (Exception e1) {
-						}
-	 				}
-	 			 }
- 			 if (p_type.codec.number() == 9)
+			 ring += frame_size;
+			 rtp_packet.setSequenceNumber(seqn++);
+			 rtp_packet.setTimestamp(time);
+			 rtp_packet.setPayloadLength(num);
+			 now = SystemClock.elapsedRealtime();
+			 try {
+				 lastsent = now;
+				 rtp_socket.send(rtp_packet);
+				 if (seqn % 100 == 1) {
+					 android.util.Log.d("SipUA", "RtpStreamSender: sent packet " + seqn + " (" + num + " bytes) to " + dest_addr + ":" + dest_port);
+				 }
+				 if (m > 1 && (RtpStreamReceiver.timeout == 0 || Receiver.on_wlan))
+					 for (int i = 1; i < m; i++)
+						 rtp_socket.send(rtp_packet);
+			 } catch (Exception e) {
+				 android.util.Log.e("SipUA", "RtpStreamSender error sending RTP packet: " + e.getMessage(), e);
+			 }
+			 if (p_type.codec.number() == 9)
  				 time += frame_size/2;
  			 else
  				 time += frame_size;

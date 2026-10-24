@@ -111,7 +111,7 @@ public abstract class BaseMessageFactory {
 		// optional headers:
 		// start modification by mandrajg
 		if (contact != null) {
-			if (((method == "REGISTER")||(method == "INVITE")) && (icsi != null) ){
+			if ((("REGISTER".equalsIgnoreCase(method))||("INVITE".equalsIgnoreCase(method))) && (icsi != null) ){
 				MultipleHeader contacts = new MultipleHeader(SipHeaders.Contact);
 				contacts.addBottom(new ContactHeader(contact, qvalue, icsi));
 				req.setContacts(contacts);
@@ -123,7 +123,7 @@ public abstract class BaseMessageFactory {
 			}	
 			// System.out.println("DEBUG: Contact: "+contact.toString());
 		}
-		if ((method == "INVITE") && (icsi != null) ){
+		if (("INVITE".equalsIgnoreCase(method)) && (icsi != null) ){
 			req.setAcceptContactHeader(new AcceptContactHeader(icsi));
 		}
 		// end modifications by mandrajg

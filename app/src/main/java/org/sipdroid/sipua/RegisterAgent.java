@@ -615,6 +615,26 @@ public class RegisterAgent implements TransactionClientListener, SubscriberDialo
 			printLog("Registration failure: No response from server.",
 					LogLevel.HIGH);
 			
+			// Automatic SBC failover for SLT IMS:
+			if (user_profile != null && user_profile.realm != null && user_profile.realm.toLowerCase().contains("ims")) {
+				if (sip_provider != null && sip_provider.hasOutboundProxy()) {
+					try {
+						org.zoolu.net.SocketAddress currentProxy = sip_provider.getOutboundProxy();
+						String currentHost = currentProxy.getAddress().toString();
+						int currentPort = currentProxy.getPort();
+						if (currentHost.equals("222.165.185.144")) {
+							android.util.Log.i("SipUA", "SBC failover: switching outbound proxy from 222.165.185.144 to 222.165.185.146");
+							sip_provider.setOutboundProxy(new org.zoolu.net.SocketAddress(org.zoolu.net.IpAddress.getByName("222.165.185.146"), currentPort), null);
+						} else if (currentHost.equals("222.165.185.146")) {
+							android.util.Log.i("SipUA", "SBC failover: switching outbound proxy from 222.165.185.146 to 222.165.185.144");
+							sip_provider.setOutboundProxy(new org.zoolu.net.SocketAddress(org.zoolu.net.IpAddress.getByName("222.165.185.144"), currentPort), null);
+						}
+					} catch (Exception e) {
+						android.util.Log.e("SipUA", "Error during SBC failover: " + e.getMessage());
+					}
+				}
+			}
+			
 			//Since the transactions are atomic, we rollback to the 
 			//previous state
 			

@@ -1,5 +1,13 @@
-	
-	Further changes will be logged on http://sipdroid.org (Google Code)
+Version 1.1 (Build 148)
+	* Fixed bidirectional RTP transmission and eliminated socket address locking.
+	* Fixed AudioTrack buffer underruns by decoupling volume persistence from audio loop.
+	* Native Telecom integration with native cellular audio mode (MODE_IN_CALL).
+	* Automatic E.164 phone number formatting for native dialer contacts.
+	* Streamlined speaker and earpiece routing transitions mid-call.
+	* Suppressed mid-call SIP churn on Wi-Fi/cellular radio capability changes.
+	* Migrated to private release signing configuration.
+
+	Further changes will be logged on https://github.com/hell3lazer/Android-SIP
 	
 	--- This change log ends here (first public beta) ---
 	
@@ -48,60 +56,3 @@
 		./zoolu/net/UdpProvider.java
 		./zoolu/sip/dialog/InviteDialog.java
 		./zoolu/sip/dialog/ExtendedInviteDialog.java
-		./zoolu/sip/message/BaseMessageFactory.java
-		./zoolu/sip/provider/SipProvider.java
-		
-		
-	Author: Hughes Systique Corporation
-	Date: Nov 17-2008
-	
-		re-ported for Version 1.0r1
-		
-	Author: Hughes Systique Corporation
-	Date: 30 April, 2008
-	
-		Initial release.
-		
-	Author: Hughes Systique Corporation
-	Date: 2 April, 2008
-	
-		The following files were modified as part of the Porting Process:
-	
-		./zoolu/sdp/AttributeField.java
-		./zoolu/sdp/MediaDescriptor.java
-		./zoolu/sdp/MediaField.java
-		./zoolu/sdp/SdpParser.java
-		./zoolu/sdp/SessionDescriptor.java
-		./zoolu/sdp/SessionNameField.java
-		./zoolu/sip/address/SipURL.java
-		./zoolu/sip/call/Call.java
-		./zoolu/sip/call/CallListenerAdapter.java
-		./zoolu/sip/call/ExtendedCall.java
-		./zoolu/sip/call/ExtendedCallListener.java
-		./zoolu/sip/call/SdpTools.java
-		./zoolu/sip/dialog/Dialog.java
-		./zoolu/sip/dialog/DialogInfo.java
-		./zoolu/sip/dialog/ExtendedInviteDialog.java
-		./zoolu/sip/dialog/NotifierDialog.java
-		./zoolu/sip/dialog/NotifierDialogListener.java
-		./zoolu/sip/dialog/SubscriberDialog.java
-		./zoolu/sip/header/AllowEventsHeader.java
-		./zoolu/sip/header/AllowHeader.java
-		./zoolu/sip/header/AuthenticationHeader.java
-		./zoolu/sip/header/AuthenticationInfoHeader.java
-		./zoolu/sip/header/AuthorizationHeader.java
-		./zoolu/sip/header/ListHeader.java
-		./zoolu/sip/header/MultipleHeader.java
-		./zoolu/sip/header/ParametricHeader.java
-		./zoolu/sip/message/BaseMessage.java
-		./zoolu/sip/message/BaseMessageFactory.java
-		./zoolu/sip/message/BaseMessageOtp.java
-		./zoolu/sip/provider/SipProvider.java
-		./zoolu/tools/Timer.java
-	
-		The changes can be summarized as
-		1) Remove JMF / RAT specific code from User Agent code
-		2) All warnings in the MJSip 1.6 release were fixed
-		3) Strongly type checked code
-		4) Some bug fixes
-	

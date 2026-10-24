@@ -320,17 +320,22 @@ public class SipProvider implements Configurable, TransportListener,
 
 	/** Inits logs. */
 	private void initlog() {
-		if (SipStack.debug_level > 0) {
-			String filename = SipStack.log_path + "//" + via_addr + "."
-					+ host_port;
-			event_log = new RotatingLog(filename + "_events.log", null,
-					SipStack.debug_level, SipStack.max_logsize * 1024,
-					SipStack.log_rotations, SipStack.rotation_scale,
-					SipStack.rotation_time);
-			message_log = new RotatingLog(filename + "_messages.log", null,
-					SipStack.debug_level, SipStack.max_logsize * 1024,
-					SipStack.log_rotations, SipStack.rotation_scale,
-					SipStack.rotation_time);
+		if (SipStack.debug_level > 0 && SipStack.log_path != null && SipStack.log_path.length() > 0) {
+			try {
+				String filename = SipStack.log_path + "//" + via_addr + "."
+						+ host_port;
+				event_log = new RotatingLog(filename + "_events.log", null,
+						SipStack.debug_level, SipStack.max_logsize * 1024,
+						SipStack.log_rotations, SipStack.rotation_scale,
+						SipStack.rotation_time);
+				message_log = new RotatingLog(filename + "_messages.log", null,
+						SipStack.debug_level, SipStack.max_logsize * 1024,
+						SipStack.log_rotations, SipStack.rotation_scale,
+						SipStack.rotation_time);
+			} catch (Exception e) {
+				event_log = null;
+				message_log = null;
+			}
 		}
 		printLog("Date: " + DateFormat.formatHHMMSS(new Date()), LogLevel.HIGH);
 		printLog("SipStack: " + SipStack.release, LogLevel.HIGH);
@@ -346,10 +351,23 @@ public class SipProvider implements Configurable, TransportListener,
 					udp = new UdpTransport(host_port, this);
 				else
 					udp = new UdpTransport(host_port, host_ipaddr, this);
-				host_port = udp.getPort();
-				printLog("udp is up", LogLevel.MEDIUM);
 			} catch (Exception e) {
-				printException(e, LogLevel.HIGH);
+				if (host_port != 0) {
+					try {
+						if (host_ipaddr == null)
+							udp = new UdpTransport(0, this);
+						else
+							udp = new UdpTransport(0, host_ipaddr, this);
+					} catch (Exception e2) {
+						printException(e2, LogLevel.HIGH);
+					}
+				} else {
+					printException(e, LogLevel.HIGH);
+				}
+			}
+			if (udp != null) {
+				host_port = udp.getPort();
+				printLog("udp is up on port " + host_port, LogLevel.MEDIUM);
 			}
 		}
 		// start tcp
@@ -1379,14 +1397,16 @@ public class SipProvider implements Configurable, TransportListener,
 	/** Adds a new string to the default Log */
 	private final void printLog(String str, int level) {
 		if (Sipdroid.release) return;
-		if (event_log != null) {
-			String provider_id = (host_ipaddr == null) ? Integer
-					.toString(host_port) : host_ipaddr.toString() + ":"
-					+ host_port;
-			event_log.println("SipProvider-" + provider_id + ": " + str, level
-					+ SipStack.LOG_LEVEL_TRANSPORT);
-		}
-		if (level <= LogLevel.HIGH) System.out.println("SipProvider: " + str); // modified
+		try {
+			if (event_log != null) {
+				String provider_id = (host_ipaddr == null) ? Integer
+						.toString(host_port) : host_ipaddr.toString() + ":"
+						+ host_port;
+				event_log.println("SipProvider-" + provider_id + ": " + str, level
+						+ SipStack.LOG_LEVEL_TRANSPORT);
+			}
+		} catch (Exception e) {}
+		if (level <= LogLevel.HIGH) android.util.Log.i("SipUA", "SipProvider: " + str);
 	}
 
 	/** Adds a WARNING to the default Log */
@@ -1403,6 +1423,9 @@ public class SipProvider implements Configurable, TransportListener,
 	/** Adds the SIP message to the messageslog */
 	private final void printMessageLog(String proto, String addr, int port,
 			int len, Message msg, String str) {
+		if (!Sipdroid.release && msg != null) {
+			android.util.Log.i("SipUA", "SIP " + str.toUpperCase() + " [" + proto + " " + addr + ":" + port + " len=" + len + "]:\n" + msg.toString());
+		}
 		if (log_all_packets || len >= MIN_MESSAGE_LENGTH) {
 			if (message_log != null) {
 				message_log.printPacketTimestamp(proto, addr, port, len, str

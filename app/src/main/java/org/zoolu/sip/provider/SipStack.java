@@ -140,11 +140,9 @@ public class SipStack extends Configure {
 	/** Log level. Only logs with a level less or equal to this are written. */
 	public static int debug_level = 1;
 	/**
-	 * Path for the log folder where log files are written. By default, it is
-	 * used the "./log" folder. Use ".", to store logs in the current root
-	 * folder.
+	 * Path for the log folder where log files are written. On Android, file logging is disabled.
 	 */
-	public static String log_path = "log";
+	public static String log_path = null;
 	/** The size limit of the log file [kB] */
 	public static int max_logsize = 2048; // 2MB
 	/**

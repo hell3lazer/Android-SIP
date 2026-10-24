@@ -1,15 +1,42 @@
 package org.sipdroid.sipua.ui;
 
+import android.media.AudioManager;
+import android.telecom.CallAudioState;
 import android.telecom.Connection;
 import android.telecom.DisconnectCause;
 import android.util.Log;
+import org.sipdroid.media.RtpStreamReceiver;
 
 public class SipConnection extends Connection {
     private static final String TAG = "SipConnection";
 
     public SipConnection() {
         super();
-        setAudioModeIsVoip(true);
+        setAudioModeIsVoip(false);
+    }
+
+    @Override
+    public void onCallAudioStateChanged(CallAudioState state) {
+        Log.d(TAG, "onCallAudioStateChanged: route=" + state.getRoute() + ", muted=" + state.isMuted());
+        super.onCallAudioStateChanged(state);
+
+        if (Receiver.mContext != null) {
+            // Mute handling
+            Receiver.engine(Receiver.mContext).mute(state.isMuted());
+
+            // Bluetooth SCO handling
+            if (state.getRoute() == CallAudioState.ROUTE_BLUETOOTH) {
+                RtpStreamReceiver.enableBluetooth(true);
+            } else {
+                RtpStreamReceiver.enableBluetooth(false);
+            }
+        }
+    }
+
+    @Override
+    public void onStopDtmfTone() {
+        Log.d(TAG, "onStopDtmfTone() called");
+        super.onStopDtmfTone();
     }
 
     @Override

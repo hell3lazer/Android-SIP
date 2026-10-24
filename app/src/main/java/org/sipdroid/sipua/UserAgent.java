@@ -488,6 +488,11 @@ public class UserAgent extends CallListenerAdapter {
 		return false;
 	}
 
+	public void muteMediaApplication(boolean mute) {
+		if (audio_app != null)
+			audio_app.muteMedia(mute);
+	}
+
 	public int speakerMediaApplication(int mode) {
 		int old;
 		
