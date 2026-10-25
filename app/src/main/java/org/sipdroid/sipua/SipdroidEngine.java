@@ -395,9 +395,7 @@ public class SipdroidEngine implements RegisterAgentListener {
 		}
 	}
 
-	public boolean isRegistered()
-	{
-		if (Receiver.sContext == null) return false;
+	public boolean isRegistered() {
 		for (RegisterAgent ra : ras)
 			if (ra != null && ra.isRegistered())
 				return true;
@@ -414,12 +412,11 @@ public class SipdroidEngine implements RegisterAgentListener {
 	}
 	
 	int getKeepaliveInterval(int i) {
-			if (Build.VERSION.SDK_INT >= 24)
-				return 0;
-			if (sip_providers[i].getDefaultTransport().equals("udp")) {
+			if (sip_providers != null && sip_providers[i] != null && sip_providers[i].getDefaultTransport().equals("udp")) {
 				return 60;
-			} else
+			} else {
 				return 5 * 60;
+			}
 	}
 	
 	public void onUaRegistrationSuccess(RegisterAgent reg_ra, NameAddress target,
@@ -629,7 +626,7 @@ public class SipdroidEngine implements RegisterAgentListener {
 	
 	public void togglemute() {
 		if (ua.muteMediaApplication())
-			Receiver.onText(Receiver.CALL_NOTIFICATION, getUIContext().getString(R.string.menu_mute), R.drawable.ic_mic_off_24,Receiver.ccCall.base);
+			Receiver.onText(Receiver.CALL_NOTIFICATION, getUIContext().getString(R.string.menu_mute), R.drawable.ic_mic_off_24,0);
 		else
 			Receiver.progress();
 	}
@@ -638,7 +635,7 @@ public class SipdroidEngine implements RegisterAgentListener {
 		if (ua != null) {
 			ua.muteMediaApplication(mute);
 			if (mute)
-				Receiver.onText(Receiver.CALL_NOTIFICATION, getUIContext().getString(R.string.menu_mute), R.drawable.ic_mic_off_24, Receiver.ccCall.base);
+				Receiver.onText(Receiver.CALL_NOTIFICATION, getUIContext().getString(R.string.menu_mute), R.drawable.ic_mic_off_24, 0);
 			else
 				Receiver.progress();
 		}

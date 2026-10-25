@@ -30,6 +30,8 @@ public class SipdroidApp extends Application implements SharedPreferences.OnShar
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         prefs.registerOnSharedPreferenceChangeListener(this);
         applyTheme(prefs.getString(PREF_THEME, THEME_SYSTEM));
+        org.sipdroid.sipua.ui.Receiver.engine(this);
+        org.sipdroid.sipua.ui.Receiver.updatePhoneAccount(this);
     }
 
     @Override

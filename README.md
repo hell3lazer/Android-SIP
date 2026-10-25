@@ -5,32 +5,13 @@ Android SIP is an open-source SIP client for Android. This fork modernizes the h
 ## ✨ Features & Changes in this Fork
 
 - **Native Telecom Integration:** The outdated custom dialer and call screens have been fully removed. Android SIP now seamlessly integrates with the native Android Telecom framework. Your SIP account acts as a native calling account in the system dialer, providing a 100% native call experience.
-- **Material Design 3 Upgrade:** The application UI has been fully revamped using Material Design 3 principles, including updated padding, sizing, and iconography.
-- **Smart Background Services:** The SIP engine intelligently detects if battery optimizations are ignored, and if so, runs completely invisibly in the background without any persistent notification cluttering your status bar.
+- **Material Design 3 Upgrade & Adaptive Icon:** The application UI has been fully revamped using Material Design 3 principles, including updated padding, sizing, and modern adaptive launcher iconography with multi-density support.
+- **Zero Notification Footprint:** The SIP engine runs completely silently in background without any persistent notifications or status bar clutter.
+- **Reliable Cold-Start & Idle Calling:** Active keepalives and asynchronous registration retries ensure first-attempt call success even after extended idle periods.
+- **Pure Native Ringtone & Audio:** Incoming calls play the device's default system ringtone via Telecom with clean audio hardware initialization upon answer.
 - **Intelligent Account Management:** When the SIP engine loses connection to the server, the native calling account capabilities are dynamically toggled to gracefully hide it from your system dialer options without losing your permanent enabled permissions.
 - **Modern Cloud Backups:** Replaced the obsolete SD-card text backup system with standard Android Storage Access Framework (SAF) `XML` backups, allowing seamless import/export of configuration to any cloud drive or local folder.
 - **Cleaner Notifications:** Ongoing call notifications now display a clean, readable Caller ID rather than leaking the raw SIP connection URIs, and the SIP account settings have been refined for better visibility.
-
-## 🚀 Release Notes - Version 1.2
-
-- **Uplink Microphone Transmission Fix:** Resolved one-way outgoing call audio where the receiver could not hear the caller. Eliminated double-AEC processing conflicts on Samsung devices in cellular mode, ensured microphone PCM buffer directly feeds RTP packet encoding without obsolete ringback asset substitution, and implemented MIC audio source fallback.
-- **Three-State Registration Indicator:** Added responsive real-time visual indicator inside the app:
-  - 🟢 **Green:** Connected and registered with the SIP server.
-  - 🟡 **Yellow:** Registering or deregistering.
-  - 🔴 **Red:** Disconnected / server unreachable / network offline.
-- **Instant Offline Detection:** Immediately marks accounts offline and updates the UI and native Telecom PhoneAccount when Wi-Fi or data connection drops, avoiding 30-second stale timeouts.
-- **Configurable Microphone Gain:** Added user-adjustable "Microphone gain" in Advanced Options (1.0x default, 2.0x, 3.0x, 4.0x) with linear saturation clipping for low-level microphone hardware.
-- **Microphone Permission Guard:** Validates `RECORD_AUDIO` permission before initiating outbound Telecom calls with clear error reporting.
-
-## 🚀 Release Notes - Version 1.1
-
-- **Bidirectional RTP Media Fix:** Resolved socket address locking in `RtpSocket` that previously threw `IllegalArgumentException: connected address and packet address differ` and prevented outbound audio from reaching the carrier SBC.
-- **Smooth Audio Playback:** Removed synchronous disk writes (`edit.commit()`) and volume polling inside the high-priority RTP audio receiver loop, eliminating `AudioTrack` buffer underruns and audio stutter.
-- **Native Call Audio Routing:** Streamlined audio route transitions between earpiece, speakerphone, and Bluetooth headset during active calls without destroying or recreating `AudioTrack`.
-- **Modern Android Telecom Audio Mode:** Configured Telecom Connection to operate in native cellular mode (`setAudioModeIsVoip(false)`), allowing Samsung and Android audio policy managers to manage voice call routing seamlessly.
-- **Automatic E.164 Phone Formatting:** Integrated automatic country-code formatting via `PhoneNumberUtils.formatNumberToE164` for dialing local contact numbers.
-- **Mid-Call SIP Stability:** Suppressed redundant SIP re-registrations caused by radio capability/signal fluctuations during active calls.
-- **Private Release Key:** Signed with a newly generated private release keystore. *Note: users upgrading from earlier development or debug builds must perform a one-time uninstall before installing.*
 
 ### ⚠️ Known Issues
 - **INVITE Retransmissions During Extended Ringing:** When an outbound call is challenged with `407 Proxy Authentication`, retransmitted authenticated INVITEs may repeat at 4-second intervals during ringing until answered or terminated.

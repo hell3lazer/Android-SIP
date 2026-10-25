@@ -12,7 +12,6 @@ public class SipConnection extends Connection {
 
     public SipConnection() {
         super();
-        setAudioModeIsVoip(true);
     }
 
     @Override
@@ -43,6 +42,7 @@ public class SipConnection extends Connection {
     public void onAnswer() {
         Log.d(TAG, "onAnswer() called");
         super.onAnswer();
+        setAudioModeIsVoip(true);
         if (Receiver.mContext != null) {
             Receiver.engine(Receiver.mContext).answercall();
         }

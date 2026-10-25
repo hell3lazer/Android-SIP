@@ -56,13 +56,6 @@
 				android:key="3g"
 				android:title="@string/settings_3g"
 				android:summary="@string/settings_check" />
-			<CheckBoxPreference
-				android:key="notrain"
-				android:title="@string/settings_notrain" />
-			<CheckBoxPreference
-				android:key="vpn"
-				android:title="@string/settings_vpn"
-				android:summary="@string/settings_vpn2" />
 	</PreferenceScreen>
 	<PreferenceScreen android:title="SIP Account 2"
 				android:key="account1">
@@ -112,31 +105,6 @@
 				android:key="3g1"
 				android:title="@string/settings_3g"
 				android:summary="@string/settings_check" />
-			<CheckBoxPreference
-				android:key="notrain1"
-				android:title="@string/settings_notrain" />
-			<CheckBoxPreference
-				android:key="vpn1"
-				android:title="@string/settings_vpn"
-				android:summary="@string/settings_vpn2" />
-	</PreferenceScreen>
-
-	<PreferenceScreen android:title="@string/settings_notifications">
-			<CheckBoxPreference
-				android:key="MWI_enabled"
-				android:title="@string/settings_MWI"
-				android:summary="@string/settings_MWI2" />
-			<CheckBoxPreference
-				android:key="nodata"
-				android:title="@string/settings_nodata"
-				android:summary="@string/settings_nodata2" />
-			<org.sipdroid.sipua.ui.SipRingtonePreference
-				android:key="sipringtone"
-				android:title="@string/settings_sipringtone"
-				android:summary="@string/settings_sipringtone2"
-				android:dialogTitle="@string/settings_sipringtone_dialog"
-				android:persistent="false"
-				android:ringtoneType="ringtone" /> 
 	</PreferenceScreen>
 
 	<PreferenceScreen

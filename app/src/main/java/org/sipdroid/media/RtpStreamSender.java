@@ -114,7 +114,7 @@ public class RtpStreamSender extends Thread {
 	}};
 	//DTMF change 
 	
-	CallRecorder call_recorder = null;
+	
 	
 	/**
 	 * Constructs a RtpStreamSender.
@@ -140,13 +140,12 @@ public class RtpStreamSender extends Thread {
 	 * @param dest_port
 	 *            the destination port
 	 */
-	public RtpStreamSender(boolean do_sync, Codecs.Map payload_type,
+		public RtpStreamSender(boolean do_sync, Codecs.Map payload_type,
 			       long frame_rate, int frame_size,
 			       SipdroidSocket src_socket, String dest_addr,
-			       int dest_port, CallRecorder rec) {
+			       int dest_port) {
 		init(do_sync, payload_type, frame_rate, frame_size,
 				src_socket, dest_addr, dest_port);
-		call_recorder = rec;
 	}
 
 	String dest_addr;
@@ -397,10 +396,6 @@ public class RtpStreamSender extends Thread {
 					 }
 				 }
 			 }
-			 
-			 // Call recording: Save the frame to the CallRecorder.
-			 if (call_recorder != null)
-			 	call_recorder.writeOutgoing(lin, 0, num);
 
 			 num = p_type.codec.encode(lin, 0, buffer, num);
 			 
@@ -469,12 +464,7 @@ public class RtpStreamSender extends Thread {
 		rtp_socket.getDatagramSocket().close();
 		rtp_socket = null;
 		
-		// Call recorder: stop recording outgoing.
-		if (call_recorder != null)
-		{
-			call_recorder.stopOutgoing();
-			call_recorder = null;
-		}
+		
 
 		if (DEBUG)
 			println("rtp sender terminated");

@@ -79,7 +79,7 @@ public class RtpStreamReceiver extends Thread {
 	ContentResolver cr;
 	public static int speakermode = -1;
 	public static boolean bluetoothmode;
-	CallRecorder call_recorder = null;
+	
 	
 	/**
 	 * Constructs a RtpStreamReceiver.
@@ -89,10 +89,9 @@ public class RtpStreamReceiver extends Thread {
 	 * @param socket
 	 *            the local receiver SipdroidSocket
 	 */
-	public RtpStreamReceiver(SipdroidSocket socket, Codecs.Map payload_type, CallRecorder rec) {
+		public RtpStreamReceiver(SipdroidSocket socket, Codecs.Map payload_type) {
 		init(socket);
 		p_type = payload_type;
-		call_recorder = rec;
 	}
 
 	int local_port;
@@ -352,7 +351,7 @@ public class RtpStreamReceiver extends Thread {
 	}
 
 	void newjitter(boolean inc) {
-		 if (good == 0 || lost/good > 0.01 || call_recorder != null)
+		 if (good == 0 || lost/good > 0.01 )
 			 return;
 		 int newjitter = (int)Math.sqrt(devheadroom)*7 + (inc?minjitteradjust:0);
 		 if (newjitter < minjitter)
@@ -397,22 +396,22 @@ public class RtpStreamReceiver extends Thread {
 		am = (AudioManager) Receiver.mContext.getSystemService(Context.AUDIO_SERVICE);
         cr = Receiver.mContext.getContentResolver();
 		saveSettings();
-		am.setVibrateSetting(AudioManager.VIBRATE_TYPE_RINGER,AudioManager.VIBRATE_SETTING_OFF);
-		am.setVibrateSetting(AudioManager.VIBRATE_TYPE_NOTIFICATION,AudioManager.VIBRATE_SETTING_OFF);
+		
+		
 		if (oldvol == -1) oldvol = am.getStreamVolume(AudioManager.STREAM_MUSIC);
 		initMode();
 		setCodec();
 		short lin[] = new short[BUFFER_SIZE];
 		short lin2[] = new short[BUFFER_SIZE];
 		int server, headroom, todo, len = 0, m = 1, expseq, getseq, vm = 1, gap, gseq;
-		ToneGenerator tg = new ToneGenerator(AudioManager.STREAM_VOICE_CALL,(int)(ToneGenerator.MAX_VOLUME));
+		
 		System.gc();
 		empty();
 		while (running) {
 			lock(Receiver.call_state != UserAgent.UA_STATE_INCOMING_CALL);
 			if (Receiver.call_state == UserAgent.UA_STATE_HOLD) {
 				lock(false);
-				tg.stopTone();
+				
 				track.pause();
 				while (running && Receiver.call_state == UserAgent.UA_STATE_HOLD) {
 					try {
@@ -429,7 +428,7 @@ public class RtpStreamReceiver extends Thread {
 			try {
 				rtp_socket.receive(rtp_packet);
 				if (timeout != 0) {
-					tg.stopTone();
+					
 					/*
 					track.pause();
 					for (int i = maxjitter*4; i > 0; i -= BUFFER_SIZE)
@@ -443,7 +442,7 @@ public class RtpStreamReceiver extends Thread {
 				timeoutstart = System.currentTimeMillis();
 			} catch (IOException e) {
 				if (timeout == 0 && nodata) {
-					tg.startTone(ToneGenerator.TONE_SUP_RINGTONE);
+					
 				}
 				timeout = (System.currentTimeMillis()-timeoutstart)/1000 + 1;
 				if (timeout % 5 == 0) {
@@ -490,8 +489,7 @@ public class RtpStreamReceiver extends Thread {
 					 }
 					 len = p_type.codec.decode(buffer, lin, rtp_packet.getPayloadLength());
 					 
-					 if (call_recorder != null)
-					 	call_recorder.writeIncoming(lin, 0, len);
+					 
 				 }
 				 
 				 if (cnt == 0)
@@ -560,8 +558,8 @@ public class RtpStreamReceiver extends Thread {
 		lock(false);
 		track.stop();
 		track.release();
-		tg.stopTone();
-		tg.release();
+		
+		
 		saveVolume();
 		if (oldvol >= 0) {
 			am.setStreamVolume(AudioManager.STREAM_MUSIC,oldvol,0);
@@ -577,12 +575,7 @@ public class RtpStreamReceiver extends Thread {
 		rtp_socket = null;
 		codec = "";
 		
-		// Call recording: stop incoming receive.
-		if (call_recorder != null)
-		{
-			call_recorder.stopIncoming();
-			call_recorder = null;
-		}
+		
 
 		if (DEBUG)
 			println("rtp receiver terminated");

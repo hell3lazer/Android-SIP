@@ -254,6 +254,8 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
 		super.onCreate(savedInstanceState);
         
     	if (Receiver.mContext == null) Receiver.mContext = this;
+		Receiver.engine(this);
+		Receiver.updatePhoneAccount(this);
 		addPreferencesFromResource(R.xml.preferences);
 		
 		android.widget.ListView listView = getListView();
@@ -285,14 +287,14 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
 			SettingsNew.ignoreBattery(this);
 		}
 		if (Build.VERSION.SDK_INT >= 23) {
-			requestPermissions(new String[]{
-				android.Manifest.permission.RECORD_AUDIO,
-				android.Manifest.permission.USE_SIP,
-				android.Manifest.permission.CALL_PHONE,
-				android.Manifest.permission.READ_PHONE_STATE,
-				android.Manifest.permission.READ_CONTACTS,
-				"android.permission.POST_NOTIFICATIONS"
-			}, 1);
+			java.util.ArrayList<String> perms = new java.util.ArrayList<>();
+			perms.add(android.Manifest.permission.RECORD_AUDIO);
+			perms.add(android.Manifest.permission.READ_PHONE_STATE);
+			perms.add(android.Manifest.permission.CALL_PHONE);
+			if (Build.VERSION.SDK_INT >= 31) {
+				perms.add(android.Manifest.permission.BLUETOOTH_CONNECT);
+			}
+			requestPermissions(perms.toArray(new String[0]), 1);
 		}
 	}
 	
@@ -540,6 +542,8 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
 					mInstance.updateSummaries();
 				}
 			});
+		} else if (Receiver.mContext != null) {
+			Receiver.updatePhoneAccount(Receiver.mContext);
 		}
 	}
 
@@ -569,7 +573,7 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
     		edit.putString(key, DEFAULT_PORT);
     		edit.commit();
 
-    		transferText = new InstantAutoCompleteTextView(this,null);
+    		transferText = new EditText(this);
 			transferText.setInputType(InputType.TYPE_CLASS_NUMBER);
 			mKey = key;
 
@@ -590,7 +594,7 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
         	    	Receiver.engine(Settings.this).halt();
     		    	Receiver.engine(Settings.this).StartEngine();
         	    	Receiver.engine(Settings.this).updateDNS();
-        	    	Checkin.checkin(false);
+        	    	
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -720,6 +724,7 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
     	} else {
     		if (pMmtelQvalue != null) pMmtelQvalue.setEnabled(false);       	
     	}
+    	Receiver.updatePhoneAccount(this);
     }
 
     @Override

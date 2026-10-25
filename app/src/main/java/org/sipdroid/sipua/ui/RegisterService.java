@@ -52,6 +52,9 @@ public class RegisterService extends Service {
 			mNetworkCallback = null;
 		}
 		Receiver.alarm(0, OneShotAlarm2.class);
+		if (Receiver.sContext == this) {
+			Receiver.sContext = null;
+		}
 	}
     
     @Override
@@ -79,31 +82,8 @@ public class RegisterService extends Service {
 				registerReceiver(m_receiver = new Receiver(), intentfilter);
 			intentfilter = new IntentFilter();
         }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            android.app.NotificationManager mNotificationMgr = (android.app.NotificationManager) getSystemService(android.content.Context.NOTIFICATION_SERVICE);
-            if (mNotificationMgr != null) {
-                mNotificationMgr.createNotificationChannel(new android.app.NotificationChannel("sipdroid_bg", "SIP Background Service", android.app.NotificationManager.IMPORTANCE_MIN));
-            }
-            android.app.Notification bgNotif = new androidx.core.app.NotificationCompat.Builder(this, "sipdroid_bg")
-                .setSmallIcon(org.sipdroid.sipua.R.drawable.icon)
-                .setContentTitle("Android SIP")
-                .setContentText("Running in background")
-                .setPriority(androidx.core.app.NotificationCompat.PRIORITY_MIN)
-                .build();
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                try {
-                    int serviceTypes = 128 | 4; // FOREGROUND_SERVICE_TYPE_MICROPHONE | FOREGROUND_SERVICE_TYPE_PHONE_CALL
-                    startForeground(Receiver.REGISTER_NOTIFICATION, bgNotif, serviceTypes);
-                } catch (Exception e) {
-                    try {
-                        startForeground(Receiver.REGISTER_NOTIFICATION, bgNotif);
-                    } catch (Exception ex) {}
-                }
-            } else {
-                try {
-                    startForeground(Receiver.REGISTER_NOTIFICATION, bgNotif);
-                } catch (Exception e) {}
-            }
+        if (Receiver.call_state != org.sipdroid.sipua.UserAgent.UA_STATE_IDLE) {
+            Receiver.startCallForeground();
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && mNetworkCallback == null) {
             ConnectivityManager cm = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
@@ -164,10 +144,10 @@ public class RegisterService extends Service {
     }
     
     @Override
-    public void onStart(Intent intent, int id) {
-         super.onStart(intent,id);
+    public int onStartCommand(Intent intent, int flags, int startId) {
          RtpStreamReceiver.restoreSettings();
          Receiver.alarm(10*60, OneShotAlarm2.class);
+         return START_STICKY;
     }
 
 	@Override

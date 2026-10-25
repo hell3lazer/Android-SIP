@@ -82,18 +82,14 @@ public class JAudioLauncher implements MediaLauncher
       useDTMF = (dtmf_pt != 0);
       try
       {
-    	 CallRecorder call_recorder = null;
-    	 if (PreferenceManager.getDefaultSharedPreferences(Receiver.mContext).getBoolean(org.sipdroid.sipua.ui.Settings.PREF_CALLRECORD,
-					org.sipdroid.sipua.ui.Settings.DEFAULT_CALLRECORD))
-    		 call_recorder = new CallRecorder(null,payload_type.codec.samp_rate()); // Autogenerate filename from date. 
-    	 socket=new SipdroidSocket(local_port);
+    	     	 socket=new SipdroidSocket(local_port);
     	 RtpStreamSender.new_socket = null;
          dir=direction;
          // sender
          if (dir>=0)
          {  printLog("new audio sender to "+remote_addr+":"+remote_port,LogLevel.MEDIUM);
             //audio_input=new AudioInput();
-            sender=new RtpStreamSender(true,payload_type,frame_rate,frame_size,socket,remote_addr,remote_port,call_recorder);
+            sender=new RtpStreamSender(true,payload_type,frame_rate,frame_size,socket,remote_addr,remote_port);
             sender.setSyncAdj(2);
             sender.setDTMFpayloadType(dtmf_pt);
          }
@@ -101,7 +97,7 @@ public class JAudioLauncher implements MediaLauncher
          // receiver
          if (dir<=0)
          {  printLog("new audio receiver on "+local_port,LogLevel.MEDIUM);
-            receiver=new RtpStreamReceiver(socket,payload_type,call_recorder);
+            receiver=new RtpStreamReceiver(socket,payload_type);
          }
       }
       catch (Exception e) {  printException(e,LogLevel.HIGH);  }

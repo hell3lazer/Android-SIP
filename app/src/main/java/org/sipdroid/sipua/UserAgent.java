@@ -382,6 +382,7 @@ public class UserAgent extends CallListenerAdapter {
 		changeStatus(UA_STATE_INCALL); // modified
 
 		call.accept(local_session);
+		launchMediaApplication();
 		
 		return true;
 	}
@@ -579,8 +580,7 @@ public class UserAgent extends CallListenerAdapter {
 				return;
 			}
 		}
-		call.ring(local_session);		
-		launchMediaApplication();
+		call.ring(local_session);
 	}
 
 	/**
@@ -771,6 +771,11 @@ public class UserAgent extends CallListenerAdapter {
 		}
 		printLog("CANCEL", LogLevel.HIGH);
 		changeStatus(UA_STATE_IDLE);
+		if (Receiver.mContext != null) {
+			try {
+				Receiver.engine(Receiver.mContext).register();
+			} catch (Exception e) {}
+		}
 	}
 
 	/** Callback function called when arriving a BYE request */
