@@ -149,6 +149,13 @@
 
 	</PreferenceScreen>
 	<PreferenceScreen android:title="@string/settings_advanced_options">
+			<ListPreference
+				android:key="micgain"
+				android:title="@string/settings_micgain"
+				android:defaultValue="1.0"
+				android:entries="@array/micgain_display_values"
+				android:entryValues="@array/micgain_values"
+				android:dialogTitle="@string/settings_micgain" />
 			<EditTextPreference
 				android:key="search"
 				android:title="@string/settings_search"

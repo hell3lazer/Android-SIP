@@ -24,6 +24,10 @@ public class SipConnectionService extends ConnectionService {
     @Override
     public Connection onCreateOutgoingConnection(PhoneAccountHandle connectionManagerPhoneAccount, ConnectionRequest request) {
         Log.d(TAG, "onCreateOutgoingConnection");
+        if (androidx.core.content.ContextCompat.checkSelfPermission(this, android.Manifest.permission.RECORD_AUDIO) != android.content.pm.PackageManager.PERMISSION_GRANTED) {
+            Log.e(TAG, "RECORD_AUDIO permission not granted");
+            return Connection.createFailedConnection(new android.telecom.DisconnectCause(android.telecom.DisconnectCause.ERROR, "Microphone permission required"));
+        }
         SipConnection connection = new SipConnection();
         connection.setConnectionCapabilities(Connection.CAPABILITY_MUTE | Connection.CAPABILITY_SUPPORT_HOLD | Connection.CAPABILITY_HOLD);
         connection.setAddress(request.getAddress(), android.telecom.TelecomManager.PRESENTATION_ALLOWED);

@@ -293,13 +293,19 @@ public class RtpStreamSender extends Thread {
 				record = new AudioRecord(MediaRecorder.AudioSource.VOICE_COMMUNICATION, p_type.codec.samp_rate(), AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_16BIT, 
 							min);
 				if (record.getState() != AudioRecord.STATE_INITIALIZED) {
+					android.util.Log.w("SipUA", "AudioRecord VOICE_COMMUNICATION failed to initialize, trying MIC fallback");
+					record.release();
+					record = new AudioRecord(MediaRecorder.AudioSource.MIC, p_type.codec.samp_rate(), AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_16BIT, min);
+				}
+				if (record.getState() != AudioRecord.STATE_INITIALIZED) {
+					android.util.Log.e("SipUA", "AudioRecord failed to initialize with both sources!");
+					record.release();
 					record = null;
+					try { sleep(500); } catch (Exception ignored) {}
 					continue;
 				}
-				if (android.os.Build.VERSION.SDK_INT >= 16) {
-					RtpStreamSenderNew_SDK16.aec(record);
-				}
 				record.startRecording();
+				android.util.Log.i("SipUA", "RtpStreamSender: AudioRecord started recording: session=" + record.getAudioSessionId() + ", sampleRate=" + p_type.codec.samp_rate() + ", source=" + record.getAudioSource());
 			 }
 			 if (Receiver.call_state == UserAgent.UA_STATE_HOLD) {
 				RtpStreamReceiver.restoreMode();
@@ -380,28 +386,23 @@ public class RtpStreamSender extends Thread {
 			 
 			 if (muted) {
 				 java.util.Arrays.fill(lin, 0, num, (short) 0);
+			 } else {
+				 float micGain = Settings.getMicGain();
+				 if (micGain > 1.0f) {
+					 for (int i = 0; i < num; i++) {
+						 int sample = (int)(lin[i] * micGain);
+						 if (sample > 32767) sample = 32767;
+						 else if (sample < -32768) sample = -32768;
+						 lin[i] = (short) sample;
+					 }
+				 }
 			 }
 			 
 			 // Call recording: Save the frame to the CallRecorder.
 			 if (call_recorder != null)
 			 	call_recorder.writeOutgoing(lin, 0, num);
 
-			 if (Receiver.call_state != UserAgent.UA_STATE_INCALL &&
-					 Receiver.call_state != UserAgent.UA_STATE_OUTGOING_CALL && alerting != null) {
-				 try {
-					if (alerting.available() < num/mu)
-						alerting.reset();
-					alerting.read(buffer, 12, num/mu);
-				 } catch (IOException e) {
-					if (!Sipdroid.release) e.printStackTrace();
-				 }
-				 if (p_type.codec.number() != 8) {
-					 G711.alaw2linear(buffer, lin, num, mu);
-					 num = p_type.codec.encode(lin, 0, buffer, num);
-				 }
-			 } else {
-				 num = p_type.codec.encode(lin, 0, buffer, num);
-			 }
+			 num = p_type.codec.encode(lin, 0, buffer, num);
 			 
 			 ring += frame_size;
 			 rtp_packet.setSequenceNumber(seqn++);
@@ -411,8 +412,25 @@ public class RtpStreamSender extends Thread {
 			 try {
 				 lastsent = now;
 				 rtp_socket.send(rtp_packet);
-				 if (seqn % 100 == 1) {
-					 android.util.Log.d("SipUA", "RtpStreamSender: sent packet " + seqn + " (" + num + " bytes) to " + dest_addr + ":" + dest_port);
+				 if (!Sipdroid.release && seqn % 50 == 1) {
+					 int peak = 0;
+					 long sumSquare = 0;
+					 int nonZero = 0;
+					 for (int i = 0; i < num; i++) {
+						 int absVal = Math.abs(lin[i]);
+						 if (absVal > peak) peak = absVal;
+						 if (absVal > 0) nonZero++;
+						 sumSquare += (long) lin[i] * lin[i];
+					 }
+					 int rms = num > 0 ? (int) Math.sqrt(sumSquare / num) : 0;
+					 boolean silenced = false;
+					 if (android.os.Build.VERSION.SDK_INT >= 29 && record != null) {
+						 try {
+							 android.media.AudioRecordingConfiguration cfg = record.getActiveRecordingConfiguration();
+							 if (cfg != null) silenced = cfg.isClientSilenced();
+						 } catch (Exception ignored) {}
+					 }
+					 android.util.Log.d("SipUA", "RtpStreamSender [tx]: seqn=" + seqn + " num=" + num + " peak=" + peak + " rms=" + rms + " nonZero=" + nonZero + " gain=" + Settings.getMicGain() + " silenced=" + silenced + " muted=" + muted + " state=" + Receiver.call_state);
 				 }
 				 if (m > 1 && (RtpStreamReceiver.timeout == 0 || Receiver.on_wlan))
 					 for (int i = 1; i < m; i++)

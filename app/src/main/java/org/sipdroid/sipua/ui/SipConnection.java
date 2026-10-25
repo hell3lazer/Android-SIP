@@ -12,7 +12,7 @@ public class SipConnection extends Connection {
 
     public SipConnection() {
         super();
-        setAudioModeIsVoip(false);
+        setAudioModeIsVoip(true);
     }
 
     @Override

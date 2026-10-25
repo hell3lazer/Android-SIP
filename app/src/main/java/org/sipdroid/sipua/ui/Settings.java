@@ -139,6 +139,18 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
 	public static final String PREF_BLUETOOTH = "bluetooth";
 	public static final String PREF_KEEPON = "keepon";
 	public static final String PREF_ACCOUNT = "account";
+	public static final String PREF_MICGAIN = "micgain";
+	public static final String DEFAULT_MICGAIN = "1.0";
+
+	public static float getMicGain() {
+		try {
+			if (Receiver.mContext == null) return 1.0f;
+			String val = PreferenceManager.getDefaultSharedPreferences(Receiver.mContext).getString(PREF_MICGAIN, DEFAULT_MICGAIN);
+			return Float.parseFloat(val);
+		} catch (Exception e) {
+			return 1.0f;
+		}
+	}
 	
 	// Default values of the preferences
 	public static final String	DEFAULT_USERNAME = "";
@@ -668,12 +680,18 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
 	    	Preference pAccount = getPreferenceScreen().findPreference(PREF_ACCOUNT+j);
 	    	if (pAccount != null) {
 				pAccount.setSummary(username.equals("")||server.equals("")?"Not Configured":username+"@"+server);
-				boolean isReg = false;
+				int state = org.sipdroid.sipua.RegisterAgent.UNREGISTERED;
 				org.sipdroid.sipua.SipdroidEngine engine = Receiver.engine(this);
-				if (engine != null && engine.ras != null && engine.ras[i] != null) {
-					isReg = (engine.ras[i].CurrentState == org.sipdroid.sipua.RegisterAgent.REGISTERED);
+				if (!username.equals("") && !server.equals("") && engine != null && engine.ras != null && engine.ras[i] != null) {
+					state = engine.ras[i].CurrentState;
 				}
-				pAccount.setIcon(isReg ? R.drawable.ic_connected_modern : R.drawable.ic_disconnected_modern);
+				if (state == org.sipdroid.sipua.RegisterAgent.REGISTERED) {
+					pAccount.setIcon(R.drawable.ic_connected_modern);
+				} else if (state == org.sipdroid.sipua.RegisterAgent.REGISTERING || state == org.sipdroid.sipua.RegisterAgent.DEREGISTERING) {
+					pAccount.setIcon(R.drawable.ic_registering_modern);
+				} else {
+					pAccount.setIcon(R.drawable.ic_disconnected_modern);
+				}
 			}
        	}
 
@@ -681,6 +699,7 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
 			((android.widget.BaseAdapter) getPreferenceScreen().getRootAdapter()).notifyDataSetChanged();
 		}
        	
+		fill(PREF_MICGAIN, DEFAULT_MICGAIN, R.array.micgain_values, R.array.micgain_display_values);
 		Preference pSearch = getPreferenceScreen().findPreference(PREF_SEARCH);
     	if (pSearch != null) pSearch.setSummary(settings.getString(PREF_SEARCH, DEFAULT_SEARCH)); 
 		

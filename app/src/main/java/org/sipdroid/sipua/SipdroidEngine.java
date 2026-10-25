@@ -264,7 +264,7 @@ public class SipdroidEngine implements RegisterAgentListener {
 		int i = 0;
 		for (RegisterAgent ra : ras) {
 			if (ra != null && ra.CurrentState == RegisterAgent.REGISTERED) {
-				ra.CurrentState = RegisterAgent.UNREGISTERED;
+				ra.setState(RegisterAgent.UNREGISTERED);
 				Receiver.onText(Receiver.REGISTER_NOTIFICATION+i, null, 0, 0);
 			}
 			i++;
@@ -383,8 +383,10 @@ public class SipdroidEngine implements RegisterAgentListener {
 				Receiver.alarm(0, LoopAlarm.class);
 			}
 			Receiver.onText(Receiver.REGISTER_NOTIFICATION+i, null, 0, 0);
-			if (ra != null)
+			if (ra != null) {
+				ra.setState(RegisterAgent.UNREGISTERED);
 				ra.halt();
+			}
 			if (uas[i] != null)
 				uas[i].hangup();
 			if (sip_providers[i] != null)
@@ -480,9 +482,10 @@ public class SipdroidEngine implements RegisterAgentListener {
     		i++;
     	}
     	if (isRegistered(i)) {
-    		reg_ra.CurrentState = RegisterAgent.UNREGISTERED;
+    		reg_ra.setState(RegisterAgent.UNREGISTERED);
     		Receiver.onText(Receiver.REGISTER_NOTIFICATION+i, null, 0, 0);
     		org.sipdroid.sipua.ui.Settings.notifyRegistrationChanged();
+    		Receiver.registered();
     	} else {
     		retry = true;
     		Receiver.onText(Receiver.REGISTER_NOTIFICATION+i,getUIContext().getString(R.string.regfailed)+" ("+result+")",R.drawable.sym_presence_away,0);

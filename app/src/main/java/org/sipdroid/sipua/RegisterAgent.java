@@ -119,6 +119,11 @@ public class RegisterAgent implements TransactionClientListener, SubscriberDialo
 	/** Current State of the registrar component */
 	public int CurrentState;
 
+	public void setState(int newState) {
+		this.CurrentState = newState;
+		org.sipdroid.sipua.ui.Settings.notifyRegistrationChanged();
+	}
+
 	UserAgentProfile user_profile;
 
 	SubscriberDialog sd;
@@ -204,7 +209,7 @@ public class RegisterAgent implements TransactionClientListener, SubscriberDialo
 				return false;
 			}
 			this.expire_time = expire_time;
-			CurrentState = REGISTERING;
+			setState(REGISTERING);
 		}
 		else
 		{
@@ -220,7 +225,7 @@ public class RegisterAgent implements TransactionClientListener, SubscriberDialo
 			}
 			//this is the case for de-registration
 			expire_time = 0;
-			CurrentState = DEREGISTERING;
+			setState(DEREGISTERING);
 		}
 		
 		//Create message re (modified by mandrajg)
@@ -472,7 +477,7 @@ public class RegisterAgent implements TransactionClientListener, SubscriberDialo
 			
 			if (CurrentState == REGISTERING)
 			{
-				CurrentState = REGISTERED;
+				setState(REGISTERED);
 				if (listener != null)
 				{
 					listener.onUaRegistrationSuccess(this, target, contact, result);
@@ -481,7 +486,7 @@ public class RegisterAgent implements TransactionClientListener, SubscriberDialo
 			}
 			else
 			{
-				CurrentState = UNREGISTERED;
+				setState(UNREGISTERED);
 				if (listener != null)
 				{
 					listener.onUaRegistrationSuccess(this, target, contact, result);
@@ -505,7 +510,7 @@ public class RegisterAgent implements TransactionClientListener, SubscriberDialo
 				//previous state
 				if (CurrentState == REGISTERING)
 				{
-					CurrentState = UNREGISTERED;
+					setState(UNREGISTERED);
 					if (listener != null)
 					{
 						listener.onUaRegistrationFailure(this, target, contact,
@@ -515,7 +520,7 @@ public class RegisterAgent implements TransactionClientListener, SubscriberDialo
 				}
 				else
 				{
-					CurrentState = UNREGISTERED;
+					setState(UNREGISTERED);
 					if (listener != null)
 					{
 						listener.onUaRegistrationSuccess(this, target, contact, result);
@@ -640,7 +645,7 @@ public class RegisterAgent implements TransactionClientListener, SubscriberDialo
 			
 			if (CurrentState == REGISTERING)
 			{
-				CurrentState = UNDEFINED;
+				setState(UNDEFINED);
 				
 				if (listener != null)
 				{
@@ -654,7 +659,7 @@ public class RegisterAgent implements TransactionClientListener, SubscriberDialo
 				if (pub && android.provider.Settings.System.getInt(
 					      Receiver.mContext.getContentResolver(), 
 					      android.provider.Settings.System.AIRPLANE_MODE_ON, 0) == 0) {
-					CurrentState = UNDEFINED;
+					setState(UNDEFINED);
 					if (listener != null)
 					{
 						listener.onUaRegistrationFailure(this, target, contact,
@@ -662,7 +667,7 @@ public class RegisterAgent implements TransactionClientListener, SubscriberDialo
 						Receiver.reRegister(1000);
 					}
 				} else {
-					CurrentState = UNREGISTERED;
+					setState(UNREGISTERED);
 					if (listener != null)
 					{
 						listener.onUaRegistrationSuccess(this, target, contact, "Timeout");

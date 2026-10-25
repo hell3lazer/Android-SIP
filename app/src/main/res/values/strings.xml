@@ -324,6 +324,19 @@
 </string-array>
 <string name="settings_theme">Theme</string>
 
+
+<string-array name="micgain_display_values">
+    <item>1.0x (Default)</item>
+    <item>2.0x (+6 dB)</item>
+    <item>3.0x (+9.5 dB)</item>
+    <item>4.0x (+12 dB)</item>
+</string-array>
+<string-array name="micgain_values">
+    <item>1.0</item>
+    <item>2.0</item>
+    <item>3.0</item>
+    <item>4.0</item>
+</string-array>
 </resources>
 
 

@@ -11,6 +11,17 @@ Android SIP is an open-source SIP client for Android. This fork modernizes the h
 - **Modern Cloud Backups:** Replaced the obsolete SD-card text backup system with standard Android Storage Access Framework (SAF) `XML` backups, allowing seamless import/export of configuration to any cloud drive or local folder.
 - **Cleaner Notifications:** Ongoing call notifications now display a clean, readable Caller ID rather than leaking the raw SIP connection URIs, and the SIP account settings have been refined for better visibility.
 
+## 🚀 Release Notes - Version 1.2
+
+- **Uplink Microphone Transmission Fix:** Resolved one-way outgoing call audio where the receiver could not hear the caller. Eliminated double-AEC processing conflicts on Samsung devices in cellular mode, ensured microphone PCM buffer directly feeds RTP packet encoding without obsolete ringback asset substitution, and implemented MIC audio source fallback.
+- **Three-State Registration Indicator:** Added responsive real-time visual indicator inside the app:
+  - 🟢 **Green:** Connected and registered with the SIP server.
+  - 🟡 **Yellow:** Registering or deregistering.
+  - 🔴 **Red:** Disconnected / server unreachable / network offline.
+- **Instant Offline Detection:** Immediately marks accounts offline and updates the UI and native Telecom PhoneAccount when Wi-Fi or data connection drops, avoiding 30-second stale timeouts.
+- **Configurable Microphone Gain:** Added user-adjustable "Microphone gain" in Advanced Options (1.0x default, 2.0x, 3.0x, 4.0x) with linear saturation clipping for low-level microphone hardware.
+- **Microphone Permission Guard:** Validates `RECORD_AUDIO` permission before initiating outbound Telecom calls with clear error reporting.
+
 ## 🚀 Release Notes - Version 1.1
 
 - **Bidirectional RTP Media Fix:** Resolved socket address locking in `RtpSocket` that previously threw `IllegalArgumentException: connected address and packet address differ` and prevented outbound audio from reaching the carrier SBC.

@@ -1,3 +1,12 @@
+Version 1.2 (Build 149)
+	* Fixed one-way outgoing call uplink audio (receiver can now clearly hear caller).
+	* Removed double AEC/NS effect processing on Samsung cellular audio routing.
+	* Directly routed microphone PCM to RTP codec encoding, removing legacy ringback substitution.
+	* Implemented three-state account registration indicator (Green = Connected, Yellow = Registering, Red = Disconnected).
+	* Added instant offline detection on network loss with real-time UI/Telecom refresh.
+	* Added configurable Microphone Gain setting in Advanced Options (1.0x to 4.0x).
+	* Added RECORD_AUDIO permission validation guard before placing Telecom calls.
+
 Version 1.1 (Build 148)
 	* Fixed bidirectional RTP transmission and eliminated socket address locking.
 	* Fixed AudioTrack buffer underruns by decoupling volume persistence from audio loop.

@@ -120,7 +120,30 @@ public class RegisterService extends Service {
                     @Override
                     public void onLost(Network network) {
                         if (!Sipdroid.release) android.util.Log.i("SipUA", "NetworkCallback onLost");
-                        if (Receiver.call_state == 0) {
+                        ConnectivityManager cm = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+                        boolean hasNetwork = false;
+                        if (cm != null) {
+                            Network active = cm.getActiveNetwork();
+                            if (active != null) {
+                                NetworkCapabilities caps = cm.getNetworkCapabilities(active);
+                                if (caps != null && (caps.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) ||
+                                                     caps.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) ||
+                                                     caps.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET))) {
+                                    hasNetwork = true;
+                                }
+                            }
+                        }
+                        if (!hasNetwork) {
+                            org.sipdroid.sipua.SipdroidEngine engine = Receiver.engine(RegisterService.this);
+                            if (engine != null && engine.ras != null) {
+                                for (org.sipdroid.sipua.RegisterAgent ra : engine.ras) {
+                                    if (ra != null) {
+                                        ra.setState(org.sipdroid.sipua.RegisterAgent.UNREGISTERED);
+                                    }
+                                }
+                            }
+                            Receiver.registered();
+                        } else if (Receiver.call_state == 0) {
                             Receiver.engine(RegisterService.this).register();
                         }
                     }
