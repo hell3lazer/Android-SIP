@@ -296,7 +296,10 @@ public class SipdroidEngine implements RegisterAgentListener {
 		for (RegisterAgent ra : ras) {
 			try {
 				if (user_profiles[i] == null || user_profiles[i].username.equals("") ||
-						user_profiles[i].realm.equals("")) {
+						user_profiles[i].realm.equals("") || !Receiver.isProfileEnabled(getUIContext(), i)) {
+					if (ra != null && ra.isRegistered()) {
+						unregister(i);
+					}
 					i++;
 					continue;
 				}
@@ -332,7 +335,10 @@ public class SipdroidEngine implements RegisterAgentListener {
 		for (RegisterAgent ra : ras) {
 			try {
 				if (user_profiles[i] == null || user_profiles[i].username.equals("") ||
-						user_profiles[i].realm.equals("")) {
+						user_profiles[i].realm.equals("") || !Receiver.isProfileEnabled(getUIContext(), i)) {
+					if (ra != null && ra.isRegistered()) {
+						unregister(i);
+					}
 					i++;
 					continue;
 				}
@@ -396,15 +402,18 @@ public class SipdroidEngine implements RegisterAgentListener {
 	}
 
 	public boolean isRegistered() {
-		for (RegisterAgent ra : ras)
-			if (ra != null && ra.isRegistered())
+		int i = 0;
+		for (RegisterAgent ra : ras) {
+			if (ra != null && ra.isRegistered() && Receiver.isProfileEnabled(getUIContext(), i))
 				return true;
+			i++;
+		}
 		return false;
 	}
 	
 	public boolean isRegistered(int i)
 	{
-		if (ras == null || ras[i] == null)
+		if (ras == null || ras[i] == null || !Receiver.isProfileEnabled(getUIContext(), i))
 		{
 			return false;
 		}
@@ -544,8 +553,9 @@ public class SipdroidEngine implements RegisterAgentListener {
 	/** Receives incoming calls (auto accept) */
 	public void listen() 
 	{
+		int i = 0;
 		for (UserAgent ua : uas) {
-			if (ua != null) {
+			if (ua != null && Receiver.isProfileEnabled(getUIContext(), i)) {
 				ua.printLog("UAS: WAITING FOR INCOMING CALL");
 				
 				if (!ua.user_profile.audio && !ua.user_profile.video)
@@ -555,6 +565,7 @@ public class SipdroidEngine implements RegisterAgentListener {
 				
 				ua.listen();
 			}
+			i++;
 		}
 	}
 	

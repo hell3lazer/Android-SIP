@@ -194,11 +194,16 @@ import org.zoolu.sip.provider.SipProvider;
 						.addSupportedUriScheme("sip")
 						.addSupportedUriScheme("sipdroid")
 						.addSupportedUriScheme("tel")
-						.setIcon(android.graphics.drawable.Icon.createWithResource(context, org.sipdroid.sipua.R.mipmap.ic_launcher))
-						.setCapabilities(android.telecom.PhoneAccount.CAPABILITY_CALL_PROVIDER);
+						.setIcon(android.graphics.drawable.Icon.createWithResource(context, org.sipdroid.sipua.R.mipmap.ic_launcher));
+				
+				if (isAnyRegistered) {
+					builder.setCapabilities(android.telecom.PhoneAccount.CAPABILITY_CALL_PROVIDER);
+				} else {
+					builder.setCapabilities(0);
+				}
 				
 				tm.registerPhoneAccount(builder.build());
-				Log.i("SipUA", "Updated PhoneAccount: Android SIP (" + shortDesc + ")");
+				Log.i("SipUA", "Updated PhoneAccount: Android SIP (" + shortDesc + ") [capabilities=" + (isAnyRegistered ? "CALL_PROVIDER" : "0") + "]");
 			} catch (Throwable e) {
 				Log.e("SipUA", "Failed to update PhoneAccount: " + e.getMessage(), e);
 			}
@@ -397,6 +402,12 @@ import org.zoolu.sip.provider.SipProvider;
 		@TargetApi(26)
 		public static void onText(int type, String text, int mInCallResId, long base) {
 			// All UI notifications disabled in v1.3 as requested by user
+			if (type >= REGISTER_NOTIFICATION_0 && type <= REGISTER_NOTIFICATION + org.sipdroid.sipua.SipdroidEngine.LINES) {
+				if (mContext != null) {
+					updatePhoneAccount(mContext);
+				}
+				org.sipdroid.sipua.ui.Settings.notifyRegistrationChanged();
+			}
 		}
 		
 		static void updateAutoAnswer() {
@@ -626,9 +637,21 @@ import org.zoolu.sip.provider.SipProvider;
     		edit.commit();
 		}
 		
+		public static boolean isProfileEnabled(Context context, int i) {
+			if (context == null) return false;
+			String suffix = (i != 0 ? "" + i : "");
+			return PreferenceManager.getDefaultSharedPreferences(context).getBoolean(
+					org.sipdroid.sipua.ui.Settings.PREF_ENABLED + suffix, org.sipdroid.sipua.ui.Settings.DEFAULT_ENABLED);
+		}
+
 		@SuppressLint("MissingPermission")
 		public static boolean isFast(int i) {
 			if (mContext == null) return false;
+
+			if (!isProfileEnabled(mContext, i)) {
+				if (!Sipdroid.release) Log.i("SipUA", "isFast(" + i + ") = false (profile disabled)");
+				return false;
+			}
 
 			if (tm == null)
 				tm = (TelephonyManager) mContext.getSystemService(Context.TELEPHONY_SERVICE);
@@ -875,6 +898,7 @@ import org.zoolu.sip.provider.SipProvider;
 				}
 			}
 			for (int i=0; i<org.sipdroid.sipua.SipdroidEngine.LINES; i++) {
+				if (!isProfileEnabled(context, i)) continue;
 				String suffix = (i == 0) ? "" : String.valueOf(i);
 				String callerId = android.preference.PreferenceManager.getDefaultSharedPreferences(context).getString(org.sipdroid.sipua.ui.Settings.PREF_FROMUSER + suffix, "");
 				if (callerId == null || callerId.trim().isEmpty()) {

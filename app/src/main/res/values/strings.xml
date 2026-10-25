@@ -68,6 +68,8 @@
 
 <string name="settings_account">SIP Account</string>
 <string name="settings_line">Line</string>
+<string name="settings_account_enabled">Enable Account</string>
+<string name="settings_account_enabled_summary">Enable or disable this SIP profile</string>
 <string name="settings_username">Authorization Username</string>
 <string name="settings_password">Password</string>
 <string name="settings_server">Server or Proxy</string>

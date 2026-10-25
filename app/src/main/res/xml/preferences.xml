@@ -10,6 +10,11 @@
 
 	<PreferenceScreen android:title="SIP Account 1"
 					android:key="account">
+			<CheckBoxPreference
+				android:key="account_enabled"
+				android:title="@string/settings_account_enabled"
+				android:summary="@string/settings_account_enabled_summary"
+				android:defaultValue="true" />
 			<EditTextPreference
 				android:key="username"
 				android:title="@string/settings_username"
@@ -59,6 +64,11 @@
 	</PreferenceScreen>
 	<PreferenceScreen android:title="SIP Account 2"
 				android:key="account1">
+			<CheckBoxPreference
+				android:key="account_enabled1"
+				android:title="@string/settings_account_enabled"
+				android:summary="@string/settings_account_enabled_summary"
+				android:defaultValue="true" />
 			<EditTextPreference
 				android:key="username1"
 				android:title="@string/settings_username"

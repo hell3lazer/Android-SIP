@@ -38,6 +38,10 @@ public class SipConnectionService extends ConnectionService {
             Log.e(TAG, "RECORD_AUDIO permission not granted");
             return Connection.createFailedConnection(new android.telecom.DisconnectCause(android.telecom.DisconnectCause.ERROR, "Microphone permission required"));
         }
+        if (Receiver.engine(this) == null || !Receiver.engine(this).isRegistered()) {
+            Log.w(TAG, "Cannot place call: SIP is offline or no account is registered");
+            return Connection.createFailedConnection(new android.telecom.DisconnectCause(android.telecom.DisconnectCause.ERROR, "SIP Offline"));
+        }
         SipConnection connection = new SipConnection();
         connection.setConnectionCapabilities(Connection.CAPABILITY_MUTE | Connection.CAPABILITY_SUPPORT_HOLD | Connection.CAPABILITY_HOLD);
         connection.setAddress(request.getAddress(), android.telecom.TelecomManager.PRESENTATION_ALLOWED);
@@ -71,19 +75,7 @@ public class SipConnectionService extends ConnectionService {
                 final String numberToCall = number;
                 new Thread(() -> {
                     org.sipdroid.sipua.SipdroidEngine engine = Receiver.engine(SipConnectionService.this);
-                    if (engine == null) {
-                        connection.setDisconnected(new android.telecom.DisconnectCause(android.telecom.DisconnectCause.ERROR, "SIP Offline"));
-                        connection.destroy();
-                        return;
-                    }
-                    long start = System.currentTimeMillis();
-                    if (!engine.isRegistered()) {
-                        engine.register();
-                        while (!engine.isRegistered() && (System.currentTimeMillis() - start) < 4000) {
-                            try { Thread.sleep(100); } catch (Exception ignored) {}
-                        }
-                    }
-                    if (!engine.isRegistered()) {
+                    if (engine == null || !engine.isRegistered()) {
                         connection.setDisconnected(new android.telecom.DisconnectCause(android.telecom.DisconnectCause.ERROR, "SIP Offline"));
                         connection.destroy();
                         return;

@@ -1,3 +1,13 @@
+Version 1.4 (Build 151)
+	* Dynamic calling account availability:
+	  - When Android SIP is offline, disconnected, unconfigured, or disabled, calling account capabilities are dynamically removed (capabilities = 0) so Android Telecom automatically prompts native SIM selection for calls instead of routing to an unavailable account.
+	  - Restored real-time Telecom PhoneAccount updates on registration state changes across the SIP engine lifecycle.
+	  - Outgoing connections now validate registration synchronously, rejecting offline attempts immediately without spurious dialing screens.
+	* Profile management:
+	  - Added manual "Enable Account" toggle option inside each SIP account profile (SIP Account 1 & SIP Account 2).
+	  - Disabling a profile cleanly unregisters from the SIP server and transitions the account to an inactive/disabled state without losing saved credentials.
+	  - Added "(Disabled)" status indicators and disconnected icons in account summaries when manually turned off.
+
 Version 1.3 (Build 150)
 	* Fixed incoming call ringtone: eliminated static noise and Samsung vibration-only issue by delaying audio/RTP hardware activation until the call is actively answered.
 	* Native system default ringtone playback: incoming calls now use tel: scheme URI in Telecom, cleanly matching contacts and playing the user's default system ringtone.

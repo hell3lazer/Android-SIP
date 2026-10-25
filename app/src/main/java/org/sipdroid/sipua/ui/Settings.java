@@ -95,6 +95,8 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
 	 */
 
 	// Name of the keys in the Preferences XML file
+	public static final String PREF_ENABLED = "account_enabled";
+	public static final boolean DEFAULT_ENABLED = true;
 	public static final String PREF_USERNAME = "username";
 	public static final String PREF_PASSWORD = "password";
 	public static final String PREF_SERVER = "server";
@@ -308,6 +310,9 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
 
 		for (int i = 0; i < SipdroidEngine.LINES; i++) {
 			String j = (i!=0?""+i:"");
+			if (!settings.contains(PREF_ENABLED+j)) {
+				settings.edit().putBoolean(PREF_ENABLED+j, DEFAULT_ENABLED).commit();
+			}
 			if (!settings.contains(PREF_SERVER+j)) {
 				if (getPreferenceScreen() != null) {
 					CheckBoxPreference cb = (CheckBoxPreference) getPreferenceScreen().findPreference(PREF_WLAN+j);
@@ -542,7 +547,8 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
 					mInstance.updateSummaries();
 				}
 			});
-		} else if (Receiver.mContext != null) {
+		}
+		if (Receiver.mContext != null) {
 			Receiver.updatePhoneAccount(Receiver.mContext);
 		}
 	}
@@ -600,7 +606,8 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
 				}
         	}).start();
 
-	    } else if (key.startsWith(PREF_WLAN) ||
+	    } else if (key.startsWith(PREF_ENABLED) ||
+					key.startsWith(PREF_WLAN) ||
         			key.startsWith(PREF_3G) ||
         			key.startsWith(PREF_4G) ||
         			key.startsWith(PREF_USERNAME) ||
@@ -683,18 +690,27 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
 	    	fill(PREF_PROTOCOL+j,DEFAULT_PROTOCOL,R.array.protocol_values2,R.array.protocol_display_values2);
 	    	Preference pAccount = getPreferenceScreen().findPreference(PREF_ACCOUNT+j);
 	    	if (pAccount != null) {
-				pAccount.setSummary(username.equals("")||server.equals("")?"Not Configured":username+"@"+server);
-				int state = org.sipdroid.sipua.RegisterAgent.UNREGISTERED;
-				org.sipdroid.sipua.SipdroidEngine engine = Receiver.engine(this);
-				if (!username.equals("") && !server.equals("") && engine != null && engine.ras != null && engine.ras[i] != null) {
-					state = engine.ras[i].CurrentState;
-				}
-				if (state == org.sipdroid.sipua.RegisterAgent.REGISTERED) {
-					pAccount.setIcon(R.drawable.ic_connected_modern);
-				} else if (state == org.sipdroid.sipua.RegisterAgent.REGISTERING || state == org.sipdroid.sipua.RegisterAgent.DEREGISTERING) {
-					pAccount.setIcon(R.drawable.ic_registering_modern);
-				} else {
+				boolean enabled = settings.getBoolean(PREF_ENABLED+j, DEFAULT_ENABLED);
+				if (username.equals("") || server.equals("")) {
+					pAccount.setSummary("Not Configured");
 					pAccount.setIcon(R.drawable.ic_disconnected_modern);
+				} else if (!enabled) {
+					pAccount.setSummary(username + "@" + server + " (Disabled)");
+					pAccount.setIcon(R.drawable.ic_disconnected_modern);
+				} else {
+					pAccount.setSummary(username + "@" + server);
+					int state = org.sipdroid.sipua.RegisterAgent.UNREGISTERED;
+					org.sipdroid.sipua.SipdroidEngine engine = Receiver.engine(this);
+					if (engine != null && engine.ras != null && engine.ras[i] != null) {
+						state = engine.ras[i].CurrentState;
+					}
+					if (state == org.sipdroid.sipua.RegisterAgent.REGISTERED) {
+						pAccount.setIcon(R.drawable.ic_connected_modern);
+					} else if (state == org.sipdroid.sipua.RegisterAgent.REGISTERING || state == org.sipdroid.sipua.RegisterAgent.DEREGISTERING) {
+						pAccount.setIcon(R.drawable.ic_registering_modern);
+					} else {
+						pAccount.setIcon(R.drawable.ic_disconnected_modern);
+					}
 				}
 			}
        	}
