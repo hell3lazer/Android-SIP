@@ -21,7 +21,11 @@ public class SipConnectionService extends ConnectionService {
         if (address != null) {
             connection.setAddress(address, android.telecom.TelecomManager.PRESENTATION_ALLOWED);
             String number = address.getSchemeSpecificPart();
-            if (number != null && !number.isEmpty()) {
+            String name = Receiver.incomingDisplayName;
+            if (name != null && !name.isEmpty() && !name.equals(number)) {
+                // Display name from the SIP From header.
+                connection.setCallerDisplayName(name, android.telecom.TelecomManager.PRESENTATION_ALLOWED);
+            } else if (number != null && !number.isEmpty()) {
                 connection.setCallerDisplayName(number, android.telecom.TelecomManager.PRESENTATION_ALLOWED);
             }
         }

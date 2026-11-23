@@ -132,6 +132,8 @@ import org.zoolu.sip.provider.SipProvider;
 		public static Context mContext;
 		public static Service sContext;
 		public static SipConnection activeConnection;
+		/** Display name from the From header of the current incoming call, or null. */
+		public static String incomingDisplayName = null;
 		public static android.telecom.PhoneAccountHandle phoneAccountHandle = null;
 		public static String telecomSetupError = null;
 
@@ -276,6 +278,10 @@ import org.zoolu.sip.provider.SipProvider;
 					if (text2.indexOf("\"") >= 0)
 						text2 = text2.substring(text2.indexOf("\"")+1,text2.lastIndexOf("\""));
 					broadcastCallStateChanged("RINGING", caller);
+					// Keep the SIP display name (e.g. a name the PBX looked up for
+					// the caller). Without it the dialer only showed the number.
+					incomingDisplayName = (text2 != null && caller.indexOf("\"") >= 0
+							&& text2.trim().length() > 0) ? text2.trim() : null;
 //			        mContext.sendBroadcast(new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
 					String cleanAddress = caller;
 					if (cleanAddress != null) {
