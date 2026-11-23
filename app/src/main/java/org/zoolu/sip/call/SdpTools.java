@@ -97,6 +97,27 @@ public class SdpTools {
 								}
 							}
 						}
+						// Drop dynamic payload types (96-127) whose rtpmap line did not
+						// survive the attribute matching. Otherwise strict peers
+						// (pjproject: PJMEDIA_SDP_EMISSINGRTPMAP) reject the SDP.
+						for (int f = new_formats.size() - 1; f >= 0; f--) {
+							int pt;
+							try {
+								pt = Integer.parseInt(new_formats.get(f).trim());
+							} catch (NumberFormatException ex) {
+								continue;
+							}
+							if (pt < 96 || pt > 127) continue;
+							boolean hasRtpmap = false;
+							for (AttributeField a : new_attributes) {
+								if (a.getAttributeName().equals("rtpmap")
+										&& a.getAttributeValue().trim().startsWith(pt + " ")) {
+									hasRtpmap = true;
+									break;
+								}
+							}
+							if (!hasRtpmap) new_formats.remove(f);
+						}
 						MediaField new_mf = new MediaField(prev_mf.getMedia(), prev_mf.getPort(), 0,
 								prev_mf.getTransport(), new_formats);
 						if (new_attributes.size() > 0)
