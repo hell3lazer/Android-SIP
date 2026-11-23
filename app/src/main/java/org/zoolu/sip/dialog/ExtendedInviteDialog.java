@@ -281,7 +281,15 @@ public class ExtendedInviteDialog extends org.zoolu.sip.dialog.InviteDialog {
 				ah = digest.getProxyAuthorizationHeader();
 			req.setAuthorizationHeader(ah);
 			transactions.remove(tc.getTransactionId());
-			tc = new TransactionClient(sip_provider, req, this);
+			// An authenticated INVITE needs an INVITE client transaction. The
+			// generic (non-INVITE) TransactionClient keeps retransmitting after
+			// a provisional response (every T2 = 4 s while ringing, also over
+			// TCP), never ACKs a non-2xx final response and times out after
+			// Timer F (32 s). RFC 3261 sections 17.1.1 and 17.1.2.
+			if (req.isInvite())
+				tc = new InviteTransactionClient(sip_provider, req, this);
+			else
+				tc = new TransactionClient(sip_provider, req, this);
 			transactions.put(tc.getTransactionId(), tc);
 			tc.request();
 			invite_req = req; // modified

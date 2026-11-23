@@ -13,9 +13,6 @@ Android SIP is an open-source SIP client for Android. This fork modernizes the h
 - **Modern Cloud Backups:** Replaced the obsolete SD-card text backup system with standard Android Storage Access Framework (SAF) `XML` backups, allowing seamless import/export of configuration to any cloud drive or local folder.
 - **Cleaner Notifications:** Ongoing call notifications now display a clean, readable Caller ID rather than leaking the raw SIP connection URIs, and the SIP account settings have been refined for better visibility.
 
-### ⚠️ Known Issues
-- **INVITE Retransmissions During Extended Ringing:** When an outbound call is challenged with `407 Proxy Authentication`, retransmitted authenticated INVITEs may repeat at 4-second intervals during ringing until answered or terminated.
-
 ## 🙌 Credits & Acknowledgments
 
 This fork is built upon the phenomenal work of the original Sipdroid developers and contributors. All original rights and credits belong to:
